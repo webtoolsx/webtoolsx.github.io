@@ -70,10 +70,15 @@ import StockCalculator from './calclib.js';
     }
     
 
-    document.querySelector('.calculate_pl_button').addEventListener('click', function() {
-        claculate_pl();
-    });
+const calculatePlButton = document.querySelector('.calculate_pl_button');
 
+if (calculatePlButton) {
+    calculatePlButton.addEventListener('click', function() {
+        calculate_pl();
+    });
+} else {
+    console.log('.calculate_pl_button not found');
+}
     function shakeInput($input) {
         $input.addClass('shake');
         setTimeout(function() {
@@ -96,12 +101,56 @@ import StockCalculator from './calclib.js';
     }
 
     // Attach an event listener to the range input
-    document.getElementById('customRange3').addEventListener('input', updateBrokerage);
+    const customRange3 = document.getElementById('customRange3');
 
-    function calculate_average(){
-        let buyAtPrice = parseFloat(document.querySelector('input[name="buy_at_price"]').value);
-        let sellAtPrice = parseFloat(document.querySelector('input[name="sell_at_price"]').value);
-        let buyQty = parseInt(document.querySelector('input[name="buy_qty"]').value, 10);
-        let sellQty = parseInt(document.querySelector('input[name="sell_qty"]').value, 10);
+    if (customRange3) {
+        customRange3.addEventListener('input', updateBrokerage);
+    } else {
+        console.log('#customRange3 not found');
     }
 
+    function calculate_average() {
+        // Get all elements with the name 'buy_at_price[]'
+        const buyAtPrices = document.getElementsByName('buy_at_price[]');
+        // Get all elements with the name 'buy_qty[]'
+        const buyQtys = document.getElementsByName('buy_qty[]');
+        
+        // Initialize variables for the total price and total quantity
+        let totalPrice = 0;
+        let totalQuantity = 0;
+    
+        // Loop through all the 'buy_at_price[]' inputs
+        for (let i = 0; i < buyAtPrices.length; i++) {
+            // Get the value of each buy price
+            const price = parseFloat(buyAtPrices[i].value);
+            
+            // Get the corresponding quantity for this price (assuming both arrays are aligned)
+            const qty = parseInt(buyQtys[i].value, 10);
+    
+            // Add the price * quantity to the total price
+            totalPrice += price * qty;
+    
+            // Add the quantity to the total quantity
+            totalQuantity += qty;
+        }
+    
+        // Calculate the average price (if totalQuantity is not zero to avoid division by zero)
+        let averagePrice = 0;
+        if (totalQuantity > 0) {
+            averagePrice = totalPrice / totalQuantity;
+        }
+    
+        // Output the result (you can use it elsewhere, such as showing it in the UI)
+        console.log('Total Price:', totalPrice);
+        console.log('Total Quantity:', totalQuantity);
+        console.log('Average Price:', averagePrice);
+        $('#my-number').counto(  averagePrice.toFixed(4), 500);
+    }
+    
+
+    document.querySelector('.calculate_avg_button').addEventListener('click', function() {
+        // This will show an alert when the button is clicked
+
+            calculate_average();
+
+    });

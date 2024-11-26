@@ -145,6 +145,8 @@ if (calculatePlButton) {
         console.log('Total Quantity:', totalQuantity);
         console.log('Average Price:', averagePrice);
         $('#my-number').counto(  averagePrice.toFixed(4), 500);
+        $('#total_investment').html(  totalPrice.toFixed(4));
+       
     }
     
 

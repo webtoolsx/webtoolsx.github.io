@@ -118,7 +118,7 @@ if (calculatePlButton) {
         // Initialize variables for the total price and total quantity
         let totalPrice = 0;
         let totalQuantity = 0;
-    
+        let invest_list = [];
         // Loop through all the 'buy_at_price[]' inputs
         for (let i = 0; i < buyAtPrices.length; i++) {
             // Get the value of each buy price
@@ -126,7 +126,7 @@ if (calculatePlButton) {
             
             // Get the corresponding quantity for this price (assuming both arrays are aligned)
             const qty = parseInt(buyQtys[i].value, 10);
-    
+            invest_list[i]=price * qty;
             // Add the price * quantity to the total price
             totalPrice += price * qty;
     
@@ -143,8 +143,13 @@ if (calculatePlButton) {
         // Output the result (you can use it elsewhere, such as showing it in the UI)
         console.log('Total Price:', totalPrice);
         console.log('Total Quantity:', totalQuantity);
-        console.log('Average Price:', averagePrice);
+        console.log('invest_list:', invest_list);
         $('#my-number').counto(  averagePrice.toFixed(4), 500);
+        invest_list.forEach((item, index) => {
+            // console.log(index, item);
+            // alert("#"+(index+1)+"_total_investment");
+            $("#"+(index+1)+"_total_investment").html(item);
+          });
         $('#total_investment').html(  totalPrice.toFixed(4));
        
     }

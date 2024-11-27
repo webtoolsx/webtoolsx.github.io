@@ -1,7 +1,7 @@
 import StockCalculator from './calclib.js';
 
 
-    function claculate_pl() {
+    function calculate_pl() {
         // Retrieve the input values
         let buyAtPrice = parseFloat(document.querySelector('input[name="buy_at_price"]').value);
         let sellAtPrice = parseFloat(document.querySelector('input[name="sell_at_price"]').value);
@@ -97,7 +97,7 @@ if (calculatePlButton) {
         // Update the label with the new value
         const label = document.querySelector('label[for="customRange3"]');
         label.textContent = `Brokerage (${value}%)`;
-        claculate_pl();
+        calculate_pl();
     }
 
     // Attach an event listener to the range input

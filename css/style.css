@@ -103,6 +103,20 @@
     animation-iteration-count: 1;
 }
 
+.footer_main{
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    margin-top: 8%;
+}
+
+/* Logo styling */
+.footer-logo img {
+    height: 40px; /* Adjust logo size */
+    border-radius: 10px;
+  }
+
 @keyframes shake {
     0% { transform: translateX(0); }
     25% { transform: translateX(-5px); }

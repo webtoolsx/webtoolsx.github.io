@@ -201,8 +201,9 @@ if (resetButton) {
     });
     $('#my-number').counto( '0.00', 500);
     $(".calc_numbers").html('0.00');
+    const label = document.querySelector('label[for="customRange3"]');
+
     if(label){
-        const label = document.querySelector('label[for="customRange3"]');
         label.textContent = `Brokerage (0%)`;
     }
     

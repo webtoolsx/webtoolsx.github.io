@@ -116,6 +116,12 @@
     height: 40px; /* Adjust logo size */
     border-radius: 10px;
   }
+.reset_button_pl_calc{
+    margin-right: 9px;
+    border: 2px solid #6c757d;
+    color: #6c757d;
+}
+
 
 @keyframes shake {
     0% { transform: translateX(0); }

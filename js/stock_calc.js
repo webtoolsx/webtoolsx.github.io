@@ -155,9 +155,58 @@ if (calculatePlButton) {
     }
     
 
-    document.querySelector('.calculate_avg_button').addEventListener('click', function() {
-        // This will show an alert when the button is clicked
+    // document.querySelector('.calculate_avg_button').addEventListener('click', function() {
+    //     // This will show an alert when the button is clicked
 
-            calculate_average();
+    //         calculate_average();
+
+    // });
+// Check if the element with the class 'calculate_avg_button' exists
+const button = document.querySelector('.calculate_avg_button');
+    
+if (button) {
+    // If it exists, add the event listener
+    button.addEventListener('click', function() {
+        calculate_average();
+    });
+} else {
+    // If the element doesn't exist, log an error or handle it accordingly
+    console.error('Button with class "calculate_avg_button" not found.');
+}
+
+
+    // JavaScript to clear the input fields when the button is clicked
+    // Check if the reset button exists
+    // Check if the reset button exists
+const resetButton = document.querySelector('.reset_button_pl_calc');
+
+if (resetButton) {
+  // If the button exists, add the event listener
+  resetButton.addEventListener('click', function() {
+    // Select all input elements
+    const inputs = document.querySelectorAll('input');
+    
+    // Loop through all inputs and clear only text and number fields
+    inputs.forEach(function(input) {
+      // Check if the input type is 'text' or 'number'
+      if (input.type === 'text' || input.type === 'number') {
+        input.value = '';  // Clear the value of each matching input
+      }
+
+      if (input.name === 'brockerage_percentage') {
+        // Set value to 0 for the input with name 'brockerage_percentage'
+        input.value = '0';
+      }
 
     });
+    $('#my-number').counto( '0.00', 500);
+    $(".calc_numbers").html('0.00');
+    if(label){
+        const label = document.querySelector('label[for="customRange3"]');
+        label.textContent = `Brokerage (0%)`;
+    }
+    
+  });
+} else {
+  console.error('Button with class "reset_button_pl_calc" not found.');
+}

@@ -1,0 +1,56 @@
+/* Basic styling for all range inputs */
+input[type="range"] {
+    -webkit-appearance: none;  /* Remove default styling in WebKit browsers */
+    appearance: none;          /* Remove default styling in other browsers */
+    width: 100%;
+    height: 10px;
+    background: linear-gradient(to right, #e74c3c 0%, #e74c3c 0%, #ddd 0%, #ddd 100%);
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+    transition: background 0.3s ease; /* Smooth transition for background color */
+  }
+
+  /* Style for the range thumb (the draggable part) */
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: #000000;       /* Green color for the thumb */
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.3s ease; /* Smooth scaling transition */
+  }
+
+  input[type="range"]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: #000000;       /* Green color for the thumb */
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.3s ease; /* Smooth scaling transition */
+  }
+
+  /* Hover effect to change the thumb size */
+  input[type="range"]:hover::-webkit-slider-thumb {
+    transform: scale(2); /* Increase thumb size by 1.5x */
+  }
+
+  input[type="range"]:hover::-moz-range-thumb {
+    transform: scale(1.5); /* Increase thumb size by 1.5x */
+  }
+
+  /* Hover effect to change the track color */
+  input[type="range"]:hover {
+    background: #bbb;  /* Darker grey track color on hover */
+  }
+
+  /* Change thumb color on hover */
+  input[type="range"]:hover::-webkit-slider-thumb {
+    background: #f39c12;  /* Yellow color for thumb when hovered */
+  }
+
+  input[type="range"]:hover::-moz-range-thumb {
+    background: #f39c12;  /* Yellow color for thumb when hovered */
+  }

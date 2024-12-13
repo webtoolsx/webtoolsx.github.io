@@ -211,3 +211,49 @@ if (resetButton) {
 } else {
   console.error('Button with class "reset_button_pl_calc" not found.');
 }
+
+
+const button_percent_change = document.querySelector('.calculate_percentage_change_button');
+
+if (button_percent_change) {
+    // If it exists, add the event listener
+    button_percent_change.addEventListener('click', function() {
+        calculatePercentageChange();
+    });
+} else {
+    // If the element doesn't exist, log an error or handle it accordingly
+    console.error('Button with class "calculate_avg_button" not found.');
+}
+// Function to calculate percentage change
+function calculatePercentageChange() {
+    // Get the values from input fields
+    var firstValue = parseFloat(document.getElementById("first_value").value);
+    var secondValue = parseFloat(document.getElementById("second_value").value);
+
+    // Validate that both values are provided
+    if (isNaN(firstValue) || isNaN(secondValue)) {
+        alert("Please enter both values to calculate the percentage change.");
+        return;
+    }
+
+    // Calculate the percentage change
+    var percentageChange = ((secondValue - firstValue) / firstValue) * 100;
+
+    // Display the result
+    let pctg = percentageChange.toFixed(2);
+
+    var numberElement = document.getElementById("my-number");
+
+    $('#my-number').counto(  pctg, 500);
+    // document.getElementById("percentage_result").textContent = "Percentage Change: " + percentageChange.toFixed(2) + "%";
+    if (percentageChange > 0) {
+        numberElement.classList.add("profit");
+        numberElement.classList.remove("loss");
+    } else if (percentageChange < 0) {
+        numberElement.classList.add("loss");
+        numberElement.classList.remove("profit");
+    } else {
+        
+        numberElement.classList.remove("profit", "loss"); // No profit or loss class if change is zero
+    }
+}

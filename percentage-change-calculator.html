@@ -40,6 +40,10 @@
   
   <!-- Counto script -->
   <script src="js/counto.min.js"></script>
+
+  <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
   
   <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-0ZDRS85Q8B"></script>
@@ -91,68 +95,29 @@
         <!-- buy Price and sell Price -->
         <div class="container-fluid py-4 p-0 p-lg-2">
           <div class="row background-image-average">
-            <div class="col ">
-              <h1 class="calc_heading"><img src="images/chart-average-svgrepo-com.svg" height="25px">&nbsp;Average Calculator</h1>
-              <div class="mt-3 profit-box">
-                <h2 class="prof_loss_view profit">Average Price</h2>
-                <span class="prof_loss_view profit"><b><span class="calc_numbers" id="my-number">0.00</span></b></span>
-              </div>
-
-              <div class="mt-3">
-                <h5 class="other_property_calc">1<sup>st</sup> Investment</h5>
-                <span class="profit"><b class="calc_numbers" id="1_total_investment">0.00</b></span>
-              </div>
-
-              <div class="mt-3">
-                <h5 class="other_property_calc">2<sup>nd</sup> Investment</h5>
-                <span class="profit"><b class="calc_numbers" id="2_total_investment">0.00</b></span>
-              </div>
-
-              <div class="mt-3">
-                <h5 class="other_property_calc">Total Investment</h5>
-                <span class="profit"><b class="calc_numbers" id="total_investment">0.00</b></span>
-              </div>
-
-            </div>
-            <div class="col-1 d-none d-lg-block">
-              <!-- div for gap -->
-            </div>
+            
+            
             <div class="col cal_box">
 
+              <h1 class="calc_heading">Percentage Change</h1>
             
 
               <div class="row mb-3">
                 <div class="col-md-6 mb-3">
                     <div class="input-group">
-                        <span class="input-group-text input-group-text-buy fs-5 fs-sm-6"><img src="images/uparrow.svg "  class="buy_sell_image_size"></span>
-                        <input type="number" name="buy_at_price[]" class="form-control input_buysell_size" placeholder="1st Buy at" aria-label="Buy Price">
+                        <span class="input-group-text input-group-text-buy input-group-text-blue fs-5 fs-sm-6">V1</span>
+                        <input type="number" name="first_value" id="first_value" class="form-control input_buysell_size" placeholder="1st val" aria-label="First Value">
                     </div>
                 </div>
 
                 <div class="col-md-6 mb-3">
                   <div class="input-group">
-                      <span class="input-group-text input-group-text-qty"><img src="images/qty.svg "  class="buy_sell_image_size"></span>
-                      <input type="number" name="buy_qty[]" class="form-control input_buysell_size" placeholder="quantity" aria-label="Quantity">
+                      <span class="input-group-text input-group-text-qty input-group-text-blue">V2</span>
+                      <input type="number" name="second_value" id="second_value" class="form-control input_buysell_size" placeholder="2nd val" aria-label="Second Value">
                   </div>
                 </div>
                 
               </div>
-
-              <div class="row">
-                  <div class="col-md-6 mb-3">
-                      <div class="input-group">
-                          <span class="input-group-text input-group-text-buy"><img src="images/uparrow.svg "  class="buy_sell_image_size"></span>
-                          <input type="number" name="buy_at_price[]" class="form-control input_buysell_size" placeholder="2nd Buy at" aria-label="Sell Price">
-                      </div>
-                  </div>
-                  <div class="col-md-6 mb-3">
-                      <div class="input-group">
-                          <span class="input-group-text input-group-text-qty"><img src="images/qty.svg "  class="buy_sell_image_size"></span>
-                          <input type="number" name="buy_qty[]" class="form-control input_buysell_size" placeholder="quantity" aria-label="Quantity">
-                      </div>
-                  </div>
-              </div>
-
 
               <div class="row">
                 <div class="col-md-6 mb-3">
@@ -160,10 +125,28 @@
                 </div>
                 <div class="col-md-6 mb-3 nav justify-content-end">
                   <button type="button" aria-label="Quantity" class="calculate_button reset_button_pl_calc"><img src="images/reset.svg" height="25px"></button>
-                  <input type="button" aria-label="Quantity" value="Calculate" class="calculate_button calculate_avg_button">
+                  <input type="button" aria-label="Quantity" value="Calculate" class="calculate_button calculate_percentage_change_button">
                 </div>
+              </div>
+
             </div>
 
+            <div class="col-1 d-none d-lg-block">
+              <!-- div for gap -->
+            </div>
+
+            <div class="col ">
+              <div class="mt-3 profit-box">
+                <span class="prof_loss_view"><b><span class="calc_numbers font_30" id="my-number">0.00</span>%</b></span>
+                <h2 class="heading_view_result font_15">Percent of Change</h2>
+                
+                  <!-- <div id="formula">
+                      \(\text{% Change} = \left( \frac{\text{X2} - \text{X1}}{\text{X1}} \right) \times 100\)
+                  </div> -->
+                
+              </div>
+
+              
             </div>
 
           </div>

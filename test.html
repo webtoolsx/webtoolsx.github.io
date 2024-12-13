@@ -3,126 +3,176 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Custom Range Slider</title>
+  <title>Horizontal Scroll with Drag and Buttons</title>
   <style>
-    /* Container for the range input */
-    .slider-container {
-      width: 100%;
-      max-width: 500px;
-      margin: 50px auto;
-      text-align: center;
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f0f0f0;
     }
 
-    /* Style for the range label */
-    .slider-container label {
-      font-size: 18px;
-      margin-bottom: 10px;
-      display: block;
+    .scroll-container {
+      display: flex;
+      align-items: center;
+      position: relative;
+      width: 80%;
     }
 
-    /* Basic styling for all range inputs */
-    input[type="range"] {
-      -webkit-appearance: none;  /* Remove default styling in WebKit browsers */
-      appearance: none;          /* Remove default styling in other browsers */
-      width: 100%;
-      height: 10px;
-      background: linear-gradient(to right, #e74c3c 0%, #e74c3c 0%, #ddd 0%, #ddd 100%);
-      border-radius: 5px;
-      outline: none;
+    .scroll-wrapper {
+      overflow-x: hidden;
+      flex: 1;
+      /* scroll-behavior: smooth; */
+      display: flex;
+      cursor: grab;
+    }
+
+    .scroll-wrapper:active {
+      cursor: grabbing;
+    }
+
+    .scroll-content {
+      display: flex;
+      white-space: nowrap;
+    }
+
+    .item {
+      min-width: 150px;
+    height: 40px;
+    margin: 0 10px;
+    background-color: #007bff;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    }
+
+    .scroll-btn {
+      background-color: #333;
+      color: white;
+      border: none;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       cursor: pointer;
-      transition: background 0.3s ease; /* Smooth transition for background color */
-    }
-
-    /* Style for the range thumb (the draggable part) */
-    input[type="range"]::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      appearance: none;
-      width: 20px;
-      height: 20px;
-      background: #4CAF50;       /* Green color for the thumb */
       border-radius: 50%;
-      cursor: pointer;
-      transition: transform 0.3s ease; /* Smooth scaling transition */
+      margin: 0 10px;
     }
 
-    input[type="range"]::-moz-range-thumb {
-      width: 20px;
-      height: 20px;
-      background: #4CAF50;       /* Green color for the thumb */
-      border-radius: 50%;
-      cursor: pointer;
-      transition: transform 0.3s ease; /* Smooth scaling transition */
-    }
-
-    /* Hover effect to change the thumb size */
-    input[type="range"]:hover::-webkit-slider-thumb {
-      transform: scale(2); /* Increase thumb size by 1.5x */
-    }
-
-    input[type="range"]:hover::-moz-range-thumb {
-      transform: scale(1.5); /* Increase thumb size by 1.5x */
-    }
-
-    /* Hover effect to change the track color */
-    input[type="range"]:hover {
-      background: #bbb;  /* Darker grey track color on hover */
-    }
-
-    /* Change thumb color on hover */
-    input[type="range"]:hover::-webkit-slider-thumb {
-      background: #f39c12;  /* Yellow color for thumb when hovered */
-    }
-
-    input[type="range"]:hover::-moz-range-thumb {
-      background: #f39c12;  /* Yellow color for thumb when hovered */
+    .scroll-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
     }
   </style>
 </head>
 <body>
+  <div class="scroll-container">
+    <button class="scroll-btn left">&larr;</button>
+    <div class="scroll-wrapper">
+      <div class="scroll-content">
+        <div class="item">Item 1</div>
+        <div class="item">Item 2</div>
+        <div class="item">Item 3</div>
+        <div class="item">Item 4</div>
+        <div class="item">Item 5</div>
+        <div class="item">Item 6</div>
+        <div class="item">Item 7</div>
+        <div class="item">Item 1</div>
+        <div class="item">Item 2</div>
+        <div class="item">Item 3</div>
+        <div class="item">Item 4</div>
+        <div class="item">Item 5</div>
+        <div class="item">Item 6</div>
+        <div class="item">Item 7</div>
+      </div>
+    </div>
+    <button class="scroll-btn right">&rarr;</button>
+  </div>
 
-<!-- Example Range Input 1 -->
-<div class="slider-container">
-  <label for="range1">Volume: <span id="value1">50</span></label>
-  <input type="range" id="range1" name="range1" min="0" max="100" value="50">
-</div>
-
-<!-- Example Range Input 2 -->
-<div class="slider-container">
-  <label for="range2">Brightness: <span id="value2">25</span></label>
-  <input type="range" id="range2" name="range2" min="0" max="100" value="25">
-</div>
-
-<!-- Example Range Input 3 -->
-<div class="slider-container">
-  <label for="range3">Temperature: <span id="value3">75</span></label>
-  <input type="range" id="range3" name="range3" min="0" max="100" value="75">
-</div>
-
-<script>
-  // Function to update the display value and the range background for all range inputs
-  function updateRangeValue(rangeInput, valueDisplay) {
-    const value = rangeInput.value;
-    valueDisplay.textContent = value;
-
-    // Update the background gradient to reflect the slider's current value
-    const percentage = (value - rangeInput.min) / (rangeInput.max - rangeInput.min) * 100;
-    rangeInput.style.background = `linear-gradient(to right, #e74c3c ${percentage}%, #ddd ${percentage}%)`;
-  }
-
-  // Get all range inputs and their corresponding value displays
-  const rangeInputs = document.querySelectorAll('input[type="range"]');
-  rangeInputs.forEach((rangeInput, index) => {
-    const valueDisplay = document.getElementById(`value${index + 1}`);
-    
-    // Update the value and background on page load
-    updateRangeValue(rangeInput, valueDisplay);
-
-    // Update value and background on input change
-    rangeInput.addEventListener('input', () => {
-      updateRangeValue(rangeInput, valueDisplay);
+  <script>
+    const scrollWrapper = document.querySelector('.scroll-wrapper');
+    const leftButton = document.querySelector('.scroll-btn.left');
+    const rightButton = document.querySelector('.scroll-btn.right');
+  
+    const scrollStep = 150; // Adjust the scroll step size as needed
+  
+    // Scroll buttons functionality
+    leftButton.addEventListener('click', () => {
+      scrollWrapper.scrollBy({ left: -scrollStep, behavior: 'smooth' });
     });
-  });
-</script>
-
+  
+    rightButton.addEventListener('click', () => {
+      scrollWrapper.scrollBy({ left: scrollStep, behavior: 'smooth' });
+    });
+  
+    // Optional: Disable buttons at the edges
+    function toggleButtons() {
+      leftButton.disabled = scrollWrapper.scrollLeft === 0;
+      rightButton.disabled = scrollWrapper.scrollLeft + scrollWrapper.clientWidth >= scrollWrapper.scrollWidth;
+    }
+  
+    scrollWrapper.addEventListener('scroll', toggleButtons);
+    toggleButtons(); // Initial check
+  
+    // Drag-to-scroll functionality
+    let isDragging = false;
+    let startX;
+    let scrollLeft;
+  
+    // Mouse events
+    scrollWrapper.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      startX = e.pageX - scrollWrapper.offsetLeft;
+      scrollLeft = scrollWrapper.scrollLeft;
+      scrollWrapper.style.cursor = 'grabbing';
+    });
+  
+    scrollWrapper.addEventListener('mouseleave', () => {
+      isDragging = false;
+      scrollWrapper.style.cursor = 'grab';
+    });
+  
+    scrollWrapper.addEventListener('mouseup', () => {
+      isDragging = false;
+      scrollWrapper.style.cursor = 'grab';
+    });
+  
+    scrollWrapper.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      e.preventDefault();
+      const x = e.pageX - scrollWrapper.offsetLeft;
+      const walk = (x - startX); // Adjust scroll speed as needed
+      scrollWrapper.scrollLeft = scrollLeft - walk;
+    });
+  
+    // Touch events
+    scrollWrapper.addEventListener('touchstart', (e) => {
+      isDragging = true;
+      startX = e.touches[0].pageX - scrollWrapper.offsetLeft;
+      scrollLeft = scrollWrapper.scrollLeft;
+    });
+  
+    scrollWrapper.addEventListener('touchmove', (e) => {
+      if (!isDragging) return;
+      const x = e.touches[0].pageX - scrollWrapper.offsetLeft;
+      // console.log(x);
+      const walk = (x - startX); // Adjust scroll speed as needed
+      scrollWrapper.scrollLeft = scrollLeft - walk;
+      
+    });
+  
+    scrollWrapper.addEventListener('touchend', () => {
+      isDragging = false;
+    });
+  </script>
+  
 </body>
 </html>
+

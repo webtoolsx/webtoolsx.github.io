@@ -193,6 +193,7 @@ body {
     @media (max-width: 400px) {
         .calculate_button {
             font-size: 16px;
+            padding: 6px;
         }
         .heading_view_result{
             color:rgb(59, 33, 91);

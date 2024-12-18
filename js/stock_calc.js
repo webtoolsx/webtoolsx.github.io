@@ -257,7 +257,7 @@ function calculatePercentageChange() {
 
         var numberElement = document.getElementById("my-number");
         $('#my-number').counto(pctg, 500);
-        $(".pctg_change_msg").html("V2 is " + pctg + "% " + changeType);
+        $(".pctg_change_msg").html(secondValue+" is " + pctg + "% " + changeType);
 
 
     }else{
@@ -267,7 +267,7 @@ function calculatePercentageChange() {
         var pctg = percentageChange.toFixed(2);
         var numberElement = document.getElementById("my-number");
         $('#my-number').counto(pctg, 500);
-        $(".pctg_change_msg").html("V2 is " + pctg + "% of V1");
+        $(".pctg_change_msg").html(secondValue+" is " + pctg + "% of "+firstValue);
     }
     
 

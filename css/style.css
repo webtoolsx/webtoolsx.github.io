@@ -1,5 +1,9 @@
 @import url('custom_range.css');
-
+@import url('hr_scroll.css');
+@import url(https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Oswald:wght@200..700&display=swap);
+body {
+    font-family: "Montserrat", sans-serif;
+  }
 .header_bar{
     background: #ffffffc4 !important;
     border-radius: 5px !important;

@@ -5,16 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Horizontal Scroll with Drag and Buttons</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background-color: #f0f0f0;
-    }
+
 
     .scroll-container {
       display: flex;
@@ -176,3 +167,20 @@
 </body>
 </html>
 
+<!-- // Function to slide focus to the "Average Calculator"
+  function slideToAverageCalculator() {
+    // Find the "Average Calculator" link element
+    const averageCalculatorLink = document.querySelector('a[href="/average-calculator.html"]');
+
+    if (averageCalculatorLink) {
+      // Scroll it into view within the scrollable container
+      averageCalculatorLink.scrollIntoView({
+        behavior: 'smooth', // Smooth scroll
+        block: 'nearest',   // Scroll it to the nearest position
+        inline: 'center'    // Center the link horizontally within the container
+      });
+    }
+  }
+
+  // Call the function when the page loads or when needed
+  window.onload = slideToAverageCalculator; -->

@@ -214,6 +214,7 @@ if (resetButton) {
 
 
 const button_percent_change = document.querySelector('.calculate_percentage_change_button');
+const button_percent_change_radio = document.querySelector('.percent_calc_radio');
 
 if (button_percent_change) {
     // If it exists, add the event listener
@@ -224,11 +225,20 @@ if (button_percent_change) {
     // If the element doesn't exist, log an error or handle it accordingly
     console.error('Button with class "calculate_avg_button" not found.');
 }
+
+$(document).ready(function() {
+    // Attach change event listener to the radio buttons
+    $('input[name="percent_calc_radio"]').change(function() {
+        calculatePercentageChange();
+    });
+});
+
 // Function to calculate percentage change
 function calculatePercentageChange() {
     // Get the values from input fields
     var firstValue = parseFloat(document.getElementById("first_value").value);
     var secondValue = parseFloat(document.getElementById("second_value").value);
+    var percent_calc_radio = document.querySelector('input[name="percent_calc_radio"]:checked').value;
 
     // Validate that both values are provided
     if (isNaN(firstValue) || isNaN(secondValue)) {
@@ -236,15 +246,33 @@ function calculatePercentageChange() {
         return;
     }
 
-    // Calculate the percentage change
-    var percentageChange = ((secondValue - firstValue) / firstValue) * 100;
+    if(percent_calc_radio == 'p_change')
+    {
+        // Calculate the percentage change
+        var percentageChange = ((secondValue - firstValue) / firstValue) * 100;
+        // Display the result
+        var pctg = percentageChange.toFixed(2);
+        // Determine if the change is an increase or decrease
+        var changeType = percentageChange > 0 ? "increase" : (percentageChange < 0 ? "decrease" : "no change");
 
-    // Display the result
-    let pctg = percentageChange.toFixed(2);
+        var numberElement = document.getElementById("my-number");
+        $('#my-number').counto(pctg, 500);
+        $(".pctg_change_msg").html("V2 is " + pctg + "% " + changeType);
 
-    var numberElement = document.getElementById("my-number");
 
-    $('#my-number').counto(  pctg, 500);
+    }else{
+        // Calculate the percentage change
+        var percentageChange = ((secondValue / firstValue)) * 100;
+        // Display the result
+        var pctg = percentageChange.toFixed(2);
+        var numberElement = document.getElementById("my-number");
+        $('#my-number').counto(pctg, 500);
+        $(".pctg_change_msg").html("V2 is " + pctg + "% of V1");
+    }
+    
+
+
+
     // document.getElementById("percentage_result").textContent = "Percentage Change: " + percentageChange.toFixed(2) + "%";
     if (percentageChange > 0) {
         numberElement.classList.add("profit");

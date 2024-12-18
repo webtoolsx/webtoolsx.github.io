@@ -27,6 +27,7 @@
   <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
   <script type="module" src="js/stock_calc.js"></script>
   <script type="module" src="js/custom_range.js"></script>
+  <script type="module" src="js/hr_scroll.js"></script>
   <script src="js/counto.min.js"></script>
 
   <!-- Canonical URL -->
@@ -68,7 +69,7 @@
       </div>
     </nav>
 
-    <div class="col nav justify-content-end py-1">
+    <!-- <div class="col nav justify-content-end py-1">
       <ul class="nav nav-pills justify-content-end">
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="/">P/L Calculator</a>
@@ -77,7 +78,21 @@
           <a class="nav-link" href="/average-calculator.html">Average Calculator</a>
         </li>
       </ul>
+    </div> -->
+
+    <div class="scroll-container">
+      <button class="scroll-btn left">&larr;</button>
+      <div class="scroll-wrapper">
+        <div class="scroll-content">
+          <a class="hr_nav-item active" href="/">P/L Calculator</a>
+          <a class="hr_nav-item " href="/average-calculator.html">Average Calculator</a>
+          <a class="hr_nav-item " href="/percentage-change-calculator.html">Percentage Change Calculator</a>
+        </div>
+      </div>
+      <button class="scroll-btn right">&rarr;</button>
     </div>
+
+
     <div class="container-fluid p-0 p-lg-2">
   
         <!-- buy Price and sell Price -->

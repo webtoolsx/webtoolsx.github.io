@@ -31,12 +31,15 @@
   
   <!-- Custom styles -->
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/custom_radio.css">
   
   <!-- jQuery (if necessary, slim version reduces load time) -->
   <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
   
   <!-- Custom script for stock calculation -->
   <script type="module" src="js/stock_calc.js"></script>
+  <script type="module" src="js/hr_scroll.js"></script>
+
   
   <!-- Counto script -->
   <script src="js/counto.min.js"></script>
@@ -45,28 +48,32 @@
         src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
     </script>
   
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-0ZDRS85Q8B"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0ZDRS85Q8B"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
-  gtag('config', 'G-0ZDRS85Q8B');
-</script>
-<!-- Structured Data for SEO -->
-<script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "Stock Price Average Calculator",
-    "url": "https://webtoolsx.github.io/average-calculator.html",
-    "description": "An easy-to-use tool to calculate the average price of your stock purchases.",
-    "applicationCategory": "Finance",
-    "softwareVersion": "1.0",
-    "operatingSystem": "All"
-  }
-</script>
+    gtag('config', 'G-0ZDRS85Q8B');
+  </script>
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Stock Price Average Calculator",
+      "url": "https://webtoolsx.github.io/average-calculator.html",
+      "description": "An easy-to-use tool to calculate the average price of your stock purchases.",
+      "applicationCategory": "Finance",
+      "softwareVersion": "1.0",
+      "operatingSystem": "All"
+    }
+  </script>
+
+ 
+
+  </head>
 <div class="container-fluid">
     <!-- nav bar -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary header_bar">
@@ -78,7 +85,7 @@
       </div>
     </nav>
 
-    <div class="col nav justify-content-end py-1">
+    <!-- <div class="col nav justify-content-end py-1">
       <ul class="nav nav-pills justify-content-end" role="navigation" aria-label="Main navigation">
         <li class="nav-item">
           <a class="nav-link" href="/" aria-current="page" title="Stock Profit and Loss Calculator">P/L Calculator</a>
@@ -87,20 +94,39 @@
           <a class="nav-link active" href="/average-calculator.html" title="Stock Average Calculator">Average Calculator</a>
         </li>
       </ul>
+    </div> -->
+
+    <div class="scroll-container">
+      <button class="scroll-btn left">&larr;</button>
+      <div class="scroll-wrapper">
+        <div class="scroll-content">
+          <a class="hr_nav-item " href="/">P/L Calculator</a>
+          <a class="hr_nav-item " href="/average-calculator.html">Average Calculator</a>
+          <a class="hr_nav-item active" href="/percentage-change-calculator.html">Percentage Change Calculator</a>
+        </div>
+      </div>
+      <button class="scroll-btn right">&rarr;</button>
     </div>
 
 
     <div class="container-fluid p-0 p-lg-2">
-  
         <!-- buy Price and sell Price -->
         <div class="container-fluid py-4 p-0 p-lg-2">
           <div class="row background-image-average">
-            
-            
             <div class="col cal_box">
-
               <h1 class="calc_heading">Percentage Change</h1>
             
+              <div class="custom_radio_wrapper mb-2">
+                <!-- <p class="text-dark label_p">Morning</p> -->
+                  <label>
+                    <input type="radio" value="p_change" name="percent_calc_radio" checked class="percent_calc_radio d-none ">
+                    <span class="text-center d-block py-1">% Change</span>
+                  </label>
+                  <label>
+                    <input type="radio" value="p_of" name="percent_calc_radio" class="percent_calc_radio d-none">
+                    <span class="text-center d-block py-1">% Of</span>
+                  </label>
+                </div>
 
               <div class="row mb-3">
                 <div class="col-md-6 mb-3">
@@ -138,7 +164,7 @@
             <div class="col ">
               <div class="mt-3 profit-box">
                 <span class="prof_loss_view"><b><span class="calc_numbers font_30" id="my-number">0.00</span>%</b></span>
-                <h2 class="heading_view_result font_15">Percent of Change</h2>
+                <h3 class="heading_view_result pctg_change_msg font_15">Percent of Change</h3>
                 
                   <!-- <div id="formula">
                       \(\text{% Change} = \left( \frac{\text{X2} - \text{X1}}{\text{X1}} \right) \times 100\)

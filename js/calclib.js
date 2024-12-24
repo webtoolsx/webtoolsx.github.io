@@ -1,6 +1,6 @@
 const StockCalculator = {
     // Calculate the absolute profit or loss with different buy and sell quantities
-    calculateProfitOrLoss: function (buyPrice, buyQuantity, sellPrice, sellQuantity,brockerage_percentage) {
+    calculateProfitOrLoss: function (buyPrice, buyQuantity, sellPrice, sellQuantity,brockerage_percentage,pl_brokerage_type) {
         // Calculate the total cost for the initial buy quantity
         const totalCost = buyPrice * buyQuantity;
 
@@ -14,7 +14,13 @@ const StockCalculator = {
         var profitOrLoss = revenueFromSoldQty - costOfSoldQty;
 
         // brockrage percentage
-        const brockerage_percentage_amt = profitOrLoss * (brockerage_percentage / 100);
+        if(pl_brokerage_type == 'percentage')
+        {
+            var brockerage_percentage_amt = profitOrLoss * (brockerage_percentage / 100);
+        }else{
+            var brockerage_percentage_amt = brockerage_percentage;
+            // alert(brockerage_percentage_amt);
+        }
 
 
         profitOrLoss = profitOrLoss - brockerage_percentage_amt;

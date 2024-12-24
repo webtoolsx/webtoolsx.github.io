@@ -7,14 +7,26 @@ import StockCalculator from './calclib.js';
         let sellAtPrice = parseFloat(document.querySelector('input[name="sell_at_price"]').value);
         let buyQty = parseInt(document.querySelector('input[name="buy_qty"]').value, 10);
         let sellQty = parseInt(document.querySelector('input[name="sell_qty"]').value, 10);
-        let brockerage_percentage = parseFloat(document.querySelector('input[name="brockerage_percentage"]').value, 10);
+        var brockerage_percentage = parseFloat(document.querySelector('input[name="brockerage_percentage"]').value, 10);
     
 
         let $buyAtPriceInput = $('input[name="buy_at_price"]');
         let $sellAtPriceInput = $('input[name="sell_at_price"]');
         let $buyQtyInput = $('input[name="buy_qty"]');
         let $sellQtyInput = $('input[name="sell_qty"]');
+        var pl_brokerage_type = document.querySelector('input[name="pnl_brocker_type_calc_radio"]:checked').value;
 
+        if(pl_brokerage_type == 'flat')
+        {
+            brockerage_percentage = parseFloat(document.querySelector('input[name="brockerage_flat"]').value);
+
+            // If the parsed value is NaN, set it to 0
+            if (isNaN(brockerage_percentage)) {
+                brockerage_percentage = 0;
+            }
+            // alert(brockerage_percentage);
+        }
+        // alert(pl_brokerage_type);
         let allValid = true;
 
         // Validate inputs and shake invalid ones
@@ -45,9 +57,9 @@ import StockCalculator from './calclib.js';
             alert("You have maximum "+buyQty+" to sell");
             return; // Exit the function if validation fails
         }
-    
+        // alert(brockerage_percentage);
         // Calculate the profit or loss
-        let profit = StockCalculator.calculateProfitOrLoss(buyAtPrice, buyQty, sellAtPrice, sellQty,brockerage_percentage);
+        let profit = StockCalculator.calculateProfitOrLoss(buyAtPrice, buyQty, sellAtPrice, sellQty,brockerage_percentage,pl_brokerage_type);
         console.log(profit);
         // Update the UI with the formatted profit/loss value
 
@@ -71,6 +83,20 @@ import StockCalculator from './calclib.js';
     
 
 const calculatePlButton = document.querySelector('.calculate_pl_button');
+
+$(document).ready(function() {
+    // Attach change event listener to the radio buttons
+    $('input[name="pnl_brocker_type_calc_radio"]').change(function() {
+        if($(this).val() == 'percentage'){
+            $("#pnl_brocker_type_flat_block").hide();
+            $("#pnl_brocker_type_percentage_block").show();
+        }else{
+            $("#pnl_brocker_type_percentage_block").hide();
+            $("#pnl_brocker_type_flat_block").show();
+        }
+        calculate_pl();
+    });
+});
 
 if (calculatePlButton) {
     calculatePlButton.addEventListener('click', function() {
@@ -214,7 +240,7 @@ if (resetButton) {
 
 
 const button_percent_change = document.querySelector('.calculate_percentage_change_button');
-const button_percent_change_radio = document.querySelector('.percent_calc_radio');
+// const button_percent_change_radio = document.querySelector('.percent_calc_radio');
 
 if (button_percent_change) {
     // If it exists, add the event listener

@@ -289,6 +289,8 @@ function calculatePercentageChange() {
 
 
     }else{
+        var difference = secondValue - firstValue;
+        
         // Calculate the percentage change
         var percentageChange = ((secondValue / firstValue)) * 100;
         // Display the result
@@ -296,6 +298,7 @@ function calculatePercentageChange() {
         var numberElement = document.getElementById("my-number");
         $('#my-number').counto(pctg, 500);
         $(".pctg_change_msg").html(secondValue+" is " + pctg + "% of "+firstValue);
+        $("#pctg_diff_amt").html(difference);
     }
     
 

@@ -280,10 +280,12 @@ function calculatePercentageChange() {
         var pctg = percentageChange.toFixed(2);
         // Determine if the change is an increase or decrease
         var changeType = percentageChange > 0 ? "increase" : (percentageChange < 0 ? "decrease" : "no change");
-
+        var difference = secondValue - firstValue;
         var numberElement = document.getElementById("my-number");
         $('#my-number').counto(pctg, 500);
         $(".pctg_change_msg").html(secondValue+" is " + pctg + "% " + changeType);
+
+        $("#pctg_diff_amt").html(difference);
 
 
     }else{

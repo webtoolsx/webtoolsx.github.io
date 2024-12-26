@@ -131,16 +131,18 @@
 
               <div class="row mb-3">
                 <div class="col-md-6 mb-3">
+                  <label class="textfield_label1">Initial Value</label>
                     <div class="input-group">
-                        <span class="input-group-text input-group-text-buy input-group-text-blue fs-5 fs-sm-6">x1</span>
-                        <input type="number" name="first_value" id="first_value" class="form-control input_buysell_size" placeholder="1st val" aria-label="First Value">
+                        <!-- <span class="input-group-text input-group-text-buy input-group-text-blue fs-5 fs-sm-6">x1</span> -->
+                        <input type="number" name="first_value" id="first_value" class="form-control input_buysell_size" placeholder="e.g. 10" aria-label="intial Value">
                     </div>
                 </div>
 
                 <div class="col-md-6 mb-3">
+                  <label class="textfield_label1">Final Value</label>
                   <div class="input-group">
-                      <span class="input-group-text input-group-text-qty input-group-text-blue">x2</span>
-                      <input type="number" name="second_value" id="second_value" class="form-control input_buysell_size" placeholder="2nd val" aria-label="Second Value">
+                      <!-- <span class="input-group-text input-group-text-qty input-group-text-blue">x2</span> -->
+                      <input type="number" name="second_value" id="second_value" class="form-control input_buysell_size" placeholder="e.g. 20" aria-label="final value">
                   </div>
                 </div>
                 
@@ -166,6 +168,9 @@
               <div class="mt-3 profit-box">
                 <span class="prof_loss_view"><span class="calc_numbers font_30" id="my-number">0.00</span>%</span>
                 <h3 class="heading_view_result pctg_change_msg font_15">Percent of Change</h3>
+
+                <span class="prof_loss_view"><span class="calc_numbers font_30" id="pctg_diff_amt">0.00</span></span>
+                <h3 class="heading_view_result pctg_diff_msg font_15">Difference</h3>
                 
                   <!-- <div id="formula">
                       \(\text{% Change} = \left( \frac{\text{X2} - \text{X1}}{\text{X1}} \right) \times 100\)

@@ -96,6 +96,13 @@ $(document).ready(function() {
         }
         calculate_pl();
     });
+
+    $('input').on('keydown', function(event) {
+        if (event.key === 'Enter') {
+            calculate_pl();
+        }
+    });
+
 });
 
 if (calculatePlButton) {
@@ -189,7 +196,13 @@ if (calculatePlButton) {
     // });
 // Check if the element with the class 'calculate_avg_button' exists
 const button = document.querySelector('.calculate_avg_button');
-    
+
+$('input').on('keydown', function(event) {
+    if (event.key === 'Enter') {
+        calculate_average();
+    }
+});
+
 if (button) {
     // If it exists, add the event listener
     button.addEventListener('click', function() {
@@ -257,6 +270,12 @@ $(document).ready(function() {
     $('input[name="percent_calc_radio"]').change(function() {
         calculatePercentageChange();
     });
+});
+
+$('input').on('keydown', function(event) {
+    if (event.key === 'Enter') {
+        calculatePercentageChange();
+    }
 });
 
 // Function to calculate percentage change

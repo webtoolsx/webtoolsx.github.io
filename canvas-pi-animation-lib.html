@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="arcLib.js"></script>
+  </head>
+<body>
+
+<h1>HTML5 Canvas</h1>
+<h2>The arc() Method</h2>
+
+<canvas id="myCanvas" width="200" height="160" style="border:1px solid grey"></canvas>
+
+<script>
+const c = document.getElementById("myCanvas");
+const ctx = c.getContext("2d");
+
+  // Clear the canvas before each frame
+
+var x = [
+  {'title':'car', quantity:40},
+  {'title':'bike', quantity:50},
+  {'title':'cycle', quantity:10},
+  {'title':'cycle', quantity:80}
+]
+
+
+
+arcLib.show(x);
+
+// var arc1pctg = 78;
+
+// var arc1piPctgVal = (arc1pctg / 100) * (Math.PI); //(50% of pi) means till which the first arc will go
+
+// // alert(arc1piPctgVal/Math.PI)
+// arc1piPctgVal = arc1piPctgVal + (Math.PI);  // Math.PI is starting of the arc so ( starting of the arc + 50% of math.pi )
+
+// // alert(arc1piPctgVal);
+
+// var baselinestart = Math.PI;
+// var baselineend = Math.PI;
+
+// var firstArcstart = Math.PI;
+// var firstArcend = Math.PI;
+
+// var secondArcstart = Math.PI;
+// var secondArcend = Math.PI;
+
+
+
+
+
+// function animateArcs(){
+
+// ctx.clearRect(0, 0, c.width, c.height);
+
+// ctx.beginPath();
+// ctx.arc(100, 100, 90, baselinestart, baselineend);
+// ctx.strokeStyle = 'gray';
+// ctx.lineWidth = 2;
+// ctx.stroke();
+
+// ctx.beginPath();
+// ctx.arc(100, 100, 90, firstArcstart, firstArcend);
+// ctx.strokeStyle = '#a9ff86'; // Set stroke color
+// ctx.lineWidth = 15; // Set the stroke width (optional)
+// ctx.stroke();
+
+// ctx.beginPath();
+// ctx.arc(100, 100, 90, secondArcstart, secondArcend);
+// ctx.strokeStyle = '#31a602'; // Set stroke color
+// ctx.lineWidth = 15; // Set the stroke width (optional)
+// ctx.stroke();
+
+
+
+// if (baselineend < Math.PI * 2) {
+//     baselineend += 0.07;
+//     // alert(baselineend+"Dsf")
+//   } 
+  
+//   else if (firstArcend <  arc1piPctgVal) {
+//     // alert(baselineend+"Dsf")
+    
+//     firstArcend += 0.03;
+//   }else if(secondArcend <=  Math.PI * 2)
+//   {
+//     if(secondArcstart < firstArcend)
+//     {
+//       secondArcstart = firstArcend;
+//       secondArcend = firstArcend;
+//     }
+  
+//     secondArcend +=  0.02;
+//     console.log('secondArcstart - '+secondArcstart)
+//     console.log('secondArcend - '+secondArcend)
+
+   
+//   }
+
+//   // Request the next animation frame
+// if (baselineend < Math.PI * 2 || firstArcend <  arc1piPctgVal|| secondArcend <=  Math.PI * 2 ) {
+//     requestAnimationFrame(animateArcs);
+//   }
+
+// }
+
+
+
+
+//   // Start the animation
+// animateArcs();
+
+</script> 
+
+</body>
+</html>

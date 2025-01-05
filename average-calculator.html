@@ -19,6 +19,8 @@
   <link rel="canonical" href="https://webtoolsx.github.io/average-calculator.html">
 
   <title>Stock Price Average Calculator | WebToolsX</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
   
   <!-- Add canonical link to avoid duplicate content -->
   <link rel="canonical" href="https://webtoolsx.github.io/average-calculator.html">
@@ -175,11 +177,94 @@
                   <button type="button" aria-label="Quantity" class="calculate_button reset_button_pl_calc"><img src="images/reset.svg" height="25px"></button>
                   <input type="button" aria-label="Quantity" value="Calculate" class="calculate_button calculate_avg_button">
                 </div>
-            </div>
+              </div>
 
             </div>
 
           </div>
+
+          <div class="row mt-3">
+            <div class="col-md-6">
+              <div class="mt-4">
+                <h3>How to use <i class="fa-solid fa-circle-info"></i> </h3>
+              
+                <ol class="list-group list-group-numbered">
+                  <li class="list-group-item">
+                    <strong>Enter the Price for the First Purchase:</strong>
+                    <p>In the "1st Buy at" field, enter the price at which you made the first purchase.</p>
+                  </li>
+              
+                  <li class="list-group-item">
+                    <strong>Enter the Quantity for the First Purchase:</strong>
+                    <p>In the "Quantity" field next to the "1st Buy at" price, enter the quantity you purchased at the first price.</p>
+                  </li>
+              
+                  <li class="list-group-item">
+                    <strong>Enter the Price for the Second Purchase:</strong>
+                    <p>In the "2nd Buy at" field, enter the price at which you made the second purchase.</p>
+                  </li>
+              
+                  <li class="list-group-item">
+                    <strong>Enter the Quantity for the Second Purchase:</strong>
+                    <p>In the "Quantity" field next to the "2nd Buy at" price, enter the quantity you purchased at the second price.</p>
+                  </li>
+              
+                  <li class="list-group-item">
+                    <strong>Reset the Form (Optional):</strong>
+                    <p>If you want to clear all the entered values, click the reset button (with the reset icon). This will remove the data you’ve entered in both price and quantity fields.</p>
+                  </li>
+              
+                  <li class="list-group-item">
+                    <strong>Calculate the Average Price:</strong>
+                    <p>Once you’ve entered both the prices and quantities, click the "Calculate" button to determine the average price based on the data you provided.</p>
+                  </li>
+                </ol>
+              
+                <p>This will help you calculate the average price for your purchases.</p>
+              </div>
+            </div>
+            <div class="col-md-6">
+             
+
+              <div class=" mt-4">
+                <h3><i class="fa-solid fa-square-root-variable"></i> Formula Explanation:</h3>
+                <p>The formula used to calculate the average price is based on the weighted average cost method. The formula is:</p>
+                
+                <div class="alert alert-info" role="alert">
+                  <pre><code>Average Price = (Price1 * Quantity1 + Price2 * Quantity2) / (Quantity1 + Quantity2)</code></pre>
+                </div>
+                
+                <p>This formula calculates the total cost of the two purchases by multiplying each price by its respective quantity, then dividing the sum of those values by the total quantity. This gives you the average price of the combined purchases.</p>
+              
+                <p><strong>Example:</strong></p>
+                <p>Suppose you bought the following:</p>
+                <ul>
+                  <li>1st Purchase: Price = $100, Quantity = 5</li>
+                  <li>2nd Purchase: Price = $120, Quantity = 3</li>
+                </ul>
+              
+                <p>Using the formula:</p>
+                
+                <div class="alert alert-success" role="alert">
+                  <pre><code>Average Price = (100 * 5 + 120 * 3) / (5 + 3)</code></pre>
+                </div>
+                
+                <p>Now, calculate:</p>
+                <ul>
+                  <li>Total cost = (100 * 5) + (120 * 3) = 500 + 360 = 860</li>
+                  <li>Total quantity = 5 + 3 = 8</li>
+                </ul>
+              
+                <p>Therefore, the Average Price = 860 / 8 = <strong>$107.50</strong>.</p>
+              </div>
+              
+              
+            </div>
+          </div>
+
+
+
+
         </div>
 
     </div>

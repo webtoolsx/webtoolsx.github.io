@@ -178,6 +178,10 @@ body {
         .input_buysell_size {
             font-size: 23px;
         }
+        .calculate_button{
+            font-size: 22px;
+
+        }
       }
 
       /* Smaller screens */

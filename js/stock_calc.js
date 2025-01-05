@@ -147,18 +147,47 @@ if (calculatePlButton) {
         const buyAtPrices = document.getElementsByName('buy_at_price[]');
         // Get all elements with the name 'buy_qty[]'
         const buyQtys = document.getElementsByName('buy_qty[]');
+
+        const inputs = document.querySelectorAll('input');
+        inputs.forEach(input => input.classList.remove('shake'));
         
         // Initialize variables for the total price and total quantity
         let totalPrice = 0;
         let totalQuantity = 0;
         let invest_list = [];
+
+        // Validate if price or quantity is empty
+        
+
         // Loop through all the 'buy_at_price[]' inputs
         for (let i = 0; i < buyAtPrices.length; i++) {
+            
+
             // Get the value of each buy price
             const price = parseFloat(buyAtPrices[i].value);
             
             // Get the corresponding quantity for this price (assuming both arrays are aligned)
             const qty = parseInt(buyQtys[i].value, 10);
+            
+            if (price == '' || qty == '' || isNaN(price) || isNaN(qty)) {
+
+                if (price == '' || isNaN(price)) {
+                    // buyAtPrices[i].classList.add('shake');
+                    // console.log(buyAtPrices[i])
+                    shakeInput($(buyAtPrices[i]));
+
+                    
+                }
+                if (qty == '' || isNaN(qty)) {
+                    // buyQtys[i].classList.add('shake');
+                    shakeInput($(buyQtys[i]));
+
+                }
+
+                // alert('Please fill in both price and quantity fields for each purchase.');
+                return; // Stop further execution
+            }
+
             invest_list[i]=price * qty;
             // Add the price * quantity to the total price
             totalPrice += price * qty;

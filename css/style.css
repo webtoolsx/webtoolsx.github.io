@@ -157,6 +157,13 @@ body {
     margin-left: 4px;
 }
 
+.buy_field{
+    border: none;
+    background: #d9ffd9;
+    color: #029e02;
+    font-weight: 600;
+}
+
 
 
 @keyframes shake {

@@ -315,11 +315,23 @@ function calculatePercentageChange() {
     var percent_calc_radio = document.querySelector('input[name="percent_calc_radio"]:checked').value;
 
     // Validate that both values are provided
-    if (isNaN(firstValue) || isNaN(secondValue)) {
-        alert("Please enter both values to calculate the percentage change.");
-        return;
+    if(percent_calc_radio == 'p_change')
+    {
+        $(".difference_block").show();
+        if (isNaN(firstValue) || isNaN(secondValue)) {
+            if (isNaN(firstValue)) shakeInput($('#first_value'));
+            if (isNaN(secondValue)) shakeInput($('#second_value'));
+            return;
+        }
+    }else{
+        $(".difference_block").hide();
+        if (isNaN(firstValue) || isNaN(secondValue)) {
+            if (isNaN(firstValue)) shakeInput($('#first_value'));
+            if (isNaN(secondValue)) shakeInput($('#second_value'));
+            return;
+        }
     }
-
+    
     if(percent_calc_radio == 'p_change')
     {
         // Calculate the percentage change
@@ -332,7 +344,6 @@ function calculatePercentageChange() {
         var numberElement = document.getElementById("my-number");
         $('#my-number').counto(pctg, 500);
         $(".pctg_change_msg").html(secondValue+" is " + pctg + "% " + changeType);
-
         $("#pctg_diff_amt").html(difference);
 
 
@@ -346,7 +357,6 @@ function calculatePercentageChange() {
         var numberElement = document.getElementById("my-number");
         $('#my-number').counto(pctg, 500);
         $(".pctg_change_msg").html(firstValue +" is " + pctg + "% of "+secondValue);
-        $("#pctg_diff_amt").html(difference);
     }
     
 

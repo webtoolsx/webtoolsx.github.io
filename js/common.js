@@ -24,3 +24,10 @@ const rangeInputs = document.querySelectorAll('.custom_range_wx');
 rangeInputs.forEach(rangeInput => {
     rangeInput.addEventListener('input', updateRange);
 });
+
+function shakeInput($input) {
+    $input.addClass('shake');
+    setTimeout(function() {
+        $input.removeClass('shake');
+    }, 500); // Remove the shake class after the animation completes
+}

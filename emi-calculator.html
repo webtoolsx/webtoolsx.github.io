@@ -39,8 +39,8 @@
   <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
   
   <!-- Custom script for stock calculation -->
+  <script src="js/common.js"></script>
   <script type="module" src="js/emi_calc.js"></script>
-  <script type="module" src="js/common.js"></script>
 
   
   <!-- Counto script -->
@@ -131,15 +131,15 @@
                 </div>
                 <div class="col-md-6 mb-3">
                   <div class="slider-container" >
-                    <label for="customRange4" class="form-label textfield_label1">Tenure Year</label><input type="number" value="5" name="tenure" id="tenure" class="range_pctg small_range_input_editable float-end" value="0"></input>
-                    <input type="range" class="custom_range_wx" value="5" min="1" max="50" step="" id="tenure_year_range">
+                    <label for="customRange4" class="form-label textfield_label1">Tenure Year</label><input type="number" value="1" name="tenure" id="tenure" class="range_pctg small_range_input_editable float-end" value="0"></input>
+                    <input type="range" class="custom_range_wx" value="1" min="1" max="50" step="" id="tenure_year_range">
                   </div>
                 </div>
                 <div class="col-md-6 mb-3">
 
                   <div class="slider-container" >
-                    <label for="customRange3" class="form-label textfield_label1">Interest Rate %</label><input type="number" value="6.5" name="interestRate" id="interestRate" class="range_pctg small_range_input_editable float-end" value="0"></input> 
-                    <input type="range" class="custom_range_wx" value="6.5" min="0" max="50" id="interest_rate">
+                    <label for="customRange3" class="form-label textfield_label1">Interest Rate %</label><input type="number" value="0" name="interestRate" id="interestRate" class="range_pctg small_range_input_editable float-end" value="0"></input> 
+                    <input type="range" class="custom_range_wx" value="0" min="0" max="50" step="0.5" id="interest_rate">
                   </div>
                 </div>
 
@@ -164,20 +164,16 @@
 
             <div class="col ">
               <div class="profit-box">
+                <span class="prof_loss_view"><span class="calc_numbers font_20 loan_amount my-number" >0.00</span></span>
+                <h3 class="heading_view_result font_12">Loan Amount</h3>
                 <span class="prof_loss_view"><span class="calc_numbers font_30 montly_emi_value my-number p-1 rounded-3" style="background-color: #67ff0059;">0.00</span></span>
                 <h3 class="heading_view_result  font_15">Monthly EMI</h3>
                 <span class="prof_loss_view"><span class="calc_numbers font_20 total_interest_value my-number  p-1 rounded-3" style="background-color: #ff2cca4f;">0.00</span></span>
                 <h3 class="heading_view_result font_15">Total Interest</h3>
-              </div>
-
-              <div class="profit-box">
-                <span class="prof_loss_view"><span class="calc_numbers font_20 loan_amount my-number" >0.00</span></span>
-                <h3 class="heading_view_result font_12">Loan Amount</h3>
                 <span class="prof_loss_view"><span class="calc_numbers font_20 total_amount_value" class="my-number">0.00</span></span>
                 <h3 class="heading_view_result font_12">Toal Amount with interest</h3>
               </div>
 
-              
             </div>
 
           </div>

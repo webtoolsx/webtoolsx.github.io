@@ -219,6 +219,9 @@ input:focus, textarea:focus, select:focus {
             font-size: 22px;
 
         }
+        .small_range_input_editable{
+            width: 28%;
+        }
       }
 
       /* Smaller screens */
@@ -245,4 +248,8 @@ input:focus, textarea:focus, select:focus {
         .heading_view_result{
             color:rgb(59, 33, 91);
         }
+        .small_range_input_editable{
+            width: 28%;
+        }
+        
     }

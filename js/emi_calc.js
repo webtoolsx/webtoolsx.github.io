@@ -3,9 +3,9 @@ function calculateEMI() {
     const loanAmount = parseFloat(document.getElementById('loanAmount').value);
     const annualInterestRate = parseFloat(document.getElementById('interestRate').value) / 100;
     const tenureInYears = parseFloat(document.getElementById('tenure').value);
-
+    const lmelement = document.getElementById('loanAmount');
     if (!loanAmount || loanAmount <= 0) {
-        alert('Please enter valid inputs!');
+      shakeInput($(lmelement));
         return;
     }
     console.log('annualInterestRate',annualInterestRate);

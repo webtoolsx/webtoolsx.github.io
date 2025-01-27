@@ -11,6 +11,11 @@ body {
     margin-top: 10px !important;
 }
 
+input:focus, textarea:focus, select:focus {
+    outline: none;
+    box-shadow: none;
+}
+
 .nav-link{
     color: black;
 }
@@ -126,7 +131,7 @@ body {
     height: 40px; /* Adjust logo size */
     border-radius: 10px;
   }
-.reset_button_pl_calc{
+.reset_button_pl_calc, .reset_button{
     margin-right: 9px;
     border: 2px solid #6c757d;
     color: #6c757d;
@@ -137,6 +142,18 @@ body {
 
 .font_10{
     font-size: 10px;
+}
+.font_11{
+    font-size: 11px;
+}
+.font_12{
+    font-size: 12px;
+}
+.font_13{
+    font-size: 13px;
+}
+.font_14{
+    font-size: 15px;
 }
 .font_15{
     font-size: 15px;
@@ -155,6 +172,7 @@ body {
     padding: 0px 10px;
     border-radius: 6px 6px 0px 0px;
     margin-left: 4px;
+    font-weight: 600;
 }
 
 .buy_field{
@@ -164,6 +182,18 @@ body {
     font-weight: 600;
 }
 
+.small_range_input_editable{
+    background: #2a35b663;
+    /* position: relative; */
+    padding: 5px;
+    border-radius: 3px;
+    color: #000000;
+    margin-left: 6px;
+    text-align: right;
+    border: none;
+    width: 18%;
+    height: 22px;
+}
 
 
 @keyframes shake {

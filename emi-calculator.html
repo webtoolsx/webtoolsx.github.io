@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Easily calculate percentage changes between two values with our online tool. Input your values for an accurate percentage change calculation.">
+  <meta name="keywords" content="percentage change, percentage calculator, percentage difference, finance tools, change calculator">
+  <meta name="author" content="Your Name">
+  <meta name="robots" content="index, follow">
+  
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="Percentage Change Calculator">
+  <meta property="og:description" content="Calculate the percentage change between two values quickly and easily using our online tool.">
+  <meta property="og:image" content="favicon.png">
+  <meta property="og:url" content="https://webtoolsx.github.io/percentage-change-calculator.html" alt="canonical">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="favicon.png" type="image/png">
+  <link rel="canonical" href="https://webtoolsx.github.io/percentage-change-calculator.html">
+
+  <title>Percentage Change Calculator - Free Tool | WebToolsX</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  
+  <!-- Add canonical link to avoid duplicate content -->
+  <link rel="canonical" href="https://webtoolsx.github.io/average-calculator.html">
+  
+  <!-- Bootstrap CSS -->
+  <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Bootstrap JS -->
+  <script src="bootstrap/js/bootstrap.bundle.js"></script>
+  
+  <!-- Custom styles -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/custom_radio.css">
+  
+  <!-- jQuery (if necessary, slim version reduces load time) -->
+  <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
+  
+  <!-- Custom script for stock calculation -->
+  <script type="module" src="js/emi_calc.js"></script>
+  <script type="module" src="js/common.js"></script>
+
+  
+  <!-- Counto script -->
+  <script src="js/counto.min.js"></script>
+
+  <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+  
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0ZDRS85Q8B"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-0ZDRS85Q8B');
+  </script>
+  <!-- Structured Data for SEO -->
+<!-- Structured Data for SEO -->
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Percentage Change Calculator",
+    "url": "https://webtoolsx.github.io/percentage-change-calculator.html",
+    "description": "An easy-to-use tool to calculate the percentage change between two values.",
+    "applicationCategory": "Finance",
+    "softwareVersion": "1.0",
+    "operatingSystem": "All"
+  }
+</script>
+
+ 
+
+  </head>
+<div class="container-fluid">
+    <!-- nav bar -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary header_bar">
+      
+      <div class="container-fluid ">
+        <div class="col">
+          <a class="navbar-brand" href="#"> <img alt="webtoolx company logo" class="main-logo" src="images/calclogo.png" alt="logo"></a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- <div class="col nav justify-content-end py-1">
+      <ul class="nav nav-pills justify-content-end" role="navigation" aria-label="Main navigation">
+        <li class="nav-item">
+          <a class="nav-link" href="/" aria-current="page" title="Stock Profit and Loss Calculator">P/L Calculator</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="/average-calculator.html" title="Stock Average Calculator">Average Calculator</a>
+        </li>
+      </ul>
+    </div> -->
+
+    <div class="scroll-container">
+      <button class="scroll-btn left">&larr;</button>
+      <div class="scroll-wrapper">
+        <div class="scroll-content">
+          <a class="hr_nav-item " href="/">P/L Calculator</a>
+          <a class="hr_nav-item " href="/average-calculator.html">Average Calculator</a>
+          <a class="hr_nav-item" href="/percentage-change-calculator.html">Percentage Change Calculator</a>
+          <a class="hr_nav-item active" href="/emi-calculator.html">EMI Calculator</a>
+        </div>
+      </div>
+      <button class="scroll-btn right">&rarr;</button>
+    </div>
+
+
+    <div class="container-fluid p-0 p-lg-2">
+        <!-- buy Price and sell Price -->
+        <div class="container-fluid py-4 p-0 p-lg-2">
+          <div class="row background-image-average">
+            <div class="col cal_box">
+              <h1 class="calc_heading">EMI Calculator</h1>
+            
+
+              <div class="row mb-3">
+                <div class="col-md-12 mb-3">
+                  <label class="textfield_label1">Loan Amount</label>
+                    <div class="input-group">
+                        <!-- <span class="input-group-text input-group-text-buy input-group-text-blue fs-5 fs-sm-6">x1</span> -->
+                        <input type="number" name="loanAmount" id="loanAmount" class="form-control input_buysell_size" placeholder="e.g. 100000" aria-label="intial Value">
+                    </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <div class="slider-container" >
+                    <label for="customRange4" class="form-label textfield_label1">Tenure Year</label><input type="number" value="5" name="tenure" id="tenure" class="range_pctg small_range_input_editable float-end" value="0"></input>
+                    <input type="range" class="custom_range_wx" value="5" min="1" max="50" step="" id="tenure_year_range">
+                  </div>
+                </div>
+                <div class="col-md-6 mb-3">
+
+                  <div class="slider-container" >
+                    <label for="customRange3" class="form-label textfield_label1">Interest Rate %</label><input type="number" value="6.5" name="interestRate" id="interestRate" class="range_pctg small_range_input_editable float-end" value="0"></input> 
+                    <input type="range" class="custom_range_wx" value="6.5" min="0" max="50" id="interest_rate">
+                  </div>
+                </div>
+
+                
+              </div>
+
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                    
+                </div>
+                <div class="col-md-6 mb-3 nav justify-content-end">
+                  <button type="button" aria-label="Quantity" class="calculate_button reset_button reset_button_emi_calc"><img alt="reset button" src="images/reset.svg" height="25px"></button>
+                  <input type="button" aria-label="Quantity" value="Calculate" class="calculate_button calculate_emi_button">
+                </div>
+              </div>
+
+            </div>
+
+            <div class="col-1 d-none d-lg-block">
+              <!-- div for gap -->
+            </div>
+
+            <div class="col ">
+              <div class="profit-box">
+                <span class="prof_loss_view"><span class="calc_numbers font_30 montly_emi_value my-number p-1 rounded-3" style="background-color: #67ff0059;">0.00</span></span>
+                <h3 class="heading_view_result  font_15">Monthly EMI</h3>
+                <span class="prof_loss_view"><span class="calc_numbers font_20 total_interest_value my-number  p-1 rounded-3" style="background-color: #ff2cca4f;">0.00</span></span>
+                <h3 class="heading_view_result font_15">Total Interest</h3>
+              </div>
+
+              <div class="profit-box">
+                <span class="prof_loss_view"><span class="calc_numbers font_20 loan_amount my-number" >0.00</span></span>
+                <h3 class="heading_view_result font_12">Loan Amount</h3>
+                <span class="prof_loss_view"><span class="calc_numbers font_20 total_amount_value" class="my-number">0.00</span></span>
+                <h3 class="heading_view_result font_12">Toal Amount with interest</h3>
+              </div>
+
+              
+            </div>
+
+          </div>
+
+          <!-- How to Use Section -->
+          <div class="row mt-4">
+            <div class="col">
+              <h3>How to Use</h3>
+              <ol class="list-group list-group-numbered">
+                <li class="list-group-item">Enter the loan amount, tenure, and interest rate in the respective fields.</li>
+                <li class="list-group-item">Click the "Calculate" button to view your monthly EMI, total interest, and total payment.</li>
+                <li class="list-group-item">Use the "Reset" button to clear all fields and start a new calculation.</li>
+              </ol>
+            </div>
+            <div class="col">
+              <h3>Formula Explanation</h3>
+              <ol class="list-group list-group-numbered">
+                <li class="list-group-item">
+                  EMI is calculated using the formula:
+                  <pre><code>EMI = [P x R x (1+R)^N] / [(1+R)^N-1]</code></pre>
+                  Where:
+                  <ul>
+                    <li><strong>P</strong>: Principal Loan Amount</li>
+                    <li><strong>R</strong>: Monthly Interest Rate (Annual Rate / 12 / 100)</li>
+                    <li><strong>N</strong>: Loan Tenure in Months</li>
+                  </ul>
+                </li>
+              </ol>
+            </div>
+          </div>
+
+        </div>
+    </div>
+
+  </div>
+    <script>
+      $('#my-number').counto(0, 500);
+    </script>
+ 
+
+  <footer class="footer_main">
+
+    <div>
+      <a href="/" style="color: white; margin: 0 15px; text-decoration: none;" class="footer-logo"><img rel="favicon Webtoolsx" src="favicon.png" alt="Company Logo"></a>
+      <a href="/" style="color: white; margin: 0 15px; text-decoration: none;">Home</a>
+      <a href="/about.html" style="color: white; margin: 0 15px; text-decoration: none;">About Us</a>
+      <a href="/contact.html" style="color: white; margin: 0 15px; text-decoration: none;">Contact Us</a>
+      <!-- <a href="/about" style="color: white; margin: 0 15px; text-decoration: none;">About Us</a> -->
+      <!-- <a href="/contact" style="color: white; margin: 0 15px; text-decoration: none;">Contact</a> -->
+    </div>
+    <div style="margin-top: 20px;">
+      <p>&copy; 2024 Webtoolsx. All Rights Reserved.</p>
+    </div>
+ 
+  </footer>
+</body>
+</html>

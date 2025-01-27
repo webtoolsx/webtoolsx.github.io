@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EMI Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        .input-container {
+            margin-bottom: 20px;
+        }
+        .input-container label {
+            margin-right: 10px;
+        }
+        .input-container input {
+            margin-right: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Dynamic EMI Calculator</h1>
+<div class="input-container">
+    <label for="loanAmount">Loan Amount (₹):</label>
+    <input type="number" id="loanAmount" placeholder="Enter loan amount" required>
+
+    <label for="interestRate">Annual Interest Rate (%):</label>
+    <input type="number" id="interestRate" step="0.01" placeholder="Enter interest rate" required>
+
+    <label for="tenure">Tenure (months):</label>
+    <input type="number" id="tenure" placeholder="Enter tenure in months" required>
+
+    <button onclick="calculateEMI()">Calculate EMI</button>
+</div>
+
+<table id="emiTable">
+    <thead>
+        <tr>
+            <th>Month</th>
+            <th>EMI (₹)</th>
+            <th>Interest (₹)</th>
+            <th>Principal (₹)</th>
+            <th>Balance (₹)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Dynamic rows will be added here -->
+    </tbody>
+</table>
+
+<script>
+function calculateEMI() {
+    // Get user inputs
+    const loanAmount = parseFloat(document.getElementById('loanAmount').value);
+    const annualInterestRate = parseFloat(document.getElementById('interestRate').value) / 100;
+    const tenure = parseInt(document.getElementById('tenure').value);
+
+    if (!loanAmount || !annualInterestRate || !tenure) {
+        alert('Please enter valid inputs!');
+        return;
+    }
+
+    // Calculate monthly interest rate and EMI
+    const monthlyRate = annualInterestRate / 12;
+    const emi = loanAmount * monthlyRate * Math.pow(1 + monthlyRate, tenure) / (Math.pow(1 + monthlyRate, tenure) - 1);
+
+    // Initialize variables for EMI schedule
+    let balance = loanAmount;
+    const emiTableBody = document.querySelector('#emiTable tbody');
+    emiTableBody.innerHTML = ''; // Clear existing table rows
+
+    for (let month = 1; month <= tenure; month++) {
+        const interest = balance * monthlyRate;
+        const principal = emi - interest; 
+        balance -= principal;
+
+        // Add a new row to the table
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${month}</td>
+            <td>${emi.toFixed(2)}</td>
+            <td>${interest.toFixed(2)}</td>
+            <td>${principal.toFixed(2)}</td>
+            <td>${Math.max(balance, 0).toFixed(2)}</td>
+        `;
+        emiTableBody.appendChild(row);
+    }
+}
+</script>
+
+</body>
+</html>
+

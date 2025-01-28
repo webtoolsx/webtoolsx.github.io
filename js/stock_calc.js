@@ -75,9 +75,9 @@ import StockCalculator from './calclib.js';
             $profLossView.addClass(profit.prof_status);
         }
 
-        $('#my-number').counto(  profit.profitOrLoss.toFixed(4), 500);
-        $('#total_investment').counto(  profit.totalBuyValue.toFixed(4), 500);
-        $('#total_brockerage').counto(  profit.brockerage_percentage_amt.toFixed(4), 500);
+        $('#my-number').counto(  profit.profitOrLoss.toFixed(2), 500);
+        $('#total_investment').counto(  profit.totalBuyValue.toFixed(2), 500);
+        $('#total_brockerage').counto(  profit.brockerage_percentage_amt.toFixed(2), 500);
         
     }
     

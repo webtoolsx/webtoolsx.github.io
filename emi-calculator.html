@@ -34,7 +34,35 @@
   <!-- Custom styles -->
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/custom_radio.css">
-  
+  <style>
+    .steps {
+    border-color: transparent;
+    border-style: none solid;
+    border-width: 0 1px;
+    margin: 0 0 35px !important;
+    position: relative;
+    width: 100%;
+}
+.tick {
+    color: #ccc;
+    font-size: 11px;
+    height: 11px;
+    left: 0;
+    line-height: 11px;
+    margin-left: -24px;
+    position: absolute;
+    text-align: center;
+    width: 48px;
+}
+.marker {
+    border: 1px solid transparent;
+    color: #333333;
+    font-size: 9px;
+    height: 18px;
+    line-height: 18px;
+    text-align: center;
+}
+  </style>
   <!-- jQuery (if necessary, slim version reduces load time) -->
   <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
   
@@ -132,14 +160,39 @@
                 <div class="col-md-6 mb-3">
                   <div class="slider-container" >
                     <label for="customRange4" class="form-label textfield_label1 rounded-3">Tenure Year</label><input type="number" value="1" name="tenure" id="tenure" class="range_pctg small_range_input_editable float-end" value="0"></input>
-                    <input type="range" class="custom_range_wx" value="1" min="1" max="50" step="" id="tenure_year_range">
+                    <input type="range" class="custom_range_wx" value="1" min="1" max="30" step="" id="tenure_year_range">
+                  
+                    <div id="loanamountsteps" class="steps">
+                      <span class="tick" style="left: 4%;">|<br><span class="marker">0</span></span>
+                      <span class="tick" style="left: 16.2%;">|<br><span class="marker">5y</span></span>
+                      <span class="tick" style="left: 32.4%;">|<br><span class="marker">10y</span></span>
+                      <span class="tick" style="left: 48.6%;">|<br><span class="marker">15y</span></span>
+                      <span class="tick" style="left: 64.8%;">|<br><span class="marker">20y</span></span>
+                      <span class="tick" style="left: 80.3%;">|<br><span class="marker">25y</span></span>
+                      <span class="tick" style="left: 96.2%;">|<br><span class="marker">30y</span></span>
+                    </div>
+                  
+                  
+                  
                   </div>
                 </div>
                 <div class="col-md-6 mb-3">
 
                   <div class="slider-container" >
                     <label for="customRange3" class="form-label textfield_label1 rounded-3">Interest Rate %</label><input type="number" value="0" name="interestRate" id="interestRate" class="range_pctg small_range_input_editable float-end" value="0"></input> 
-                    <input type="range" class="custom_range_wx" value="0" min="0" max="50" step="0.5" id="interest_rate">
+                    <input type="range" class="custom_range_wx" value="0" min="0" max="30" step="0.5" id="interest_rate">
+
+                    <div id="loanamountsteps" class="steps">
+                      <span class="tick" style="left: 4%;">|<br><span class="marker">0%</span></span>
+                      <span class="tick" style="left: 19.2%;">|<br><span class="marker">5%</span></span>
+                      <span class="tick" style="left: 34.4%;">|<br><span class="marker">10%</span></span>
+                      <span class="tick" style="left: 48.6%;">|<br><span class="marker">15%</span></span>
+                      <span class="tick" style="left: 65.3%;">|<br><span class="marker">20%</span></span>
+                      <span class="tick" style="left: 81%;">|<br><span class="marker">25%</span></span>
+                      <span class="tick" style="left: 96.2%;">|<br><span class="marker">30%</span></span>
+                  </div>
+                  
+
                   </div>
                 </div>
 

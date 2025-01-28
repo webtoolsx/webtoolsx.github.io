@@ -34,6 +34,10 @@ input:focus, textarea:focus, select:focus {
     padding-bottom: 8px;
 }
 
+.calc_numbers{
+    font-size: 22px;
+}
+
 /* by at and sell at input styles */
 .input-group-text-buy {
     background-color: #ffffff;
@@ -195,6 +199,10 @@ input:focus, textarea:focus, select:focus {
     height: 22px;
 }
 
+.bg_light_green{
+    background: #c6ffd3;
+}
+
 
 @keyframes shake {
     0% { transform: translateX(0); }
@@ -213,7 +221,7 @@ input:focus, textarea:focus, select:focus {
         }
 
         .input_buysell_size {
-            font-size: 23px;
+            font-size: 18px;
         }
         .calculate_button{
             font-size: 22px;
@@ -233,11 +241,14 @@ input:focus, textarea:focus, select:focus {
             font-size: 14px;
         }
         .other_property_calc{
-            font-size: 17px;
+            font-size: 14px;
         }
         /* .input_buysell_size {
-            font-size: 23px;
+            font-size: 18px;
         } */
+        .prof_loss_view{
+            font-size: 14px;
+        }
       }
 
     @media (max-width: 400px) {
@@ -249,7 +260,10 @@ input:focus, textarea:focus, select:focus {
             color:rgb(59, 33, 91);
         }
         .small_range_input_editable{
-            width: 28%;
+            width: 35%;
+        }
+        .prof_loss_view{
+            font-size: 14px;
         }
         
     }

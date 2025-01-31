@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Easily calculate percentage changes between two values with our online tool. Input your values for an accurate percentage calculation.">
+  <meta name="keywords" content="percentage change, percentage calculator, percentage difference, finance tools, calculator">
+  <meta name="author" content="Your Name">
+  <meta name="robots" content="index, follow">
+  
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="Percentage Calculator">
+  <meta property="og:description" content="Calculate the percentage between two values quickly and easily using our online tool.">
+  <meta property="og:image" content="favicon.png">
+  <meta property="og:url" content="https://webtoolsx.github.io/percentage-change-calculator.html" alt="canonical">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="favicon.png" type="image/png">
+  <link rel="canonical" href="https://webtoolsx.github.io/percentage-change-calculator.html">
+
+  <title>Percentage Calculator - Free Tool | WebToolsX</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  
+  <!-- Add canonical link to avoid duplicate content -->
+  <link rel="canonical" href="https://webtoolsx.github.io/average-calculator.html">
+  
+  <!-- Bootstrap CSS -->
+  <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Bootstrap JS -->
+  <script src="bootstrap/js/bootstrap.bundle.js"></script>
+  
+  <!-- Custom styles -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/custom_radio.css">
+  
+  <!-- jQuery (if necessary, slim version reduces load time) -->
+  <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
+  
+  <!-- Custom script for stock calculation -->
+  <script type="module" src="js/percentage_change.js"></script>
+  <script type="module" src="js/hr_scroll.js"></script>
+
+  
+  <!-- Counto script -->
+  <script src="js/counto.min.js"></script>
+
+  <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+  
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0ZDRS85Q8B"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-0ZDRS85Q8B');
+  </script>
+  <!-- Structured Data for SEO -->
+<!-- Structured Data for SEO -->
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Percentage Calculator",
+    "url": "https://webtoolsx.github.io/percentage-change-calculator.html",
+    "description": "An easy-to-use tool to calculate the percentage between two values.",
+    "applicationCategory": "Finance",
+    "softwareVersion": "1.0",
+    "operatingSystem": "All"
+  }
+</script>
+
+ 
+
+  </head>
+<div class="container-fluid">
+    <!-- nav bar -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary header_bar">
+      
+      <div class="container-fluid ">
+        <div class="col">
+          <a class="navbar-brand" href="#"> <img alt="webtoolx company logo" class="main-logo" src="images/calclogo.png" alt="logo"></a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- <div class="col nav justify-content-end py-1">
+      <ul class="nav nav-pills justify-content-end" role="navigation" aria-label="Main navigation">
+        <li class="nav-item">
+          <a class="nav-link" href="/" aria-current="page" title="Stock Profit and Loss Calculator">P/L Calculator</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="/average-calculator.html" title="Stock Average Calculator">Average Calculator</a>
+        </li>
+      </ul>
+    </div> -->
+
+    <div class="scroll-container">
+      <button class="scroll-btn left">&larr;</button>
+      <div class="scroll-wrapper">
+        <div class="scroll-content">
+          <a class="hr_nav-item " href="/">P/L Calculator</a>
+          <a class="hr_nav-item " href="/average-calculator.html">Average Calculator</a>
+          <a class="hr_nav-item" href="/percentage-change-calculator.html">Percentage Change Calculator</a>
+          <a class="hr_nav-item active" href="/percentage-calculator.html">Percentage Calculator</a>
+          <a class="hr_nav-item" href="/emi-calculator.html">Loan EMI Calculator</a>
+        </div>
+      </div>
+      <button class="scroll-btn right">&rarr;</button>
+    </div>
+
+
+    <div class="container-fluid p-0 p-lg-2">
+        <!-- buy Price and sell Price -->
+        <div class="container-fluid py-4 p-0 p-lg-2">
+          <div class="row background-image-average">
+            <div class="col cal_box">
+              <h1 class="calc_heading">Percentage Calculator</h1>
+            
+
+              <div class="row mb-3 profit-box">
+                <div class="slider-container">
+          
+                  <input type="number" value="" name="percentage" placeholder="e.g. 12" id="percentage" class="range_pctg small_range_input_editable ht-32">
+                  <label for="percentage" class="form-label textfield_label2 rounded-1 p-1">% of</label>
+                  <input type="number" value="" name="baseValue" placeholder="e.g. 580" id="baseValue" class="range_pctg small_range_input_editable ht-32">
+                  <label for="baseValue" class="form-label textfield_label2 rounded-1 p-1">is</label>
+                  <input type="number" readonly placeholder="e.g. 69.6" name="result" id="result" class="range_pctg small_range_input_editable ht-32 bg_light_green">
+                  <button type="button" aria-label="Reset" id="resetBtn" class="reset_small">
+                    <img alt="reset button" src="images/reset.svg" height="18px">
+                  </button>
+
+                </div>
+              </div>
+
+          
+
+              <div class="row mb-3 profit-box">
+                <div class="slider-container">
+                  <input type="number" value="" name="partValue" placeholder="e.g. 120" id="partValue" class="range_pctg small_range_input_editable ht-32">
+                  <label for="partValue" class="form-label textfield_label2 rounded-1 p-1">of</label>
+                  
+                  <input type="number" value="" name="wholeValue" placeholder="e.g. 2000" id="wholeValue" class="range_pctg small_range_input_editable ht-32">
+                  <label for="wholeValue" class="form-label textfield_label2 rounded-1 p-1">is</label>
+                  
+                  <input type="number" readonly placeholder="e.g. 6" name="percentageResult" id="percentageResult" class="range_pctg small_range_input_editable ht-32 bg_light_green">
+                  <label for="percentageResult" class="form-label textfield_label2 rounded-1 p-1">%</label>
+
+                  <button type="button" aria-label="Reset" id="resetPercentage" class="reset_small">
+                    <img alt="reset button" src="images/reset.svg" height="18px">
+                  </button>
+                </div>
+              </div>  
+
+
+            </div>
+
+            <div class="col-6 d-none d-lg-block">
+              <!-- div for gap -->
+            </div>
+
+            
+
+          </div>
+
+          <div class="row mt-4">
+
+            <div class="col">
+  
+              <h3><i class="fa-solid fa-square-root-variable"></i> Formula Explanation:</h3>
+                <div class="container mt-4">
+                  <div class="card p-4 shadow">
+                    <h4 class="mb-3">Calculating Percentage of a Value</h4>
+                    <p>To find a percentage of a given number, use this formula:</p>
+                    <pre class="bg-light p-3 rounded border">Result = (Percentage / 100) × Base Value</pre>
+                    <p><strong>Example:</strong> Finding 12% of 580:</p>
+                    <pre class="bg-light p-3 rounded border">Result = (12 / 100) × 580 = 69.6</pre>
+                    <p><strong>When to Use:</strong></p>
+                    <ul>
+                      <li>Calculating discounts on products</li>
+                      <li>Finding tax amounts (e.g., VAT, GST)</li>
+                      <li>Determining interest on loans</li>
+                      <li>Estimating commissions and salary deductions</li>
+                    </ul>
+                    <p><strong>How to Use:</strong> Enter a percentage and a base value, and the result will be calculated dynamically. This method simplifies complex percentage-based evaluations and ensures accurate financial decision-making.</p>
+                  </div>
+                </div>
+
+                <div class="container mt-4">
+                  <div class="card p-4 shadow">
+                    <h4 class="mb-3">Finding What Percentage One Number is of Another</h4>
+                    <p>To determine what percentage one number is of another, use this formula:</p>
+                    <pre class="bg-light p-3 rounded border">Percentage = (Part / Whole) × 100</pre>
+                    <p><strong>Example:</strong> What percentage is 120 of 2000?</p>
+                    <pre class="bg-light p-3 rounded border">Percentage = (120 / 2000) × 100 = 6%</pre>
+                    <p><strong>When to Use:</strong></p>
+                    <ul>
+                      <li>Calculating profit margins in business</li>
+                      <li>Evaluating student test scores</li>
+                      <li>Analyzing growth rates in finance</li>
+                      <li>Measuring efficiency in production or performance</li>
+                    </ul>
+                    <p><strong>How to Use:</strong> Enter two numbers—one representing the part and the other representing the whole. The percentage is automatically calculated. This method is commonly used in market analysis, performance evaluations, and investment return assessments.</p>
+                  </div>
+                </div>
+                
+             
+            </div>
+            <div class="col"> 
+              <!-- -- -->
+            </div>
+
+          </div>
+
+        </div>
+    </div>
+
+  </div>
+    <script>
+      $('#my-number').counto(0, 500);
+    </script>
+ 
+
+  <footer class="footer_main">
+
+    <div>
+      <a href="/" style="color: white; margin: 0 15px; text-decoration: none;" class="footer-logo"><img rel="favicon Webtoolsx" src="favicon.png" alt="Company Logo"></a>
+      <a href="/" style="color: white; margin: 0 15px; text-decoration: none;">Home</a>
+      <a href="/about.html" style="color: white; margin: 0 15px; text-decoration: none;">About Us</a>
+      <a href="/contact.html" style="color: white; margin: 0 15px; text-decoration: none;">Contact Us</a>
+      <!-- <a href="/about" style="color: white; margin: 0 15px; text-decoration: none;">About Us</a> -->
+      <!-- <a href="/contact" style="color: white; margin: 0 15px; text-decoration: none;">Contact</a> -->
+    </div>
+    <div style="margin-top: 20px;">
+      <p>&copy; 2024 Webtoolsx. All Rights Reserved.</p>
+    </div>
+ 
+  </footer>
+</body>
+</html>

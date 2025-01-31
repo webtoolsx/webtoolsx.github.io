@@ -4,6 +4,19 @@
 body {
     font-family: "Montserrat", sans-serif;
   }
+
+  /* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
 .header_bar{
     background: #ffffffc4 !important;
     border-radius: 5px !important;
@@ -140,6 +153,16 @@ input:focus, textarea:focus, select:focus {
     border: 2px solid #6c757d;
     color: #6c757d;
 }
+
+.reset_small{
+    border-radius: 10px;
+    border: 2px solid #999999;
+    background: #ffffff;
+    font-size: 17px;
+    padding: 3px 15px;
+    font-family: inherit;
+    background: #c2c2c2;
+}
 .heading_view_result{
     color:rgb(24, 32, 27);
 }
@@ -179,6 +202,12 @@ input:focus, textarea:focus, select:focus {
     font-weight: 600;
 }
 
+.textfield_label2{
+    background: #d5d5d5;
+    margin-left: 4px;
+    font-weight: 600;
+}
+
 .buy_field{
     border: none;
     background: #d9ffd9;
@@ -197,6 +226,15 @@ input:focus, textarea:focus, select:focus {
     border: none;
     width: 18%;
     height: 22px;
+}
+.ht-30{
+    height: 30px;
+}
+.ht-31{
+    height: 31px;
+}
+.ht-32{
+    height: 32px;
 }
 
 .bg_light_green{

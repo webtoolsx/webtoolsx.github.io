@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reusable jQuery UI Slider</title>
+    
+    <!-- Include jQuery UI CSS -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    
+    <style>
+        /* Style for the slider container */
+        .slider-container {
+            width: 80%;
+            margin: 50px auto;
+        }
+
+        /* Style for the slider label */
+        .textfield_label1 {
+            font-size: 16px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        /* Style for the number input */
+        .small_range_input_editable {
+            width: 60px;
+            padding: 5px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-left: 10px;
+        }
+
+        /* Style for the steps (markers) */
+        .steps {
+            position: relative;
+            width: 100%;
+            height: 20px;
+            margin-top: 14px;
+            margin-left: 1px;
+        }
+
+        /* Style for each tick */
+        .tick {
+            position: absolute;
+            bottom: 0;
+            transform: translateX(-50%);
+            font-size: 12px;
+            text-align: center;
+            color: gray;
+        }
+
+        /* Style for the marker text */
+        .marker {
+            display: block;
+            text-align: center;
+            margin-top: 8px;
+            font-size: 9px;
+            color: gray;
+        }
+
+       
+    </style>
+</head>
+<body>
+
+    <div class="slider-container">
+        <label class="textfield_label1">Interest Rate %</label>
+        <input type="number" id="interestRate" class="small_range_input_editable">
+        <div id="interestSlider"></div>
+        <div class="steps" id="interestSteps"></div>
+    </div>
+
+    <div class="slider-container">
+        <label class="textfield_label1">Loan Term (Years)</label>
+        <input type="number" id="loanTerm" class="small_range_input_editable">
+        <div id="loanSlider"></div>
+        <div class="steps" id="loanSteps"></div>
+    </div>
+
+    <!-- Include jQuery and jQuery UI -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+
+    <script>
+        // Reusable function to create a slider
+        function createCustomSlider(sliderId, inputId, stepsId, min, max, step) {
+            $(sliderId).slider({
+                min: min,
+                max: max,
+                step: step,
+                value: min,
+                slide: function(event, ui) {
+                    $(inputId).val(ui.value);
+                    alignMarkers(sliderId, stepsId, min, max);
+                }
+            });
+
+            // Set the initial value of the input field
+            $(inputId).val($(sliderId).slider("value"));
+
+            // Function to align markers dynamically
+            function alignMarkers(sliderId, stepsId, min, max) {
+                const stepValues = [];
+                for (let i = 0; i <= max; i += step * 10) {
+                    stepValues.push(i);
+                }
+
+                const sliderWidth = $(sliderId).width();
+                $(stepsId).empty(); // Clear previous markers
+
+                stepValues.forEach((value, index) => {
+                    if (index === 0) return; // Skip the first step (do not display it)
+
+                    const percentage = ((value - min) / (max - min)) * 100;
+                    $(stepsId).append(`<span class="tick" style="left:${percentage}%"><span class="marker">|<br>${value}%</span></span>`);
+                });
+            }
+            
+
+            // Align markers on page load and resize
+            alignMarkers(sliderId, stepsId, min, max);
+            $(window).on('resize', function() {
+                alignMarkers(sliderId, stepsId, min, max);
+            });
+        }
+
+        // Initialize multiple sliders using the function
+        $(document).ready(function() {
+            createCustomSlider("#interestSlider", "#interestRate", "#interestSteps", 0, 30, 0.5);
+            createCustomSlider("#loanSlider", "#loanTerm", "#loanSteps", 1, 35, 0.5);
+        });
+    </script>
+
+</body>
+</html>

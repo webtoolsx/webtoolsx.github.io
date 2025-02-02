@@ -78,6 +78,21 @@ import StockCalculator from './calclib.js';
         $('#my-number').counto(  profit.profitOrLoss.toFixed(2), 500);
         $('#total_investment').counto(  profit.totalBuyValue.toFixed(2), 500);
         $('#total_brockerage').counto(  profit.brockerage_percentage_amt.toFixed(2), 500);
+        $('.calc_pl_percentage').counto(  profit.profitPercentage, 500);
+
+
+        let arrowElement = document.getElementById("pl_updown_arrow");
+
+        if (profit.prof_status == 'profit') {
+            arrowElement.classList.remove("fa-arrow-down");
+            arrowElement.classList.add("fa-arrow-up");
+        } else if (profit.prof_status == 'loss') {
+            arrowElement.classList.remove("fa-arrow-up");
+            arrowElement.classList.add("fa-arrow-down");
+        } else {
+            arrowElement.classList.remove("fa-arrow-up", "fa-arrow-down");
+        }
+
         
     }
     
@@ -269,7 +284,10 @@ if (resetButton) {
     });
     $('#my-number').counto( '0.00', 500);
     $(".calc_numbers").html('0.00');
+    $('.calc_pl_percentage').counto('0',500)
     const label = document.querySelector('label[for="customRange3"]');
+    let arrowElement = document.getElementById("pl_updown_arrow");
+    arrowElement.classList.remove("fa-arrow-up", "fa-arrow-down");
 
     if(label){
         label.textContent = `Brokerage (0%)`;

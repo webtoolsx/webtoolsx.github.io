@@ -34,6 +34,20 @@ ctx.strokeStyle = 'blue'; // Set stroke color
             ctx.lineWidth = 25; // Set the stroke width (optional)
 
 ctx.stroke();
+
+// Add legend inside the canvas
+function drawLegend(color, text, x, y) {
+    ctx.fillStyle = color;
+    ctx.fillRect(x, y, 15, 15);
+    ctx.fillStyle = "black";
+    ctx.font = "14px Arial";
+    ctx.fillText(text, x + 20, y + 13);
+}
+
+drawLegend("gray", "Base Arc", 0, 120);
+drawLegend("red", "Red Segment", 0, 150);
+drawLegend("orange", "Orange Segment", 0, 180);
+drawLegend("blue", "Blue Segment", 0, 210);
 </script> 
 
 </body>

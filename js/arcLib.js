@@ -5,12 +5,15 @@
     arcLib.pctgSplit = []
     arcLib.pi = Math.PI
     arcLib.piSplit = []
-    arcLib.color = ['red', 'green', 'blue', 'orange', 'pink', { investment: 'blue' }];
+    arcLib.color = ['red','green','blue','orange','pink']
 
     // alert(arcLib.pi)
 
     // Define a method to show the elements
-    arcLib.show = function(x) {
+    arcLib.show = function(x,elem) {
+    arcLib.pctgSplit = []
+    arcLib.piSplit = []
+
       // Check if the argument is an array and not undefined
       let totalQty = 0;
 
@@ -45,16 +48,17 @@
           }
         }
 
-        const c = document.getElementById("myCanvas");
+        const c = document.getElementById(elem);
         const ctx = c.getContext("2d");
 
         ctx.clearRect(0, 0, c.width, c.height);
-
-        
         
         for (const [index, value] of arcLib.piSplit.entries()) {
         ctx.beginPath();
-        ctx.arc(100, 100, 90, value.as+0.05, value.ae);
+        var gap;
+        if(index == 0) { gap = 0.00; } else { gap=0.02; }
+        // ctx.arc(50, 50, 40, value.as+0.05, value.ae);
+        ctx.arc(50, 50, 40, value.as+gap, value.ae);
         ctx.strokeStyle = arcLib.color[index];
         ctx.lineWidth = 15;
         ctx.stroke();

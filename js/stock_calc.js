@@ -2,6 +2,8 @@ import StockCalculator from './calclib.js';
 
 
     function calculate_pl() {
+
+        
         // Retrieve the input values
         let buyAtPrice = parseFloat(document.querySelector('input[name="buy_at_price"]').value);
         let sellAtPrice = parseFloat(document.querySelector('input[name="sell_at_price"]').value);
@@ -79,6 +81,15 @@ import StockCalculator from './calclib.js';
         $('#total_investment').counto(  profit.totalBuyValue.toFixed(2), 500);
         $('#total_brockerage').counto(  profit.brockerage_percentage_amt.toFixed(2), 500);
         $('.calc_pl_percentage').counto(  profit.profitPercentage, 500);
+
+        var x = [
+            {'title': 'Total Invest', quantity: profit.totalBuyValue},
+            {'title': 'Profit', quantity: Math.abs(profit.profitOrLoss)}, // Fix applied here
+        ];
+        
+        //   alert(profit.totalBuyValue)
+        //   alert(profit.profitOrLoss)
+        //   arcLib.show(x,'myCanvas');
 
 
         let arrowElement = document.getElementById("pl_updown_arrow");
@@ -324,7 +335,8 @@ $('input').on('keydown', function(event) {
         calculatePercentageChange();
     }
 });
-
+document.getElementById("first_value").addEventListener("input", calculatePercentageChange);
+document.getElementById("second_value").addEventListener("input", calculatePercentageChange);
 // Function to calculate percentage change
 function calculatePercentageChange() {
     // Get the values from input fields

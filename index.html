@@ -29,6 +29,7 @@
   <script type="module" src="js/stock_calc.js"></script>
   <script type="module" src="js/custom_range.js"></script>
   <script type="module" src="js/hr_scroll.js"></script>
+  <script type="module" src="js/arcLib.js"></script>
   <script src="js/counto.min.js"></script>
 
   <!-- Canonical URL -->
@@ -110,12 +111,17 @@
                   <span class="float-end">
                       <i id="pl_updown_arrow" class="fa-solid" aria-label="Profit Indicator"></i>
                       <span class="calc_pl_percentage">0</span><small>%</small>
+
                   </span>
               </h2>
               <span class="prof_loss_view profit"><b><span class="calc_numbers" id="my-number">0.00</span></b></span> 
               </div>
 
+              
+
               <div class="mt-3">
+                <!-- <canvas id="myCanvas" width="100" height="60" style="border:1px solid rgb(255, 255, 255)"></canvas> -->
+
                 <h4 class="other_property_calc">Total Investment</h4>
                 <span class="profit"><b class="calc_numbers" id="total_investment">0.00</b></span>
               </div>

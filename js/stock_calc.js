@@ -335,8 +335,17 @@ $('input').on('keydown', function(event) {
         calculatePercentageChange();
     }
 });
-document.getElementById("first_value").addEventListener("input", calculatePercentageChange);
-document.getElementById("second_value").addEventListener("input", calculatePercentageChange);
+document.getElementById("first_value").addEventListener("input", handleInputPercentageChange);
+document.getElementById("second_value").addEventListener("input", handleInputPercentageChange);
+
+function handleInputPercentageChange() {
+    let firstValue = document.getElementById("first_value").value;
+    let secondValue = document.getElementById("second_value").value;
+
+    if (firstValue.trim() !== "" && secondValue.trim() !== "") {
+        calculatePercentageChange();
+    }
+}
 // Function to calculate percentage change
 function calculatePercentageChange() {
     // Get the values from input fields

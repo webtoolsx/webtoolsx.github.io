@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tip Calculator - Calculate Your Tips Easily - Webtoolsx</title>
+    
+    <!-- ✅ SEO Meta Tags -->
+    <meta name="description" content="Use our free Tip Calculator to quickly calculate the tip amount and total bill. Easily split the bill among friends and adjust tip percentages hassle-free.">
+    <meta name="keywords" content="Tip Calculator, Bill Splitter, Tip Percentage, Calculate Tip, How to Tip, Restaurant Bill Calculator">
+    <meta name="author" content="YourWebsite">
+    <meta name="robots" content="index, follow">
+
+    <!-- ✅ Open Graph Meta Tags (For Facebook, LinkedIn, etc.) -->
+    <meta property="og:title" content="Tip Calculator - Quickly Calculate Tips & Split Bills">
+    <meta property="og:description" content="Easily calculate tips and split restaurant bills with our free Tip Calculator. Adjustable tip percentages and total bill breakdowns.">
+    <meta property="og:image" content="https://yourwebsite.com/images/tip-calculator.jpg">
+    <meta property="og:url" content="https://yourwebsite.com/tip-calculator">
+    <meta property="og:type" content="website">
+    
+    <!-- ✅ Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Tip Calculator - Easily Calculate Your Tip & Split Bills">
+    <meta name="twitter:description" content="Calculate the tip amount, split bills with friends, and adjust tip percentages with our simple Tip Calculator.">
+    <meta name="twitter:image" content="https://yourwebsite.com/images/tip-calculator.jpg">
+    
+  <link rel="icon" href="favicon.png" type="image/png">
+
+  <title>Stock Profit and Loss Calculator | WebToolsX</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <!-- Linking CSS Stylesheets -->
+  <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css"> <!-- Your custom styles -->
+  <link rel="stylesheet" href="css/custom_radio.css">
+  <!-- JavaScript Files -->
+  <script src="bootstrap/js/bootstrap.bundle.js" ></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
+  <script type="module" src="js/tip.js"></script>
+  <script type="module" src="js/counter.js"></script>
+  <script type="module" src="js/custom_range.js"></script>
+  <script type="module" src="js/hr_scroll.js"></script>
+  <script type="module" src="js/arcLib.js"></script>
+  <script src="js/counto.min.js"></script>
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://webtoolsx.github.io/stock-profit-loss-calculator.html">
+
+  <!-- Structured Data for Rich Snippets (JSON-LD) -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Tip Calculator - Calculate & Split Your Bill Online",
+      "url": "https://webtoolsx.github.io/tip-calculator",
+      "description": "Use WebToolsX's free Tip Calculator to quickly calculate tip amounts and split bills with ease. Perfect for restaurants, cafes, and group dining.",
+      "applicationCategory": "Finance",
+      "softwareVersion": "1.0",
+      "operatingSystem": "All",
+      "author": {
+        "@type": "Organization",
+        "name": "WebToolsX",
+        "url": "https://webtoolsx.github.io"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "WebToolsX",
+        "url": "https://webtoolsx.github.io"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "potentialAction": {
+        "@type": "CalculateAction",
+        "target": "https://webtoolsx.github.io/tip-calculator",
+        "name": "Calculate Tip"
+      }
+    }
+    </script>
+    
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0ZDRS85Q8B"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-0ZDRS85Q8B');
+</script>
+  
+</head>
+<body>
+  <div class="container-fluid">
+    <!-- nav bar -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary header_bar">
+      
+      <div class="container-fluid ">
+        <div class="col">
+          <a class="navbar-brand" href="#"> <img class="main-logo" src="images/calclogo.png" alt="logo"> </a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- <div class="col nav justify-content-end py-1">
+      <ul class="nav nav-pills justify-content-end">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/">P/L Calculator</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/average-calculator.html">Average Calculator</a>
+        </li>
+      </ul>
+    </div> -->
+
+    <div class="scroll-container">
+      <button class="scroll-btn left">&larr;</button>
+      <div class="scroll-wrapper">
+        <div class="scroll-content">
+          <a class="hr_nav-item active" href="/">P/L Calculator</a>
+          <a class="hr_nav-item " href="/average-calculator.html">Average Calculator</a>
+          <a class="hr_nav-item " href="/percentage-change-calculator.html">Percentage Change Calculator</a>
+          <a class="hr_nav-item" href="/percentage-calculator.html">Percentage Calculator</a>
+          <a class="hr_nav-item " href="/emi-calculator.html">Loan EMI Calculator</a>
+
+        </div>
+      </div>
+      <button class="scroll-btn right">&rarr;</button>
+    </div>
+
+
+    <div class="container-fluid p-0 p-lg-2">
+  
+        <!-- buy Price and sell Price -->
+        <div class="container-fluid py-4 p-0 p-lg-2">
+          <div class="row background-image-average">
+            <div class="col ">
+              <h1 class="calc_heading"><img src="images/chart-average-svgrepo-com.svg" height="25px">&nbsp;Tip Calculator</h1>
+              
+              <div class="row">
+                <div class="col">
+
+                  <div class="mt-3 profit-box" style="background: #88ff0099;">
+                        <h2 class="prof_loss_view profit" >
+                        <strong>Per Person</strong> 
+                        </h2>
+                        <span class="prof_loss_view profit"><b><span class="calc_numbers" id="my-number">0.00</span></b></span> 
+                  </div>
+
+                </div>
+                <div class="col">
+
+                  <div class="mt-3 profit-box" style="  background: #ff5500; color: #780000; ">
+                    <div class="" >
+                        <h2 class="prof_loss_view">
+                        <strong>Tip Per person</strong> 
+                        </h2>
+                        <span class="prof_loss_view"><b><span class="calc_numbers" id="my-number-tip-per-person">0.00</span></b></span> 
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+              <div class="mt-3 profit-box">
+
+                <h4 class="prof_loss_view"> Tip Amount </h4>
+                <span class="prof_loss_view"><b><span class="" id="my-number-tip-amt">0.00</span></b></span> 
+
+                <h4 class="prof_loss_view mt-3"> Total Amount </h4>
+                <span class="prof_loss_view"><b><span class="" id="my-number-bill-amt">0.00</span></b></span> 
+              </div>
+            
+
+            </div>
+            <div class="col-1 d-none d-lg-block">
+              <!-- div for gap -->
+            </div>
+            <div class="col cal_box">
+
+              <div class="row mb-3">
+
+                <div class="col-md-6 mb-3">
+                    <label class="textfield_label1" style="background: #e4e4e4;"> Bill Amount</label>
+                    <div class="input-group">
+                        <span class="input-group-text input-group-text-qty" style="background: #ff5500;"><i class="fa-solid fa-dollar"></i></span>
+                        <input type="number" name="bill_amount" class="form-control input_buysell_size" value="500"  placeholder="Bill Amount" aria-label="Quantity">
+                    </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label class="textfield_label1" style="background: #e4e4e4;"> Head Count</label>
+                    <div class="input-group counter-wrapper">
+                        <button type="button" class="btn btn-danger btn-minus" aria-label="Decrease">
+                            <i class="fa-solid fa-minus"></i>
+                        </button>
+                        <input type="number" name="number_of_people" class="form-control text-center input_buysell_size" value="1" min="1" step="1" aria-label="Number of people">
+                        <button type="button" class="btn btn-success btn-plus" aria-label="Increase">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+
+              <div class="custom_radio_wrapper mb-2">
+                <!-- <p class="text-dark label_p">Morning</p> -->
+                <label>
+                  <input type="radio" value="percentage" name="pnl_brocker_type_calc_radio" checked class="pnl_brocker_type d-none ">
+                  <span class="text-center d-block py-1">Tip %</span>
+                </label>
+                <label>
+                  <input type="radio" value="flat" name="pnl_brocker_type_calc_radio" class="pnl_brocker_type d-none">
+                  <span class="text-center d-block py-1">Flat Tip</span>
+                </label>
+              </div>
+
+              <div class="slider-container" id="tip_percentage_block">
+                <label for="customRange3" class="form-label">Tip (0%)</label>
+                <input type="range"  name="tip_percentage"  value="0" min="0.00" max="25" step="0.5" id="customRange3">
+              </div>
+
+              <div class="slider-container" style="display: none;" id="tip_flat_block">
+                  <label for="customRange3" class="form-label">Flat Tip Amount</label>
+                  <input type="number" name="tip_flat" class="form-control input_buysell_size" placeholder="e.g. 10" aria-label="Quantity">
+              </div>
+
+              
+
+              <!-- <label for="customRange3" class="form-label">Brokerage (0%)</label>
+              <input type="range" name="brockerage_percentage" class="form-range" value="0" min="0" max="10" step="0.5" id="customRange3">
+               -->
+
+           
+               <div class="row">
+                <div class="col-md-6 mb-3">
+                    
+                </div>
+              <div class="col-md-6 mb-3 nav justify-content-end">
+                <button type="button" aria-label="Quantity" class="calculate_button reset_button_tip_calc reset_button"><img src="images/reset.svg" height="25px"></button>
+                <input type="button" aria-label="Quantity" value="Calculate" class="calculate_button calculate_tip_button">
+              </div>
+
+          </div>
+
+          </div>
+
+          <div class="row mt-3">
+            <!-- content -->
+            <div class="container mt-5">
+              <!-- Title & Introduction -->
+              <h1 class="text-center mb-4">Tip Calculator – Easily Calculate Tips & Split Bills</h1>
+              
+              <p class="lead text-center">
+                  A tip calculator simplifies the process of calculating gratuities, ensuring fairness and accuracy when tipping for restaurant services, taxi rides, and more. 
+              </p>
+      
+              <!-- Why Use a Tip Calculator -->
+              <div class="row">
+                  <div class="col-md-6">
+                      <h2>Why Use a Tip Calculator?</h2>
+                      <ul class="list-group">
+                          <li class="list-group-item">✅ Quickly calculate the tip amount.</li>
+                          <li class="list-group-item">✅ Choose the right tip percentage (10%, 15%, 20%, etc.).</li>
+                          <li class="list-group-item">✅ Split the bill evenly among multiple people.</li>
+                          <li class="list-group-item">✅ Avoid errors in manual calculations.</li>
+                      </ul>
+                  </div>
+      
+                  <div class="col-md-6">
+                      <h2>How to Calculate a Tip?</h2>
+                      <p>Use this simple formula:</p>
+                      <ul class="list-group">
+                          <li class="list-group-item"><strong>Tip Amount = (Bill Amount × Tip Percentage) / 100</strong></li>
+                          <li class="list-group-item">Example:</li>
+                          <li class="list-group-item"><strong>Bill Amount:</strong> $50</li>
+                          <li class="list-group-item"><strong>Tip Percentage:</strong> 15%</li>
+                          <li class="list-group-item"><strong>Tip Amount:</strong> $50 × 0.15 = $7.50</li>
+                          <li class="list-group-item"><strong>Total Bill:</strong> $50 + $7.50 = $57.50</li>
+                      </ul>
+                  </div>
+              </div>
+      
+              <!-- Features & Types -->
+              <div class="row mt-4">
+                  <div class="col-md-6">
+                      <h2>Features of a Good Tip Calculator</h2>
+                      <ul class="list-group">
+                          <li class="list-group-item">🔹 Adjustable Tip Percentage</li>
+                          <li class="list-group-item">🔹 Bill Splitting Option</li>
+                          <li class="list-group-item">🔹 Rounding Options</li>
+                          <li class="list-group-item">🔹 User-Friendly Interface</li>
+                      </ul>
+                  </div>
+      
+                  <div class="col-md-6">
+                      <h2>Types of Tip Calculators</h2>
+                      <ul class="list-group">
+                          <li class="list-group-item">📱 Online Tip Calculators</li>
+                          <li class="list-group-item">📲 Mobile Apps (iOS & Android)</li>
+                          <li class="list-group-item">🎤 Voice Assistants (Siri, Google, Alexa)</li>
+                          <li class="list-group-item">📖 Manual Tip Charts</li>
+                      </ul>
+                  </div>
+              </div>
+      
+              <!-- Tipping Etiquette -->
+              <div class="row mt-4">
+                  <div class="col-md-12">
+                      <h2>Tipping Etiquette Around the World</h2>
+                      <p>Tipping customs vary across countries:</p>
+                      <div class="row">
+                          <div class="col-md-4">
+                              <ul class="list-group">
+                                  <li class="list-group-item">🇺🇸 <strong>USA & Canada:</strong> 15-20% in restaurants</li>
+                                  <li class="list-group-item">🇬🇧 <strong>UK:</strong> 10-12.5% (often included in the bill)</li>
+                              </ul>
+                          </div>
+                          <div class="col-md-4">
+                              <ul class="list-group">
+                                  <li class="list-group-item">🇯🇵 <strong>Japan:</strong> Tipping is not expected</li>
+                                  <li class="list-group-item">🇦🇺 <strong>Australia:</strong> 10% for excellent service</li>
+                              </ul>
+                          </div>
+                          <div class="col-md-4">
+                              <ul class="list-group">
+                                  <li class="list-group-item">🇫🇷 <strong>France:</strong> 5-10% if not included in bill</li>
+                                  <li class="list-group-item">🇮🇳 <strong>India:</strong> 5-10% in upscale restaurants</li>
+                              </ul>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+      
+              <!-- Conclusion -->
+              <div class="row mt-4">
+                  <div class="col-md-12">
+                      <h2>Conclusion</h2>
+                      <p>
+                          A <strong>tip calculator</strong> is a valuable tool that ensures fair and accurate tipping. Whether at a restaurant, a barbershop, or a taxi, it helps 
+                          determine the correct gratuity without hassle.
+                      </p>
+                      <p class="text-center">
+                          <strong>Try a Tip Calculator Today & Never Worry About Tipping Again!</strong>
+                      </p>
+                  </div>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <script>
+      $('#my-number').counto(0, 500);
+    </script>
+
+    
+  </div>
+
+  <footer class="footer_main">
+    <div>
+      <a href="/" style="color: white; margin: 0 15px; text-decoration: none;" class="footer-logo"><img src="favicon.png" alt="Company Logo"></a>
+      <a href="/" style="color: white; margin: 0 15px; text-decoration: none;">Home</a>
+      <a href="/about.html" style="color: white; margin: 0 15px; text-decoration: none;">About Us</a>
+      <a href="/contact.html" style="color: white; margin: 0 15px; text-decoration: none;">Contact Us</a>
+      <!-- <a href="/about.html" style="color: white; margin: 0 15px; text-decoration: none;">About Us</a> -->
+      <!-- <a href="/contact.html" style="color: white; margin: 0 15px; text-decoration: none;">Contact</a> -->
+    </div>
+    <div style="margin-top: 20px;">
+      <p>&copy; 2024 Webtoolsx. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

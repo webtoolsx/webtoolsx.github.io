@@ -13,54 +13,86 @@
   <meta property="og:description" content="Calculate your monthly EMI, total interest, and total payment for loans or mortgages quickly and easily.">
   <meta property="og:image" content="images/emi-calculator-og-image.png">
   <meta property="og:url" content="https://webtoolsx.github.io/emi-calculator.html">
+  <meta property="og:site_name" content="WebToolsX">
+
+  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="EMI Calculator - Quick and Accurate">
+  <meta name="twitter:description" content="Calculate your monthly EMI, total interest, and total payment for loans or mortgages quickly and easily.">
+  <meta name="twitter:image" content="images/emi-calculator-og-image.png">
+  <meta name="twitter:site" content="@yourtwitterhandle">
+  <meta name="twitter:creator" content="@yourtwitterhandle">
+
+  <!-- Favicon & Apple Touch Icon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon.png">
+
+  <!-- Mobile & PWA Optimization -->
+  <meta name="theme-color" content="#007bff">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="EMI Calculator">
+
+  <!-- Schema.org for Google -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "EMI Calculator",
+    "url": "https://webtoolsx.github.io/emi-calculator.html",
+    "description": "Calculate your monthly EMI, total interest, and total payment for loans or mortgages quickly and easily.",
+    "applicationCategory": "Finance",
+    "softwareVersion": "1.0",
+    "operatingSystem": "All"
+  }
+  </script>
 
   <link rel="icon" href="favicon.png" type="image/png">
   <link rel="canonical" href="https://webtoolsx.github.io/emi-calculator.html">
 
   <title>Loan EMI Calculator - Calculate Monthly Payments | WebToolsX</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
   
-  <!-- Add canonical link to avoid duplicate content -->  
   <!-- Bootstrap CSS -->
   <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
   
   <!-- Bootstrap JS -->
   <script src="bootstrap/js/bootstrap.bundle.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   
   <!-- Custom styles -->
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/custom_radio.css">
   <style>
     .steps {
-    border-color: transparent;
-    border-style: none solid;
-    border-width: 0 1px;
-    margin: 0 0 35px !important;
-    position: relative;
-    width: 100%;
-}
-.tick {
-    color: #ccc;
-    font-size: 11px;
-    height: 11px;
-    left: 0;
-    line-height: 11px;
-    margin-left: -24px;
-    position: absolute;
-    text-align: center;
-    width: 48px;
-}
-.marker {
-    border: 1px solid transparent;
-    color: #333333;
-    font-size: 9px;
-    height: 18px;
-    line-height: 18px;
-    text-align: center;
-}
+      border-color: transparent;
+      border-style: none solid;
+      border-width: 0 1px;
+      margin: 0 0 35px !important;
+      position: relative;
+      width: 100%;
+    }
+    .tick {
+      color: #ccc;
+      font-size: 11px;
+      height: 11px;
+      left: 0;
+      line-height: 11px;
+      margin-left: -24px;
+      position: absolute;
+      text-align: center;
+      width: 48px;
+    }
+    .marker {
+      border: 1px solid transparent;
+      color: #333333;
+      font-size: 9px;
+      height: 18px;
+      line-height: 18px;
+      text-align: center;
+    }
   </style>
+  
   <!-- jQuery (if necessary, slim version reduces load time) -->
   <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
   
@@ -71,13 +103,12 @@
   
   <!-- Counto script -->
   <script src="js/counto.min.js"></script>
-
   <script type="text/javascript" async
         src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
-    </script>
+  </script>
   
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0ZDRS85Q8B"></script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0ZDRS85Q8B"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -85,48 +116,20 @@
 
     gtag('config', 'G-0ZDRS85Q8B');
   </script>
-  <!-- Structured Data for SEO -->
-<!-- Structured Data for SEO -->
-<script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "Percentage Change Calculator",
-    "url": "https://webtoolsx.github.io/percentage-change-calculator.html",
-    "description": "An easy-to-use tool to calculate the percentage change between two values.",
-    "applicationCategory": "Finance",
-    "softwareVersion": "1.0",
-    "operatingSystem": "All"
-  }
-</script>
-
- 
-
-  </head>
+</head>
+<body>
 <div class="container-fluid">
     <!-- nav bar -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary header_bar">
-      
-      <div class="container-fluid ">
+      <div class="container-fluid">
         <div class="col">
           <a class="navbar-brand" href="#"> <img alt="webtoolx company logo" class="main-logo" src="images/calclogo.png" alt="logo"></a>
         </div>
       </div>
     </nav>
 
-    <!-- <div class="col nav justify-content-end py-1">
-      <ul class="nav nav-pills justify-content-end" role="navigation" aria-label="Main navigation">
-        <li class="nav-item">
-          <a class="nav-link" href="/" aria-current="page" title="Stock Profit and Loss Calculator">P/L Calculator</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" href="/average-calculator.html" title="Stock Average Calculator">Average Calculator</a>
-        </li>
-      </ul>
-    </div> -->
-
     <div class="scroll-container">
-      <button class="scroll-btn left">&larr;</button>
+      <button class="scroll-btn left" aria-label="Scroll left">&larr;</button>
       <div class="scroll-wrapper">
         <div class="scroll-content">
           <a class="hr_nav-item " href="/">P/L Calculator</a>
@@ -135,12 +138,10 @@
           <a class="hr_nav-item" href="/percentage-calculator.html">Percentage Calculator</a>
           <a class="hr_nav-item active" href="/emi-calculator.html">Loan EMI Calculator</a>
           <a class="hr_nav-item " href="/tip-calculator.html">Tip Calculator</a>
-
         </div>
       </div>
-      <button class="scroll-btn right">&rarr;</button>
+      <button class="scroll-btn right" aria-label="Scroll right">&rarr;</button>
     </div>
-
 
     <div class="container-fluid p-0 p-lg-2">
         <!-- buy Price and sell Price -->
@@ -149,20 +150,18 @@
             <div class="col cal_box">
               <h1 class="calc_heading">Loan EMI Calculator</h1>
             
-
               <div class="row mb-3">
                 <div class="col-md-12 mb-3">
                   <label class="textfield_label1">Loan Amount</label>
-                    <div class="input-group">
-                        <!-- <span class="input-group-text input-group-text-buy input-group-text-blue fs-5 fs-sm-6">x1</span> -->
-                        <input type="number" name="loanAmount" id="loanAmount" value="150000" class="form-control input_buysell_size" placeholder="e.g. 100000" aria-label="intial Value">
-                    </div>
+                  <div class="input-group">
+                    <input type="number" name="loanAmount" id="loanAmount" value="150000" class="form-control input_buysell_size" placeholder="e.g. 100000" aria-label="Loan Amount">
+                  </div>
                 </div>
                 <div class="col-md-6 mb-3">
-                  <div class="slider-container" >
-                    <label for="customRange4" class="form-label textfield_label1 rounded-3">Tenure Year</label><input type="number" value="1" name="tenure" id="tenure" class="range_pctg small_range_input_editable float-end" value="0"></input>
+                  <div class="slider-container">
+                    <label for="customRange4" class="form-label textfield_label1 rounded-3">Tenure Year</label>
+                    <input type="number" value="1" name="tenure" id="tenure" class="range_pctg small_range_input_editable float-end" aria-label="Tenure Year">
                     <input type="range" class="custom_range_wx" value="1" min="1" max="30" step="" id="tenure_year_range">
-                  
                     <div id="loanamountsteps" class="steps">
                       <span class="tick" style="left: 4%;">|<br><span class="marker">0</span></span>
                       <span class="tick" style="left: 16.2%;">|<br><span class="marker">5y</span></span>
@@ -172,17 +171,13 @@
                       <span class="tick" style="left: 80.3%;">|<br><span class="marker">25y</span></span>
                       <span class="tick" style="left: 96.2%;">|<br><span class="marker">30y</span></span>
                     </div>
-                  
-                  
-                  
                   </div>
                 </div>
                 <div class="col-md-6 mb-3">
-
-                  <div class="slider-container" >
-                    <label for="customRange3" class="form-label textfield_label1 rounded-3">Interest Rate %</label><input type="number" value="0" name="interestRate" id="interestRate" class="range_pctg small_range_input_editable float-end" value="0"></input> 
+                  <div class="slider-container">
+                    <label for="customRange3" class="form-label textfield_label1 rounded-3">Interest Rate %</label>
+                    <input type="number" value="0" name="interestRate" id="interestRate" class="range_pctg small_range_input_editable float-end" aria-label="Interest Rate">
                     <input type="range" class="custom_range_wx" value="0" min="0" max="30" step="0.5" id="interest_rate">
-
                     <div id="loanamountsteps" class="steps">
                       <span class="tick" style="left: 4%;">|<br><span class="marker">0%</span></span>
                       <span class="tick" style="left: 19.2%;">|<br><span class="marker">5%</span></span>
@@ -191,51 +186,102 @@
                       <span class="tick" style="left: 65.3%;">|<br><span class="marker">20%</span></span>
                       <span class="tick" style="left: 81%;">|<br><span class="marker">25%</span></span>
                       <span class="tick" style="left: 96.2%;">|<br><span class="marker">30%</span></span>
-                  </div>
-                  
-
+                    </div>
                   </div>
                 </div>
-
-                
               </div>
 
               <div class="row">
-                <div class="col-md-6 mb-3">
-                    
-                </div>
+                <div class="col-md-6 mb-3"></div>
                 <div class="col-md-6 mb-3 nav justify-content-end">
-                  <button type="button" aria-label="Quantity" class="calculate_button reset_button reset_button_emi_calc"><img alt="reset button" src="images/reset.svg" height="25px"></button>
-                  <input type="button" aria-label="Quantity" value="Calculate" class="calculate_button calculate_emi_button">
+                  <button type="button" aria-label="Reset" class="calculate_button reset_button reset_button_emi_calc"><img alt="reset button" src="images/reset.svg" height="25px"></button>
+                  <input type="button" aria-label="Calculate" value="Calculate" class="calculate_button calculate_emi_button">
                 </div>
               </div>
-
             </div>
 
             <div class="col-1 d-none d-lg-block">
               <!-- div for gap -->
             </div>
 
-            <div class="col ">
+            <div class="col">
               <div class="profit-box">
-                <span class="prof_loss_view"><span class="calc_numbers font_20 loan_amount my-number" >0.00</span></span>
+                <span class="prof_loss_view"><span class="calc_numbers font_20 loan_amount my-number">0.00</span></span>
                 <h3 class="heading_view_result font_12 mb-3">Loan Amount</h3>
                 <span class="prof_loss_view"><span class="calc_numbers font_30 montly_emi_value my-number p-1 rounded-3" style="background-color: #67ff0059;">0.00</span></span>
-                <h3 class="heading_view_result  font_15 mb-3" style="color: green;">Monthly EMI</h3>
-                <span class="prof_loss_view"><span class="calc_numbers font_20 total_interest_value my-number  p-1 rounded-3" style="background-color: #ff2cca4f;">0.00</span></span>
+                <h3 class="heading_view_result font_15 mb-3" style="color: green;">Monthly EMI</h3>
+                <span class="prof_loss_view"><span class="calc_numbers font_20 total_interest_value my-number p-1 rounded-3" style="background-color: #ff2cca4f;">0.00</span></span>
                 <h3 class="heading_view_result font_15 mb-2" style="color: #af0b5e;">Total Interest</h3>
-                <span class="prof_loss_view"><span class="calc_numbers font_20 total_amount_value" class="my-number">0.00</span></span>
+                <span class="prof_loss_view"><span class="calc_numbers font_20 total_amount_value my-number">0.00</span></span>
                 <h3 class="heading_view_result font_12">Total Amount with interest</h3>
               </div>
 
+              <div class="profit-box mt-3">
+                <button class="button-89" id="generateTableBtn" role="button" data-bs-toggle="modal" data-bs-target="#fullscreenModal"> <i class="fas fa-file-invoice"></i> View Complete breakup </button>
+              </div>
             </div>
+          </div>
 
+          <!-- Fullscreen Modal -->
+          <div class="modal fade" id="fullscreenModal" tabindex="-1" aria-labelledby="fullscreenModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-fullscreen">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="fullscreenModalLabel">Loan EMI Breakup</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                          <!-- Line Chart -->
+                          <div class="col-md-6">
+                              <div class="card p-3 shadow">
+                                  <h5 class="card-title">Interest Overview</h5>
+                                  <canvas id="lineChart" style="max-height: 250px;"></canvas>
+                              </div>
+                          </div>
+                          <!-- Half Pie Chart -->
+                          <div class="col-md-6 mt-4 mt-md-0">
+                              <div class="card p-3 shadow">
+                                  <h5 class="card-title">Principal Interest</h5>
+                                  <canvas id="halfPieChart" style="max-height: 250px;"></canvas>
+                              </div>
+                          </div>
+                      </div>
+                      <!-- Table -->
+                      <div class="row mt-4">
+                        <div class="col-md-12">
+                            <div class="card p-3 shadow">
+                                <h5 class="card-title">Loan Repayment History</h5>
+                                <table class="table table-striped">
+                                    <thead class="table-dark">
+                                        <tr>
+                                            <th>Month</th>
+                                            <th>EMI Amount</th>
+                                            <th>Principal Paid</th>
+                                            <th>Interest Paid</th>
+                                            <th>Remaining Balance</th>
+                                            <th>Date</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="loanTableBody">
+                                        <!-- Loan EMI data will be inserted dynamically -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
           </div>
 
           <!-- How to Use Section -->
           <div class="row mt-4">
             <div class="col">
-              <h3>How to Use</h3>
+              <h2>How to Use</h2>
               <ol class="list-group list-group-numbered">
                 <li class="list-group-item">Enter the loan amount, tenure, and interest rate in the respective fields.</li>
                 <li class="list-group-item">Click the "Calculate" button to view your monthly EMI, total interest, and total payment.</li>
@@ -243,7 +289,7 @@
               </ol>
             </div>
             <div class="col">
-              <h3>Formula Explanation</h3>
+              <h2>Formula Explanation</h2>
               <ol class="list-group list-group-numbered">
                 <li class="list-group-item">
                   EMI is calculated using the formula:
@@ -258,7 +304,7 @@
               </ol>
 
               <div class="container pt-3">
-                <h3 >What is a Loan EMI Calculator?</h3>
+                <h2>What is a Loan EMI Calculator?</h2>
                 <p>A <strong>Loan EMI (Equated Monthly Installment) Calculator</strong> is a tool that helps borrowers estimate their monthly loan payments. It calculates the EMI based on:</p>
                 <ul>
                     <li><strong>Loan Amount (P)</strong> – The total money borrowed.</li>
@@ -270,20 +316,16 @@
                     EMI = [P × r × (1 + r)<sup>n</sup>] / [(1 + r)<sup>n</sup> - 1]
                 </div>
                 <p>This tool helps users plan their finances by understanding repayment schedules, total interest paid, and affordability before taking a loan. It is commonly used for <strong>home, car, and personal loans</strong>.</p>
-            </div>
-
+              </div>
             </div>
           </div>
-
-          
-
         </div>
     </div>
+</div>
+<script>
+  $('#my-number').counto(0, 500);
+</script>
 
-  </div>
-    <script>
-      $('#my-number').counto(0, 500);
-    </script>
  
 
   <footer class="footer_main">

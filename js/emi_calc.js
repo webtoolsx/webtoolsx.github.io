@@ -1,3 +1,75 @@
+function generateLoanTable(loanAmount, annualInterestRate, tenureInYears, emi) {
+  const tenureInMonths = tenureInYears * 12;
+  const monthlyRate = annualInterestRate / 12;
+  let balance = loanAmount;
+
+  const tableBody = document.getElementById('loanTableBody');
+  tableBody.innerHTML = ""; // Clear previous entries
+
+  for (let month = 1; month <= tenureInMonths; month++) {
+      const interest = balance * monthlyRate;
+      const principal = emi - interest;
+      balance -= principal;
+
+      // Determine Payment Status
+      // let status = "Paid";
+      // let badgeClass = "bg-success";
+      let status = "Pending";
+      let badgeClass = "bg-warning";
+      // if (month === tenureInMonths - 1) { status = "Pending"; badgeClass = "bg-warning"; }
+      // if (month === tenureInMonths) { status = "Upcoming"; badgeClass = "bg-primary"; }
+
+      // Generate a formatted date
+      const paymentDate = new Date();
+      paymentDate.setMonth(paymentDate.getMonth() + month);
+      const formattedDate = paymentDate.toISOString().split('T')[0];
+
+      // Add row to table
+      const row = `
+          <tr>
+            
+              <td>Month ${month}</td>
+              <td>${emi.toFixed(2)}</td>
+              <td>${principal.toFixed(2)}</td>
+              <td>${interest.toFixed(2)}</td>
+              <td>${Math.max(balance, 0).toFixed(2)}</td>
+              <td>${formattedDate}</td>
+          </tr>
+      `;
+      // <td><span class="badge ${badgeClass}">${status}</span></td>
+
+      tableBody.innerHTML += row;
+  }
+}
+
+
+document.getElementById("generateTableBtn").addEventListener("click", function () {
+  const loanAmount = parseFloat(document.getElementById('loanAmount').value);
+  const annualInterestRate = parseFloat(document.getElementById('interestRate').value) / 100;
+  const tenureInYears = parseFloat(document.getElementById('tenure').value);
+
+  if (!loanAmount || loanAmount <= 0) {
+      alert("Please enter a valid loan amount");
+      return;
+  }
+
+  const tenureInMonths = tenureInYears * 12;
+  const monthlyRate = annualInterestRate / 12;
+  let emi = 0;
+
+  if (!annualInterestRate || annualInterestRate === 0) {
+      emi = loanAmount / tenureInMonths;
+  } else {
+      emi = loanAmount * monthlyRate * Math.pow(1 + monthlyRate, tenureInMonths) / (Math.pow(1 + monthlyRate, tenureInMonths) - 1);
+  }
+
+  // Call generateLoanTable when button is clicked
+  generateLoanTable(loanAmount, annualInterestRate, tenureInYears, emi);
+});
+
+
+
+
 function calculateEMI() {
     // Get user inputs
     const loanAmount = parseFloat(document.getElementById('loanAmount').value);
@@ -15,19 +87,44 @@ function calculateEMI() {
     let emi = 0;
     let totalAmountPaid = 0;
     let totalInterest = 0;
+    let monthlyInterestData = [];
+    let monthlyPrincipalData = [];
+    let balance = loanAmount;
 
     if (!annualInterestRate || annualInterestRate === 0) {
         // If interest rate is 0, EMI is a simple division of the loan amount by the tenure
         emi = loanAmount / tenureInMonths;
         totalAmountPaid = loanAmount; // No interest means total amount paid is just the principal
         totalInterest = 0;
+
+        // Store equal principal payments each month
+        for (let month = 1; month <= tenureInMonths; month++) {
+          monthlyInterestData.push("0.00"); // No interest in this case
+          monthlyPrincipalData.push(emi.toFixed(2)); // Entire EMI is principal
+          }
     } else {
         // Calculate monthly interest rate and EMI
         const monthlyRate = annualInterestRate / 12;
         emi = loanAmount * monthlyRate * Math.pow(1 + monthlyRate, tenureInMonths) / (Math.pow(1 + monthlyRate, tenureInMonths) - 1);
         totalAmountPaid = emi * tenureInMonths;
         totalInterest = totalAmountPaid - loanAmount;
+
+        // Generate Interest Reduction Over Time
+        for (let month = 1; month <= tenureInMonths; month++) {
+          const interest = balance * monthlyRate;
+          const principal = emi - interest;
+          balance -= principal;
+          monthlyInterestData.push(interest.toFixed(2)); // Save interest reduction over time
+          monthlyPrincipalData.push(principal.toFixed(2)); // Save principal paid
+      }
     }
+
+
+    // Update Pie Chart Data (Loan vs Interest)
+    updatePieChart(loanAmount, totalInterest);
+
+    // Update Line Chart Data (Interest Reduction Over Time)
+    updateLineChart(monthlyInterestData);
 
     // Update the UI with calculated values
     $(".montly_emi_value").counto(emi.toFixed(2), 500);
@@ -35,29 +132,60 @@ function calculateEMI() {
     $(".loan_amount").counto(loanAmount.toFixed(2), 500);
     $(".total_amount_value").counto((loanAmount+totalInterest).toFixed(2), 500);
 
+}
 
-    
-    // Initialize variables for EMI schedule
-    // let balance = loanAmount;
-    // const emiTableBody = document.querySelector('#emiTable tbody');
-    // emiTableBody.innerHTML = ''; // Clear existing table rows
+// Initialize Charts
+const ctx1 = document.getElementById('lineChart').getContext('2d');
+const ctx2 = document.getElementById('halfPieChart').getContext('2d');
 
-    // for (let month = 1; month <= tenure; month++) {
-    //     const interest = balance * monthlyRate;
-    //     const principal = emi - interest; 
-    //     balance -= principal;
+// Line Chart (Interest Reduction)
+let lineChart = new Chart(ctx1, {
+    type: 'line',
+    data: {
+        labels: [],
+        datasets: [{
+            label: 'Monthly Interest ($)',
+            data: [],
+            borderColor: 'blue',
+            borderWidth: 2,
+            fill: false,
+            tension: 0.4
+        }]
+    },
+    options: { responsive: true }
+});
 
-    //     // Add a new row to the table
-    //     const row = document.createElement('tr');
-    //     row.innerHTML = `
-    //         <td>${month}</td>
-    //         <td>${emi.toFixed(2)}</td>
-    //         <td>${interest.toFixed(2)}</td>
-    //         <td>${principal.toFixed(2)}</td>
-    //         <td>${Math.max(balance, 0).toFixed(2)}</td>
-    //     `;
-    //     emiTableBody.appendChild(row);
-    // }
+// Half Pie Chart (Loan vs Interest)
+let pieChart = new Chart(ctx2, {
+    type: 'doughnut',
+    data: {
+        labels: ['Total Loan', 'Total Interest'],
+        datasets: [{
+            data: [0, 0],
+            backgroundColor: ['#67ff0059', '#ff2cca4f'],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        responsive: true,
+        cutout: '50%',
+        rotation: -90,
+        circumference: 180
+    }
+});
+
+// Function to update Pie Chart
+function updatePieChart(loanAmount, totalInterest) {
+    pieChart.data.datasets[0].data = [loanAmount, totalInterest];
+    pieChart.update();
+}
+
+// Function to update Line Chart
+function updateLineChart(monthlyInterestData) {
+    const labels = Array.from({ length: monthlyInterestData.length }, (_, i) => `Month ${i + 1}`);
+    lineChart.data.labels = labels;
+    lineChart.data.datasets[0].data = monthlyInterestData;
+    lineChart.update();
 }
 
 $(function(){

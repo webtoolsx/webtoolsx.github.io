@@ -7,13 +7,21 @@
   <meta name="keywords" content="stock price, average stock price, stock calculator, finance tools, stock average calculator">
   <meta name="author" content="Your Name">
   <meta name="robots" content="index, follow">
+  <meta name="googlebot" content="index, follow">
+  <meta name="bingbot" content="index, follow">
   
  <!-- Open Graph Meta Tags -->
   <meta property="og:title" content="Stock Price Average Calculator">
   <meta property="og:description" content="Calculate the average price of your stock investments easily with our online tool.">
   <meta property="og:image" content="favicon.png">
   <meta property="og:url" content="https://webtoolsx.github.io/average-calculator.html">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_US">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Stock Price Average Calculator">
+  <meta name="twitter:description" content="Calculate the average price of your stock investments easily with our online tool.">
+  <meta name="twitter:image" content="favicon.png">
+  <meta name="twitter:url" content="https://webtoolsx.github.io/average-calculator.html">
 
   <link rel="icon" href="favicon.png" type="image/png">
   <link rel="canonical" href="https://webtoolsx.github.io/average-calculator.html">
@@ -65,13 +73,16 @@
     "operatingSystem": "All"
   }
 </script>
+
+
+</head>
 <div class="container-fluid">
     <!-- nav bar -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary header_bar">
       
       <div class="container-fluid ">
         <div class="col">
-          <a class="navbar-brand" href="#"> <img class="main-logo" src="images/calclogo.png" alt="logo"></a>
+          <a class="navbar-brand" href="#"> <img class="main-logo" src="images/calclogo.png" alt="WebToolsX Logo"></a>
         </div>
       </div>
     </nav>
@@ -111,13 +122,13 @@
         <div class="container-fluid py-4 p-0 p-lg-2">
           <div class="row background-image-average">
             <div class="col ">
-              <h1 class="calc_heading"><img src="images/chart-average-svgrepo-com.svg" height="25px">&nbsp;Average Calculator</h1>
+              <h1 class="calc_heading"><img src="images/chart-average-svgrepo-com.svg" height="25px" alt="Chart Icon">&nbsp;Average Calculator</h1>
               <div class="mt-3 profit-box bg_light_green">
                 <h2 class="prof_loss_view profit">Average Price</h2>
                 <span class="prof_loss_view profit"><b><span class="calc_numbers" id="my-number">0.00</span></b></span>
               </div>
 
-              <div class="mt-3">
+              <!-- <div class="mt-3">
                 <h5 class="other_property_calc">1<sup>st</sup> Investment</h5>
                 <span class="profit"><b class="calc_numbers" id="1_total_investment">0.00</b></span>
               </div>
@@ -125,7 +136,7 @@
               <div class="mt-3">
                 <h5 class="other_property_calc">2<sup>nd</sup> Investment</h5>
                 <span class="profit"><b class="calc_numbers" id="2_total_investment">0.00</b></span>
-              </div>
+              </div> -->
 
               <div class="mt-3">
                 <h5 class="other_property_calc">Total Investment</h5>
@@ -139,43 +150,43 @@
             <div class="col cal_box">
 
             
+              <div id="buyFieldsContainer">
+                <div class="row">
+                  <div class="col-md-6 mb-3">
+                      <div class="input-group">
+                          <span class="input-group-text input-group-text-buy fs-5 fs-sm-6"><img src="images/uparrow.svg "  class="buy_sell_image_size"></span>
+                          <input type="number" name="buy_at_price[]" class="form-control input_buysell_size" placeholder="Buy at" aria-label="Buy Price">
+                      </div>
+                  </div>
 
-              <div class="row mb-3">
-                <div class="col-md-6 mb-3">
+                  <div class="col-md-6 mb-3">
                     <div class="input-group">
-                        <span class="input-group-text input-group-text-buy fs-5 fs-sm-6"><img src="images/uparrow.svg "  class="buy_sell_image_size"></span>
-                        <input type="number" name="buy_at_price[]" class="form-control input_buysell_size" placeholder="1st Buy at" aria-label="Buy Price">
+                        <span class="input-group-text input-group-text-qty"><img src="images/qty.svg "  class="buy_sell_image_size"></span>
+                        <input type="number" name="buy_qty[]" class="form-control input_buysell_size" value="1" placeholder="Quantity" aria-label="Quantity">
+                    </div>
+                  </div>
+                  
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <div class="input-group">
+                            <span class="input-group-text input-group-text-buy"><img src="images/uparrow.svg "  class="buy_sell_image_size"></span>
+                            <input type="number" name="buy_at_price[]" class="form-control input_buysell_size" placeholder="Buy at" aria-label="Sell Price">
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="input-group">
+                            <span class="input-group-text input-group-text-qty"><img src="images/qty.svg "  class="buy_sell_image_size"></span>
+                            <input type="number" name="buy_qty[]" class="form-control input_buysell_size" value="1" placeholder="Quantity" aria-label="Quantity">
+                        </div>
                     </div>
                 </div>
-
-                <div class="col-md-6 mb-3">
-                  <div class="input-group">
-                      <span class="input-group-text input-group-text-qty"><img src="images/qty.svg "  class="buy_sell_image_size"></span>
-                      <input type="number" name="buy_qty[]" class="form-control input_buysell_size" placeholder="quantity" aria-label="Quantity">
-                  </div>
-                </div>
-                
               </div>
 
               <div class="row">
-                  <div class="col-md-6 mb-3">
-                      <div class="input-group">
-                          <span class="input-group-text input-group-text-buy"><img src="images/uparrow.svg "  class="buy_sell_image_size"></span>
-                          <input type="number" name="buy_at_price[]" class="form-control input_buysell_size" placeholder="2nd Buy at" aria-label="Sell Price">
-                      </div>
-                  </div>
-                  <div class="col-md-6 mb-3">
-                      <div class="input-group">
-                          <span class="input-group-text input-group-text-qty"><img src="images/qty.svg "  class="buy_sell_image_size"></span>
-                          <input type="number" name="buy_qty[]" class="form-control input_buysell_size" placeholder="quantity" aria-label="Quantity">
-                      </div>
-                  </div>
-              </div>
-
-
-              <div class="row">
                 <div class="col-md-6 mb-3">
-                    
+                    <button type="button" id="addnewAvgEntry" class="calculate_button bg_30_green" style="padding: 4px 10px;border: 2px solid green;color: white;">+</button>
                 </div>
                 <div class="col-md-6 mb-3 nav justify-content-end">
                   <button type="button" aria-label="Quantity" class="calculate_button reset_button_pl_calc"><img src="images/reset.svg" height="25px"></button>
@@ -190,7 +201,7 @@
           <div class="row mt-3">
             <div class="col-md-6">
               <div class="mt-4">
-                <h3>How to use <i class="fa-solid fa-circle-info"></i> </h3>
+                <h2>How to use <i class="fa-solid fa-circle-info"></i> </h2>
               
                 <ol class="list-group list-group-numbered">
                   <li class="list-group-item">
@@ -231,7 +242,7 @@
              
 
               <div class=" mt-4">
-                <h3><i class="fa-solid fa-square-root-variable"></i> Formula Explanation:</h3>
+                <h2><i class="fa-solid fa-square-root-variable"></i> Formula Explanation:</h2>
                 <p>The formula used to calculate the average price is based on the weighted average cost method. The formula is:</p>
                 
                 <div class="alert alert-info" role="alert">

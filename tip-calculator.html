@@ -4,30 +4,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tip Calculator - Calculate Your Tips Easily - Webtoolsx</title>
+    <title>Tip Calculator - Calculate Your Tips Easily - WebToolsX</title>
     
     <!-- ✅ SEO Meta Tags -->
     <meta name="description" content="Use our free Tip Calculator to quickly calculate the tip amount and total bill. Easily split the bill among friends and adjust tip percentages hassle-free.">
     <meta name="keywords" content="Tip Calculator, Bill Splitter, Tip Percentage, Calculate Tip, How to Tip, Restaurant Bill Calculator">
-    <meta name="author" content="YourWebsite">
+    <meta name="author" content="WebToolsX">
     <meta name="robots" content="index, follow">
 
     <!-- ✅ Open Graph Meta Tags (For Facebook, LinkedIn, etc.) -->
     <meta property="og:title" content="Tip Calculator - Quickly Calculate Tips & Split Bills">
     <meta property="og:description" content="Easily calculate tips and split restaurant bills with our free Tip Calculator. Adjustable tip percentages and total bill breakdowns.">
-    <meta property="og:image" content="https://yourwebsite.com/images/tip-calculator.jpg">
-    <meta property="og:url" content="https://yourwebsite.com/tip-calculator">
+    <meta property="og:image" content="https://webtoolsx.github.io/images/tip-calculator.jpg">
+    <meta property="og:url" content="https://webtoolsx.github.io/tip-calculator.html">
     <meta property="og:type" content="website">
+    <meta property="og:site_name" content="WebToolsX">
     
     <!-- ✅ Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Tip Calculator - Easily Calculate Your Tip & Split Bills">
     <meta name="twitter:description" content="Calculate the tip amount, split bills with friends, and adjust tip percentages with our simple Tip Calculator.">
-    <meta name="twitter:image" content="https://yourwebsite.com/images/tip-calculator.jpg">
+    <meta name="twitter:image" content="https://webtoolsx.github.io/images/tip-calculator.jpg">
+    <meta name="twitter:site" content="@yourtwitterhandle">
+    <meta name="twitter:creator" content="@yourtwitterhandle">
     
   <link rel="icon" href="favicon.png" type="image/png">
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon.png">
 
-  <title>Stock Profit and Loss Calculator | WebToolsX</title>
+  <title>Tip Calculator - Calculate Your Tips Easily - WebToolsX</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
   <!-- Linking CSS Stylesheets -->
@@ -45,7 +49,7 @@
   <script src="js/counto.min.js"></script>
 
   <!-- Canonical URL -->
-  <link rel="canonical" href="https://webtoolsx.github.io/stock-profit-loss-calculator.html">
+  <link rel="canonical" href="https://webtoolsx.github.io/tip-calculator.html">
 
   <!-- Structured Data for Rich Snippets (JSON-LD) -->
   <script type="application/ld+json">
@@ -53,7 +57,7 @@
       "@context": "https://schema.org",
       "@type": "WebApplication",
       "name": "Tip Calculator - Calculate & Split Your Bill Online",
-      "url": "https://webtoolsx.github.io/tip-calculator",
+      "url": "https://webtoolsx.github.io/tip-calculator.html",
       "description": "Use WebToolsX's free Tip Calculator to quickly calculate tip amounts and split bills with ease. Perfect for restaurants, cafes, and group dining.",
       "applicationCategory": "Finance",
       "softwareVersion": "1.0",
@@ -75,7 +79,7 @@
       },
       "potentialAction": {
         "@type": "CalculateAction",
-        "target": "https://webtoolsx.github.io/tip-calculator",
+        "target": "https://webtoolsx.github.io/tip-calculator.html",
         "name": "Calculate Tip"
       }
     }
@@ -99,7 +103,7 @@
       
       <div class="container-fluid ">
         <div class="col">
-          <a class="navbar-brand" href="#"> <img class="main-logo" src="images/calclogo.png" alt="logo"> </a>
+          <a class="navbar-brand" href="#"> <img class="main-logo" src="images/calclogo.png" alt="WebToolsX company logo"> </a>
         </div>
       </div>
     </nav>
@@ -116,7 +120,7 @@
     </div> -->
 
     <div class="scroll-container">
-      <button class="scroll-btn left">&larr;</button>
+      <button class="scroll-btn left" aria-label="Scroll left">&larr;</button>
       <div class="scroll-wrapper">
         <div class="scroll-content">
           <a class="hr_nav-item " href="/">P/L Calculator</a>
@@ -129,7 +133,7 @@
 
         </div>
       </div>
-      <button class="scroll-btn right">&rarr;</button>
+      <button class="scroll-btn right" aria-label="Scroll right">&rarr;</button>
     </div>
 
 
@@ -139,7 +143,7 @@
         <div class="container-fluid py-4 p-0 p-lg-2">
           <div class="row background-image-average">
             <div class="col ">
-              <h1 class="calc_heading"><img src="images/chart-average-svgrepo-com.svg" height="25px">&nbsp;Tip Calculator</h1>
+              <h1 class="calc_heading"><img src="images/chart-average-svgrepo-com.svg" height="25px" alt="Chart Icon">&nbsp;Tip Calculator</h1>
               
               <div class="row">
                 <div class="col">
@@ -188,7 +192,7 @@
                     <label class="textfield_label1" style="background: #e4e4e4;"> Bill Amount</label>
                     <div class="input-group">
                         <span class="input-group-text input-group-text-qty" style="background: #ff5500;"><i class="fa-solid fa-dollar"></i></span>
-                        <input type="number" name="bill_amount" class="form-control input_buysell_size" value="500"  placeholder="Bill Amount" aria-label="Quantity">
+                        <input type="number" name="bill_amount" class="form-control input_buysell_size" value="500"  placeholder="Bill Amount" aria-label="Bill Amount">
                     </div>
                 </div>
               </div>
@@ -228,7 +232,7 @@
 
               <div class="slider-container" style="display: none;" id="tip_flat_block">
                   <label for="customRange3" class="form-label">Flat Tip Amount</label>
-                  <input type="number" name="tip_flat" class="form-control input_buysell_size" placeholder="e.g. 10" aria-label="Quantity">
+                  <input type="number" name="tip_flat" class="form-control input_buysell_size" placeholder="e.g. 10" aria-label="Flat Tip Amount">
               </div>
 
               
@@ -243,8 +247,8 @@
                     
                 </div>
               <div class="col-md-6 mb-3 nav justify-content-end">
-                <button type="button" aria-label="Quantity" class="calculate_button reset_button_tip_calc reset_button"><img src="images/reset.svg" height="25px"></button>
-                <input type="button" aria-label="Quantity" value="Calculate" class="calculate_button calculate_tip_button">
+                <button type="button" aria-label="Reset" class="calculate_button reset_button_tip_calc reset_button"><img src="images/reset.svg" height="25px" alt="Reset button"></button>
+                <input type="button" aria-label="Calculate" value="Calculate" class="calculate_button calculate_tip_button">
               </div>
 
           </div>

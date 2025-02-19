@@ -114,7 +114,7 @@ input:focus, textarea:focus, select:focus {
 .background-image-average {
     /* background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLjFwm9dk-Pth88rRat5AdvpcjH39K0f3Jzg&s'); */
     /* background-color: rgba(16, 77, 188, 0.38); RGBA background color */
-    backdrop-filter: blur(10px); /* Blur effect */
+    /* backdrop-filter: blur(10px); Blur effect */
     background-size: cover; /* Adjust the size of the background image */
     background-position: center; /* Center the image */
     background-repeat: no-repeat; /* Prevent the image from repeating */

@@ -24,6 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 tipPercentageBlock.style.display = "none";
                 tipFlatBlock.style.display = "block";
             }
+            calculateTip();
         });
     });
 
@@ -67,6 +68,23 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Event Listeners
+    const btnMinus = document.querySelector(".btn-minus");
+    const btnPlus = document.querySelector(".btn-plus");
+
     calculateButton.addEventListener("click", calculateTip);
+    btnMinus.addEventListener("click", function() {
+        setTimeout(calculateTip, 0);
+    });
+    btnPlus.addEventListener("click", function() {
+        setTimeout(calculateTip, 0);
+    });
     resetButton.addEventListener("click", resetFields);
+    billAmountInput.addEventListener("input", calculateTip);
+    numberOfPeopleInput.addEventListener("input", calculateTip);
+    tipFlatInput.addEventListener("input", calculateTip);
+    tipPercentageInput.addEventListener("input", function() {
+        calculateTip();
+    });
+
+
 });

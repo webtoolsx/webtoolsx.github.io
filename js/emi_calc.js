@@ -1,5 +1,6 @@
-function generateLoanTable(loanAmount, annualInterestRate, tenureInYears, emi) {
-  const tenureInMonths = tenureInYears * 12;
+function generateLoanTable(loanAmount, annualInterestRate, tenureInYears,tenureMonths, emi) {
+  let tenureInMonths = tenureInYears * 12;
+    tenureInMonths = tenureInMonths + tenureMonths;
   const monthlyRate = annualInterestRate / 12;
   let balance = loanAmount;
 
@@ -47,13 +48,15 @@ document.getElementById("generateTableBtn").addEventListener("click", function (
   const loanAmount = parseFloat(document.getElementById('loanAmount').value);
   const annualInterestRate = parseFloat(document.getElementById('interestRate').value) / 100;
   const tenureInYears = parseFloat(document.getElementById('tenure').value);
+  const tenureInMonthsInp = parseFloat(document.getElementById('tenure_month').value);
 
   if (!loanAmount || loanAmount <= 0) {
       alert("Please enter a valid loan amount");
       return;
   }
 
-  const tenureInMonths = tenureInYears * 12;
+  let tenureInMonths = tenureInYears * 12;
+    tenureInMonths = tenureInMonths + tenureInMonthsInp;
   const monthlyRate = annualInterestRate / 12;
   let emi = 0;
 
@@ -64,7 +67,7 @@ document.getElementById("generateTableBtn").addEventListener("click", function (
   }
 
   // Call generateLoanTable when button is clicked
-  generateLoanTable(loanAmount, annualInterestRate, tenureInYears, emi);
+  generateLoanTable(loanAmount, annualInterestRate, tenureInYears,tenureInMonthsInp, emi);
 });
 
 
@@ -75,6 +78,7 @@ function calculateEMI() {
     const loanAmount = parseFloat(document.getElementById('loanAmount').value);
     const annualInterestRate = parseFloat(document.getElementById('interestRate').value) / 100;
     const tenureInYears = parseFloat(document.getElementById('tenure').value);
+    const tenureInMonthsInp = parseFloat(document.getElementById('tenure_month').value);
     const lmelement = document.getElementById('loanAmount');
     if (!loanAmount || loanAmount <= 0) {
       shakeInput($(lmelement));
@@ -82,7 +86,8 @@ function calculateEMI() {
     }
     console.log('annualInterestRate',annualInterestRate);
     // Convert tenure to months
-    const tenureInMonths =  12 * parseFloat(tenureInYears);
+    var tenureInMonths =  12 * parseFloat(tenureInYears);
+    tenureInMonths = tenureInMonths + tenureInMonthsInp;
     // alert(tenureInMonths)
     let emi = 0;
     let totalAmountPaid = 0;
@@ -93,7 +98,11 @@ function calculateEMI() {
 
     if (!annualInterestRate || annualInterestRate === 0) {
         // If interest rate is 0, EMI is a simple division of the loan amount by the tenure
+        if (tenureInMonths === 0) {
+            emi = loanAmount;
+        } else {
         emi = loanAmount / tenureInMonths;
+        }
         totalAmountPaid = loanAmount; // No interest means total amount paid is just the principal
         totalInterest = 0;
 
@@ -105,7 +114,11 @@ function calculateEMI() {
     } else {
         // Calculate monthly interest rate and EMI
         const monthlyRate = annualInterestRate / 12;
-        emi = loanAmount * monthlyRate * Math.pow(1 + monthlyRate, tenureInMonths) / (Math.pow(1 + monthlyRate, tenureInMonths) - 1);
+        if (tenureInMonths === 0) {
+            emi = loanAmount;
+        } else {
+            emi = loanAmount * monthlyRate * Math.pow(1 + monthlyRate, tenureInMonths) / (Math.pow(1 + monthlyRate, tenureInMonths) - 1);
+        }
         totalAmountPaid = emi * tenureInMonths;
         totalInterest = totalAmountPaid - loanAmount;
 
@@ -128,6 +141,7 @@ function calculateEMI() {
 
     // Update the UI with calculated values
     $(".montly_emi_value").counto(emi.toFixed(2), 500);
+    
     $(".total_interest_value").counto(totalInterest.toFixed(2), 500);
     $(".loan_amount").counto(loanAmount.toFixed(2), 500);
     $(".total_amount_value").counto((loanAmount+totalInterest).toFixed(2), 500);
@@ -240,13 +254,23 @@ function callCalculateEmi(event) {
 }
 
 const tenureYearrangeInput = document.getElementById('tenure_year_range');
-
 // Attach event listener to the range input
 tenureYearrangeInput.addEventListener('input', tyrcallCalculateEmi);
 
 function tyrcallCalculateEmi(event) {
     // Update the input field with the range value using jQuery
     $("#tenure").val(event.target.value);
+    // Recalculate EMI
+    calculateEMI();
+}
+
+const tenureMonthrangeInput = document.getElementById('tenure_month_range');
+// Attach event listener to the range input
+tenureMonthrangeInput.addEventListener('input', tyrcallCalculateEmiMonth);
+
+function tyrcallCalculateEmiMonth(event) {
+    // Update the input field with the range value using jQuery
+    $("#tenure_month").val(event.target.value);
     // Recalculate EMI
     calculateEMI();
 }

@@ -272,6 +272,9 @@ function calculatePercentageChange() {
 
     if (percent_calc_radio == 'p_change') {
         $(".difference_block").show();
+        $("#final_change_pctg").html('Final Value')
+        $(".sign_pctg").show();
+
         if (isNaN(firstValue) || isNaN(secondValue)) {
             if (isNaN(firstValue)) shakeInput($('#first_value'));
             if (isNaN(secondValue)) shakeInput($('#second_value'));
@@ -279,6 +282,8 @@ function calculatePercentageChange() {
         }
     } else {
         $(".difference_block").hide();
+        $("#final_change_pctg").html('Percentage (%)');
+        $(".sign_pctg").hide();
         if (isNaN(firstValue) || isNaN(secondValue)) {
             if (isNaN(firstValue)) shakeInput($('#first_value'));
             if (isNaN(secondValue)) shakeInput($('#second_value'));
@@ -296,12 +301,13 @@ function calculatePercentageChange() {
         $(".pctg_change_msg").html(secondValue + " is " + pctg + "% " + changeType);
         $("#pctg_diff_amt").html(difference.toFixed(2));
     } else {
-        var difference = secondValue - firstValue;
-        var percentageChange = ((firstValue / secondValue)) * 100;
-        var pctg = percentageChange.toFixed(2);
+        var baseNumber = firstValue;
+        var percentage = secondValue;
+        var result = (baseNumber * percentage) / 100;
+        var pctg = percentage.toFixed(2);
         var numberElement = document.getElementById("my-number");
-        $('#my-number').counto(pctg, 500);
-        $(".pctg_change_msg").html(firstValue + " is " + pctg + "% of " + secondValue);
+        $('#my-number').counto(result.toFixed(2), 500);
+        $(".pctg_change_msg").html(pctg + "% of " + baseNumber + " is " + result.toFixed(2));
     }
 
     if (percentageChange > 0) {
@@ -318,10 +324,17 @@ function calculatePercentageChange() {
 
     const ctx = document.getElementById('changeChart').getContext('2d');
     if (chartPchange) {
+
+        if (percent_calc_radio == 'p_change') {
         // Update existing chartPchange
         chartPchange.data.datasets[0].data = [firstValue];
         chartPchange.data.datasets[1].data = [secondValue];
         chartPchange.update(); // Refresh the chartPchange
+        }else{
+            chartPchange.data.datasets[0].data = [firstValue];
+            chartPchange.data.datasets[1].data = [result];
+            chartPchange.update(); // Refresh the chartPchange
+        }
     } else {
         // Create a new chartPchange if it doesn't exist
         chartPchange = new Chart(ctx, {

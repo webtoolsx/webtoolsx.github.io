@@ -1,10 +1,13 @@
 @import url('custom_range.css');
 @import url('hr_scroll.css');
 @import url(https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Oswald:wght@200..700&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Exo+2:wght@100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Tektur:wght@400..900&display=swap);
+
 /* Default (Light Mode) */
 
 body {
-    font-family: "Montserrat", sans-serif;
+    /* font-family: "Montserrat", sans-serif; */
+    font-family: 'exo 2', sans-serif;
   }
 
   /* Chrome, Safari, Edge, Opera */
@@ -218,7 +221,7 @@ input:focus, textarea:focus, select:focus {
 }
 
 .small_range_input_editable{
-    background: #2a35b663;
+    background: #c4c9ff63;
     /* position: relative; */
     padding: 5px;
     border-radius: 3px;

@@ -264,7 +264,42 @@ function handleInputPercentageChange() {
     }
 }
 
+
+// Add this function at the start to handle URL parameters
+function setInitialValuesFromURL() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const type = urlParams.get('t');
+    const firstValue = urlParams.get('i');
+    const secondValue = urlParams.get('l');
+
+    if (type === 'percent-change') {
+        // Set radio button to percentage change
+        document.querySelector('input[name="percent_calc_radio"][value="p_change"]').checked = true;
+    }else{
+        document.querySelector('input[name="percent_calc_radio"][value="p_of"]').checked = true;        
+    }
+
+    if (firstValue) {
+        document.getElementById('first_value').value = firstValue;
+    }
+
+    if (secondValue) {
+        document.getElementById('second_value').value = secondValue;
+    }
+
+    // Calculate if we have both values
+    if (firstValue && secondValue) {
+        calculatePercentageChange();
+    }
+}
+
+
+    
+
 let chartPchange; // Global variable for chart instance
+// Call the URL parameter function when page loads
+document.addEventListener('DOMContentLoaded', setInitialValuesFromURL);
+
 function calculatePercentageChange() {
     var firstValue = parseFloat(document.getElementById("first_value").value);
     var secondValue = parseFloat(document.getElementById("second_value").value);
@@ -368,6 +403,53 @@ function calculatePercentageChange() {
         });
     }
 
+}
+
+// Move shareCalculation to window so it's accessible from inline HTML onclick
+window.shareCalculation = function shareCalculation() {
+    const firstValue = document.getElementById('first_value').value;
+    const secondValue = document.getElementById('second_value').value;
+    const type = document.querySelector('input[name="percent_calc_radio"]:checked').value === 'p_change' ? 'percent-change' : 'percent-of';
+    const url = `${window.location.origin}${window.location.pathname}?t=${type}&i=${firstValue}&l=${secondValue}`;
+    navigator.clipboard.writeText(url)
+    .then(() => {
+        // Use Toastify.js for pop message
+        if (window.Toastify) {
+            Toastify({
+                text: "Share link copied to clipboard!",
+                duration: 2000,
+                gravity: "bottom",
+                position: "center",
+                backgroundColor: "#28a745",
+                stopOnFocus: true
+            }).showToast();
+        } else {
+            // fallback if Toastify is not loaded
+            let popMsg = document.getElementById('share-pop-message');
+            if (!popMsg) {
+                popMsg = document.createElement('div');
+                popMsg.id = 'share-pop-message';
+                popMsg.style.position = 'fixed';
+                popMsg.style.bottom = '30px';
+                popMsg.style.left = '50%';
+                popMsg.style.transform = 'translateX(-50%)';
+                popMsg.style.background = '#28a745';
+                popMsg.style.color = '#fff';
+                popMsg.style.padding = '12px 24px';
+                popMsg.style.borderRadius = '6px';
+                popMsg.style.boxShadow = '0 2px 8px rgba(0,0,0,0.15)';
+                popMsg.style.zIndex = '9999';
+                popMsg.style.fontSize = '1rem';
+                document.body.appendChild(popMsg);
+            }
+            popMsg.textContent = 'Share link copied to clipboard!';
+            popMsg.style.display = 'block';
+            setTimeout(() => {
+                popMsg.style.display = 'none';
+            }, 2000);
+        }
+    })
+    .catch(err => console.error('Failed to copy:', err));
 }
 
 const addnewAvgEntryBtn = document.getElementById("addnewAvgEntry");

@@ -74,7 +74,6 @@
   <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
   
   <!-- Custom script for stock calculation -->
-  <script type="module" src="js/stock_calc.js"></script>
   <script type="module" src="js/hr_scroll.js"></script>
 
   
@@ -184,9 +183,15 @@
                     
                 </div>
                 <div class="col-md-6 mb-3 nav justify-content-end">
-                  <button type="button" aria-label="Quantity" class="calculate_button reset_button_pl_calc"><img alt="reset button" src="images/reset.svg" height="25px"></button>
-                  <input type="button" aria-label="Quantity" value="Calculate" class="calculate_button calculate_percentage_change_button">
-                </div>
+                  <button type="button" aria-label="Share" class="calculate_button share_button" onclick="shareCalculation()">
+                  <i class="fas fa-share-alt"></i>
+                  </button>
+                  <button type="button" aria-label="Reset" class="calculate_button reset_button_pl_calc">
+                  <img alt="reset button" src="images/reset.svg" height="25px">
+                  </button>
+                  <input type="button" aria-label="Calculate" value="Calculate" class="calculate_button calculate_percentage_change_button">
+                  
+                </div></button>
               </div>
 
             </div>
@@ -317,6 +322,7 @@
       $('#my-number').counto(0, 500);
     </script>
  
+  <script type="module" src="js/stock_calc.js"></script>
 
   <footer class="footer_main">
 

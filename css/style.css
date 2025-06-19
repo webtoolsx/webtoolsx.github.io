@@ -153,7 +153,7 @@ input:focus, textarea:focus, select:focus {
     height: 40px; /* Adjust logo size */
     border-radius: 10px;
   }
-.reset_button_pl_calc, .reset_button{
+.reset_button_pl_calc, .reset_button, .share_button{
     margin-right: 9px;
     border: 2px solid #6c757d;
     color: #6c757d;

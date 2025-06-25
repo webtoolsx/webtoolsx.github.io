@@ -272,11 +272,15 @@ function setInitialValuesFromURL() {
     const firstValue = urlParams.get('i');
     const secondValue = urlParams.get('l');
 
+    // If there are no relevant params, do nothing
+    if (!type && !firstValue && !secondValue) {
+        return;
+    }
+
     if (type === 'percent-change') {
-        // Set radio button to percentage change
         document.querySelector('input[name="percent_calc_radio"][value="p_change"]').checked = true;
-    }else{
-        document.querySelector('input[name="percent_calc_radio"][value="p_of"]').checked = true;        
+    } else if (type === 'percent-of') {
+        document.querySelector('input[name="percent_calc_radio"][value="p_of"]').checked = true;
     }
 
     if (firstValue) {
@@ -287,7 +291,6 @@ function setInitialValuesFromURL() {
         document.getElementById('second_value').value = secondValue;
     }
 
-    // Calculate if we have both values
     if (firstValue && secondValue) {
         calculatePercentageChange();
     }

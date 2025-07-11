@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Basic Meta Tags for SEO -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="index, follow"> <!-- Tells search engines to index and follow links -->
+  <meta name="description" content="Calculate your stock profits and losses easily with our online tool. Get accurate results for your stock transactions.">
+  <meta name="keywords" content="stock calculator, profit loss calculator, stock profit, loss calculator, stock trading, finance tools">
+  <meta name="author" content="WebToolsX">
+  <meta property="og:title" content="Stock Profit and Loss Calculator">
+  <meta property="og:description" content="Calculate your stock profits and losses easily with our online tool.">
+  <meta property="og:image" content="favicon.png"> <!-- Add an image URL for social sharing -->
+  <meta property="og:url" content="https://webtoolsx.github.io/stock-profit-loss-calculator.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="favicon.png" type="image/png">
+
+  <title>Stock Profit and Loss Calculator | WebToolsX</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <!-- Linking CSS Stylesheets -->
+  <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css"> <!-- Your custom styles -->
+  <link rel="stylesheet" href="css/custom_radio.css">
+  <!-- JavaScript Files -->
+  <script src="bootstrap/js/bootstrap.bundle.js" ></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
+  <script type="module" src="js/stock_calc.js"></script>
+  <script type="module" src="js/custom_range.js"></script>
+  <script type="module" src="js/hr_scroll.js"></script>
+  <script type="module" src="js/arcLib.js"></script>
+  <script src="js/counto.min.js"></script>
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://webtoolsx.github.io/stock-profit-loss-calculator.html">
+
+  <!-- Structured Data for Rich Snippets (JSON-LD) -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Stock Profit and Loss Calculator",
+      "url": "https://webtoolsx.github.io/",
+      "description": "A tool to help calculate stock profit and loss based on buy and sell prices.",
+      "applicationCategory": "Finance",
+      "softwareVersion": "1.0",
+      "operatingSystem": "All"
+    }
+  </script>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0ZDRS85Q8B"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-0ZDRS85Q8B');
+</script>
+  
+</head>
+<body>
+  <div class="container-fluid">
+    <!-- nav bar -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary header_bar">
+      
+      <div class="container-fluid ">
+        <div class="col">
+          <a class="navbar-brand" href="#"> <img class="main-logo" src="images/calclogo.png" alt="logo"> </a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- <div class="col nav justify-content-end py-1">
+      <ul class="nav nav-pills justify-content-end">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/">P/L Calculator</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/average-calculator.html">Average Calculator</a>
+        </li>
+      </ul>
+    </div> -->
+
+    <div class="scroll-container">
+      <button class="scroll-btn left">&larr;</button>
+      <div class="scroll-wrapper">
+        <div class="scroll-content">
+          <a class="hr_nav-item active" href="/">P/L Calculator</a>
+          <a class="hr_nav-item " href="/average-calculator.html">Average Calculator</a>
+          <a class="hr_nav-item " href="/percentage-change-calculator.html">Percentage Change Calculator</a>
+          <a class="hr_nav-item" href="/percentage-calculator.html">Percentage Calculator</a>
+          <a class="hr_nav-item " href="/emi-calculator.html">Loan EMI Calculator</a>
+          <a class="hr_nav-item " href="/tip-calculator.html">Tip Calculator</a>
+
+        </div>
+      </div>
+      <button class="scroll-btn right">&rarr;</button>
+    </div>
+
+
+    <div class="container-fluid py-4 p-0 p-lg-2">
+    <div class="gradient-banner d-flex align-items-center justify-content-center" id="gradientBanner" style="cursor:pointer;" title="Click to expand">
+      <span id="bannerIcon"></span>
+
+<script>
+  // List of time zones to display
+  const timezones = [
+    { label: "UTC", tz: "UTC" },
+    { label: "CDT", tz: "America/Chicago" },
+    { label: "IST", tz: "Asia/Kolkata" },
+    { label: "JST", tz: "Asia/Tokyo" },
+    { label: "GMT", tz: "Europe/London" },
+    { label: "AEST", tz: "Australia/Sydney" }
+  ];
+
+  function getOffsetSign(offsetMinutes) {
+    if (offsetMinutes === 0) return '<span style="color:gray;">±0</span>';
+    if (offsetMinutes > 0) return `<span style="color:green;">+${offsetMinutes / 60}</span>`;
+    return `<span style="color:red;">${offsetMinutes / 60}</span>`;
+  }
+
+  function updateTimezones() {
+    const now = new Date();
+    timezones.forEach(zone => {
+      var container = document.getElementById(zone.label);
+      if (!container) return;
+
+      const localeOpts = { timeZone: zone.tz, hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
+      const dateOpts = { timeZone: zone.tz, month: 'short', day: 'numeric', year: 'numeric' };
+      const weekdayOpts = { timeZone: zone.tz, weekday: 'short' };
+
+      const timeStr = now.toLocaleTimeString([], localeOpts); // "13:05:09"
+      const [hour, minute, second] = timeStr.split(':');
+
+      const dateStr = now.toLocaleDateString([], dateOpts);
+      const weekdayStr = now.toLocaleDateString([], weekdayOpts);
+
+      // Calculate offset in hours from UTC
+      const utc = new Date(now.toLocaleString('en-US', { timeZone: 'UTC' }));
+      const local = new Date(now.toLocaleString('en-US', { timeZone: zone.tz }));
+      const offsetMinutes = Math.round((local - utc) / 60000);
+
+      const offsetHtml = getOffsetSign(offsetMinutes);
+
+      // Only update the relevant fields
+      const monthDiv = container.querySelector('.month');
+      const offsetDiv = container.querySelector('.offset');
+      const dayDiv = container.querySelector('.day');
+      const hourSpan = container.querySelector('.hour');
+      const minuteSpan = container.querySelector('.minute');
+      const secondSpan = container.querySelector('.second');
+      const timeDiv = container.querySelector('.time');
+      const weekdayDiv = container.querySelector('.weekday');
+
+      if (monthDiv) monthDiv.childNodes[0].nodeValue = zone.label + " ";
+      if (offsetDiv) offsetDiv.innerHTML = offsetHtml;
+      if (hourSpan) hourSpan.textContent = hour;
+      if (minuteSpan) minuteSpan.textContent = ':' + minute;
+      if (secondSpan) secondSpan.textContent = second;
+      if (timeDiv) timeDiv.textContent = dateStr;
+      if (weekdayDiv) weekdayDiv.textContent = weekdayStr;
+    });
+  }
+
+  updateTimezones();
+  setInterval(updateTimezones, 1000);
+      </script>
+      <div id="timezones-container">
+        
+      </div>
+      <div class="calendar" id="UTC">
+        <div class="month">UTC <div class="offset">±0</div></div>
+        <div class="day">
+          <span class="hour" style="font-size:3rem;">24</span>
+          <span class="minute" style="font-size:3rem;">:10</span>
+          <span class="second" style="font-size:1rem;">00</span>
+        </div>
+        <div class="time">11:00 AM</div>
+        <div class="weekday ">Feb Sunday</div>
+      </div>
+      <div class="calendar" id="CDT" style="display: none;">
+        <div class="month">CDT <div class="offset">±0</div></div>
+        <div class="day">
+          <span class="hour" style="font-size:3rem;">24</span>
+          <span class="minute" style="font-size:3rem;">:10</span>
+          <span class="second" style="font-size:1rem;">00</span>
+        </div>
+        <div class="time">11:00 AM</div>
+        <div class="weekday ">Feb Sunday</div>
+      </div>
+      <div class="calendar" id="IST" style="display: none;">
+        <div class="month">IST <div class="offset">±0</div></div>
+        <div class="day">
+          <span class="hour" style="font-size:3rem;">24</span>
+          <span class="minute" style="font-size:3rem;">:10</span>
+          <span class="second" style="font-size:1rem;">00</span>
+        </div>
+        <div class="time">11:00 AM</div>
+        <div class="weekday ">Feb Sunday</div>
+      </div>
+      <div class="calendar" id="JST" style="display: none;">
+        <div class="month">JST <div class="offset">±0</div></div>
+        <div class="day">
+          <span class="hour" style="font-size:3rem;">24</span>
+          <span class="minute" style="font-size:3rem;">:10</span>
+          <span class="second" style="font-size:1rem;">00</span>
+        </div>
+        <div class="time">11:00 AM</div>
+        <div class="weekday ">Feb Sunday</div>
+      </div>
+      <div class="calendar" id="GMT" style="display: none;">
+        <div class="month">GMT <div class="offset">±0</div></div>
+        <div class="day">
+          <span class="hour" style="font-size:3rem;">24</span>
+          <span class="minute" style="font-size:3rem;">:10</span>
+          <span class="second" style="font-size:1rem;">00</span>
+        </div>
+        <div class="time">11:00 AM</div>
+        <div class="weekday ">Feb Sunday</div>
+      </div>
+      <div class="calendar" id="AEST" style="display: none;">
+        <div class="month">AEST <div class="offset">±0</div></div>
+        <div class="day">
+          <span class="hour" style="font-size:3rem;">24</span>
+          <span class="minute" style="font-size:3rem;">:10</span>
+          <span class="second" style="font-size:1rem;">00</span>
+        </div>
+        <div class="time">11:00 AM</div>
+        <div class="weekday ">Feb Sunday</div>
+      </div>
+
+
+    </div>
+    
+    <div class="timezone-checkboxes my-3"></div>
+      <label><input type="checkbox" class="tz-toggle" value="UTC" checked> UTC</label>
+      <label><input type="checkbox" class="tz-toggle" value="CDT"> CDT</label>
+      <label><input type="checkbox" class="tz-toggle" value="IST"> IST</label>
+      <label><input type="checkbox" class="tz-toggle" value="JST"> JST</label>
+      <label><input type="checkbox" class="tz-toggle" value="GMT"> GMT</label>
+      <label><input type="checkbox" class="tz-toggle" value="AEST"> AEST</label>
+    </div>
+    
+    <script>
+      // Show/hide time zone blocks based on checkbox
+      document.querySelectorAll('.tz-toggle').forEach(function(cb) {
+        cb.addEventListener('change', function() {
+          var tz = this.value;
+          var cal = document.getElementById(tz);
+          if (this.checked) {
+            cal.style.display = '';
+          } else {
+            cal.style.display = 'none';
+          }
+        });
+      });
+      // Initialize: show only checked
+      document.querySelectorAll('.tz-toggle').forEach(function(cb) {
+        var tz = cb.value;
+        var cal = document.getElementById(tz);
+        if (cb.checked) {
+          cal.style.display = '';
+        } else {
+          cal.style.display = 'none';
+        }
+      });
+    </script>
+
+  </div>
+
+
+
+  </div>
+    <script>
+      const banner = document.getElementById('gradientBanner');
+      let isFullscreen = false;
+
+      banner.addEventListener('dblclick', function () {
+        if (!isFullscreen) {
+          banner.style.transition = 'all 0.5s cubic-bezier(0.4,0,0.2,1)';
+          banner.style.position = 'fixed';
+          banner.style.top = 0;
+          banner.style.left = 0;
+          banner.style.margin = 0;
+          banner.style.width = '100vw';
+          banner.style.height = '100vh';
+          banner.style.zIndex = 1050;
+          banner.style.borderRadius = '0';
+          isFullscreen = true;
+        } else {
+          banner.style.transition = 'all 0.5s cubic-bezier(0.4,0,0.2,1)';
+          banner.style.position = '';
+          banner.style.top = '';
+          banner.style.left = '';
+          banner.style.width = '100vw';
+          banner.style.height = 'auto';
+
+          // banner.style.minHeight = '320px';
+          banner.style.margin = '32px 0 0 0';
+          banner.style.zIndex = '';
+          banner.style.borderRadius = '8px';
+          isFullscreen = false;
+        }
+      });
+    </script>
+
+    <script>
+      $('#my-number').counto(0, 500);
+    </script>
+  <footer class="footer_main">
+    <div>
+      <a href="/" style="color: white; margin: 0 15px; text-decoration: none;" class="footer-logo"><img src="favicon.png" alt="Company Logo"></a>
+      <a href="/" style="color: white; margin: 0 15px; text-decoration: none;">Home</a>
+      <a href="/about.html" style="color: white; margin: 0 15px; text-decoration: none;">About Us</a>
+      <a href="/contact.html" style="color: white; margin: 0 15px; text-decoration: none;">Contact Us</a>
+      <!-- <a href="/about.html" style="color: white; margin: 0 15px; text-decoration: none;">About Us</a> -->
+      <!-- <a href="/contact.html" style="color: white; margin: 0 15px; text-decoration: none;">Contact</a> -->
+    </div>
+    <div style="margin-top: 20px;">
+      <p>&copy; 2024 Webtoolsx. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Multiple Circular Meters</title>
+  <style>
+    body {
+      background: #111;
+      color: white;
+      font-family: sans-serif;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+      padding: 40px;
+    }
+    .circle-meter {
+      position: relative;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      border: 8px solid #333;
+    }
+    .knob {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background: #0ff;
+      border-radius: 50%;
+      cursor: pointer;
+      top: 0;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .value {
+      position: absolute;
+      width: 100%;
+      text-align: center;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Add as many meters as you want -->
+  <div id="meter1" class="circle-meter">
+    <div class="value"></div>
+    <div class="knob"></div>
+  </div>
+
+  <div id="meter2" class="circle-meter">
+    <div class="value"></div>
+    <div class="knob"></div>
+  </div>
+
+  <div id="meter3" class="circle-meter">
+    <div class="value"></div>
+    <div class="knob"></div>
+  </div>
+
+  <script>
+    // Helper to format minutes to 12-hour time with AM/PM
+    function formatTime(minutes) {
+      let h = Math.floor(minutes / 60);
+      let m = minutes % 60;
+      let ampm = h < 12 ? 'AM' : 'PM';
+      h = h % 12;
+      if (h === 0) h = 12;
+      return `${h}:${m.toString().padStart(2, '0')} ${ampm}`;
+    }
+
+    // Helper to get minutes since midnight for a given timezone offset (in minutes)
+    function getMinutesForTimezone(offsetMinutes) {
+      const now = new Date();
+      // Get UTC time in minutes since midnight
+      const utcMinutes = now.getUTCHours() * 60 + now.getUTCMinutes();
+      // Adjust for timezone offset
+      let tzMinutes = (utcMinutes + offsetMinutes + 1440) % 1440;
+      return tzMinutes;
+    }
+
+    const perStep = 1; // 5 minutes per step (was 1, should be 5)
+    const steps = 24*60;
+    const stepAngle = 360 / steps;
+    const ANGLE_OFFSET = 90; // 12pm at top
+    let lastDraggedStep = null; // Track last step for 1-step move
+
+    // Timezone offsets in minutes
+    const timezones = [
+      { id: 'meter1', label: 'UTC', offset: 0 },
+      { id: 'meter2', label: 'IST', offset: 330 },   // UTC+5:30
+      { id: 'meter3', label: 'CDT', offset: -300 }   // UTC-5:00
+    ];
+
+    // Store all meters for sync
+    const meters = timezones.map(tz => ({
+      id: tz.id,
+      initial: null, // will be set on initialization
+      step: null,
+      meter: null,
+      knob: null,
+      display: null,
+      label: tz.label,
+      offset: tz.offset
+    }));
+
+    function getCenter(meter) {
+      const rect = meter.getBoundingClientRect();
+      return {
+        x: rect.left + rect.width / 2,
+        y: rect.top + rect.height / 2,
+      };
+    }
+
+    function updateKnob(meterObj, step) {
+      const angle = step * stepAngle + ANGLE_OFFSET;
+      const radius = 155;
+      const rad = angle * Math.PI / 180;
+      const x = 150 + radius * Math.cos(rad);
+      const y = 150 + radius * Math.sin(rad);
+      meterObj.knob.style.left = `${x}px`;
+      meterObj.knob.style.top = `${y}px`;
+
+      const minutes = step * perStep;
+      meterObj.display.textContent = `${formatTime(minutes)} (${meterObj.label})`;
+      meterObj.step = step;
+    }
+    
+
+    function getAngle(meter, x, y) {
+      const center = getCenter(meter);
+      const dx = x - center.x;
+      const dy = y - center.y;
+      let angle = Math.atan2(dy, dx) * (180 / Math.PI);
+      angle = angle < 0 ? 360 + angle : angle;
+      // Adjust so 0deg is at 12pm
+      let adjusted = (angle - ANGLE_OFFSET + 360) % 360;
+      return adjusted;
+    }
+    function createCircularMeter(meterObj) {
+      meterObj.meter = document.getElementById(meterObj.id);
+      meterObj.knob = meterObj.meter.querySelector('.knob');
+      meterObj.display = meterObj.meter.querySelector('.value');
+      // Set initial time to current time in that timezone
+      meterObj.initial = getMinutesForTimezone(meterObj.offset);
+      meterObj.step = Math.round(meterObj.initial / perStep) % steps;
+      updateKnob(meterObj, meterObj.step);
+      updateKnob(meterObj, meterObj.step);
+
+      let isDragging = false;
+
+      function handleMove(e) {
+        if (!isDragging) return;
+        const x = e.touches ? e.touches[0].clientX : e.clientX;
+        const y = e.touches ? e.touches[0].clientY : e.clientY;
+        const angle = getAngle(meterObj.meter, x, y);
+        let step = Math.round(angle / stepAngle) % steps;
+
+        // Only allow 1 step change per drag event
+        if (lastDraggedStep === null) lastDraggedStep = meterObj.step;
+        let diff = step - lastDraggedStep;
+        // Handle wrap-around
+        if (diff > steps / 2) diff -= steps;
+        if (diff < -steps / 2) diff += steps;
+        if (diff > 1) diff = 1;
+        if (diff < -1) diff = -1;
+        step = (lastDraggedStep + diff + steps) % steps;
+
+        // Move all meters by the same delta
+        meters.forEach(m => {
+          let newStep = (m.step + diff + steps) % steps;
+          updateKnob(m, newStep);
+        });
+
+        lastDraggedStep = step;
+      }
+
+      meterObj.knob.addEventListener('mousedown', () => {
+        isDragging = true;
+        lastDraggedStep = meterObj.step;
+      });
+      document.addEventListener('mouseup', () => {
+        isDragging = false;
+        lastDraggedStep = null;
+      });
+      document.addEventListener('mousemove', handleMove);
+
+      meterObj.knob.addEventListener('touchstart', () => {
+        isDragging = true;
+        lastDraggedStep = meterObj.step;
+      });
+      document.addEventListener('touchend', () => {
+        isDragging = false;
+        lastDraggedStep = null;
+      });
+      document.addEventListener('touchmove', handleMove);
+    }
+
+    // Initialize all meters
+    meters.forEach(createCircularMeter);
+  </script>
+</body>
+</html>

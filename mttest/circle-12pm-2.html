@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Multiple Circular Meters</title>
+  <style>
+    body {
+      background: #111;
+      color: white;
+      font-family: sans-serif;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+      padding: 40px;
+    }
+    .circle-meter {
+      position: relative;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      border: 8px solid #333;
+    }
+    .knob {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background: #0ff;
+      border-radius: 50%;
+      cursor: pointer;
+      top: 0;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .value {
+      position: absolute;
+      width: 100%;
+      text-align: center;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Add as many meters as you want -->
+  <div id="meter1" class="circle-meter">
+    <div class="value"></div>
+    <div class="knob"></div>
+  </div>
+
+  <div id="meter2" class="circle-meter">
+    <div class="value"></div>
+    <div class="knob"></div>
+  </div>
+
+  <div id="meter3" class="circle-meter">
+    <div class="value"></div>
+    <div class="knob"></div>
+  </div>
+
+  <script>
+    // Helper to format minutes to 12-hour time with AM/PM
+    function formatTime(minutes) {
+      let h = Math.floor(minutes / 60);
+      let m = minutes % 60;
+      let ampm = h < 12 ? 'AM' : 'PM';
+      h = h % 12;
+      if (h === 0) h = 12;
+      return `${h}:${m.toString().padStart(2, '0')} ${ampm}`;
+    }
+
+    function createCircularMeter(containerId, initialMinutes = 720) {
+      // initialMinutes = 720 means the knob starts at 12:00 PM.
+      // 720 minutes = 12 hours * 60 minutes/hour.
+      // This places the knob at the top of the circle (12 o'clock position).
+      // You can change this value to set a different initial time.
+      const meter = document.getElementById(containerId);
+      const knob = meter.querySelector('.knob');
+      const display = meter.querySelector('.value');
+      const perStep = 1;
+
+      const getCenter = () => {
+        const rect = meter.getBoundingClientRect();
+        return {
+          x: rect.left + rect.width / 2,
+          y: rect.top + rect.height / 2,
+        };
+      };
+
+      // 288 steps (24*60/5), 5min per step
+      const steps = 288;
+      const stepAngle = 360 / steps;
+      const ANGLE_OFFSET = 90; // 12pm at top
+
+      const updateKnob = (step, perStepVar = perStep) => {
+        const angle = step * stepAngle + ANGLE_OFFSET;
+        const radius = 155;
+        const rad = angle * Math.PI / 180;
+        const x = 150 + radius * Math.cos(rad);
+        const y = 150 + radius * Math.sin(rad);
+        knob.style.left = `${x}px`;
+        knob.style.top = `${y}px`;
+
+        const minutes = step * perStepVar;
+        display.textContent = formatTime(minutes);
+      };
+
+      const getAngle = (x, y) => {
+        const center = getCenter();
+        const dx = x - center.x;
+        const dy = y - center.y;
+        let angle = Math.atan2(dy, dx) * (180 / Math.PI);
+        angle = angle < 0 ? 360 + angle : angle;
+        // Adjust so 0deg is at 12pm
+        let adjusted = (angle - ANGLE_OFFSET + 360) % 360;
+        return adjusted;
+      };
+
+      let isDragging = false;
+      let currentStep = Math.round(initialMinutes / perStep) % steps;
+      console.log(`Initial step: ${currentStep}`);
+      const handleMove = (e) => {
+        if (!isDragging) return;
+        const x = e.touches ? e.touches[0].clientX : e.clientX;
+        const y = e.touches ? e.touches[0].clientY : e.clientY;
+        const angle = getAngle(x, y);
+        let step = Math.round(angle / stepAngle) % steps;
+        currentStep = step;
+        updateKnob(currentStep,5);
+      };
+
+      knob.addEventListener('mousedown', () => isDragging = true);
+      document.addEventListener('mouseup', () => isDragging = false);
+      document.addEventListener('mousemove', handleMove);
+
+      knob.addEventListener('touchstart', () => isDragging = true);
+      document.addEventListener('touchend', () => isDragging = false);
+      document.addEventListener('touchmove', handleMove);
+
+      updateKnob(currentStep);
+    }
+
+    // Initialize all meters with knob at 12pm (top)
+    createCircularMeter('meter1', 0);  // 12:00 PM
+    createCircularMeter('meter2', 5*60+3);  // 12:00 PM
+    createCircularMeter('meter3', 40);  // 12:00 PM
+  </script>
+</body>
+</html>

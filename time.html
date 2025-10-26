@@ -5,26 +5,34 @@
   <!-- Basic Meta Tags for SEO -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="robots" content="index, follow"> <!-- Tells search engines to index and follow links -->
-  <meta name="description" content="Calculate your stock profits and losses easily with our online tool. Get accurate results for your stock transactions.">
-  <meta name="keywords" content="stock calculator, profit loss calculator, stock profit, loss calculator, stock trading, finance tools">
+  <meta name="robots" content="index, follow">
+  <meta name="description" content="Easily view and convert current time across multiple time zones. Use our online world clock and time zone converter for accurate results.">
+  <meta name="keywords" content="time zone, world clock, time converter, UTC, IST, GMT, CDT, JST, AEST, online clock, time difference, time zones">
   <meta name="author" content="WebToolsX">
-  <meta property="og:title" content="Stock Profit and Loss Calculator">
-  <meta property="og:description" content="Calculate your stock profits and losses easily with our online tool.">
-  <meta property="og:image" content="favicon.png"> <!-- Add an image URL for social sharing -->
-  <meta property="og:url" content="https://webtoolsx.github.io/stock-profit-loss-calculator.html">
+  <meta property="og:title" content="World Clock & Time Zone Converter">
+  <meta property="og:description" content="Easily view and convert current time across multiple time zones with our online tool.">
+  <meta property="og:image" content="favicon.png">
+  <meta property="og:url" content="https://webtoolsx.github.io/time.html">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="favicon.png" type="image/png">
+  <title>World Clock & Time Zone Converter | WebToolsX</title>
+  <meta name="title" content="World Clock & Time Zone Converter | WebToolsX">
+  <meta name="description" content="Easily view and convert current time across multiple time zones. Use our online world clock and time zone converter for accurate results.">
+  <meta name="keywords" content="world clock, time zone converter, current time, UTC, IST, GMT, CDT, JST, AEST, online clock, time difference, time zones">
+  <meta property="og:title" content="World Clock & Time Zone Converter">
+  <meta property="og:description" content="Easily view and convert current time across multiple time zones with our online tool.">
+  <meta property="og:image" content="favicon.png">
+  <meta property="og:url" content="https://webtoolsx.github.io/time.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://webtoolsx.github.io/time.html">
 
-  <title>Stock Profit and Loss Calculator | WebToolsX</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
   <!-- Linking CSS Stylesheets -->
   <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css"> <!-- Your custom styles -->
+  <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/custom_radio.css">
   <!-- JavaScript Files -->
-  <script src="bootstrap/js/bootstrap.bundle.js" ></script>
+  <script src="bootstrap/js/bootstrap.bundle.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
   <script type="module" src="js/stock_calc.js"></script>
   <script type="module" src="js/custom_range.js"></script>
@@ -32,32 +40,27 @@
   <script type="module" src="js/arcLib.js"></script>
   <script src="js/counto.min.js"></script>
 
-  <!-- Canonical URL -->
-  <link rel="canonical" href="https://webtoolsx.github.io/stock-profit-loss-calculator.html">
-
   <!-- Structured Data for Rich Snippets (JSON-LD) -->
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "WebApplication",
-      "name": "Stock Profit and Loss Calculator",
-      "url": "https://webtoolsx.github.io/",
-      "description": "A tool to help calculate stock profit and loss based on buy and sell prices.",
-      "applicationCategory": "Finance",
+      "name": "World Clock & Time Zone Converter",
+      "url": "https://webtoolsx.github.io/time.html",
+      "description": "Easily view and convert current time across multiple time zones. Use our online world clock and time zone converter for accurate results.",
+      "applicationCategory": "Utilities",
       "softwareVersion": "1.0",
       "operatingSystem": "All"
     }
   </script>
   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-0ZDRS85Q8B"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-0ZDRS85Q8B');
-</script>
-  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0ZDRS85Q8B"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-0ZDRS85Q8B');
+  </script>
 </head>
 <body>
   <div class="container-fluid">
@@ -100,38 +103,130 @@
 
 
     <div class="container-fluid py-4 p-0 p-lg-2">
-    <div class="gradient-banner d-flex align-items-center justify-content-center" id="gradientBanner" style="cursor:pointer;" title="Click to expand">
+      <div id="timezones-container">
+        <div class="mb-3">
+          <label class="me-2">Time Format:</label>
+          <label class="me-2"><input type="radio" name="hourFormat" value="24" checked> 24-hour</label>
+          <label><input type="radio" name="hourFormat" value="12"> 12-hour</label>
+        </div>
+        <div class="timezone-search my-3" style="font-size: 1rem;">
+          <input type="text" id="tz-search" class="form-control" placeholder="Search time zone (e.g. IST, UTC, Tokyo)" style="font-size: 2rem;">
+          <div id="tz-search-results" class="list-group mt-2" style="max-height: 200px;overflow-y: auto;position: absolute;width: 60%;z-index: 99;"></div>
+        </div>
+        <!-- Container for calendars -->
+      </div>
+    </div>
+    <div class="gradient-banner d-flex align-items-center justify-content-center" id="gradientBanner" style="cursor:pointer;" title="Double click to expand">
       <span id="bannerIcon"></span>
+        <!-- <div id="calendar-container"></div> -->
 
-<script>
-  // List of time zones to display
-  const timezones = [
-    { label: "UTC", tz: "UTC" },
-    { label: "CDT", tz: "America/Chicago" },
-    { label: "IST", tz: "Asia/Kolkata" },
-    { label: "JST", tz: "Asia/Tokyo" },
-    { label: "GMT", tz: "Europe/London" },
-    { label: "AEST", tz: "Australia/Sydney" }
-  ];
 
-  function getOffsetSign(offsetMinutes) {
+  <script>
+    // List of time zones to display
+    // List of all IANA time zones (sample, not exhaustive)
+    const timezones = [
+      { label: "UTC", tz: "UTC" },
+      { label: "GMT", tz: "Europe/London" },
+      { label: "EST", tz: "America/New_York" },
+      { label: "EDT", tz: "America/New_York" },
+      { label: "CST", tz: "America/Chicago" },
+      { label: "CDT", tz: "America/Chicago" },
+      { label: "MST", tz: "America/Denver" },
+      { label: "MDT", tz: "America/Denver" },
+      { label: "PST", tz: "America/Los_Angeles" },
+      { label: "PDT", tz: "America/Los_Angeles" },
+      { label: "AKST", tz: "America/Anchorage" },
+      { label: "AKDT", tz: "America/Anchorage" },
+      { label: "HST", tz: "Pacific/Honolulu" },
+      { label: "IST", tz: "Asia/Kolkata" },
+      { label: "CET", tz: "Europe/Paris" },
+      { label: "CEST", tz: "Europe/Paris" },
+      { label: "EET", tz: "Europe/Athens" },
+      { label: "EEST", tz: "Europe/Athens" },
+      { label: "MSK", tz: "Europe/Moscow" }, 
+      { label: "JST", tz: "Asia/Tokyo" },
+      { label: "KST", tz: "Asia/Seoul" },
+      { label: "CST (China)", tz: "Asia/Shanghai" },
+      { label: "AWST", tz: "Australia/Perth" },
+      { label: "ACST", tz: "Australia/Adelaide" },
+      { label: "AEST", tz: "Australia/Sydney" },
+      { label: "NZST", tz: "Pacific/Auckland" },
+      { label: "NZDT", tz: "Pacific/Auckland" },
+      { label: "SAST", tz: "Africa/Johannesburg" },
+      { label: "WAT", tz: "Africa/Lagos" },
+      { label: "CAT", tz: "Africa/Harare" },
+      { label: "EAT", tz: "Africa/Nairobi" },
+      { label: "ART", tz: "America/Argentina/Buenos_Aires" },
+      { label: "BRT", tz: "America/Sao_Paulo" },
+      { label: "CLT", tz: "America/Santiago" },
+      { label: "AST", tz: "Asia/Riyadh" },
+      { label: "GST", tz: "Asia/Dubai" },
+      { label: "PKT", tz: "Asia/Karachi" },
+      { label: "WIB", tz: "Asia/Jakarta" },
+      { label: "SGT", tz: "Asia/Singapore" },
+      { label: "HKT", tz: "Asia/Hong_Kong" },
+      { label: "MYT", tz: "Asia/Kuala_Lumpur" },
+      { label: "PHT", tz: "Asia/Manila" },
+      { label: "ICT", tz: "Asia/Bangkok" },
+      { label: "MAGT", tz: "Asia/Magadan" },
+      { label: "CHST", tz: "Pacific/Guam" },
+      { label: "FJT", tz: "Pacific/Fiji" },
+      { label: "TOT", tz: "Pacific/Tongatapu" }
+    ];
+
+    // Dynamically inject timezone checkboxes
+    const tzCheckboxContainer = document.querySelector('.timezone-checkboxes');
+    if (tzCheckboxContainer) {
+      timezones.forEach(tz => {
+      // Default checked for UTC and IST
+      const checked = (tz.label === "UTC" || tz.label === "IST") ? "checked" : "";
+      tzCheckboxContainer.insertAdjacentHTML(
+        'beforeend',
+        `<label><input type="checkbox" class="tz-toggle" value="${tz.label}" ${checked}> ${tz.label}</label> `
+      );
+      });
+    }
+
+    let hourFormat = "24";
+    document.querySelectorAll('input[name="hourFormat"]').forEach(function(radio) {
+    radio.addEventListener('change', function() {
+      hourFormat = this.value;
+      updateTimezones();
+    });
+    });
+
+    function getOffsetSign(offsetMinutes) {
     if (offsetMinutes === 0) return '<span style="color:gray;">±0</span>';
     if (offsetMinutes > 0) return `<span style="color:green;">+${offsetMinutes / 60}</span>`;
     return `<span style="color:red;">${offsetMinutes / 60}</span>`;
-  }
+    }
 
-  function updateTimezones() {
+    function updateTimezones() {
     const now = new Date();
     timezones.forEach(zone => {
       var container = document.getElementById(zone.label);
       if (!container) return;
 
-      const localeOpts = { timeZone: zone.tz, hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
+      const localeOpts = { timeZone: zone.tz, hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: hourFormat === "12" };
       const dateOpts = { timeZone: zone.tz, month: 'short', day: 'numeric', year: 'numeric' };
       const weekdayOpts = { timeZone: zone.tz, weekday: 'short' };
 
-      const timeStr = now.toLocaleTimeString([], localeOpts); // "13:05:09"
-      const [hour, minute, second] = timeStr.split(':');
+      let timeStr = now.toLocaleTimeString([], localeOpts); // "13:05:09" or "01:05:09 PM"
+      let hour, minute, second, ampm = "";
+      if (hourFormat === "12") {
+      // e.g. "01:05:09 PM"
+      const match = timeStr.match(/^(\d{2}):(\d{2}):(\d{2})\s*(AM|PM)?$/i);
+      if (match) {
+        hour = match[1];
+        minute = match[2];
+        second = match[3];
+        ampm = match[4] ? ` ${match[4]}` : "";
+      } else {
+        [hour, minute, second] = timeStr.split(':');
+      }
+      } else {
+      [hour, minute, second] = timeStr.split(':');
+      }
 
       const dateStr = now.toLocaleDateString([], dateOpts);
       const weekdayStr = now.toLocaleDateString([], weekdayOpts);
@@ -157,112 +252,161 @@
       if (offsetDiv) offsetDiv.innerHTML = offsetHtml;
       if (hourSpan) hourSpan.textContent = hour;
       if (minuteSpan) minuteSpan.textContent = ':' + minute;
-      if (secondSpan) secondSpan.textContent = second;
+      if (secondSpan) secondSpan.textContent = second + (hourFormat === "12" ? ampm : "");
       if (timeDiv) timeDiv.textContent = dateStr;
       if (weekdayDiv) weekdayDiv.textContent = weekdayStr;
     });
-  }
+    }
 
-  updateTimezones();
-  setInterval(updateTimezones, 1000);
-      </script>
-      <div id="timezones-container">
-        
-      </div>
-      <div class="calendar" id="UTC">
+    updateTimezones();
+    setInterval(updateTimezones, 1000);
+  </script>
+      
+      <!-- <div class="calendar" id="UTC">
         <div class="month">UTC <div class="offset">±0</div></div>
         <div class="day">
           <span class="hour" style="font-size:3rem;">24</span>
           <span class="minute" style="font-size:3rem;">:10</span>
           <span class="second" style="font-size:1rem;">00</span>
         </div>
-        <div class="time">11:00 AM</div>
-        <div class="weekday ">Feb Sunday</div>
-      </div>
-      <div class="calendar" id="CDT" style="display: none;">
-        <div class="month">CDT <div class="offset">±0</div></div>
-        <div class="day">
-          <span class="hour" style="font-size:3rem;">24</span>
-          <span class="minute" style="font-size:3rem;">:10</span>
-          <span class="second" style="font-size:1rem;">00</span>
-        </div>
-        <div class="time">11:00 AM</div>
-        <div class="weekday ">Feb Sunday</div>
-      </div>
-      <div class="calendar" id="IST" style="display: none;">
-        <div class="month">IST <div class="offset">±0</div></div>
-        <div class="day">
-          <span class="hour" style="font-size:3rem;">24</span>
-          <span class="minute" style="font-size:3rem;">:10</span>
-          <span class="second" style="font-size:1rem;">00</span>
-        </div>
-        <div class="time">11:00 AM</div>
-        <div class="weekday ">Feb Sunday</div>
-      </div>
-      <div class="calendar" id="JST" style="display: none;">
-        <div class="month">JST <div class="offset">±0</div></div>
-        <div class="day">
-          <span class="hour" style="font-size:3rem;">24</span>
-          <span class="minute" style="font-size:3rem;">:10</span>
-          <span class="second" style="font-size:1rem;">00</span>
-        </div>
-        <div class="time">11:00 AM</div>
-        <div class="weekday ">Feb Sunday</div>
-      </div>
-      <div class="calendar" id="GMT" style="display: none;">
-        <div class="month">GMT <div class="offset">±0</div></div>
-        <div class="day">
-          <span class="hour" style="font-size:3rem;">24</span>
-          <span class="minute" style="font-size:3rem;">:10</span>
-          <span class="second" style="font-size:1rem;">00</span>
-        </div>
-        <div class="time">11:00 AM</div>
-        <div class="weekday ">Feb Sunday</div>
-      </div>
-      <div class="calendar" id="AEST" style="display: none;">
-        <div class="month">AEST <div class="offset">±0</div></div>
-        <div class="day">
-          <span class="hour" style="font-size:3rem;">24</span>
-          <span class="minute" style="font-size:3rem;">:10</span>
-          <span class="second" style="font-size:1rem;">00</span>
-        </div>
-        <div class="time">11:00 AM</div>
-        <div class="weekday ">Feb Sunday</div>
-      </div>
+        <div class="time">11:00 AM</div> -->
+        <!-- <div class="weekday ">Feb Sunday</div>
+      </div> -->
+      
 
 
     </div>
     
-    <div class="timezone-checkboxes my-3"></div>
-      <label><input type="checkbox" class="tz-toggle" value="UTC" checked> UTC</label>
-      <label><input type="checkbox" class="tz-toggle" value="CDT"> CDT</label>
-      <label><input type="checkbox" class="tz-toggle" value="IST"> IST</label>
-      <label><input type="checkbox" class="tz-toggle" value="JST"> JST</label>
-      <label><input type="checkbox" class="tz-toggle" value="GMT"> GMT</label>
-      <label><input type="checkbox" class="tz-toggle" value="AEST"> AEST</label>
-    </div>
+
     
     <script>
+      // Helper to get the label and tz object by label or fallback
+      function getZoneByLabel(label) {
+        return timezones.find(z => z.label === label) || { label: label, tz: label };
+      }
+
+      // Generate the HTML for a calendar block
+      function getCalendarHtml(label) {
+        const zone = getZoneByLabel(label);
+        return `
+          <div class="calendar position-relative" id="${zone.label}">
+            <div class="month">${zone.label} <div class="offset">±0</div>
+            <div class="offset2">
+              <button class="close-calendar-btn" data-tz="${zone.label}" style="position:absolute;top:8px;left:8px;background:transparent;border:none;font-size:1.5rem;color:#fff799;cursor:pointer;z-index:10;" title="Remove">&times;</button>
+            </div>
+            </div>
+            <div class="day">
+              <span class="hour" style="font-size:3rem;">00</span>
+              <span class="minute" style="font-size:3rem;">:00</span>
+              <span class="second" style="font-size:1rem;">00</span>
+            </div>
+            <div class="time">--</div>
+            <div class="weekday">---</div>
+          </div>
+        `;
+      }
+
+      // Search bar logic
+      const tzSearchInput = document.getElementById('tz-search');
+    const tzSearchResults = document.getElementById('tz-search-results');
+      const calendarContainer = document.getElementById('gradientBanner');
+
+      // Show calendars from localStorage on first load
+      (function showSavedTimezones() {
+        let saved = [];
+        try {
+          saved = JSON.parse(localStorage.getItem('selectedTimezones') || '[]');
+        } catch (e) { saved = []; }
+        if (Array.isArray(saved)) {
+          saved.forEach(label => {
+        if (!document.getElementById(label)) {
+          calendarContainer.insertAdjacentHTML('beforeend', getCalendarHtml(label));
+        }
+          });
+        }
+      })();
+
+      function renderSearchResults(query) {
+        tzSearchResults.style.display = 'block';
+        tzSearchResults.innerHTML = '';
+        if (!query) return;
+        const q = query.trim().toLowerCase();
+        const matches = timezones.filter(z => z.label.toLowerCase().includes(q) || z.tz.toLowerCase().includes(q));
+        matches.forEach(z => {
+          const item = document.createElement('button');
+          item.type = 'button';
+          item.className = 'list-group-item list-group-item-action';
+          item.textContent = `${z.label} (${z.tz})`;
+          item.onclick = function() {
+        // Show calendar for this zone
+        if (!document.getElementById(z.label)) {
+          calendarContainer.insertAdjacentHTML('beforeend', getCalendarHtml(z.label));
+          this.style.backgroundColor = '#d1e7dd'; // Highlight selected
+          tzSearchResults.style.display = 'none';
+          updateTimezones();
+        }
+        // Save selected labels as array in localStorage
+        let saved = JSON.parse(localStorage.getItem('selectedTimezones') || '[]');
+        if (!saved.includes(z.label)) {
+          saved.push(z.label);
+          localStorage.setItem('selectedTimezones', JSON.stringify(saved));
+        }
+        // Optionally scroll to it
+        const cal = document.getElementById(z.label);
+        if (cal) cal.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          };
+          tzSearchResults.appendChild(item);
+        });
+      }
+
+      if (tzSearchInput) {
+        tzSearchInput.addEventListener('input', function() {
+          renderSearchResults(this.value);
+        });
+        tzSearchInput.addEventListener('focus', function() {
+          renderSearchResults(this.value);
+        });
+      }
+
       // Show/hide time zone blocks based on checkbox
       document.querySelectorAll('.tz-toggle').forEach(function(cb) {
         cb.addEventListener('change', function() {
           var tz = this.value;
+          var container = document.getElementById('gradientBanner');
           var cal = document.getElementById(tz);
           if (this.checked) {
-            cal.style.display = '';
+            // Inject if not already present
+            if (!cal) {
+              container.insertAdjacentHTML('beforeend', getCalendarHtml(tz));
+            } else {
+              cal.style.display = '';
+            }
           } else {
-            cal.style.display = 'none';
+            if (cal) cal.remove();
           }
         });
       });
-      // Initialize: show only checked
+
+      // On page load, inject checked calendars
       document.querySelectorAll('.tz-toggle').forEach(function(cb) {
         var tz = cb.value;
+        var container = document.getElementById('gradientBanner');
         var cal = document.getElementById(tz);
-        if (cb.checked) {
-          cal.style.display = '';
-        } else {
-          cal.style.display = 'none';
+        if (cb.checked && !cal) {
+          container.insertAdjacentHTML('beforeend', getCalendarHtml(tz));
+        }
+      });
+
+      // Delegate close button click for calendars
+      calendarContainer.addEventListener('click', function(e) {
+        if (e.target.classList.contains('close-calendar-btn')) {
+          const tz = e.target.getAttribute('data-tz');
+          const cal = document.getElementById(tz);
+          if (cal) cal.remove();
+          // Remove from localStorage
+          let saved = JSON.parse(localStorage.getItem('selectedTimezones') || '[]');
+          saved = saved.filter(label => label !== tz);
+          localStorage.setItem('selectedTimezones', JSON.stringify(saved));
         }
       });
     </script>

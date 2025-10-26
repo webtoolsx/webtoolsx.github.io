@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Circular Drag Meter</title>
+  <style>
+    body {
+      background: #111;
+      color: white;
+      font-family: sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .circle-meter {
+      position: relative;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      border: 8px solid #333;
+      background:red;
+    }
+    .knob {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background: #0ff;
+      border-radius: 50%;
+      cursor: pointer;
+      top: 0;
+      left: 50%;
+      transform: translate(-50%, -50%);*/
+    }
+    .value {
+      position: absolute;
+      width: 100%;
+      text-align: center;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="circle-meter" id="circleMeter">
+    <div class="value" id="valueDisplay">50</div>
+    <div class="knob" id="knob">j</div>
+  </div>
+
+  <script>
+    const knob = document.getElementById('knob');
+    const meter = document.getElementById('circleMeter');
+    const display = document.getElementById('valueDisplay');
+    const center = () => {
+      const rect = meter.getBoundingClientRect();
+      return {
+        x: rect.left + rect.width / 2,
+        y: rect.top + rect.height / 2,
+      };
+    };
+
+    const updateKnob = (angle) => {
+      const radius = 154;
+      const rad = angle * Math.PI / 180;
+      const x = 150 + radius * Math.cos(rad);
+      const y = 150 + radius * Math.sin(rad);
+      knob.style.left = `${x}px`;
+      knob.style.top = `${y}px`;
+
+      // Map angle (0-360) to 1-100
+      let value = Math.round((angle / 360) * 100);
+      value = value === 0 ? 1 : value;
+      display.textContent = value;
+    };
+
+    let isDragging = false;
+
+    const getAngle = (x, y) => {
+      const c = center();
+      const dx = x - c.x;
+      const dy = y - c.y;
+      let angle = Math.atan2(dy, dx) * (180 / Math.PI);
+      angle = angle < 0 ? 360 + angle : angle;
+      return angle;
+    };
+
+    const handleMove = (e) => {
+      if (!isDragging) return;
+      const x = e.touches ? e.touches[0].clientX : e.clientX;
+      const y = e.touches ? e.touches[0].clientY : e.clientY;
+      const angle = getAngle(x, y);
+      updateKnob(angle);
+    };
+
+    knob.addEventListener('mousedown', () => isDragging = true);
+    document.addEventListener('mouseup', () => isDragging = false);
+    document.addEventListener('mousemove', handleMove);
+
+    knob.addEventListener('touchstart', () => isDragging = true);
+    document.addEventListener('touchend', () => isDragging = false);
+    document.addEventListener('touchmove', handleMove);
+
+    // Initial value
+    updateKnob(180);
+  </script>
+</body>
+</html>

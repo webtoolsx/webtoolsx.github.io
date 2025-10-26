@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Calculate your age in years, months, and days with our free online age calculator.">
+  <meta name="keywords" content="age calculator, birthday calculator, date difference, years, months, days">
+  <meta name="author" content="webtoolsx">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Age Calculator">
+  <meta property="og:description" content="Find your exact age in years, months, and days using our online age calculator.">
+  <meta property="og:image" content="https://webtoolsx.github.io/favicon.png">
+  <meta property="og:url" content="https://webtoolsx.github.io/age-calculator.html">
+  <meta property="og:site_name" content="WebToolsX">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Age Calculator">
+  <meta name="twitter:description" content="Calculate your age instantly with our easy-to-use age calculator.">
+  <meta name="twitter:image" content="https://webtoolsx.github.io/favicon.png">
+  <meta name="twitter:site" content="@yourtwitterhandle">
+  <meta name="twitter:creator" content="@yourtwitterhandle">
+
+  <!-- Favicon & Apple Touch Icon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="https://webtoolsx.github.io/favicon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://webtoolsx.github.io/favicon.png">
+
+  <!-- Mobile & PWA Optimization -->
+  <meta name="theme-color" content="#007bff">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Age Calculator">
+
+  <!-- Schema.org for Google -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Age Calculator",
+    "url": "https://webtoolsx.github.io/age-calculator.html",
+    "description": "Calculate your age in years, months, and days with our free online age calculator.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "WebToolsX"
+    },
+    "applicationCategory": "Utility",
+    "softwareVersion": "1.0",
+    "operatingSystem": "All"
+  }
+  </script>
+
+  <link rel="icon" href="favicon.png" type="image/png">
+  <link rel="canonical" href="https://webtoolsx.github.io/age-calculator.html">
+
+  <title>Age Calculator - Free Tool | WebToolsX</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+   <!-- Bootstrap CSS -->
+  <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Bootstrap JS -->
+  <script src="bootstrap/js/bootstrap.bundle.js"></script>
+  
+  <!-- Custom styles -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/custom_radio.css">
+  
+  <!-- jQuery (if necessary, slim version reduces load time) -->
+  <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
+  
+  <!-- Custom script for stock calculation -->
+  <script type="module" src="js/hr_scroll.js"></script>
+
+  
+  <!-- Counto script -->
+  <script src="js/counto.min.js"></script>
+</head>
+<body>
+<div class="container-fluid">
+  <!-- nav bar -->
+  <nav class="navbar navbar-expand-lg bg-body-tertiary header_bar">
+      
+      <div class="container-fluid ">
+        <div class="col">
+          <a class="navbar-brand" href="#"> <img alt="webtoolx company logo" class="main-logo" src="images/calclogo.png" alt="logo"></a>
+        </div>
+      </div>
+    </nav>
+
+  <div class="scroll-container">
+      <button class="scroll-btn left">&larr;</button>
+      <div class="scroll-wrapper">
+        <div class="scroll-content">
+          <a class="hr_nav-item " href="/">P/L Calculator</a>
+          <a class="hr_nav-item " href="/average-calculator.html">Average Calculator</a>
+          <a class="hr_nav-item active" href="/percentage-change-calculator.html">Percentage Change Calculator</a>
+          <a class="hr_nav-item" href="/percentage-calculator.html">Percentage Calculator</a>
+          <a class="hr_nav-item" href="/emi-calculator.html">Loan EMI Calculator</a>
+          <a class="hr_nav-item " href="/tip-calculator.html">Tip Calculator</a>
+
+        </div>
+      </div>
+      <button class="scroll-btn right">&rarr;</button>
+    </div>
+
+  <div class="container-fluid p-0 p-lg-2">
+    <div class="container-fluid py-4 p-0 p-lg-2">
+      <div class="row background-image-average">
+        <div class="col cal_box">
+          <h1 class="calc_heading">Age Calculator</h1>
+          <div class="row mb-3">
+            <div class="col-md-6 mb-3">
+              <label class="textfield_label1" style="background:rgb(183, 255, 183);">Date of Birth</label>
+              <div class="input-group">
+                <input type="date" name="dob" id="dob" class="form-control input_buysell_size" aria-label="Date of Birth">
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="textfield_label1" style="background:rgb(255, 255, 183);">Current Date</label>
+              <div class="input-group">
+                <input type="date" name="current_date" id="current_date" class="form-control input_buysell_size" aria-label="Current Date">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 mb-3"></div>
+            <div class="col-md-6 mb-3 nav justify-content-end">
+              <button type="button" aria-label="Reset" class="calculate_button reset_button_pl_calc" id="resetBtn"></button>
+                <img alt="reset button" src="images/reset.svg" height="25px">
+              </button>
+              <input type="button" aria-label="Calculate" value="Calculate" class="calculate_button" id="calculateBtn">
+            </div>
+          </div>
+        </div>
+        <div class="col-1 d-none d-lg-block"></div>
+        <div class="col">
+          <div class="profit-box"></div>
+            <div class="prof_loss_view" style="background: #478b4b30; display: inline-block; border-radius: 6px; padding: 0px 6px;">
+              <span class="calc_numbers font_30" id="age_years">0</span>
+              <span class="sign_pctg">Years</span>
+            </div>
+            <h3 class="heading_view_result font_15">Your Age</h3>
+            <span class="difference_block">
+              <span class="prof_loss_view">
+                <span class="calc_numbers font_30" id="age_months">0</span>
+                <span>Months</span>
+              </span>
+              <span class="prof_loss_view">
+                <span class="calc_numbers font_30" id="age_days">0</span>
+                <span>Days</span>
+              </span>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="col">
+          <h3 class="mb-4">How to Use <i class="fa-solid fa-circle-info"></i></h3>
+          <div class="card-body">
+            <ol class="list-group list-group-numbered">
+              <li class="list-group-item">
+                <strong>Step 1: Enter Your Date of Birth</strong><br>
+                Select your birth date in the "Date of Birth" field.
+              </li>
+              <li class="list-group-item">
+                <strong>Step 2: Enter the Current Date</strong><br>
+                By default, today's date is selected. You can change it if needed.
+              </li>
+              <li class="list-group-item">
+                <strong>Step 3: Click "Calculate"</strong><br>
+                Press the "Calculate" button to see your age in years, months, and days.
+              </li>
+              <li class="list-group-item">
+                <strong>Step 4: View Results</strong><br>
+                Your exact age will be displayed instantly.
+              </li>
+              <li class="list-group-item">
+                <strong>Step 5: Reset (Optional)</strong><br>
+                Click "Reset" to clear the fields and start again.
+              </li>
+            </ol>
+          </div>
+          <div class="alert alert-info mt-4">
+            <strong>Note:</strong> This tool calculates your age based on the dates you provide.
+          </div>
+        </div>
+        <div class="col">
+          <h3><i class="fa-solid fa-square-root-variable"></i> Formula Explanation:</h3>
+          <ol class="list-group list-group-numbered">
+            <li class="list-group-item">
+              <strong>Step 1: Subtract Birth Date from Current Date</strong><br>
+              The difference gives your age in years, months, and days.
+            </li>
+            <li class="list-group-item">
+              <strong>Step 2: Handle Month and Day Calculation</strong><br>
+              If the current day/month is less than birth day/month, adjust accordingly.
+            </li>
+            <li class="list-group-item">
+              <strong>Step 3: Example Calculation</strong><br>
+              If you were born on 2000-05-15 and today is 2024-06-10:<br>
+              <pre><code>
+Years: 24 (2024-2000)
+Months: 0 (June-May)
+Days: 26 (10-15, adjusted for previous month)
+              </code></pre>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Set current date default
+    document.addEventListener('DOMContentLoaded', function() {
+      const today = new Date().toISOString().split('T')[0];
+      document.getElementById('current_date').value = today;
+    });
+
+    document.getElementById('calculateBtn').onclick = function() {
+      const dob = document.getElementById('dob').value;
+      const current = document.getElementById('current_date').value;
+      if (!dob || !current) return;
+
+      const dobDate = new Date(dob);
+      const currentDate = new Date(current);
+
+      let years = currentDate.getFullYear() - dobDate.getFullYear();
+      let months = currentDate.getMonth() - dobDate.getMonth();
+      let days = currentDate.getDate() - dobDate.getDate();
+
+      if (days < 0) {
+        months -= 1;
+        days += new Date(currentDate.getFullYear(), currentDate.getMonth(), 0).getDate();
+      }
+      if (months < 0) {
+        years -= 1;
+        months += 12;
+      }
+
+      document.getElementById('age_years').textContent = years >= 0 ? years : 0;
+      document.getElementById('age_months').textContent = months >= 0 ? months : 0;
+      document.getElementById('age_days').textContent = days >= 0 ? days : 0;
+    };
+
+    document.getElementById('resetBtn').onclick = function() {
+      document.getElementById('dob').value = '';
+      const today = new Date().toISOString().split('T')[0];
+      document.getElementById('current_date').value = today;
+      document.getElementById('age_years').textContent = '0';
+      document.getElementById('age_months').textContent = '0';
+      document.getElementById('age_days').textContent = '0';
+    };
+  </script>
+  <footer class="footer_main">
+    <div>
+      <a href="/" style="color: white; margin: 0 15px; text-decoration: none;" class="footer-logo"><img rel="favicon Webtoolsx" src="favicon.png" alt="Company Logo"></a>
+      <a href="/" style="color: white; margin: 0 15px; text-decoration: none;">Home</a>
+      <a href="/about.html" style="color: white; margin: 0 15px; text-decoration: none;">About Us</a>
+      <a href="/contact.html" style="color: white; margin: 0 15px; text-decoration: none;">Contact Us</a>
+    </div>
+    <div style="margin-top: 20px;">
+      <p>&copy; 2024 Webtoolsx. All Rights Reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

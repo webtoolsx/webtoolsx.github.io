@@ -557,3 +557,48 @@ input:focus, textarea:focus, select:focus {
         max-width: 100%;
       }
     }
+
+/* Age Calculator Result Panel */
+.age-result-card {
+    background: #ffffff;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    border: 1px solid #e0e0e0;
+    margin-top: 20px;
+}
+.age-main {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #f0f0f0;
+}
+.age-number {
+    display: block;
+    font-size: 60px;
+    font-weight: 700;
+    color: #441c60; /* Themed purple */
+    line-height: 1;
+}
+.age-label {
+    font-size: 20px;
+    color: #6c757d;
+    font-weight: 500;
+}
+.age-details {
+    display: flex;
+    justify-content: space-around;
+}
+.age-detail-item {
+    flex: 1;
+}
+.age-number-small {
+    display: block;
+    font-size: 30px;
+    font-weight: 600;
+    color: #343a40;
+}
+.age-label-small {
+    font-size: 14px;
+    color: #6c757d;
+}

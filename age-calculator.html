@@ -95,10 +95,12 @@
         <div class="scroll-content">
           <a class="hr_nav-item " href="/">P/L Calculator</a>
           <a class="hr_nav-item " href="/average-calculator.html">Average Calculator</a>
-          <a class="hr_nav-item active" href="/percentage-change-calculator.html">Percentage Change Calculator</a>
+          <a class="hr_nav-item " href="/percentage-change-calculator.html">Percentage Change Calculator</a>
           <a class="hr_nav-item" href="/percentage-calculator.html">Percentage Calculator</a>
+          <a class="hr_nav-item active" href="/age-calculator.html">Age Calculator</a>
           <a class="hr_nav-item" href="/emi-calculator.html">Loan EMI Calculator</a>
           <a class="hr_nav-item " href="/tip-calculator.html">Tip Calculator</a>
+          <a class="hr_nav-item" href="/time.html">World Clock</a>
 
         </div>
       </div>
@@ -127,7 +129,7 @@
           <div class="row">
             <div class="col-md-6 mb-3"></div>
             <div class="col-md-6 mb-3 nav justify-content-end">
-              <button type="button" aria-label="Reset" class="calculate_button reset_button_pl_calc" id="resetBtn"></button>
+              <button type="button" aria-label="Reset" class="calculate_button reset_button_pl_calc" id="resetBtn">
                 <img alt="reset button" src="images/reset.svg" height="25px">
               </button>
               <input type="button" aria-label="Calculate" value="Calculate" class="calculate_button" id="calculateBtn">
@@ -136,23 +138,23 @@
         </div>
         <div class="col-1 d-none d-lg-block"></div>
         <div class="col">
-          <div class="profit-box"></div>
-            <div class="prof_loss_view" style="background: #478b4b30; display: inline-block; border-radius: 6px; padding: 0px 6px;">
-              <span class="calc_numbers font_30" id="age_years">0</span>
-              <span class="sign_pctg">Years</span>
+          <div class="age-result-card">
+            <div class="age-main">
+              <span class="age-number" id="age_years">0</span>
+              <span class="age-label">Years Old</span>
             </div>
-            <h3 class="heading_view_result font_15">Your Age</h3>
-            <span class="difference_block">
-              <span class="prof_loss_view">
-                <span class="calc_numbers font_30" id="age_months">0</span>
-                <span>Months</span>
-              </span>
-              <span class="prof_loss_view">
-                <span class="calc_numbers font_30" id="age_days">0</span>
-                <span>Days</span>
-              </span>
-            </span>
+            <div class="age-details">
+              <div class="age-detail-item">
+                <span class="age-number-small" id="age_months">0</span>
+                <span class="age-label-small">Months</span>
+              </div>
+              <div class="age-detail-item">
+                <span class="age-number-small" id="age_days">0</span>
+                <span class="age-label-small">Days</span>
+              </div>
+            </div>
           </div>
+        </div>
         </div>
       </div>
       <div class="row mt-4">

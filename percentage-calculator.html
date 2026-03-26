@@ -3,22 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Easily calculate percentage changes between two values with our online tool. Input your values for an accurate percentage calculation.">
-  <meta name="keywords" content="percentage change, percentage calculator, percentage difference, finance tools, calculator">
-  <meta name="author" content="Your Name">
+  <meta name="description" content="Calculate percentages quickly and accurately with the WebToolsX Percentage Calculator. Free online tool for finding percentages of any value.">
+  <meta name="keywords" content="percentage calculator, percent of, calculate percentage, math tools, WebToolsX">
+  <meta name="author" content="WebToolsX">
   <meta name="robots" content="index, follow">
   
   <!-- Open Graph Meta Tags -->
-  <meta property="og:title" content="Percentage Calculator">
-  <meta property="og:description" content="Calculate the percentage between two values quickly and easily using our online tool.">
-  <meta property="og:image" content="favicon.png">
-  <meta property="og:url" content="https://webtoolsx.github.io/percentage-change-calculator.html">
+  <meta property="og:title" content="Percentage Calculator - Free Online Tool | WebToolsX">
+  <meta property="og:description" content="Calculate percentages between two values quickly and easily using our free online tool.">
+  <meta property="og:image" content="https://webtoolsx.github.io/favicon.png">
+  <meta property="og:url" content="https://webtoolsx.github.io/percentage-calculator.html">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter Card Meta Tags -->
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Percentage Calculator | WebToolsX">
+  <meta name="twitter:description" content="Calculate percentages quickly and accurately with our free online tool.">
+  <meta name="twitter:image" content="https://webtoolsx.github.io/favicon.png">
 
   <link rel="icon" href="favicon.png" type="image/png">
-  <link rel="canonical" href="https://webtoolsx.github.io/percentage-change-calculator.html">
+  <link rel="canonical" href="https://webtoolsx.github.io/percentage-calculator.html">
 
-  <title>Percentage Calculator - Free Tool | WebToolsX</title>
+  <title>Percentage Calculator - Free & Accurate Tool | WebToolsX</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   
   <!-- Bootstrap CSS -->
@@ -31,18 +37,14 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/custom_radio.css">
   
-  <!-- jQuery (if necessary, slim version reduces load time) -->
+  <!-- jQuery -->
   <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
   
-  <!-- Custom script for stock calculation -->
+  <!-- Custom scripts -->
   <script type="module" src="js/percentage_change.js"></script>
   <script type="module" src="js/hr_scroll.js"></script>
-
-  <!-- Counto script -->
   <script src="js/counto.min.js"></script>
-  <script type="text/javascript" async
-        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
-  </script>
+  <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
   
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-0ZDRS85Q8B"></script>
@@ -50,22 +52,43 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'G-0ZDRS85Q8B');
   </script>
   
-  <!-- Structured Data for SEO -->
+  <!-- Structured Data JSON-LD -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "Percentage Calculator",
-    "url": "https://webtoolsx.github.io/percentage-change-calculator.html",
-    "description": "An easy-to-use tool to calculate the percentage between two values.",
-    "applicationCategory": "Finance",
-    "softwareVersion": "1.0",
-    "operatingSystem": "All"
-  }
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://webtoolsx.github.io/"
+      },{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Percentage Calculator",
+        "item": "https://webtoolsx.github.io/percentage-calculator.html"
+      }]
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Percentage Calculator",
+      "url": "https://webtoolsx.github.io/percentage-calculator.html",
+      "description": "An easy-to-use tool to calculate the percentage between two values.",
+      "applicationCategory": "EducationalApplication",
+      "softwareVersion": "1.0",
+      "operatingSystem": "All",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+  ]
   </script>
 </head>
 <body>
@@ -90,6 +113,7 @@
           <a class="hr_nav-item" href="/age-calculator.html">Age Calculator</a>
           <a class="hr_nav-item" href="/emi-calculator.html">Loan EMI Calculator</a>
           <a class="hr_nav-item" href="/tip-calculator.html">Tip Calculator</a>
+          <a class="hr_nav-item" href="/themes.html">Themes</a>
           <!-- Time/World Clock tab -->
           <a class="hr_nav-item" href="/time.html">World Clock</a>
         </div>
@@ -248,6 +272,7 @@
   <div>
     <a href="/" style="color: white; margin: 0 15px; text-decoration: none;" class="footer-logo"><img rel="favicon Webtoolsx" src="favicon.png" alt="Company Logo"></a>
     <a href="/" style="color: white; margin: 0 15px; text-decoration: none;">Home</a>
+    <a href="/themes.html" style="color: white; margin: 0 15px; text-decoration: none;">Themes</a>
     <a href="/about.html" style="color: white; margin: 0 15px; text-decoration: none;">About Us</a>
     <a href="/contact.html" style="color: white; margin: 0 15px; text-decoration: none;">Contact Us</a>
   </div>

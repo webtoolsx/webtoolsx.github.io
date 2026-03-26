@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="80"
+   height="80"
+   viewBox="0 0 21.166666 21.166667"
+   version="1.1"
+   id="svg1"
+   sodipodi:docname="hamburger-icon-dark.svg"
+   inkscape:version="1.4 (86a8ad7, 2024-10-11)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="9.6625"
+     inkscape:cx="40.051746"
+     inkscape:cy="40"
+     inkscape:window-width="1920"
+     inkscape:window-height="991"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg1" />
+  <defs
+     id="defs1" />
+  <rect
+     style="fill:none;fill-opacity:0.893103;stroke:#55d400;stroke-width:1.607;stroke-linecap:round;stroke-dasharray:none"
+     id="rect1"
+     width="7.7429562"
+     height="7.7089963"
+     x="1.8355983"
+     y="-19.432278"
+     ry="2.1055408"
+     transform="rotate(89.772564)" />
+  <rect
+     style="fill:none;fill-opacity:0.893103;stroke:#55d400;stroke-width:1.607;stroke-linecap:round;stroke-dasharray:none"
+     id="rect1-8"
+     width="7.7429562"
+     height="7.7089963"
+     x="1.7827021"
+     y="-9.3716259"
+     ry="2.1055408"
+     transform="rotate(89.772564)" />
+  <path
+     id="rect1-5"
+     style="fill:none;fill-opacity:0.893103;stroke:#55d400;stroke-width:1.607;stroke-linecap:round"
+     d="m 16.311024,19.49463 -2.439563,0.0097 c -1.16646,0.0046 -2.109251,-0.930706 -2.113881,-2.097167 l -0.01402,-3.531846 c -0.0046,-1.166461 0.930705,-2.109252 2.097166,-2.113882 l 3.497887,-0.01389 c 1.16646,-0.0046 2.109252,0.930705 2.113882,2.097166 l 0.0098,2.473522" />
+  <rect
+     style="fill:none;fill-opacity:0.893103;stroke:#55d400;stroke-width:1.607;stroke-linecap:round;stroke-dasharray:none"
+     id="rect1-8-5"
+     width="7.7429562"
+     height="7.7089963"
+     x="11.831597"
+     y="-9.3302326"
+     ry="2.1055408"
+     transform="rotate(89.772564)" />
+</svg>

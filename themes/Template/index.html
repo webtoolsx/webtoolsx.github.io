@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta Information -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="PORTMAX - Personal Portfolio showcasing skills, experience, projects, and services.">
+    <meta name="keywords" content="Portfolio, Web Developer, Projects, Skills, Services, Experience, Alan Crage">
+    <meta name="author" content="Alan Crage">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#5b0094">
+    <meta property="og:title" content="PORTMAX - Personal Portfolio">
+    <meta property="og:description" content="Explore Alan Crage's portfolio, featuring skills, projects, and services.">
+    <meta property="og:image" content="./assets/images/profile-image.jpg">
+    <meta property="og:url" content="https://yourwebsite.com">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="PORTMAX - Personal Portfolio">
+    <meta name="twitter:description" content="Explore Alan Crage's portfolio, featuring skills, projects, and services.">
+    <meta name="twitter:image" content="./assets/images/profile-image.jpg">
+
+    <title>PORTMAX - Personal Portfolio</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Jaldi&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Kumbh+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Inria+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=League+Spartan&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Slab&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Kufam&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Jost&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Tektur:wght@400..900&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link href="./assets/css/bootstrap.min.css" rel="stylesheet" >
+
+    <!-- Custom Styles -->
+    <link href="./assets/css/style.css?v=1.1" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <link rel="stylesheet" href="./assets/css/owl.carousel.min.css" >
+</head>
+<body>
+    <!-- Preloader -->
+    <div class="loader-wrapper">
+        <div class="loader"></div>
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+    </div>
+
+    
+<a href="#" id="goToTopBtn" title="Go to top" style="
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 9999;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #5b0094;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: opacity 0.3s;
+    opacity: 0;
+    pointer-events: none;
+">
+    <i class="fas fa-arrow-up"></i>
+</a>
+<script>
+    // Show/hide button on scroll
+    window.addEventListener('scroll', function() {
+        const btn = document.getElementById('goToTopBtn');
+        if (window.scrollY > 300) {
+            btn.style.opacity = '1';
+            btn.style.pointerEvents = 'auto';
+        } else {
+            btn.style.opacity = '0';
+            btn.style.pointerEvents = 'none';
+        }
+    });
+    // Scroll to top on click
+    document.getElementById('goToTopBtn').addEventListener('click', function(e) {
+        e.preventDefault();
+        window.scrollTo({top: 0, behavior: 'smooth'});
+    });
+</script>
+
+    <!-- Navbar -->
+    <div class="container-fluid">
+        <nav class="navbar top_fixed_header">
+            <a class="fixed_header-brand" href="#">
+            <img src="./assets/images/head_icon/port_svg_icon.svg" 
+                 style="height: 75px; margin-bottom: 20px;"
+                 alt="PORTMAX logo featuring a stylized dark ellipse with a vertical rectangle and a central light circle, overlaid with the text PORTMAX in a modern font. The design conveys professionalism and innovation in a digital portfolio environment." />
+            </a>
+            <div class="d-flex align-items-center fixed-header-item-container ms-auto">
+                <ul class="list-unstyled">
+                    <li class="list-inline-item me-5"><a href="#skills" class="link-item">Skills</a></li>
+                    <li class="list-inline-item me-5"><a href="#services" class="link-item">Services</a></li>
+                    <li class="list-inline-item me-5"><a href="#experience" class="link-item">Experience</a></li>
+                    <li class="list-inline-item me-5"><a href="#projects" class="link-item">Projects</a></li>
+                    <li class="list-inline-item me-5"><a href="#testimonials" class="link-item">Testimonials</a></li>
+                    <li class="list-inline-item me-5"><a href="#contact" class="link-item">Contact</a></li>
+                </ul>
+            </div>
+          
+            <div class="nav-ham" onclick="toggleSidebar()"></div>
+        </nav>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <button class="close-btn" onclick="toggleSidebar()">×</button>
+        <h4>LINKS</h4>
+        <ul class="list-unstyled">
+            <!-- Sidebar Links -->
+            <li><a href="#skills" class="link-item">Skills</a></li>
+            <li><a href="#services" class="link-item">Services</a></li>
+            <li><a href="#experience" class="link-item">Experience</a></li>
+            <li><a href="#projects" class="link-item">Projects</a></li>
+            <li><a href="#testimonials" class="link-item">Testimonials</a></li>
+            <li><a href="#contact" class="link-item">Contact</a></li>
+        </ul>
+    </div>
+
+    <!-- Profile Section -->
+    <div class="container">
+        
+        <div class="row profile-info">
+            <!-- Profile Info -->
+            <div class="col-md-7 mt-5 pt-sm-5 order-2 order-md-1 profile-info-main">
+                <div class="profile-info-container">
+                    <h1 class="profile-name">Alan Crage</h1>
+                    <h2 class="profile-title">Web Developer</h2>
+                    <div class="quick_chips">
+                        <div class="chips">
+                            <div class="chip-number">
+                                <div class="odometer" id="exp-odometer">0</div>
+                                <span class="plus-sign">+</span>
+                            </div>
+                            <i class="fas fa-briefcase chip-icon"></i>
+                            <div class="chip-text">Experience</div>
+                        </div>
+                        <div class="chips">
+                            <div class="chip-number">
+                                <div class="odometer" id="clients-odometer">0</div>
+                                <span class="plus-sign">+</span>
+                            </div>
+                            <i class="fas fa-smile chip-icon"></i>
+                            <div class="chip-text">Happy Clients</div>
+                        </div>
+                        <div class="chips">
+                            <div class="chip-number">
+                                <div class="odometer" id="projects-odometer">0</div>
+                                <span class="plus-sign">+</span>
+                            </div>
+                            <i class="fas fa-code chip-icon"></i>
+                            <div class="chip-text">Projects</div>
+                        </div>
+                        <div class="chips">
+                            <div class="chip-number">
+                                <div class="odometer" id="awards-odometer">0</div>
+                                
+                            </div>
+                            <i class="fas fa-trophy chip-icon"></i>
+                            <div class="chip-text">Awards</div>
+                        </div>
+                    </div>
+                    </div>
+                    <!-- Odometer CSS -->
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/odometer.js/0.4.8/themes/odometer-theme-default.min.css" />
+                    <!-- Odometer JS -->
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/odometer.js/0.4.8/odometer.min.js"></script>
+                    <script>
+                    document.addEventListener("DOMContentLoaded", function () {
+                        setTimeout(function () {
+                            document.getElementById('exp-odometer').innerHTML = 10;
+                            document.getElementById('clients-odometer').innerHTML = 120;
+                            document.getElementById('projects-odometer').innerHTML = 85;
+                            document.getElementById('awards-odometer').innerHTML = 7;
+                        }, 500);
+                    });
+                    </script>
+
+                <div class="row">
+                    <!-- Download CV Button -->
+                    <div class="col-md-4 download_cv_btn">
+                        <div class="profile-info-links">
+                            <button class="rounded-pill">
+                                <i class="fa fa-download"></i> Download CV
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Social Media Links -->
+                    <div class="col-md-8 social-icon-links">
+                        <div class="profile-info-links">
+                            <ul class="list-inline">
+                                <li class="list-inline-item"><a class="link-item" href="#"><i class="fab fa-github"></i></a></li>
+                                <li class="list-inline-item"><a class="link-item" href="#"><i class="fab fa-youtube"></i></a></li>
+                                <li class="list-inline-item"><a class="link-item" href="#"><i class="fab fa-facebook"></i></a></li>
+                                <li class="list-inline-item"><a class="link-item" href="#"><i class="fab fa-linkedin"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            <!-- Profile Image -->
+            <div class="col-md-5 order-1 order-md-2">
+                <div class="profile-image-container">
+                    <img src="./assets/images/profile-image/profile-image.png" class="profile-image"  alt="Profile Image">
+                </div>
+            </div>
+
+        </div>
+        
+    </div>
+
+    <!-- Skills Section -->
+    <section class="container mt-5 skills-section" id="skills" style="text-align: center;">
+        <div class="heading">Technology Stacks</div>
+        <div class="sub-heading mb-4">
+            <span class="text-green">Over the years,</span>
+            I have experience with the following technologies:
+        </div>
+        <div class="row justify-content-center">
+            <!-- Skill Blocks -->
+            <div class="skills-block rac-1">
+                <div class="year-section-description">
+                    <div class="year-section">JS</div>
+                    <div class="header">
+                        <img src="./assets/images/svg/skills/javascript-logo.svg" height="100" alt="">
+                    </div>
+                    <div class="content-title">
+                        <h5>JavaScript</h5>
+                    </div>
+                </div>
+            </div>
+            <!-- Repeat similar blocks for other skills -->
+            <div class="skills-block rac-1">
+                <div class="year-section-description">
+                    <div class="year-section">C++</div>
+                    <div class="header">
+                        <img src="./assets/images/svg/skills/c-logo.svg" height="100" alt="">
+                    </div>
+                    <div class="content-title">
+                        <h5>C++</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="skills-block rac-1">
+                <div class="year-section-description">
+                    <div class="year-section">Laravel</div>
+                    <div class="header">
+                        <img src="./assets/images/svg/skills/laravel-2.svg" height="100" alt="">
+                    </div>
+                    <div class="content-title">
+                        <h5>Laravel</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="skills-block rac-1">
+                <div class="year-section-description">
+                    <div class="year-section">React</div>
+                    <div class="header">
+                        <img src="./assets/images/svg/skills/react-2.svg" height="100" alt="">
+                    </div>
+                    <div class="content-title">
+                        <h5>React</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="skills-block rac-1">
+                <div class="year-section-description">
+                    <div class="year-section">W</div>
+                    <div class="header">
+                        <img src="./assets/images/svg/skills/wordpress-icon.svg" height="100" alt="">
+                    </div>
+                    <div class="content-title">
+                        <h5>Wordpress</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="skills-block rac-1">
+                <div class="year-section-description">
+                    <div class="year-section">Node</div>
+                    <div class="header">
+                        <img src="./assets/images/svg/skills/nodejs-icon.svg" alt="">
+                    </div>
+                    <div class="content-title">
+                        <h5>Node</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="container mt-5 services-section" id="services" style="text-align: center;">
+        <div class="heading">Services</div>
+        <div class="sub-heading mb-4">
+            <span class="text-green">Comprehensive Services</span> tailored to meet your needs
+        </div>
+        <div class="services-content">
+            <div class="row">
+                <!-- Service Block -->
+                <div class="col-md-4 services-block">
+                    <div class="services-block-container">
+                        <div class="col">
+                            <i class="fas fa-paint-brush fa-3x icon-chip"></i>
+                        </div>
+                        <div class="col year-section-description">
+                            <h5 class="card-title">Website Design</h5>
+                            <h6 class="text-green">High Quality | Latest Tech</h6>
+                        </div>
+                    </div>
+                </div>
+                <!-- Repeat similar blocks for other services -->
+                <div class="col-md-4 services-block">
+                    <div class="services-block-container">
+                        <div class="col">
+                            <i class="fas fa-cloud fa-3x icon-chip"></i>
+                        </div>
+                        <div class="col year-section-description">
+                            <h5 class="card-title">Cloud Service</h5>
+                            <h6 class="text-green">Reliable | Scalable Solutions</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 services-block">
+                    <div class="services-block-container">
+                        <div class="col">
+                            <i class="fas fa-bullhorn fa-3x icon-chip"></i>
+                        </div>
+                        <div class="col year-section-description">
+                            <h5 class="card-title">Marketing Service</h5>
+                            <h6 class="text-green">Effective Strategies | Proven Results</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 services-block">
+                    <div class="services-block-container">
+                        <div class="col">
+                            <i class="fas fa-robot fa-3x icon-chip"></i>
+                        </div>
+                        <div class="col year-section-description">
+                            <h5 class="card-title">AI/ML Integration</h5>
+                            <h6 class="text-green">Advanced Solutions | Cutting-Edge Technology</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 services-block">
+                    <div class="services-block-container">
+                        <div class="col">
+                            <i class="fas fa-link fa-3x icon-chip"></i>
+                        </div>
+                        <div class="col year-section-description">
+                            <h5 class="card-title">Blockchain Development</h5>
+                            <h6 class="text-green">Secure | Decentralized Solutions</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 services-block">
+                    <div class="services-block-container">
+                        <div class="col">
+                            <i class="fas fa-chart-line fa-3x icon-chip"></i>
+                        </div>
+                        <div class="col year-section-description">
+                            <h5 class="card-title">SEO</h5>
+                            <h6 class="text-green">Optimize Your Site | Increase Visibility</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Work Experience Section -->
+    <section class="container mt-5 career-section" id="experience">
+        
+        <div class="row"> 
+            <div class="col-md-6 title-end-alg-" style="background-image: url('./assets/images/svg/blacktri.svg');">
+
+                <div class="heading" >Education</div>
+                <div class="sub-heading mb-4">
+                    <div class="timeline">
+
+                        <!-- Item 1 -->
+                        <div class="timeline-item">
+                        <div class="timeline-title">Master of Science in Data Science</div>
+                        <div class="timeline-company">Stanford University | 2010 – 2012</div>
+                        <ul class="timeline-bullets">
+                            <li>Specialized in Big Data Analytics and Cloud Computing</li>
+                            <li>Completed a thesis on scalable data processing systems</li>
+                        </ul>
+                        </div>
+                
+                        <!-- Item 2 -->
+                        <div class="timeline-item">
+                        <div class="timeline-title">Professional Certification in AI</div>
+                        <div class="timeline-company">Coursera (Stanford Online) | 2013 – 2014</div>
+                        <ul class="timeline-bullets">
+                            <li>Focused on Deep Learning and Neural Networks</li>
+                            <li>Built AI models for image recognition and NLP tasks</li>
+                        </ul>
+                        </div>
+                
+                        <!-- Item 3 -->
+                        <div class="timeline-item">
+                        <div class="timeline-title">Ph.D. in Computer Science</div>
+                        <div class="timeline-company">Harvard University | 2015 – 2020</div>
+                        <ul class="timeline-bullets">
+                            <li>Research focused on Natural Language Processing and AI Ethics</li>
+                            <li>Published multiple papers in top-tier journals</li>
+                        </ul>
+                        </div>
+
+                        
+                
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-6">
+                <div class="heading" >Work Experience</div>
+                <div class="sub-heading mb-4">
+                    <div class="timeline">
+
+                        <!-- Item 1 -->
+                        <div class="timeline-item">
+                        <div class="timeline-title">Senior Developer</div>
+                        <div class="timeline-company">XYZ Innovations | 2012 – 2014</div>
+                        <ul class="timeline-bullets">
+                            <li>Led a team of developers to create scalable web applications</li>
+                            <li>Implemented new features and optimized existing code</li>
+                        </ul>
+                        </div>
+                
+                        <!-- Item 2 -->
+                        <div class="timeline-item">
+                        <div class="timeline-title">Lead Developer</div>
+                        <div class="timeline-company">Tech Solutions Inc. | 2014 – 2016</div>
+                        
+                        </div>
+                
+                        <!-- Item 3 -->
+                        <div class="timeline-item">
+                        <div class="timeline-title">Technical Manager</div>
+                        <div class="timeline-company">Innovatech | 2016 – 2018</div>
+                        
+                        </div>
+                
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Projects Section -->
+    <section class="container mt-5 projects-section" id="projects">
+        <div class="sub-heading mb-4" style="text-align: center;">
+            <div class="heading">Projects</div>
+            <span class="text-green">20+</span> projects completed successfully, including:
+        </div>
+        <div class="projects-content">
+            <div class="row">
+                <!-- Project Block -->
+                <div class="col-lg-12 project-card-container">
+                    <div class="project-parent-block">
+                        <div class="row">
+                            
+
+                            <!-- type 2 -->
+                            <div class="col-lg-3 projects-block">
+                                <div class="projects-block-container">
+                                    <div class="projects-header projects-header-image">
+                                        <img src="./assets/images/placeholder/16683348_5779073.jpg" height="300" alt="Portfolio Website Project Thumbnail">
+                                        <a class="project-title text-dark-green">Portfolio Website</a>
+                                    </div>
+                                    <div class="projects-header-content">
+                                        <span class="chips">#HTML</span>
+                                        <span class="chips">#CSS</span>
+                                        <div class="fati-heading">
+                                            <div class="title">CreativeSpace</div>
+                                            <div class="subtitle">Innovative Designs</div>
+                                            <div class="description">
+                                              <b>@Elegant</b> and responsive designs showcasing creativity and technical expertise.
+                                            </div>
+                                          </div>
+                                    </div>
+                                    <div class="foot p-2">
+                                        <a class="lookup bottom-right" data-bs-toggle="modal" data-bs-target="#projectExplanation"></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 projects-block">
+                                <div class="projects-block-container">
+                                    <div class="projects-header projects-header-image">
+                                        <img src="./assets/images/placeholder/16683348_5779073.jpg" height="300" alt="Mobile App Project Thumbnail">
+                                        <a class="project-title text-dark-green">Mobile App</a>
+                                    </div>
+                                    <div class="projects-header-content">
+                                        <span class="chips">#Flutter</span>
+                                        <span class="chips">#Dart</span>
+                                        <div class="fati-heading">
+                                            <div class="title">Appify</div>
+                                            <div class="subtitle">Seamless Experiences</div>
+                                            <div class="description">
+                                              <b>@User-Centric</b> mobile applications delivering intuitive and engaging experiences.
+                                            </div>
+                                          </div>
+                                    </div>
+                                    <div class="foot p-2">
+                                        <a class="lookup bottom-right" data-bs-toggle="modal" data-bs-target="#projectExplanation"></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 projects-block">
+                                <div class="projects-block-container">
+                                    <div class="projects-header projects-header-image">
+                                        <img src="./assets/images/placeholder/16683348_5779073.jpg" height="300" alt="Data Analytics Dashboard Project Thumbnail">
+                                        <a class="project-title text-dark-green">Data Analytics Dashboard</a>
+                                    </div>
+                                    <div class="projects-header-content">
+                                        <span class="chips">#Python</span>
+                                        <span class="chips">#Django</span>
+                                        <div class="fati-heading">
+                                            <div class="title">InsightPro</div>
+                                            <div class="subtitle">Data-Driven Insights</div>
+                                            <div class="description">
+                                              <b>@Powerful</b> dashboards providing actionable insights and analytics for businesses.
+                                            </div>
+                                          </div>
+                                    </div>
+                                    <div class="foot p-2">
+                                        <a class="lookup bottom-right" data-bs-toggle="modal" data-bs-target="#projectExplanation"></a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3 projects-block">
+                                <div class="projects-block-container">
+                                    <div class="projects-header projects-header-image">
+                                        <img src="./assets/images/placeholder/16683348_5779073.jpg" height="300" alt="E-Commerce Website Project Thumbnail">
+                                        <a class="project-title text-dark-green">E-Commerce Website</a>
+                                    </div>
+                                    <div class="projects-header-content">
+                                        <span class="chips">#React</span>
+                                        <span class="chips">#Node.js</span>
+                                        <div class="fati-heading">
+                                            <div class="title">ShopEase</div>
+                                            <div class="subtitle">Seamless Shopping</div>
+                                            <div class="description">
+                                              <b>@Efficient</b> and scalable e-commerce platforms for modern businesses.
+                                            </div>
+                                          </div>
+                                    </div>
+                                    <div class="foot p-2">
+                                        <a class="lookup bottom-right" data-bs-toggle="modal" data-bs-target="#projectExplanation"></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 projects-block">
+                                <div class="projects-block-container">
+                                    <div class="projects-header projects-header-image">
+                                        <img src="./assets/images/placeholder/16683348_5779073.jpg" height="300" alt="CRM System Project Thumbnail">
+                                        <a class="project-title text-dark-green">CRM System</a>
+                                    </div>
+                                    <div class="projects-header-content">
+                                        <span class="chips">#PHP</span>
+                                        <span class="chips">#MySQL</span>
+                                        <div class="fati-heading">
+                                            <div class="title">ClientConnect</div>
+                                            <div class="subtitle">Streamlined Management</div>
+                                            <div class="description">
+                                              <b>@Robust</b> CRM solutions to enhance customer relationships and business efficiency.
+                                            </div>
+                                          </div>
+                                    </div>
+                                    <div class="foot p-2">
+                                        <a class="lookup bottom-right" data-bs-toggle="modal" data-bs-target="#projectExplanation"></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 projects-block">
+                                <div class="projects-block-container">
+                                    <div class="projects-header projects-header-image">
+                                        <img src="./assets/images/placeholder/16683348_5779073.jpg" height="300" alt="Portfolio Management Tool Project Thumbnail">
+                                        <a class="project-title text-dark-green">Portfolio Management Tool</a>
+                                    </div>
+                                    <div class="projects-header-content">
+                                        <span class="chips">#Angular</span>
+                                        <span class="chips">#TypeScript</span>
+                                        <div class="fati-heading">
+                                            <div class="title">InvestSmart</div>
+                                            <div class="subtitle">Smart Investments</div>
+                                            <div class="description">
+                                              <b>@Innovative</b> tools for managing and analyzing investment portfolios effectively.
+                                            </div>
+                                          </div>
+                                    </div>
+                                    <div class="foot p-2">
+                                        <a class="lookup bottom-right" data-bs-toggle="modal" data-bs-target="#projectExplanation"></a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- type 2 end -->
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="projectExplanation" tabindex="-1" aria-labelledby="projectExplanationLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="projectExplanationLabel">Project details</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <!-- Swiper -->
+                                            <!-- slider container -->
+                                            <div class="slider-container">
+                                                <div class="swiper-container">
+                                                    <div class="swiper-wrapper">
+                                                        <div class="swiper-slide"><img src="./assets/images/placeholder/slider-image-1.jpg" alt="Image 1"></div>
+                                                        <div class="swiper-slide"><img src="./assets/images/placeholder/slider-image-2.png" alt="Image 2"></div>
+                                                        <div class="swiper-slide"><img src="./assets/images/placeholder/slider-image-1.jpg" alt="Image 3"></div>
+                                                        <div class="swiper-slide"><img src="./assets/images/placeholder/slider-image-2.png" alt="Image 4"></div>
+                                                        <div class="swiper-slide"><img src="./assets/images/placeholder/slider-image-1.jpg" alt="Image 5"></div>
+                                                        <div class="swiper-slide"><img src="./assets/images/placeholder/slider-image-2.png" alt="Image 6"></div>
+                                                    </div>
+                                                    <!-- Pagination -->
+                                                    <div class="swiper-pagination"></div>
+                                                    <!-- Navigation buttons -->
+                                                    <div class="swiper-button-next"></div>
+                                                    <div class="swiper-button-prev"></div>
+                                                </div>
+                                            </div>
+                                            <!-- swiper end -->
+
+                                            <h2 class="project-title">Lorem Ipsum</h2>
+                                            <div class="project-description">
+                                                <p>
+                                                    This project is a responsive Profile Page built using HTML, CSS, and Bootstrap 5. 
+                                                    It includes sections for user details, skills, portfolio, and contact information, 
+                                                    making it an excellent template for personal or professional use.
+                                                </p>
+                                    
+                                                <h4>Features</h4>
+                                                <ul>
+                                                    <li>User Profile Section – Profile picture, name, bio, and job title.</li>
+                                                    <li>Skills & Experience – Progress bars to showcase skills.</li>
+                                                    <li>Portfolio/Gallery – A responsive grid or image slider.</li>
+                                                    <li>Contact Information – Email, phone, and social media links.</li>
+                                                    <li>Dark/Light Mode Toggle – Allows users to switch themes.</li>
+                                                    <li>Modern Design – Uses Bootstrap’s latest components.</li>
+                                                </ul>
+                                    
+                                                <h4>Technologies Used</h4>
+                                                <ul>
+                                                    <li>HTML5 – Page structure</li>
+                                                    <li>CSS3 & Bootstrap 5 – Styling and responsiveness</li>
+                                                    <li>JavaScript (Optional) – Interactive features</li>
+                                                </ul>
+                                    
+                                                <h4>Project Goals</h4>
+                                                <p>
+                                                    The goal of this project is to provide a fully responsive and modern profile page template 
+                                                    that is visually appealing, user-friendly, and adaptable for personal or professional branding.
+                                                </p>
+                                    
+                                                <h4>Live Preview & Code</h4>
+                                                <p>
+                                                    You can host this project online using GitHub Pages, Netlify, or Vercel to showcase your work.
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        <div class="portfolio_navigation">
+                                            <div class="navigation_item prev-project">
+                                                <!-- <a href="#" class="project">
+                                                    <i class="lookup"></i>
+                                                    <div class="nav_project">
+                                                        <div class="label">Previous Project</div>
+                                                        <h3 class="title">Sebastian</h3>
+                                                    </div>
+                                                </a> -->
+                                            </div>
+                                            <div class="navigation_item next-project">
+                                                <a href="#" class="project">
+                                                    <div class="nav_project">
+                                                        <div class="label">Goto</div>
+                                                        <h3 class="title">Xserises</h3>
+                                                    </div>
+                                                    <i class="lookup"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- modal end -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Companies Section -->
+    <section class="container mt-5 companies-section" style="text-align: center;">
+        <div class="heading">Worked With</div>
+        <div class="sub-heading mb-4">
+            <span class="text-green">Trusted by leading companies</span>
+        </div>
+        <div class="company-logos-row d-flex flex-wrap justify-content-center align-items-center">
+            <div class="company-logo-wrapper">
+                <img src="/assets/images/company_logos/1.jpg" alt="Google" class="company-logo grayscale">
+            </div>
+            <div class="company-logo-wrapper">
+                <img src="/assets/images/company_logos/2.jpg" alt="Microsoft" class="company-logo grayscale">
+            </div>
+            <div class="company-logo-wrapper">
+                <img src="/assets/images/company_logos/3.jpg" alt="Amazon" class="company-logo grayscale">
+            </div>
+            <div class="company-logo-wrapper">
+                <img src="/assets/images/company_logos/4.jpg" alt="Facebook" class="company-logo grayscale">
+            </div>
+            <div class="company-logo-wrapper">
+                <img src="/assets/images/company_logos/5.jpg" alt="Netflix" class="company-logo grayscale">
+            </div>
+            <div class="company-logo-wrapper">
+                <img src="/assets/images/company_logos/6.jpg" alt="Apple" class="company-logo grayscale">
+            </div>
+            <div class="company-logo-wrapper">
+                <img src="/assets/images/company_logos/7.jpg" alt="NVIDIA" class="company-logo grayscale">
+            </div>
+            <div class="company-logo-wrapper">
+                <img src="/assets/images/company_logos/8.jpg" alt="IBM" class="company-logo grayscale">
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Services Marquee Section -->
+    <section class="services-marquee-section">
+        <!-- <div class="services-marquee-title">Services We Offer</div> -->
+        <div class="services-marquee">
+            <div class="services-marquee-track">
+                <span class="services-marquee-item"><i class="fas fa-paint-brush"></i> Website Design</span>
+                <span class="services-marquee-item"><i class="fas fa-cloud"></i> Cloud Service</span>
+                <span class="services-marquee-item"><i class="fas fa-bullhorn"></i> Marketing Service</span>
+                <span class="services-marquee-item"><i class="fas fa-robot"></i> AI/ML Integration</span>
+                <span class="services-marquee-item"><i class="fas fa-link"></i> Blockchain Development</span>
+                <span class="services-marquee-item"><i class="fas fa-chart-line"></i> SEO</span>
+                <span class="services-marquee-item"><i class="fas fa-mobile-alt"></i> Mobile App Development</span>
+                <span class="services-marquee-item"><i class="fas fa-database"></i> Data Analytics</span>
+                <span class="services-marquee-item"><i class="fas fa-shield-alt"></i> Cybersecurity</span>
+                <!-- Repeat for seamless loop -->
+                <span class="services-marquee-item"><i class="fas fa-paint-brush"></i> Website Design</span>
+                <span class="services-marquee-item"><i class="fas fa-cloud"></i> Cloud Service</span>
+                <span class="services-marquee-item"><i class="fas fa-bullhorn"></i> Marketing Service</span>
+                <span class="services-marquee-item"><i class="fas fa-robot"></i> AI/ML Integration</span>
+                <span class="services-marquee-item"><i class="fas fa-link"></i> Blockchain Development</span>
+                <span class="services-marquee-item"><i class="fas fa-chart-line"></i> SEO</span>
+                <span class="services-marquee-item"><i class="fas fa-mobile-alt"></i> Mobile App Development</span>
+                <span class="services-marquee-item"><i class="fas fa-database"></i> Data Analytics</span>
+                <span class="services-marquee-item"><i class="fas fa-shield-alt"></i> Cybersecurity</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="container mt-5 testimonials-section" id="testimonials">
+        <div class="sub-heading mb-4" style="text-align: center;">
+            <div class="heading">Testimonials</div>What People Say
+        </div>
+        <div class="testimonials-content mt-5">
+            <div class="testimonials-parent-block">
+                <!-- Testimonial Carousel -->
+                <div class="owl-carousel">
+                    <div>
+                        <div class="testimonials-block">
+                            <div class="testimonials-block-container d-flex flex-column justify-content-center align-items-center">
+                                <div class="testimonials-client-image"><img src="./assets/images/avatar/avatar1.svg" alt=""></div>
+                                <div class="testimonials-header">
+                                    <div class="mt-2">
+                                        <h5>— Emily R., Satisfied Customer</h5>
+                                    </div>
+                                    <div class="mt-3">
+                                        <h5 class="quote-style">I was skeptical at first, but after just one week, I noticed a huge difference. [Your Product] has given me confidence and peace of mind!</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Repeat similar blocks for other testimonials -->
+                    <div>
+                        <div class="testimonials-block">
+                            <div class="testimonials-block-container d-flex flex-column justify-content-center align-items-center">
+                                <div class="testimonials-client-image"><img src="./assets/images/avatar/avatar2.svg" alt=""></div>
+                                <div class="testimonials-header">
+                                    <div class="mt-2">
+                                        <h5>— Sarah L., Marketing Manager</h5>
+                                    </div>
+                                    <div class="mt-3">
+                                        <h5 class="quote-style">This product completely transformed the way I work! The ease of use and the customer support are unmatched. Highly recommend!</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="testimonials-block">
+                            <div class="testimonials-block-container d-flex flex-column justify-content-center align-items-center">
+                                <div class="testimonials-client-image"><img src="./assets/images/avatar/avatar3.svg" alt=""></div>
+                                <div class="testimonials-header">
+                                    <div class="mt-2">
+                                        <h5>— James K., Entrepreneur</h5>
+                                    </div>
+                                    <div class="mt-3">
+                                        <h5 class="quote-style"><i>Before using [Your Product/Service], I struggled with [problem]. Now, my workflow is faster, and I've saved over 10 hours a week! I can't imagine going back.</i></h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="testimonials-block">
+                            <div class="testimonials-block-container d-flex flex-column justify-content-center align-items-center">
+                                <div class="testimonials-client-image"><img src="./assets/images/avatar/avatar4.jpg" alt=""></div>
+                                <div class="testimonials-header">
+                                    <div class="mt-2">
+                                        <h5>— James K., Entrepreneur</h5>
+                                    </div>
+                                    <div class="mt-3">
+                                        <h5 class="quote-style"><i>Before using [Your Product/Service], I struggled with [problem]. Now, my workflow is faster, and I've saved over 10 hours a week! I can't imagine going back.</i></h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="container" id="contact">
+        <div class="contact-container d-flex mt-5">
+            <!-- Contact Info -->
+            <div class="contact-info">
+                <h3>Let’s discuss on something <span style="color:#5b0094;">cool</span> together</h3>
+                <div class="contact-details">
+                    <p><i class="fas fa-envelope"></i> SaulDesign@gmail.com</p>
+                    <p><i class="fas fa-phone"></i> +123 456 789</p>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Street 456 House</p>
+                </div>
+                <div class="social-icons mt-5">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+            <!-- Contact Form -->
+            <div class="contact-form">
+                <h5 class="text-center mb-3">I'm interested in...</h5>
+                <div class="interest-buttons text-center mb-4">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="uiux" value="UI/UX Design">
+                        <label class="form-check-label" for="uiux">UI/UX Design</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="webdesign" value="Web Design">
+                        <label class="form-check-label" for="webdesign">Web Design</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="graphicdesign" value="Graphic Design">
+                        <label class="form-check-label" for="graphicdesign">Graphic Design</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="designsystem" value="Design System">
+                        <label class="form-check-label" for="designsystem">Design System</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="other" value="Other">
+                        <label class="form-check-label" for="other">Other</label>
+                    </div>
+                </div>
+                <form>
+                    <div class="mb-3">
+                        <label class="form-label">Your Name</label>
+                        <input type="text" class="form-control" placeholder="John Doe">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Your Email</label>
+                        <input type="email" class="form-control" placeholder="Your email">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Your Message</label>
+                        <textarea class="form-control" rows="3" placeholder="Your message"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-custom">
+                        <i class="fa fa-envelope"></i> Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="footer text-center text-lg-start mt-5 pt-10">
+        <div class="container">
+            <div class="row">
+                <!-- Blog Section -->
+                <div class="col-lg-4 text-center text-lg-start">
+                    <h4>BLOG</h4>
+                    <p>Dive into our blog for insightful discussions, expert tips, and updates.</p>
+                    <button class="subscribe-btn">Subscribe</button>
+                    <div class="social-icons mt-3">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-x-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <!-- Category Section -->
+                <div class="col-lg-2 mt-4 mt-lg-0">
+                    <h4>Category</h4>
+                    <p><a href="#">Travel</a></p>
+                    <p><a href="#">Photos</a></p>
+                    <p><a href="#">Technical</a></p>
+                    <p><a href="#">Poetry</a></p>
+                    <p><a href="#">Health</a></p>
+                </div>
+
+                <!-- Navigation Section -->
+                <div class="col-lg-2 mt-4 mt-lg-0">
+                    <h4>Navigate</h4>
+                    <p><a href="#skills">Skills</a></p>
+                    <p><a href="#services">Services</a></p>
+                    <p><a href="#experience">Experience</a></p>
+                    <p><a href="#projects">Projects</a></p>
+                    <p><a href="#education">Education</a></p>
+                    <p><a href="#testimonials">Testimonials</a></p>
+                    <p><a href="#contact">Contact</a></p>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="col-lg-4 mt-4 mt-lg-0">
+                    <h4>Contact Info</h4>
+                    <p>123 Main Street, Anytown, CA 12345</p>
+                    <p>United States</p>
+                    <p><strong>Phone:</strong> (555) 123-4567</p>
+                    <p><strong>Mail:</strong> anyway@mail.com</p>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <p>© Inspiring Life Blog 2024. All rights reserved.</p>
+                <p><a href="#">Terms of Use</a> | <a href="#">Privacy Policy</a></p>
+            </div>
+        </div>
+    </footer>
+        <!-- Swiper JS -->
+        <script src="./assets/js/swiper-bundle.min.js"></script>
+
+        <!-- jQuery -->
+        <script src="./assets/js/jquery.min.js"></script>
+    
+        <!-- Bootstrap JS -->
+        <script src="./assets/js/bootstrap.bundle.min.js"></script>
+
+        <!-- owl carousel -->
+        <script src="./assets/js/owl.carousel.min.js"></script>
+        <!-- Custom Scripts -->
+        <script src="./assets/js/main.js"></script>
+</body>
+</html>

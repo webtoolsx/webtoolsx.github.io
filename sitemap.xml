@@ -1,39 +1,69 @@
-<?xml version="1.0" encoding="UTF-8"?> 
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"> 
-<url>
-  <loc>http://webtoolsx.github.io/</loc>
-  <lastmod>2026-03-12</lastmod>
-</url>
-<url>
-  <loc>http://webtoolsx.github.io/average-calculator.html</loc>
-  <lastmod>2026-03-12</lastmod>
-</url>
-<url>
-  <loc>http://webtoolsx.github.io/percentage-change-calculator.html</loc>
-  <lastmod>2026-03-12</lastmod>
-</url>
-<url>
-  <loc>http://webtoolsx.github.io/percentage-calculator.html</loc>
-  <lastmod>2026-03-12</lastmod>
-</url>
-<url>
-  <loc>http://webtoolsx.github.io/emi-calculator.html</loc>
-  <lastmod>2026-03-12</lastmod>
-</url>
-<url>
-  <loc>http://webtoolsx.github.io/tip-calculator.html</loc>
-  <lastmod>2026-03-12</lastmod>
-</url>
-<url>
-  <loc>http://webtoolsx.github.io/about.html</loc>
-  <lastmod>2026-03-12</lastmod>
-</url>
-<url>
-  <loc>http://webtoolsx.github.io/contact.html</loc>
-  <lastmod>2026-03-12</lastmod>
-</url>
-<url>
-  <loc>http://webtoolsx.github.io/time.html</loc>
-  <lastmod>2026-03-12</lastmod>
-</url>
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://webtoolsx.github.io/</loc>
+    <lastmod>2026-03-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://webtoolsx.github.io/age-calculator.html</loc>
+    <lastmod>2026-03-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://webtoolsx.github.io/average-calculator.html</loc>
+    <lastmod>2026-03-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://webtoolsx.github.io/percentage-calculator.html</loc>
+    <lastmod>2026-03-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://webtoolsx.github.io/percentage-change-calculator.html</loc>
+    <lastmod>2026-03-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://webtoolsx.github.io/emi-calculator.html</loc>
+    <lastmod>2026-03-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://webtoolsx.github.io/tip-calculator.html</loc>
+    <lastmod>2026-03-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://webtoolsx.github.io/time.html</loc>
+    <lastmod>2026-03-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://webtoolsx.github.io/themes.html</loc>
+    <lastmod>2026-03-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://webtoolsx.github.io/about.html</loc>
+    <lastmod>2026-03-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://webtoolsx.github.io/contact.html</loc>
+    <lastmod>2026-03-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
 </urlset>

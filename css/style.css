@@ -602,3 +602,75 @@ input:focus, textarea:focus, select:focus {
     font-size: 14px;
     color: #6c757d;
 }
+/* Themes Page Styles */
+.theme-card {
+    border: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+}
+
+.theme-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+.theme-img-wrapper {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 16 / 10;
+}
+
+.theme-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.theme-card:hover .theme-img-wrapper img {
+    transform: scale(1.1);
+}
+
+.theme-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(68, 28, 96, 0.6); /* Purple overlay */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.theme-card:hover .theme-overlay {
+    opacity: 1;
+}
+
+.preview-container {
+    background: #f8f9fa;
+    text-align: center;
+    min-height: 100vh;
+}
+
+.preview-container img {
+    box-shadow: 0 0 50px rgba(0,0,0,0.2);
+    margin: 40px auto;
+}
+
+.filter-btn {
+    border-radius: 20px;
+    padding: 8px 20px;
+    font-weight: 500;
+}
+
+.badge {
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 10px;
+    padding: 5px 10px;
+}

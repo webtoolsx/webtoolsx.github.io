@@ -2,35 +2,37 @@
 <html lang="en">
 
 <head>
-  <!-- Basic Meta Tags for SEO -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="robots" content="index, follow">
-  <meta name="description" content="Easily view and convert current time across multiple time zones. Use our online world clock and time zone converter for accurate results.">
-  <meta name="keywords" content="time zone, world clock, time converter, UTC, IST, GMT, CDT, JST, AEST, online clock, time difference, time zones">
+  <meta name="description" content="Check current time and convert time zones across the globe with the WebToolsX World Clock. Accurate time zone converter for UTC, IST, GMT, and more.">
+  <meta name="keywords" content="world clock, time zone converter, current time, UTC, IST, GMT, time difference, WebToolsX">
   <meta name="author" content="WebToolsX">
-  <meta property="og:title" content="World Clock & Time Zone Converter">
-  <meta property="og:description" content="Easily view and convert current time across multiple time zones with our online tool.">
-  <meta property="og:image" content="favicon.png">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="World Clock & Time Zone Converter | WebToolsX">
+  <meta property="og:description" content="Easily view and convert current time across multiple time zones with our online tool. Perfect for global teams and travelers.">
+  <meta property="og:image" content="https://webtoolsx.github.io/favicon.png">
   <meta property="og:url" content="https://webtoolsx.github.io/time.html">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter Card Meta Tags -->
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="World Clock & Time Zone Converter | WebToolsX">
+  <meta name="twitter:description" content="Easily view and convert current time across multiple time zones with our free online tool.">
+  <meta name="twitter:image" content="https://webtoolsx.github.io/favicon.png">
+
   <link rel="icon" href="favicon.png" type="image/png">
-  <title>World Clock & Time Zone Converter | WebToolsX</title>
-  <meta name="title" content="World Clock & Time Zone Converter | WebToolsX">
-  <meta name="description" content="Easily view and convert current time across multiple time zones. Use our online world clock and time zone converter for accurate results.">
-  <meta name="keywords" content="world clock, time zone converter, current time, UTC, IST, GMT, CDT, JST, AEST, online clock, time difference, time zones">
-  <meta property="og:title" content="World Clock & Time Zone Converter">
-  <meta property="og:description" content="Easily view and convert current time across multiple time zones with our online tool.">
-  <meta property="og:image" content="favicon.png">
-  <meta property="og:url" content="https://webtoolsx.github.io/time.html">
-  <meta name="twitter:card" content="summary_large_image">
   <link rel="canonical" href="https://webtoolsx.github.io/time.html">
 
+  <title>World Clock & Time Zone Converter - Global Time Tool | WebToolsX</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
   <!-- Linking CSS Stylesheets -->
   <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/custom_radio.css">
+
   <!-- JavaScript Files -->
   <script src="bootstrap/js/bootstrap.bundle.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
@@ -40,19 +42,42 @@
   <script type="module" src="js/arcLib.js"></script>
   <script src="js/counto.min.js"></script>
 
-  <!-- Structured Data for Rich Snippets (JSON-LD) -->
+  <!-- Structured Data JSON-LD -->
   <script type="application/ld+json">
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://webtoolsx.github.io/"
+      },{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "World Clock",
+        "item": "https://webtoolsx.github.io/time.html"
+      }]
+    },
     {
       "@context": "https://schema.org",
       "@type": "WebApplication",
       "name": "World Clock & Time Zone Converter",
       "url": "https://webtoolsx.github.io/time.html",
       "description": "Easily view and convert current time across multiple time zones. Use our online world clock and time zone converter for accurate results.",
-      "applicationCategory": "Utilities",
+      "applicationCategory": "UtilitiesApplication",
       "softwareVersion": "1.0",
-      "operatingSystem": "All"
+      "operatingSystem": "All",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
     }
+  ]
   </script>
+  
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-0ZDRS85Q8B"></script>
   <script>
@@ -96,6 +121,7 @@
           <a class="hr_nav-item" href="/age-calculator.html">Age Calculator</a>
           <a class="hr_nav-item " href="/emi-calculator.html">Loan EMI Calculator</a>
           <a class="hr_nav-item " href="/tip-calculator.html">Tip Calculator</a>
+          <a class="hr_nav-item" href="/themes.html">Themes</a>
           <a class="hr_nav-item active" href="/time.html">World Clock</a>
 
         </div>
@@ -458,6 +484,7 @@
     <div>
       <a href="/" style="color: white; margin: 0 15px; text-decoration: none;" class="footer-logo"><img src="favicon.png" alt="Company Logo"></a>
       <a href="/" style="color: white; margin: 0 15px; text-decoration: none;">Home</a>
+      <a href="/themes.html" style="color: white; margin: 0 15px; text-decoration: none;">Themes</a>
       <a href="/about.html" style="color: white; margin: 0 15px; text-decoration: none;">About Us</a>
       <a href="/contact.html" style="color: white; margin: 0 15px; text-decoration: none;">Contact Us</a>
       <!-- <a href="/about.html" style="color: white; margin: 0 15px; text-decoration: none;">About Us</a> -->

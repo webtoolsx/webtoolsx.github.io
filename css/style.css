@@ -558,6 +558,58 @@ input:focus, textarea:focus, select:focus {
       }
     }
 
+/* Toggle Switch Styling */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 24px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #4b2394;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+.toggle-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #4b2394;
+}
+
 /* Age Calculator Result Panel */
 .age-result-card {
     background: #ffffff;
@@ -673,4 +725,151 @@ input:focus, textarea:focus, select:focus {
     letter-spacing: 0.5px;
     font-size: 10px;
     padding: 5px 10px;
+}
+
+/* Custom Styled Search Bar based on Purple/Violet Theme */
+.search-container {
+    position: relative;
+    width: 100%;
+}
+
+.search-icon {
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #7750b6;
+    font-size: 1.2rem;
+    pointer-events: none;
+    transition: color 0.3s ease;
+    z-index: 10;
+}
+
+.search-input {
+    width: 100%;
+    padding: 12px 20px 12px 50px;
+    font-size: 1.1rem;
+    font-family: 'exo 2', sans-serif;
+    color: #2d0554;
+    background-color: #fbfaff;
+    border: 2px solid #e1d8f5;
+    border-radius: 50px;
+    outline: none;
+    box-shadow: 0 4px 10px rgba(75, 35, 148, 0.05);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.search-input::placeholder {
+    color: #a394c2;
+    opacity: 0.8;
+}
+
+.search-input:focus {
+    background-color: #ffffff;
+    border-color: #8354d5;
+    box-shadow: 0 4px 20px rgba(119, 80, 182, 0.2);
+}
+
+.search-input:focus ~ .search-icon {
+    color: #4b2394;
+}
+
+/* Search Results dropdown list styling */
+.search-results-list {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    right: 0;
+    max-height: 250px;
+    overflow-y: auto;
+    background-color: #ffffff;
+    border: 1px solid rgba(75, 35, 148, 0.1);
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(75, 35, 148, 0.15);
+    z-index: 100;
+    padding: 6px 0;
+    display: none;
+}
+
+.search-results-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.search-results-list::-webkit-scrollbar-track {
+    background: #f1ecfa;
+    border-radius: 0 16px 16px 0;
+}
+
+.search-results-list::-webkit-scrollbar-thumb {
+    background: #c3b4e3;
+    border-radius: 4px;
+}
+
+.search-results-list::-webkit-scrollbar-thumb:hover {
+    background: #9b6be8;
+}
+
+/* Styled individual dropdown items */
+.search-results-list .list-group-item {
+    border: none;
+    background: none;
+    padding: 12px 20px;
+    color: #4a4754;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-align: left;
+    width: 100%;
+    transition: all 0.2s ease;
+}
+
+.search-results-list .list-group-item:hover {
+    background-color: #f5f0ff;
+    color: #4b2394;
+    padding-left: 24px;
+}
+
+/* 12-hour / 24-hour format Switch Alignment & Polish */
+.toggle-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.toggle-label {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #4b2394;
+    margin: 0;
+    user-select: none;
+}
+
+/* Double-click blinking hand animation */
+.dbl-click-animate {
+    animation: dblClickBlink 2.2s infinite ease-in-out;
+    display: inline-block;
+}
+
+@keyframes dblClickBlink {
+    0%, 20% {
+        opacity: 0.4;
+        transform: scale(1) translate(0, 0);
+    }
+    /* First Click Gesture (Scale down and translate slightly) */
+    25% {
+        opacity: 1;
+        transform: scale(0.85) translate(-1px, 1px);
+    }
+    30% {
+        opacity: 0.4;
+        transform: scale(1) translate(0, 0);
+    }
+    /* Second Click Gesture */
+    35% {
+        opacity: 1;
+        transform: scale(0.85) translate(-1px, 1px);
+    }
+    40%, 100% {
+        opacity: 0.4;
+        transform: scale(1) translate(0, 0);
+    }
 }

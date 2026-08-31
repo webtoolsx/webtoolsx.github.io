@@ -179,21 +179,31 @@
     <script>
       let html5QrcodeScanner = null;
 
-      // High performance scanning configuration
+      // Ultra-fast scanning configuration targeting common product formats
+      const formatsToSupport = [
+        Html5QrcodeSupportedFormats.QR_CODE,
+        Html5QrcodeSupportedFormats.UPC_A,
+        Html5QrcodeSupportedFormats.UPC_E,
+        Html5QrcodeSupportedFormats.EAN_13,
+        Html5QrcodeSupportedFormats.EAN_8,
+        Html5QrcodeSupportedFormats.CODE_128,
+        Html5QrcodeSupportedFormats.CODE_39
+      ];
+
       const config = {
-        fps: 20, // 20 FPS for fast, smooth detection
+        fps: 30, // 30 FPS for instant 1-2 second scan detection
         qrbox: (viewfinderWidth, viewfinderHeight) => {
-          // Ensure qrbox dimensions never exceed viewfinder bounds
-          const width = Math.floor(viewfinderWidth * 0.8);
-          const height = Math.floor(viewfinderHeight * 0.5);
+          const width = Math.floor(viewfinderWidth * 0.85);
+          const height = Math.floor(viewfinderHeight * 0.55);
           return {
-            width: Math.max(width, 150),
+            width: Math.max(width, 180),
             height: Math.max(height, 100),
           };
         },
-        aspectRatio: 1.0,
+        aspectRatio: 1.333333,
+        formatsToSupport: formatsToSupport,
         experimentalFeatures: {
-          useBarCodeDetectorIfSupported: true, // Use native browser GPU BarcodeDetector API when available
+          useBarCodeDetectorIfSupported: true, // Use browser native GPU BarcodeDetector API
         },
       };
 

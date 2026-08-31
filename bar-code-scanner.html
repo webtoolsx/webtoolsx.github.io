@@ -457,15 +457,6 @@
       <div class="scanner-card">
         <div id="reader"></div>
 
-        <!-- Camera Dropdown Selection -->
-        <div id="camera-select-container" class="camera-select-wrapper" style="display: none;">
-          <div class="camera-select-label">
-            <i class="fas fa-camera"></i> Select Camera Lens:
-          </div>
-          <select id="camera-select" class="camera-select" onchange="onCameraChange()">
-          </select>
-        </div>
-
         <!-- Zoom Controls -->
         <div id="zoom-container" class="zoom-controls" style="display: none;">
           <span class="zoom-label"><i class="fas fa-search-plus"></i> Zoom:</span>
@@ -771,54 +762,8 @@
         }, 350);
       }
 
-      /* Camera Management & Dropdown */
-      function populateCameraDropdown(selectedDeviceId) {
-        Html5Qrcode.getCameras()
-          .then((devices) => {
-            const selectElem = document.getElementById("camera-select");
-            const selectContainer = document.getElementById("camera-select-container");
-            if (!selectElem || !devices || devices.length === 0) return;
-
-            selectElem.innerHTML = "";
-            devices.forEach((device, index) => {
-              const opt = document.createElement("option");
-              opt.value = device.id;
-              // Format user friendly camera label
-              let label = device.label || `Camera ${index + 1}`;
-              if (!device.label) {
-                label = index === 0 ? "Back / Rear Camera" : `Camera ${index + 1}`;
-              }
-              opt.text = label;
-              if (selectedDeviceId && device.id === selectedDeviceId) {
-                opt.selected = true;
-              }
-              selectElem.appendChild(opt);
-            });
-
-            if (selectContainer && devices.length > 1) {
-              selectContainer.style.display = "block";
-            }
-          })
-          .catch((e) => {});
-      }
-
-      function onCameraChange() {
-        const selectElem = document.getElementById("camera-select");
-        if (selectElem && selectElem.value) {
-          startScannerWithConfig(selectElem.value);
-        }
-      }
-
+      /* Camera Management - Auto-Select Back Camera */
       function startScanner() {
-        const selectElem = document.getElementById("camera-select");
-        const selectedId = selectElem && selectElem.value ? selectElem.value : "";
-        
-        // On Android, request facingMode: "environment" first for back camera unless a specific device is selected
-        const cameraConfig = selectedId ? selectedId : { facingMode: "environment" };
-        startScannerWithConfig(cameraConfig);
-      }
-
-      function startScannerWithConfig(cameraConfig) {
         if (html5QrcodeScanner) {
           try {
             html5QrcodeScanner.clear();
@@ -866,6 +811,9 @@
           },
         };
 
+        // Automatically target rear/environment camera
+        const cameraConfig = { facingMode: "environment" };
+
         html5QrcodeScanner
           .start(
             cameraConfig,
@@ -877,23 +825,13 @@
             document.getElementById("start-btn").disabled = true;
             document.getElementById("stop-btn").disabled = false;
             checkZoomCapability();
-            
-            // Get current active device id if object config was passed
-            let activeId = typeof cameraConfig === "string" ? cameraConfig : "";
-            try {
-              const track = html5QrcodeScanner.getRunningTrack();
-              if (track && track.getSettings) {
-                activeId = track.getSettings().deviceId || activeId;
-              }
-            } catch(e) {}
-            populateCameraDropdown(activeId);
           })
           .catch((err) => {
-            console.warn("Camera start failed with initial config, trying device enumeration fallback:", err);
+            console.warn("facingMode environment failed, trying back camera device ID fallback:", err);
             Html5Qrcode.getCameras()
               .then((devices) => {
                 if (devices && devices.length > 0) {
-                  // Prefer rear/back camera device
+                  // Automatically find and pick the back/rear camera device
                   const backCam = devices.find((d) =>
                     d.label.toLowerCase().includes("back") ||
                     d.label.toLowerCase().includes("rear") ||
@@ -912,7 +850,6 @@
                       document.getElementById("start-btn").disabled = true;
                       document.getElementById("stop-btn").disabled = false;
                       checkZoomCapability();
-                      populateCameraDropdown(backCam.id);
                     })
                     .catch((cErr) => {
                       alert("Camera start error: " + (cErr.message || cErr));

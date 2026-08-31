@@ -179,35 +179,6 @@
     <script>
       let html5QrcodeScanner = null;
 
-      // Exclusive 1D Barcode Formats ONLY (Removed QR code to focus 100% engine speed on 1D barcodes)
-      const formatsToSupport = [
-        Html5QrcodeSupportedFormats.EAN_13,
-        Html5QrcodeSupportedFormats.EAN_8,
-        Html5QrcodeSupportedFormats.UPC_A,
-        Html5QrcodeSupportedFormats.UPC_E,
-        Html5QrcodeSupportedFormats.CODE_128,
-        Html5QrcodeSupportedFormats.CODE_39,
-        Html5QrcodeSupportedFormats.ITF
-      ];
-
-      const config = {
-        fps: 30, // 30 FPS for instant 1D barcode detection
-        qrbox: (viewfinderWidth, viewfinderHeight) => {
-          // Wide rectangular reticle optimal for 1D product barcodes
-          const width = Math.floor(viewfinderWidth * 0.9);
-          const height = Math.min(Math.floor(viewfinderHeight * 0.45), 160);
-          return {
-            width: Math.max(width, 200),
-            height: Math.max(height, 120),
-          };
-        },
-        aspectRatio: 1.333333,
-        formatsToSupport: formatsToSupport,
-        experimentalFeatures: {
-          useBarCodeDetectorIfSupported: true, // Native browser GPU acceleration
-        },
-      };
-
       function onScanSuccess(decodedText, decodedResult) {
         // Display the decoded text on screen
         document.getElementById("result-text").innerText = decodedText;
@@ -245,20 +216,45 @@
       }
 
       function startScanner() {
-        if (!html5QrcodeScanner) {
-          html5QrcodeScanner = new Html5Qrcode("reader");
+        if (html5QrcodeScanner) {
+          try {
+            html5QrcodeScanner.clear();
+          } catch (e) {}
         }
 
-        // Camera constraints requesting HD video for crisp 1D barcode lines
-        const cameraConstraints = {
-          facingMode: "environment",
-          width: { ideal: 1280 },
-          height: { ideal: 720 }
+        html5QrcodeScanner = new Html5Qrcode("reader");
+
+        // Safely validate 1D linear barcode formats ONLY
+        const formatsToSupport = [
+          Html5QrcodeSupportedFormats.EAN_13,
+          Html5QrcodeSupportedFormats.EAN_8,
+          Html5QrcodeSupportedFormats.UPC_A,
+          Html5QrcodeSupportedFormats.UPC_E,
+          Html5QrcodeSupportedFormats.CODE_128,
+          Html5QrcodeSupportedFormats.CODE_39,
+          Html5QrcodeSupportedFormats.ITF
+        ].filter((f) => f !== undefined);
+
+        const config = {
+          fps: 25,
+          qrbox: (viewfinderWidth, viewfinderHeight) => {
+            const width = Math.floor(viewfinderWidth * 0.85);
+            const height = Math.min(Math.floor(viewfinderHeight * 0.5), 180);
+            return {
+              width: Math.max(width, 180),
+              height: Math.max(height, 100),
+            };
+          },
+          aspectRatio: 1.333333,
+          formatsToSupport: formatsToSupport,
+          experimentalFeatures: {
+            useBarCodeDetectorIfSupported: true,
+          },
         };
 
         html5QrcodeScanner
           .start(
-            cameraConstraints,
+            { facingMode: "environment" },
             config,
             onScanSuccess,
             onScanFailure,
@@ -268,33 +264,37 @@
             document.getElementById("stop-btn").disabled = false;
           })
           .catch((err) => {
-            console.error("HD camera failed, trying default environment camera:", err);
-            html5QrcodeScanner
-              .start(
-                { facingMode: "environment" },
-                config,
-                onScanSuccess,
-                onScanFailure,
-              )
-              .then(() => {
-                document.getElementById("start-btn").disabled = true;
-                document.getElementById("stop-btn").disabled = false;
+            console.error("Camera start failed with environment facingMode:", err);
+            // Fallback: Enumerate cameras and start with available rear/default camera
+            Html5Qrcode.getCameras()
+              .then((devices) => {
+                if (devices && devices.length > 0) {
+                  const selectedCamera = devices.find((d) =>
+                    d.label.toLowerCase().includes("back") ||
+                    d.label.toLowerCase().includes("rear") ||
+                    d.label.toLowerCase().includes("environment")
+                  ) || devices[0];
+
+                  html5QrcodeScanner
+                    .start(
+                      selectedCamera.id,
+                      config,
+                      onScanSuccess,
+                      onScanFailure,
+                    )
+                    .then(() => {
+                      document.getElementById("start-btn").disabled = true;
+                      document.getElementById("stop-btn").disabled = false;
+                    })
+                    .catch((camErr) => {
+                      alert("Camera start error: " + (camErr.message || camErr));
+                    });
+                } else {
+                  alert("No camera device found on this system.");
+                }
               })
-              .catch((fallbackErr) => {
-                html5QrcodeScanner
-                  .start(
-                    { facingMode: "user" },
-                    config,
-                    onScanSuccess,
-                    onScanFailure,
-                  )
-                  .then(() => {
-                    document.getElementById("start-btn").disabled = true;
-                    document.getElementById("stop-btn").disabled = false;
-                  })
-                  .catch((userErr) => {
-                    alert("Camera access failed or permission denied: " + (userErr.message || userErr));
-                  });
+              .catch((cErr) => {
+                alert("Camera permission error: " + (cErr.message || cErr));
               });
           });
       }
@@ -304,10 +304,13 @@
           html5QrcodeScanner
             .stop()
             .then(() => {
+              html5QrcodeScanner.clear();
               document.getElementById("start-btn").disabled = false;
               document.getElementById("stop-btn").disabled = true;
             })
-            .catch((err) => console.error("Failed to stop scanner:", err));
+            .catch((err) => {
+              console.error("Failed to stop scanner:", err);
+            });
         }
       }
 

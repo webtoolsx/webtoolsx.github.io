@@ -150,25 +150,38 @@ function calculate_average() {
 
     let totalPrice = 0;
     let totalQuantity = 0;
-    let invest_list = [];
+    let validRowsCount = 0;
 
     for (let i = 0; i < buyAtPrices.length; i++) {
-        const price = parseFloat(buyAtPrices[i].value);
-        const qty = parseInt(buyQtys[i].value, 10);
+        const rawPrice = buyAtPrices[i].value.trim();
+        const rawQty = buyQtys[i].value.trim();
 
-        if (price == '' || qty == '' || isNaN(price) || isNaN(qty)) {
-            if (price == '' || isNaN(price)) {
+        // If row price is blank, ignore this empty row
+        if (rawPrice === '') {
+            continue;
+        }
+
+        const price = parseFloat(rawPrice);
+        const qty = parseInt(rawQty, 10);
+
+        if (isNaN(price) || isNaN(qty)) {
+            if (isNaN(price)) {
                 shakeInput($(buyAtPrices[i]));
             }
-            if (qty == '' || isNaN(qty)) {
+            if (isNaN(qty)) {
                 shakeInput($(buyQtys[i]));
             }
             return; // Stop further execution
         }
 
-        invest_list[i] = price * qty;
         totalPrice += price * qty;
         totalQuantity += qty;
+        validRowsCount++;
+    }
+
+    if (validRowsCount === 0 && buyAtPrices.length > 0) {
+        shakeInput($(buyAtPrices[0]));
+        return;
     }
 
     let averagePrice = 0;
@@ -178,7 +191,6 @@ function calculate_average() {
 
     console.log('Total Price:', totalPrice);
     console.log('Total Quantity:', totalQuantity);
-    console.log('invest_list:', invest_list);
     $('#my-number').counto(averagePrice.toFixed(4), 500);
     $('#total_investment').html(totalPrice.toFixed(4));
 }
@@ -455,34 +467,80 @@ window.shareCalculation = function shareCalculation() {
     .catch(err => console.error('Failed to copy:', err));
 }
 
+function createAvgRow() {
+    let container = document.getElementById("buyFieldsContainer");
+    if (!container) return;
+    let newEntry = document.createElement("div");
+    newEntry.classList.add("row", "buy-entry");
+    newEntry.innerHTML = `
+        <div class="col-md-6 mb-3">
+            <div class="input-group">
+                <span class="input-group-text input-group-text-buy"><img src="images/uparrow.svg" class="buy_sell_image_size"></span>
+                <input type="number" name="buy_at_price[]" class="form-control input_buysell_size" placeholder="Buy at" aria-label="Buy Price">
+            </div>
+        </div>
+        <div class="col-md-6 mb-3">
+            <div class="input-group">
+                <span class="input-group-text input-group-text-qty"><img src="images/qty.svg" class="buy_sell_image_size"></span>
+                <input type="number" name="buy_qty[]" class="form-control input_buysell_size" value="1" placeholder="Quantity" aria-label="Quantity">
+                <button type="button" class="btn btn-danger remove-entry">-</button>
+            </div>
+        </div>
+    `;
+    container.appendChild(newEntry);
+}
+
+function syncAvgRows() {
+    let entries = Array.from(document.querySelectorAll("#buyFieldsContainer .buy-entry"));
+    if (entries.length <= 1) return;
+
+    // Clean up extra trailing empty rows if an upper row is blank
+    for (let i = entries.length - 1; i > 0; i--) {
+        let currentPrice = entries[i].querySelector('input[name="buy_at_price[]"]');
+        let prevPrice = entries[i - 1].querySelector('input[name="buy_at_price[]"]');
+
+        if (currentPrice && prevPrice) {
+            let currentVal = currentPrice.value.trim();
+            let prevVal = prevPrice.value.trim();
+
+            if (currentVal === '' && prevVal === '') {
+                entries[i].remove();
+                entries.splice(i, 1);
+            }
+        }
+    }
+}
+
 const addnewAvgEntryBtn = document.getElementById("addnewAvgEntry");
 if (addnewAvgEntryBtn) {
-    document.getElementById("addnewAvgEntry").addEventListener("click", function () {
-        let container = document.getElementById("buyFieldsContainer");
-        let newEntry = document.createElement("div");
-        newEntry.classList.add("row", "buy-entry");
-        newEntry.innerHTML = `
-            <div class="col-md-6 mb-3">
-                <div class="input-group">
-                    <span class="input-group-text input-group-text-buy"><img src="images/uparrow.svg" class="buy_sell_image_size"></span>
-                    <input type="number" name="buy_at_price[]" class="form-control input_buysell_size" placeholder="Buy at" aria-label="Buy Price">
-                </div>
-            </div>
-            <div class="col-md-6 mb-3">
-                <div class="input-group">
-                    <span class="input-group-text input-group-text-qty"><img src="images/qty.svg" class="buy_sell_image_size"></span>
-                    <input type="number" name="buy_qty[]" class="form-control input_buysell_size" value="1" placeholder="Quantity" aria-label="Quantity">
-                    <button type="button" class="btn btn-danger remove-entry">-</button>
-                </div>
-            </div>
-        `;
-        container.appendChild(newEntry);
+    addnewAvgEntryBtn.addEventListener("click", function () {
+        createAvgRow();
     });
 }
 
+// Auto-add new row when user fills in the last "Buy at" input, or auto-delete trailing empty row when an upper input is cleared
+document.addEventListener("input", function (event) {
+    if (event.target && event.target.name === "buy_at_price[]") {
+        syncAvgRows();
+
+        let buyAtPrices = document.getElementsByName('buy_at_price[]');
+        if (buyAtPrices.length > 0) {
+            let lastInput = buyAtPrices[buyAtPrices.length - 1];
+            if (lastInput && lastInput.value.trim() !== '') {
+                createAvgRow();
+            }
+        }
+    }
+});
+
+// Remove row & auto-clean trailing empty rows when a row is deleted
 document.addEventListener("click", function (event) {
-    if (event.target.classList.contains("remove-entry")) {
-        event.target.closest(".buy-entry").remove();
-        calculate_average();
+    if (event.target && event.target.classList.contains("remove-entry")) {
+        let row = event.target.closest(".buy-entry");
+        if (row) {
+            row.remove();
+            syncAvgRows();
+            calculate_average();
+        }
     }
 });

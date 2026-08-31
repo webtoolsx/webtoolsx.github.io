@@ -89,7 +89,8 @@
 </head>
 <body>
   <div class="container-fluid">
-    <!-- nav bar -->
+    <!-- HEADER_START -->
+<!-- nav bar -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary header_bar">
       
       <div class="container-fluid ">
@@ -99,35 +100,25 @@
       </div>
     </nav>
 
-    <!-- <div class="col nav justify-content-end py-1">
-      <ul class="nav nav-pills justify-content-end">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/">P/L Calculator</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/average-calculator.html">Average Calculator</a>
-        </li>
-      </ul>
-    </div> -->
-
     <div class="scroll-container">
       <button class="scroll-btn left">&larr;</button>
       <div class="scroll-wrapper">
         <div class="scroll-content">
-          <a class="hr_nav-item " href="/">P/L Calculator</a>
-          <a class="hr_nav-item " href="/average-calculator.html">Average Calculator</a>
-          <a class="hr_nav-item " href="/percentage-change-calculator.html">Percentage Change Calculator</a>
-          <a class="hr_nav-item" href="/percentage-calculator.html">Percentage Calculator</a>
-          <a class="hr_nav-item" href="/age-calculator.html">Age Calculator</a>
-          <a class="hr_nav-item " href="/emi-calculator.html">Loan EMI Calculator</a>
-          <a class="hr_nav-item " href="/tip-calculator.html">Tip Calculator</a>
-          <a class="hr_nav-item" href="/themes.html">Themes</a>
-          <a class="hr_nav-item active" href="/time.html">World Clock</a>
-
+          <a class="hr_nav-item" href="/"><i class="fa-solid fa-chart-line me-1"></i> P/L Calculator</a>
+          <a class="hr_nav-item" href="/average-calculator.html"><i class="fa-solid fa-divide me-1"></i> Average Calculator</a>
+          <a class="hr_nav-item" href="/percentage-change-calculator.html"><i class="fa-solid fa-chart-simple me-1"></i> Percentage Change Calculator</a>
+          <a class="hr_nav-item" href="/percentage-calculator.html"><i class="fa-solid fa-percent me-1"></i> Percentage Calculator</a>
+          <a class="hr_nav-item" href="/age-calculator.html"><i class="fa-solid fa-cake-candles me-1"></i> Age Calculator</a>
+          <a class="hr_nav-item" href="/emi-calculator.html"><i class="fa-solid fa-landmark me-1"></i> Loan EMI Calculator</a>
+          <a class="hr_nav-item" href="/tip-calculator.html"><i class="fa-solid fa-coins me-1"></i> Tip Calculator</a>
+          <a class="hr_nav-item" href="/themes.html"><i class="fa-solid fa-palette me-1"></i> Themes</a>
+          <a class="hr_nav-item active" href="/time.html"><i class="fa-solid fa-clock me-1"></i> World Clock</a>
+          <a class="hr_nav-item" href="/bar-code-scanner.html"><i class="fa-solid fa-barcode me-1"></i> Barcode Scanner</a>
         </div>
       </div>
       <button class="scroll-btn right">&rarr;</button>
     </div>
+<!-- HEADER_END -->
 
 
     <!-- Heading -->
@@ -137,31 +128,106 @@
       </div>
     </div>
 
-    <!-- Search & Format Toggle -->
+    <!-- Search & Theme Selector -->
     <div class="row align-items-center justify-content-between my-4 px-3">
-      <div class="col-md-8 col-lg-9 position-relative">
+      <div class="col-md-9 col-sm-8 col-12 position-relative">
         <div class="search-container">
           <i class="fas fa-search search-icon"></i>
           <input type="text" id="tz-search" class="search-input" placeholder="Search time zone (e.g. IST, UTC, Tokyo)">
           <div id="tz-search-results" class="search-results-list"></div>
         </div>
       </div>
-      <div class="col-md-4 col-lg-3 d-flex justify-content-md-end justify-content-start align-items-center mt-3 mt-md-0">
-        <div class="toggle-container">
-          <span class="toggle-label me-2">12-hour format</span>
-          <label class="switch">
-            <input type="checkbox" id="hourFormatToggle">
-            <span class="slider"></span>
-          </label>
+      <div class="col-md-3 col-sm-4 col-12 d-flex justify-content-md-end justify-content-start mt-3 mt-sm-0">
+        <div class="dropdown w-100 text-end">
+          <button class="btn btn-purple dropdown-toggle d-flex align-items-center justify-content-center gap-2 w-100" type="button" id="themeDropdown" data-bs-toggle="dropdown" aria-expanded="false" style="border-radius: 25px; font-weight: 600; background: #9969e6; color: white; border: none; padding: 12px 20px; box-shadow: 0 4px 12px rgba(153, 105, 230, 0.3);">
+            <i class="fas fa-palette"></i> <span>Theme</span>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end shadow-lg p-2" id="themeDropdownMenu" aria-labelledby="themeDropdown" style="min-width: 220px; border-radius: 12px; border: 1px solid rgba(0,0,0,0.1);">
+          </ul>
         </div>
       </div>
     </div>
     <div class="gradient-banner d-flex align-items-center justify-content-center" id="gradientBanner" style="cursor:pointer;" title="Double click to expand">
+      <div class="banner-format-toggle" style="position: absolute; top: 16px; left: 20px; z-index: 10; display: flex; align-items: center; gap: 8px; background: rgba(0,0,0,0.3); padding: 4px 14px; border-radius: 20px; color: white;">
+        <span class="toggle-text-24" id="lbl24hr" style="font-size: 0.85rem; font-weight: 600; opacity: 0.7; color: white;">24hr</span>
+        <label class="switch" style="margin: 0;">
+          <input type="checkbox" id="hourFormatToggle" checked>
+          <span class="slider"></span>
+        </label>
+        <span class="toggle-text-12" id="lbl12hr" style="font-size: 0.85rem; font-weight: 600; opacity: 1; color: #fff799;">12hr</span>
+      </div>
       <span id="bannerIcon"><i class="fa-solid fa-hand-pointer dbl-click-animate"></i></span>
         <!-- <div id="calendar-container"></div> -->
 
 
   <script>
+    // 10 Standard Color Themes for World Clock Banner
+    const bannerThemes = [
+      { id: 'purple', name: 'Purple Velvet', bg: 'linear-gradient(90deg, #4b2394 0%, #9b6be8 100%)', shadow: '0px 0px 18px 0px rgba(153, 105, 230, 0.6)', primary: '#7750b6b0', accent: '#563888', slider: '#4b2394', darkText: '#2d0554', weekday: '#69499e', time: '#391356' },
+      { id: 'midnight', name: 'Midnight Blue', bg: 'linear-gradient(90deg, #0f2027 0%, #203a43 50%, #2c5364 100%)', shadow: '0px 0px 18px 0px rgba(44, 83, 100, 0.6)', primary: '#203a43', accent: '#0f2027', slider: '#2c5364', darkText: '#0f2027', weekday: '#203a43', time: '#1a2e35' },
+      { id: 'emerald', name: 'Emerald Ocean', bg: 'linear-gradient(90deg, #11998e 0%, #38ef7d 100%)', shadow: '0px 0px 18px 0px rgba(56, 239, 125, 0.6)', primary: '#11998e', accent: '#0b665f', slider: '#11998e', darkText: '#0b524c', weekday: '#11998e', time: '#0e6e66' },
+      { id: 'sunset', name: 'Sunset Glow', bg: 'linear-gradient(90deg, #ff512f 0%, #dd2476 100%)', shadow: '0px 0px 18px 0px rgba(221, 36, 118, 0.6)', primary: '#dd2476', accent: '#9e1250', slider: '#ff512f', darkText: '#7a0b3b', weekday: '#dd2476', time: '#a81757' },
+      { id: 'cosmic', name: 'Cosmic Indigo', bg: 'linear-gradient(90deg, #1e3c72 0%, #2a5298 100%)', shadow: '0px 0px 18px 0px rgba(42, 82, 152, 0.6)', primary: '#2a5298', accent: '#1a3461', slider: '#2a5298', darkText: '#132647', weekday: '#2a5298', time: '#1d3a6d' },
+      { id: 'cyberpunk', name: 'Neon Cyberpunk', bg: 'linear-gradient(90deg, #833ab4 0%, #fd1d1d 50%, #fcb045 100%)', shadow: '0px 0px 18px 0px rgba(253, 29, 29, 0.6)', primary: '#833ab4', accent: '#58217d', slider: '#fd1d1d', darkText: '#431461', weekday: '#833ab4', time: '#632488' },
+      { id: 'rose', name: 'Rose Sapphire', bg: 'linear-gradient(90deg, #b92b27 0%, #1565c0 100%)', shadow: '0px 0px 18px 0px rgba(185, 43, 39, 0.6)', primary: '#b92b27', accent: '#7a1a17', slider: '#1565c0', darkText: '#5e1311', weekday: '#b92b27', time: '#851e1b' },
+      { id: 'teal', name: 'Teal Breeze', bg: 'linear-gradient(90deg, #00b4db 0%, #0083b0 100%)', shadow: '0px 0px 18px 0px rgba(0, 131, 176, 0.6)', primary: '#0083b0', accent: '#00506b', slider: '#00b4db', darkText: '#003b4f', weekday: '#0083b0', time: '#005d7d' },
+      { id: 'charcoal', name: 'Dark Charcoal', bg: 'linear-gradient(90deg, #232526 0%, #414345 100%)', shadow: '0px 0px 18px 0px rgba(65, 67, 69, 0.6)', primary: '#414345', accent: '#232526', slider: '#616467', darkText: '#1c1d1e', weekday: '#414345', time: '#2b2c2d' },
+      { id: 'amber', name: 'Warm Amber', bg: 'linear-gradient(90deg, #f7971e 0%, #ffd200 100%)', shadow: '0px 0px 18px 0px rgba(255, 210, 0, 0.6)', primary: '#e0820b', accent: '#995704', slider: '#f7971e', darkText: '#693b01', weekday: '#c97306', time: '#945403' }
+    ];
+
+    function applyBannerTheme(themeId) {
+      const theme = bannerThemes.find(t => t.id === themeId) || bannerThemes[0];
+      const banner = document.getElementById('gradientBanner');
+      const dropdownBtn = document.getElementById('themeDropdown');
+      if (banner) {
+        banner.style.background = theme.bg;
+        banner.style.boxShadow = theme.shadow;
+        banner.style.setProperty('--theme-primary', theme.primary);
+        banner.style.setProperty('--theme-accent', theme.accent);
+        banner.style.setProperty('--theme-slider', theme.slider);
+        banner.style.setProperty('--theme-text-dark', theme.darkText);
+        banner.style.setProperty('--theme-weekday', theme.weekday);
+        banner.style.setProperty('--theme-time', theme.time);
+      }
+      if (dropdownBtn) {
+        dropdownBtn.style.background = theme.bg;
+      }
+      localStorage.setItem('worldClockTheme', theme.id);
+
+      document.querySelectorAll('.theme-menu-item').forEach(item => {
+        if (item.getAttribute('data-theme-id') === theme.id) {
+          item.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
+          item.style.fontWeight = 'bold';
+        } else {
+          item.style.backgroundColor = 'transparent';
+          item.style.fontWeight = 'normal';
+        }
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      const themeMenu = document.getElementById('themeDropdownMenu');
+      if (themeMenu) {
+        themeMenu.innerHTML = '';
+        bannerThemes.forEach(theme => {
+          const li = document.createElement('li');
+          li.innerHTML = `
+            <a class="dropdown-item theme-menu-item d-flex align-items-center gap-2 px-3 py-2" href="#" data-theme-id="${theme.id}" style="border-radius: 8px; font-size: 0.9rem; cursor: pointer;">
+              <span style="display:inline-block; width:16px; height:16px; border-radius:50%; background:${theme.bg}; border: 1px solid rgba(0,0,0,0.15); flex-shrink:0;"></span>
+              <span>${theme.name}</span>
+            </a>
+          `;
+          li.querySelector('a').addEventListener('click', function(e) {
+            e.preventDefault();
+            applyBannerTheme(theme.id);
+          });
+          themeMenu.appendChild(li);
+        });
+      }
+      const savedTheme = localStorage.getItem('worldClockTheme') || 'purple';
+      applyBannerTheme(savedTheme);
+    });
+
     // List of time zones to display
     // List of all IANA time zones (sample, not exhaustive)
     const timezones = [
@@ -227,13 +293,29 @@
       });
     }
 
-    let hourFormat = "24";
+    let hourFormat = "12";
     const hourFormatToggle = document.getElementById('hourFormatToggle');
+    const lbl12hr = document.getElementById('lbl12hr');
+    const lbl24hr = document.getElementById('lbl24hr');
+
+    function updateFormatLabels() {
+      if (hourFormatToggle && hourFormatToggle.checked) {
+        hourFormat = "12";
+        if (lbl12hr) { lbl12hr.style.opacity = '1'; lbl12hr.style.color = '#fff799'; }
+        if (lbl24hr) { lbl24hr.style.opacity = '0.6'; lbl24hr.style.color = '#ffffff'; }
+      } else if (hourFormatToggle) {
+        hourFormat = "24";
+        if (lbl24hr) { lbl24hr.style.opacity = '1'; lbl24hr.style.color = '#fff799'; }
+        if (lbl12hr) { lbl12hr.style.opacity = '0.6'; lbl12hr.style.color = '#ffffff'; }
+      }
+    }
+
     if (hourFormatToggle) {
       hourFormatToggle.addEventListener('change', function() {
-        hourFormat = this.checked ? "12" : "24";
+        updateFormatLabels();
         updateTimezones();
       });
+      updateFormatLabels();
     }
 
     function getOffsetSign(offsetMinutes) {
@@ -317,10 +399,102 @@
 
 
     </div>
-    
 
-    
+    <div class="row px-3 mt-4">
+      <div class="col feature-list">
+
+        <a href="/" class="feature-item" title="P/L Calculator" aria-label="P/L Calculator">
+          <div style="text-decoration:none;color:inherit;">
+          <i class="fa-solid fa-chart-line feature-icon" style="font-size:25px;vertical-align:middle;"></i>
+          <span>P/L Calculator</span>
+          </div>
+          <div class="feature-desc">
+          Calculate profit and loss for your trades.
+          </div>
+        </a>
+
+        <a href="/average-calculator.html" class="feature-item" title="Average Calculator" aria-label="Average Calculator">
+          <div style="text-decoration:none;color:inherit;">
+          <i class="fa-solid fa-divide feature-icon" style="font-size:25px;vertical-align:middle;"></i>
+          <span>Average Calculator</span>
+          </div>
+          <div class="feature-desc">
+          Calculate the average (mean) of numbers.
+          </div>
+        </a>
+
+        <a href="/percentage-change-calculator.html" class="feature-item" title="Percentage Change Calculator" aria-label="Percentage Change Calculator">
+          <div style="text-decoration:none;color:inherit;">
+          <i class="fa-solid fa-chart-simple feature-icon" style="font-size:25px;vertical-align:middle;"></i>
+          <span>Percentage Change Calculator</span>
+          </div>
+          <div class="feature-desc">
+          Calculate percentage increase or decrease.
+          </div>
+        </a>
+
+        <a href="/percentage-calculator.html" class="feature-item" title="Percentage Calculator" aria-label="Percentage Calculator">
+          <div style="text-decoration:none;color:inherit;">
+          <i class="fa-solid fa-percent feature-icon" style="font-size:25px;vertical-align:middle;"></i>
+          <span>Percentage Calculator</span>
+          </div>
+          <div class="feature-desc">
+          Find what percent one number is of another.
+          </div>
+        </a>
+
+        <a href="/age-calculator.html" class="feature-item" title="Age Calculator" aria-label="Age Calculator">
+          <div style="text-decoration:none;color:inherit;">
+          <i class="fa-solid fa-cake-candles feature-icon" style="font-size:25px;vertical-align:middle;"></i>
+          <span>Age Calculator</span>
+          </div>
+          <div class="feature-desc">
+          Calculate exact age in years, months, and days.
+          </div>
+        </a>
+
+        <a href="/emi-calculator.html" class="feature-item" title="Loan EMI Calculator" aria-label="Loan EMI Calculator">
+          <div style="text-decoration:none;color:inherit;">
+          <i class="fa-solid fa-indian-rupee-sign feature-icon" style="font-size:25px;vertical-align:middle;"></i>
+          <span>Loan EMI Calculator</span>
+          </div>
+          <div class="feature-desc">
+          Calculate your loan EMI easily.
+          </div>
+        </a>
+
+        <a href="/tip-calculator.html" class="feature-item" title="Tip Calculator" aria-label="Tip Calculator">
+          <div style="text-decoration:none;color:inherit;">
+          <i class="fa-solid fa-coins feature-icon" style="font-size:25px;vertical-align:middle;"></i>
+          <span>Tip Calculator</span>
+          </div>
+          <div class="feature-desc">
+          Quickly calculate tips and split bills.
+          </div>
+        </a>
+
+      </div>
+    </div>
+
     <script>
+      // Helper to get user's local timezone object
+      function getLocalTimezoneObject() {
+        try {
+          const userTz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+          if (!userTz) return { label: "IST", tz: "Asia/Kolkata" };
+
+          let match = timezones.find(z => z.tz === userTz);
+          if (match) return match;
+
+          let countryOrCity = userTz.split('/').pop().replace(/_/g, ' ');
+          let customZone = { label: countryOrCity, tz: userTz };
+          timezones.push(customZone);
+          return customZone;
+        } catch (e) {
+          return { label: "IST", tz: "Asia/Kolkata" };
+        }
+      }
+
       // Helper to get the label and tz object by label or fallback
       function getZoneByLabel(label) {
         return timezones.find(z => z.label === label) || { label: label, tz: label };
@@ -349,22 +523,31 @@
 
       // Search bar logic
       const tzSearchInput = document.getElementById('tz-search');
-    const tzSearchResults = document.getElementById('tz-search-results');
+      const tzSearchResults = document.getElementById('tz-search-results');
       const calendarContainer = document.getElementById('gradientBanner');
 
-      // Show calendars from localStorage on first load
+      // Show calendars from localStorage on first load or auto-select default country time
       (function showSavedTimezones() {
         let saved = [];
         try {
           saved = JSON.parse(localStorage.getItem('selectedTimezones') || '[]');
         } catch (e) { saved = []; }
-        if (Array.isArray(saved)) {
-          saved.forEach(label => {
-        if (!document.getElementById(label)) {
-          calendarContainer.insertAdjacentHTML('beforeend', getCalendarHtml(label));
+
+        const localObj = getLocalTimezoneObject();
+
+        if (!Array.isArray(saved) || saved.length === 0) {
+          saved = [localObj.label];
+          if (localObj.label !== "UTC") {
+            saved.push("UTC");
+          }
+          localStorage.setItem('selectedTimezones', JSON.stringify(saved));
         }
-          });
-        }
+
+        saved.forEach(label => {
+          if (!document.getElementById(label)) {
+            calendarContainer.insertAdjacentHTML('beforeend', getCalendarHtml(label));
+          }
+        });
       })();
 
       function renderSearchResults(query) {

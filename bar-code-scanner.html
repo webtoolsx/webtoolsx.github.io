@@ -178,52 +178,74 @@
         cursor: not-allowed;
       }
 
-      /* Single Scan Result Card / Modal */
-      .result-card {
-        background: #0f172a;
-        padding: 18px;
-        border-radius: 14px;
-        border: 2px solid #22c55e;
-        text-align: center;
-        margin-bottom: 20px;
-        box-shadow: 0 0 15px rgba(34, 197, 94, 0.2);
-        animation: fadeIn 0.3s ease-out;
-      }
-
-      @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(-8px); }
-        to { opacity: 1; transform: translateY(0); }
-      }
-
-      .result-header {
-        font-size: 13px;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        color: #4ade80;
-        margin-bottom: 8px;
+      /* Floating Scan Result Modal Overlay */
+      .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(15, 23, 42, 0.85);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 6px;
+        z-index: 99999;
+        padding: 20px;
+        box-sizing: border-box;
+        animation: fadeIn 0.25s ease-out;
+      }
+
+      .modal-card {
+        max-width: 440px;
+        width: 100%;
+        background: #1e293b;
+        border-radius: 18px;
+        border: 2px solid #22c55e;
+        padding: 24px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(34, 197, 94, 0.25);
+        text-align: center;
+        animation: scaleUp 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+
+      @keyframes scaleUp {
+        from { opacity: 0; transform: scale(0.85); }
+        to { opacity: 1; transform: scale(1); }
+      }
+
+      .result-header {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: #4ade80;
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
       }
 
       .result-text {
-        font-size: 20px;
+        font-size: 22px;
         font-weight: 700;
         color: #ffffff;
         word-break: break-all;
-        background: #1e293b;
-        padding: 12px;
-        border-radius: 8px;
+        background: #0f172a;
+        padding: 16px;
+        border-radius: 10px;
         border: 1px solid #334155;
-        margin-bottom: 14px;
+        margin-bottom: 18px;
         font-family: monospace;
       }
 
       .result-actions {
         display: flex;
-        gap: 10px;
+        gap: 12px;
       }
 
       .btn-copy-result {
@@ -231,6 +253,9 @@
         background-color: #334155;
         color: #f8fafc;
         border: 1px solid #475569;
+        padding: 12px;
+        border-radius: 8px;
+        font-size: 0.95rem;
       }
 
       .btn-copy-result:hover {
@@ -248,6 +273,9 @@
         background-color: #22c55e;
         color: #052e16;
         font-weight: 700;
+        padding: 12px;
+        border-radius: 8px;
+        font-size: 0.95rem;
       }
 
       .btn-ok:hover {
@@ -458,19 +486,22 @@
         </div>
       </div>
 
-      <!-- Scanned Result Card / Modal -->
-      <div id="result-card" class="result-card" style="display: none;">
-        <div class="result-header">
-          <i class="fas fa-check-circle"></i> Barcode Scanned
-        </div>
-        <div id="result-text" class="result-text">Waiting for scan...</div>
-        <div class="result-actions">
-          <button id="copy-btn" class="btn-copy-result" onclick="copyCurrentResult()">
-            <i class="fas fa-copy"></i> Copy
-          </button>
-          <button id="ok-btn" class="btn-ok" onclick="resumeScanning()">
-            <i class="fas fa-check"></i> OK / Scan Next
-          </button>
+      <!-- Floating Scan Result Modal Overlay -->
+      <div id="result-card" class="modal-overlay" style="display: none;" onclick="if(event.target===this) resumeScanning();">
+        <div class="modal-card">
+          <div class="result-header">
+            <i class="fas fa-check-circle" style="font-size: 1.4rem; color: #22c55e;"></i>
+            <span>Barcode / QR Code Scanned!</span>
+          </div>
+          <div id="result-text" class="result-text">Waiting for scan...</div>
+          <div class="result-actions">
+            <button id="copy-btn" class="btn-copy-result" onclick="copyCurrentResult()">
+              <i class="fas fa-copy"></i> Copy
+            </button>
+            <button id="ok-btn" class="btn-ok" onclick="resumeScanning()">
+              <i class="fas fa-check"></i> OK / Scan Next
+            </button>
+          </div>
         </div>
       </div>
 
@@ -534,7 +565,7 @@
 
         document.getElementById("result-text").innerText = decodedText;
         const resultCard = document.getElementById("result-card");
-        resultCard.style.display = "block";
+        resultCard.style.display = "flex";
 
         const copyBtn = document.getElementById("copy-btn");
         if (copyBtn) {

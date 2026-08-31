@@ -179,31 +179,32 @@
     <script>
       let html5QrcodeScanner = null;
 
-      // Ultra-fast scanning configuration targeting common product formats
+      // Exclusive 1D Barcode Formats ONLY (Removed QR code to focus 100% engine speed on 1D barcodes)
       const formatsToSupport = [
-        Html5QrcodeSupportedFormats.QR_CODE,
-        Html5QrcodeSupportedFormats.UPC_A,
-        Html5QrcodeSupportedFormats.UPC_E,
         Html5QrcodeSupportedFormats.EAN_13,
         Html5QrcodeSupportedFormats.EAN_8,
+        Html5QrcodeSupportedFormats.UPC_A,
+        Html5QrcodeSupportedFormats.UPC_E,
         Html5QrcodeSupportedFormats.CODE_128,
-        Html5QrcodeSupportedFormats.CODE_39
+        Html5QrcodeSupportedFormats.CODE_39,
+        Html5QrcodeSupportedFormats.ITF
       ];
 
       const config = {
-        fps: 30, // 30 FPS for instant 1-2 second scan detection
+        fps: 30, // 30 FPS for instant 1D barcode detection
         qrbox: (viewfinderWidth, viewfinderHeight) => {
-          const width = Math.floor(viewfinderWidth * 0.85);
-          const height = Math.floor(viewfinderHeight * 0.55);
+          // Wide rectangular reticle optimal for 1D product barcodes
+          const width = Math.floor(viewfinderWidth * 0.9);
+          const height = Math.min(Math.floor(viewfinderHeight * 0.45), 160);
           return {
-            width: Math.max(width, 180),
-            height: Math.max(height, 100),
+            width: Math.max(width, 200),
+            height: Math.max(height, 120),
           };
         },
         aspectRatio: 1.333333,
         formatsToSupport: formatsToSupport,
         experimentalFeatures: {
-          useBarCodeDetectorIfSupported: true, // Use browser native GPU BarcodeDetector API
+          useBarCodeDetectorIfSupported: true, // Native browser GPU acceleration
         },
       };
 
@@ -248,10 +249,16 @@
           html5QrcodeScanner = new Html5Qrcode("reader");
         }
 
-        // Standard facingMode environment for mobile/desktop back camera
+        // Camera constraints requesting HD video for crisp 1D barcode lines
+        const cameraConstraints = {
+          facingMode: "environment",
+          width: { ideal: 1280 },
+          height: { ideal: 720 }
+        };
+
         html5QrcodeScanner
           .start(
-            { facingMode: "environment" },
+            cameraConstraints,
             config,
             onScanSuccess,
             onScanFailure,
@@ -261,11 +268,10 @@
             document.getElementById("stop-btn").disabled = false;
           })
           .catch((err) => {
-            console.error("Unable to start scanning with environment camera:", err);
-            // Fallback to default user video source if environment fails
+            console.error("HD camera failed, trying default environment camera:", err);
             html5QrcodeScanner
               .start(
-                { facingMode: "user" },
+                { facingMode: "environment" },
                 config,
                 onScanSuccess,
                 onScanFailure,
@@ -275,7 +281,20 @@
                 document.getElementById("stop-btn").disabled = false;
               })
               .catch((fallbackErr) => {
-                alert("Camera access failed or permission denied: " + (fallbackErr.message || fallbackErr));
+                html5QrcodeScanner
+                  .start(
+                    { facingMode: "user" },
+                    config,
+                    onScanSuccess,
+                    onScanFailure,
+                  )
+                  .then(() => {
+                    document.getElementById("start-btn").disabled = true;
+                    document.getElementById("stop-btn").disabled = false;
+                  })
+                  .catch((userErr) => {
+                    alert("Camera access failed or permission denied: " + (userErr.message || userErr));
+                  });
               });
           });
       }

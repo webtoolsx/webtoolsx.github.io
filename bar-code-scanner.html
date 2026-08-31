@@ -179,11 +179,19 @@
     <script>
       let html5QrcodeScanner = null;
 
-      // Supported formats: UPC, EAN, CODE_128, CODE_39, QR_CODE, etc.
+      // High performance scanning configuration
       const config = {
-        fps: 10,
-        qrbox: { width: 250, height: 150 }, // Aspect ratio adjusted for horizontal barcodes
-        aspectRatio: 1.0,
+        fps: 25, // Increased frame rate from 10 to 25 FPS for fast detection
+        qrbox: (viewfinderWidth, viewfinderHeight) => {
+          return {
+            width: Math.min(Math.floor(viewfinderWidth * 0.85), 320),
+            height: Math.min(Math.floor(viewfinderHeight * 0.6), 200),
+          };
+        },
+        aspectRatio: 1.333333,
+        experimentalFeatures: {
+          useBarCodeDetectorIfSupported: true, // Use native browser GPU BarcodeDetector API (up to 10x faster)
+        },
       };
 
       function onScanSuccess(decodedText, decodedResult) {
@@ -227,10 +235,17 @@
           html5QrcodeScanner = new Html5Qrcode("reader");
         }
 
-        // Request back camera (environment) preferred for mobile scanning
+        // Camera constraints optimized for speed and autofocus
+        const cameraConstraints = {
+          facingMode: "environment",
+          width: { min: 640, ideal: 1280 },
+          height: { min: 480, ideal: 720 },
+          focusMode: "continuous",
+        };
+
         html5QrcodeScanner
           .start(
-            { facingMode: "environment" },
+            cameraConstraints,
             config,
             onScanSuccess,
             onScanFailure,
@@ -241,7 +256,21 @@
           })
           .catch((err) => {
             console.error("Unable to start scanning:", err);
-            alert("Camera access failed or permission denied: " + err);
+            // Fallback to basic environment camera if advanced constraints fail
+            html5QrcodeScanner
+              .start(
+                { facingMode: "environment" },
+                config,
+                onScanSuccess,
+                onScanFailure,
+              )
+              .then(() => {
+                document.getElementById("start-btn").disabled = true;
+                document.getElementById("stop-btn").disabled = false;
+              })
+              .catch((fallbackErr) => {
+                alert("Camera access failed: " + fallbackErr);
+              });
           });
       }
 

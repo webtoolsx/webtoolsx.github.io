@@ -215,6 +215,42 @@
         // Handle or ignore scan frame failures (fires constantly while seeking)
       }
 
+      function applyZoom(zoomVal) {
+        if (!html5QrcodeScanner) return;
+        try {
+          const track = html5QrcodeScanner.getRunningTrack();
+          if (track && typeof track.getCapabilities === "function") {
+            const caps = track.getCapabilities();
+            if (caps.zoom) {
+              const target = Math.min(
+                Math.max(zoomVal, caps.zoom.min || 1),
+                caps.zoom.max || 5,
+              );
+              track.applyConstraints({ advanced: [{ zoom: target }] });
+              document.querySelectorAll(".btn-zoom").forEach((btn) => {
+                btn.classList.toggle("active", btn.innerText === zoomVal + "x");
+              });
+            }
+          }
+        } catch (e) {
+          console.warn("Zoom constraint failed:", e);
+        }
+      }
+
+      function checkZoomCapability() {
+        if (!html5QrcodeScanner) return;
+        try {
+          const track = html5QrcodeScanner.getRunningTrack();
+          if (track && typeof track.getCapabilities === "function") {
+            const caps = track.getCapabilities();
+            const zoomContainer = document.getElementById("zoom-container");
+            if (caps.zoom && zoomContainer) {
+              zoomContainer.style.display = "flex";
+            }
+          }
+        } catch (e) {}
+      }
+
       function startScanner() {
         if (html5QrcodeScanner) {
           try {
@@ -232,7 +268,7 @@
           Html5QrcodeSupportedFormats.UPC_E,
           Html5QrcodeSupportedFormats.CODE_128,
           Html5QrcodeSupportedFormats.CODE_39,
-          Html5QrcodeSupportedFormats.ITF
+          Html5QrcodeSupportedFormats.ITF,
         ].filter((f) => f !== undefined);
 
         const config = {
@@ -252,32 +288,35 @@
           },
         };
 
-        html5QrcodeScanner
-          .start(
-            { facingMode: "environment" },
-            config,
-            onScanSuccess,
-            onScanFailure,
-          )
-          .then(() => {
-            document.getElementById("start-btn").disabled = true;
-            document.getElementById("stop-btn").disabled = false;
-          })
-          .catch((err) => {
-            console.error("Camera start failed with environment facingMode:", err);
-            // Fallback: Enumerate cameras and start with available rear/default camera
-            Html5Qrcode.getCameras()
-              .then((devices) => {
-                if (devices && devices.length > 0) {
-                  const selectedCamera = devices.find((d) =>
+        // Enumerate camera devices first to get exact camera device ID
+        Html5Qrcode.getCameras()
+          .then((devices) => {
+            if (devices && devices.length > 0) {
+              const selectedCamera =
+                devices.find(
+                  (d) =>
                     d.label.toLowerCase().includes("back") ||
                     d.label.toLowerCase().includes("rear") ||
-                    d.label.toLowerCase().includes("environment")
-                  ) || devices[0];
+                    d.label.toLowerCase().includes("environment"),
+                ) || devices[0];
 
+              html5QrcodeScanner
+                .start(
+                  selectedCamera.id,
+                  config,
+                  onScanSuccess,
+                  onScanFailure,
+                )
+                .then(() => {
+                  document.getElementById("start-btn").disabled = true;
+                  document.getElementById("stop-btn").disabled = false;
+                  checkZoomCapability();
+                })
+                .catch((err) => {
+                  console.error("Camera start with device ID failed, trying environment facingMode:", err);
                   html5QrcodeScanner
                     .start(
-                      selectedCamera.id,
+                      { facingMode: "environment" },
                       config,
                       onScanSuccess,
                       onScanFailure,
@@ -285,16 +324,47 @@
                     .then(() => {
                       document.getElementById("start-btn").disabled = true;
                       document.getElementById("stop-btn").disabled = false;
+                      checkZoomCapability();
                     })
-                    .catch((camErr) => {
-                      alert("Camera start error: " + (camErr.message || camErr));
+                    .catch((fallbackErr) => {
+                      alert("Camera start failed: " + (fallbackErr.message || fallbackErr));
                     });
-                } else {
-                  alert("No camera device found on this system.");
-                }
+                });
+            } else {
+              // Direct start fallback if device list returns empty
+              html5QrcodeScanner
+                .start(
+                  { facingMode: "environment" },
+                  config,
+                  onScanSuccess,
+                  onScanFailure,
+                )
+                .then(() => {
+                  document.getElementById("start-btn").disabled = true;
+                  document.getElementById("stop-btn").disabled = false;
+                  checkZoomCapability();
+                })
+                .catch((err) => {
+                  alert("No camera device found or permission denied: " + (err.message || err));
+                });
+            }
+          })
+          .catch((err) => {
+            console.error("getCameras failed, trying direct environment launch:", err);
+            html5QrcodeScanner
+              .start(
+                { facingMode: "environment" },
+                config,
+                onScanSuccess,
+                onScanFailure,
+              )
+              .then(() => {
+                document.getElementById("start-btn").disabled = true;
+                document.getElementById("stop-btn").disabled = false;
+                checkZoomCapability();
               })
               .catch((cErr) => {
-                alert("Camera permission error: " + (cErr.message || cErr));
+                alert("Camera permission denied or camera unaccessible: " + (cErr.message || cErr));
               });
           });
       }
@@ -307,6 +377,7 @@
               html5QrcodeScanner.clear();
               document.getElementById("start-btn").disabled = false;
               document.getElementById("stop-btn").disabled = true;
+              document.getElementById("zoom-container").style.display = "none";
             })
             .catch((err) => {
               console.error("Failed to stop scanner:", err);

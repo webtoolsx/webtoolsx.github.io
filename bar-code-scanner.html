@@ -181,16 +181,19 @@
 
       // High performance scanning configuration
       const config = {
-        fps: 25, // Increased frame rate from 10 to 25 FPS for fast detection
+        fps: 20, // 20 FPS for fast, smooth detection
         qrbox: (viewfinderWidth, viewfinderHeight) => {
+          // Ensure qrbox dimensions never exceed viewfinder bounds
+          const width = Math.floor(viewfinderWidth * 0.8);
+          const height = Math.floor(viewfinderHeight * 0.5);
           return {
-            width: Math.min(Math.floor(viewfinderWidth * 0.85), 320),
-            height: Math.min(Math.floor(viewfinderHeight * 0.6), 200),
+            width: Math.max(width, 150),
+            height: Math.max(height, 100),
           };
         },
-        aspectRatio: 1.333333,
+        aspectRatio: 1.0,
         experimentalFeatures: {
-          useBarCodeDetectorIfSupported: true, // Use native browser GPU BarcodeDetector API (up to 10x faster)
+          useBarCodeDetectorIfSupported: true, // Use native browser GPU BarcodeDetector API when available
         },
       };
 
@@ -235,17 +238,10 @@
           html5QrcodeScanner = new Html5Qrcode("reader");
         }
 
-        // Camera constraints optimized for speed and autofocus
-        const cameraConstraints = {
-          facingMode: "environment",
-          width: { min: 640, ideal: 1280 },
-          height: { min: 480, ideal: 720 },
-          focusMode: "continuous",
-        };
-
+        // Standard facingMode environment for mobile/desktop back camera
         html5QrcodeScanner
           .start(
-            cameraConstraints,
+            { facingMode: "environment" },
             config,
             onScanSuccess,
             onScanFailure,
@@ -255,11 +251,11 @@
             document.getElementById("stop-btn").disabled = false;
           })
           .catch((err) => {
-            console.error("Unable to start scanning:", err);
-            // Fallback to basic environment camera if advanced constraints fail
+            console.error("Unable to start scanning with environment camera:", err);
+            // Fallback to default user video source if environment fails
             html5QrcodeScanner
               .start(
-                { facingMode: "environment" },
+                { facingMode: "user" },
                 config,
                 onScanSuccess,
                 onScanFailure,
@@ -269,7 +265,7 @@
                 document.getElementById("stop-btn").disabled = false;
               })
               .catch((fallbackErr) => {
-                alert("Camera access failed: " + fallbackErr);
+                alert("Camera access failed or permission denied: " + (fallbackErr.message || fallbackErr));
               });
           });
       }

@@ -76,6 +76,32 @@
         border-radius: 8px;
       }
 
+      .camera-select-wrapper {
+        margin-top: 14px;
+      }
+
+      .camera-select-label {
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: #94a3b8;
+        margin-bottom: 6px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .camera-select {
+        width: 100%;
+        padding: 10px;
+        background: #1e293b;
+        color: #f8fafc;
+        border: 1px solid #475569;
+        border-radius: 8px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        outline: none;
+      }
+
       .zoom-controls {
         display: flex;
         align-items: center;
@@ -297,7 +323,6 @@
         padding-right: 4px;
       }
 
-      /* Scrollbar Styling */
       .history-list::-webkit-scrollbar {
         width: 6px;
       }
@@ -404,6 +429,15 @@
       <div class="scanner-card">
         <div id="reader"></div>
 
+        <!-- Camera Dropdown Selection -->
+        <div id="camera-select-container" class="camera-select-wrapper" style="display: none;">
+          <div class="camera-select-label">
+            <i class="fas fa-camera"></i> Select Camera Lens:
+          </div>
+          <select id="camera-select" class="camera-select" onchange="onCameraChange()">
+          </select>
+        </div>
+
         <!-- Zoom Controls -->
         <div id="zoom-container" class="zoom-controls" style="display: none;">
           <span class="zoom-label"><i class="fas fa-search-plus"></i> Zoom:</span>
@@ -413,7 +447,7 @@
           <button class="btn-zoom" onclick="applyZoom(4)">4x</button>
         </div>
 
-        <!-- Camera Start / Stop Actions -->
+        <!-- Camera Actions -->
         <div class="actions">
           <button id="start-btn" class="btn-start" onclick="startScanner()">
             <i class="fas fa-video"></i> Start Camera
@@ -424,7 +458,7 @@
         </div>
       </div>
 
-      <!-- Scanned Result Card / Modal (Appears after single scan) -->
+      <!-- Scanned Result Card / Modal -->
       <div id="result-card" class="result-card" style="display: none;">
         <div class="result-header">
           <i class="fas fa-check-circle"></i> Barcode Scanned
@@ -472,7 +506,6 @@
       let isScanPaused = false;
       let scannedHistory = [];
 
-      // Initialize saved history from localStorage on load
       document.addEventListener("DOMContentLoaded", () => {
         const saved = localStorage.getItem("webtoolsx_scanned_barcodes");
         if (saved) {
@@ -486,12 +519,11 @@
       });
 
       function onScanSuccess(decodedText, decodedResult) {
-        if (isScanPaused) return; // Ignore multiple scan triggers while paused
+        if (isScanPaused) return;
 
         isScanPaused = true;
         beep();
 
-        // Pause scanner preview video stream on single scan
         try {
           if (html5QrcodeScanner) {
             html5QrcodeScanner.pause(true);
@@ -500,19 +532,16 @@
           console.warn("Scanner pause error:", e);
         }
 
-        // Show result card with OK / Copy buttons
         document.getElementById("result-text").innerText = decodedText;
         const resultCard = document.getElementById("result-card");
         resultCard.style.display = "block";
 
-        // Reset copy button status
         const copyBtn = document.getElementById("copy-btn");
         if (copyBtn) {
           copyBtn.classList.remove("copied");
           copyBtn.innerHTML = '<i class="fas fa-copy"></i> Copy';
         }
 
-        // Add to scanned history list
         addHistoryItem(decodedText);
       }
 
@@ -554,7 +583,6 @@
         // Ignore frame lookup failures
       }
 
-      /* History List Management */
       function addHistoryItem(codeText) {
         const timeStr = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
         const newItem = {
@@ -668,7 +696,6 @@
           .replace(/"/g, "&quot;");
       }
 
-      /* Zoom Controls */
       function applyZoom(zoomVal) {
         if (!html5QrcodeScanner) return;
 
@@ -713,8 +740,54 @@
         }, 350);
       }
 
-      /* Camera Start & Stop */
+      /* Camera Management & Dropdown */
+      function populateCameraDropdown(selectedDeviceId) {
+        Html5Qrcode.getCameras()
+          .then((devices) => {
+            const selectElem = document.getElementById("camera-select");
+            const selectContainer = document.getElementById("camera-select-container");
+            if (!selectElem || !devices || devices.length === 0) return;
+
+            selectElem.innerHTML = "";
+            devices.forEach((device, index) => {
+              const opt = document.createElement("option");
+              opt.value = device.id;
+              // Format user friendly camera label
+              let label = device.label || `Camera ${index + 1}`;
+              if (!device.label) {
+                label = index === 0 ? "Back / Rear Camera" : `Camera ${index + 1}`;
+              }
+              opt.text = label;
+              if (selectedDeviceId && device.id === selectedDeviceId) {
+                opt.selected = true;
+              }
+              selectElem.appendChild(opt);
+            });
+
+            if (selectContainer && devices.length > 1) {
+              selectContainer.style.display = "block";
+            }
+          })
+          .catch((e) => {});
+      }
+
+      function onCameraChange() {
+        const selectElem = document.getElementById("camera-select");
+        if (selectElem && selectElem.value) {
+          startScannerWithConfig(selectElem.value);
+        }
+      }
+
       function startScanner() {
+        const selectElem = document.getElementById("camera-select");
+        const selectedId = selectElem && selectElem.value ? selectElem.value : "";
+        
+        // On Android, request facingMode: "environment" first for back camera unless a specific device is selected
+        const cameraConfig = selectedId ? selectedId : { facingMode: "environment" };
+        startScannerWithConfig(cameraConfig);
+      }
+
+      function startScannerWithConfig(cameraConfig) {
         if (html5QrcodeScanner) {
           try {
             html5QrcodeScanner.clear();
@@ -762,34 +835,44 @@
           },
         };
 
-        Html5Qrcode.getCameras()
-          .then((devices) => {
-            if (devices && devices.length > 0) {
-              const selectedCamera =
-                devices.find(
-                  (d) =>
+        html5QrcodeScanner
+          .start(
+            cameraConfig,
+            config,
+            onScanSuccess,
+            onScanFailure,
+          )
+          .then(() => {
+            document.getElementById("start-btn").disabled = true;
+            document.getElementById("stop-btn").disabled = false;
+            checkZoomCapability();
+            
+            // Get current active device id if object config was passed
+            let activeId = typeof cameraConfig === "string" ? cameraConfig : "";
+            try {
+              const track = html5QrcodeScanner.getRunningTrack();
+              if (track && track.getSettings) {
+                activeId = track.getSettings().deviceId || activeId;
+              }
+            } catch(e) {}
+            populateCameraDropdown(activeId);
+          })
+          .catch((err) => {
+            console.warn("Camera start failed with initial config, trying device enumeration fallback:", err);
+            Html5Qrcode.getCameras()
+              .then((devices) => {
+                if (devices && devices.length > 0) {
+                  // Prefer rear/back camera device
+                  const backCam = devices.find((d) =>
                     d.label.toLowerCase().includes("back") ||
                     d.label.toLowerCase().includes("rear") ||
-                    d.label.toLowerCase().includes("environment"),
-                ) || devices[0];
+                    d.label.toLowerCase().includes("environment") ||
+                    d.label.toLowerCase().includes("0, facing back")
+                  ) || devices[devices.length - 1];
 
-              html5QrcodeScanner
-                .start(
-                  selectedCamera.id,
-                  config,
-                  onScanSuccess,
-                  onScanFailure,
-                )
-                .then(() => {
-                  document.getElementById("start-btn").disabled = true;
-                  document.getElementById("stop-btn").disabled = false;
-                  checkZoomCapability();
-                })
-                .catch((err) => {
-                  console.error("Camera start with device ID failed, trying environment facingMode:", err);
                   html5QrcodeScanner
                     .start(
-                      { facingMode: "environment" },
+                      backCam.id,
                       config,
                       onScanSuccess,
                       onScanFailure,
@@ -798,45 +881,17 @@
                       document.getElementById("start-btn").disabled = true;
                       document.getElementById("stop-btn").disabled = false;
                       checkZoomCapability();
+                      populateCameraDropdown(backCam.id);
                     })
-                    .catch((fallbackErr) => {
-                      alert("Camera start failed: " + (fallbackErr.message || fallbackErr));
+                    .catch((cErr) => {
+                      alert("Camera start error: " + (cErr.message || cErr));
                     });
-                });
-            } else {
-              html5QrcodeScanner
-                .start(
-                  { facingMode: "environment" },
-                  config,
-                  onScanSuccess,
-                  onScanFailure,
-                )
-                .then(() => {
-                  document.getElementById("start-btn").disabled = true;
-                  document.getElementById("stop-btn").disabled = false;
-                  checkZoomCapability();
-                })
-                .catch((err) => {
-                  alert("No camera device found or permission denied: " + (err.message || err));
-                });
-            }
-          })
-          .catch((err) => {
-            console.error("getCameras failed, trying direct environment launch:", err);
-            html5QrcodeScanner
-              .start(
-                { facingMode: "environment" },
-                config,
-                onScanSuccess,
-                onScanFailure,
-              )
-              .then(() => {
-                document.getElementById("start-btn").disabled = true;
-                document.getElementById("stop-btn").disabled = false;
-                checkZoomCapability();
+                } else {
+                  alert("No camera device found on this system.");
+                }
               })
               .catch((cErr) => {
-                alert("Camera permission denied or camera unaccessible: " + (cErr.message || cErr));
+                alert("Camera permission error: " + (cErr.message || cErr));
               });
           });
       }

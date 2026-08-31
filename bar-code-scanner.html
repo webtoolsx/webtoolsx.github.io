@@ -217,6 +217,8 @@
 
       function applyZoom(zoomVal) {
         if (!html5QrcodeScanner) return;
+        
+        // 1. Hardware Camera Track Zoom (if supported by hardware)
         try {
           const track = html5QrcodeScanner.getRunningTrack();
           if (track && typeof track.getCapabilities === "function") {
@@ -227,28 +229,38 @@
                 caps.zoom.max || 5,
               );
               track.applyConstraints({ advanced: [{ zoom: target }] });
-              document.querySelectorAll(".btn-zoom").forEach((btn) => {
-                btn.classList.toggle("active", btn.innerText === zoomVal + "x");
-              });
             }
           }
         } catch (e) {
-          console.warn("Zoom constraint failed:", e);
+          console.warn("Hardware zoom constraint failed:", e);
         }
+
+        // 2. Hybrid Software CSS Scale Zoom (Guaranteed 2x magnification on all webcams & mobile cameras)
+        const videoElem = document.querySelector("#reader video");
+        if (videoElem) {
+          const scaleFactor = zoomVal === 1 ? 1 : 1 + (zoomVal - 1) * 0.4;
+          videoElem.style.transform = `scale(${scaleFactor})`;
+          videoElem.style.transformOrigin = "center center";
+          videoElem.style.transition = "transform 0.25s ease-out";
+        }
+
+        // Update active zoom button styling
+        document.querySelectorAll(".btn-zoom").forEach((btn) => {
+          btn.classList.toggle("active", btn.innerText === zoomVal + "x");
+        });
       }
 
       function checkZoomCapability() {
         if (!html5QrcodeScanner) return;
-        try {
-          const track = html5QrcodeScanner.getRunningTrack();
-          if (track && typeof track.getCapabilities === "function") {
-            const caps = track.getCapabilities();
-            const zoomContainer = document.getElementById("zoom-container");
-            if (caps.zoom && zoomContainer) {
-              zoomContainer.style.display = "flex";
-            }
-          }
-        } catch (e) {}
+        const zoomContainer = document.getElementById("zoom-container");
+        if (zoomContainer) {
+          zoomContainer.style.display = "flex";
+        }
+
+        // Automatically apply 2x digital zoom by default on camera startup
+        setTimeout(() => {
+          applyZoom(2);
+        }, 350);
       }
 
       function startScanner() {

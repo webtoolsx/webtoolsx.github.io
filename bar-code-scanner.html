@@ -25,7 +25,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
+        justify-content: flex-start;
         min-height: 100vh;
         margin: 0;
         padding: 20px;
@@ -33,7 +33,7 @@
       }
 
       .container {
-        max-width: 480px;
+        max-width: 520px;
         width: 100%;
         background: #1e293b;
         padding: 24px;
@@ -47,6 +47,20 @@
         margin-top: 0;
         margin-bottom: 20px;
         color: #38bdf8;
+        font-size: 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+      }
+
+      /* TOP: Scanner Module */
+      .scanner-card {
+        background: #0f172a;
+        padding: 16px;
+        border-radius: 14px;
+        border: 1px solid #334155;
+        margin-bottom: 20px;
       }
 
       #reader {
@@ -57,89 +71,79 @@
         background: #0f172a;
       }
 
-      /* Override library video styles */
       #reader video {
         object-fit: cover !important;
         border-radius: 8px;
       }
 
-      .result-card {
-        margin-top: 20px;
-        padding: 16px;
-        background: #0f172a;
-        border-radius: 12px;
-        border: 1px solid #334155;
-        text-align: center;
-      }
-
-      .result-title {
-        font-size: 12px;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        color: #94a3b8;
-        margin-bottom: 6px;
-      }
-
-      .result-text {
-        font-size: 18px;
-        font-weight: 600;
-        color: #4ade80;
-        word-break: break-all;
-      }
-
-      .btn-copy {
-        background-color: #334155;
-        color: #f8fafc;
-        border: 1px solid #475569;
-        margin-top: 12px;
-        width: 100%;
+      .zoom-controls {
         display: flex;
         align-items: center;
         justify-content: center;
         gap: 8px;
+        margin-top: 14px;
       }
 
-      .btn-copy:hover:not(:disabled) {
-        background-color: #475569;
+      .zoom-label {
+        font-weight: 600;
+        color: #94a3b8;
+        font-size: 0.9rem;
       }
 
-      .btn-copy.copied {
-        background-color: #16a34a !important;
-        color: white !important;
-        border-color: #16a34a !important;
+      .btn-zoom {
+        padding: 6px 14px;
+        background-color: #1e293b;
+        color: #cbd5e1;
+        border: 1px solid #475569;
+        border-radius: 6px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+
+      .btn-zoom:hover,
+      .btn-zoom.active {
+        background-color: #0284c7;
+        color: white;
+        border-color: #0284c7;
       }
 
       .actions {
         display: flex;
         gap: 10px;
-        margin-top: 16px;
+        margin-top: 14px;
       }
 
       button {
-        flex: 1;
         padding: 12px;
         border: none;
         border-radius: 8px;
         font-weight: 600;
         cursor: pointer;
-        transition: background-color 0.2s;
+        transition: all 0.2s;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
       }
 
       .btn-start {
+        flex: 1;
         background-color: #0284c7;
         color: white;
       }
 
-      .btn-start:hover {
+      .btn-start:hover:not(:disabled) {
         background-color: #0369a1;
       }
 
       .btn-stop {
+        flex: 1;
         background-color: #ef4444;
         color: white;
       }
 
-      .btn-stop:hover {
+      .btn-stop:hover:not(:disabled) {
         background-color: #dc2626;
       }
 
@@ -147,49 +151,385 @@
         opacity: 0.5;
         cursor: not-allowed;
       }
+
+      /* Single Scan Result Card / Modal */
+      .result-card {
+        background: #0f172a;
+        padding: 18px;
+        border-radius: 14px;
+        border: 2px solid #22c55e;
+        text-align: center;
+        margin-bottom: 20px;
+        box-shadow: 0 0 15px rgba(34, 197, 94, 0.2);
+        animation: fadeIn 0.3s ease-out;
+      }
+
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-8px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      .result-header {
+        font-size: 13px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: #4ade80;
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+      }
+
+      .result-text {
+        font-size: 20px;
+        font-weight: 700;
+        color: #ffffff;
+        word-break: break-all;
+        background: #1e293b;
+        padding: 12px;
+        border-radius: 8px;
+        border: 1px solid #334155;
+        margin-bottom: 14px;
+        font-family: monospace;
+      }
+
+      .result-actions {
+        display: flex;
+        gap: 10px;
+      }
+
+      .btn-copy-result {
+        flex: 1;
+        background-color: #334155;
+        color: #f8fafc;
+        border: 1px solid #475569;
+      }
+
+      .btn-copy-result:hover {
+        background-color: #475569;
+      }
+
+      .btn-copy-result.copied {
+        background-color: #16a34a !important;
+        color: white !important;
+        border-color: #16a34a !important;
+      }
+
+      .btn-ok {
+        flex: 1;
+        background-color: #22c55e;
+        color: #052e16;
+        font-weight: 700;
+      }
+
+      .btn-ok:hover {
+        background-color: #16a34a;
+        color: white;
+      }
+
+      /* BOTTOM: History List Module */
+      .history-card {
+        background: #0f172a;
+        padding: 18px;
+        border-radius: 14px;
+        border: 1px solid #334155;
+      }
+
+      .history-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 14px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #334155;
+      }
+
+      .history-title {
+        font-weight: 700;
+        font-size: 1rem;
+        color: #38bdf8;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .history-title .badge {
+        background: #0284c7;
+        color: white;
+        padding: 2px 8px;
+        border-radius: 12px;
+        font-size: 0.75rem;
+      }
+
+      .history-global-actions {
+        display: flex;
+        gap: 6px;
+      }
+
+      .btn-history-action {
+        padding: 4px 10px;
+        font-size: 0.8rem;
+        border-radius: 6px;
+        background: #1e293b;
+        color: #cbd5e1;
+        border: 1px solid #475569;
+      }
+
+      .btn-history-action:hover {
+        background: #334155;
+        color: white;
+      }
+
+      .btn-clear-all:hover {
+        background: #ef4444;
+        color: white;
+        border-color: #ef4444;
+      }
+
+      .history-list {
+        max-height: 280px;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        padding-right: 4px;
+      }
+
+      /* Scrollbar Styling */
+      .history-list::-webkit-scrollbar {
+        width: 6px;
+      }
+      .history-list::-webkit-scrollbar-track {
+        background: #0f172a;
+      }
+      .history-list::-webkit-scrollbar-thumb {
+        background: #334155;
+        border-radius: 4px;
+      }
+
+      .empty-state {
+        text-align: center;
+        padding: 24px 12px;
+        color: #64748b;
+      }
+      .empty-state i {
+        font-size: 2rem;
+        margin-bottom: 8px;
+        opacity: 0.6;
+      }
+      .empty-state p {
+        margin: 0;
+        font-size: 0.9rem;
+      }
+
+      .history-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: #1e293b;
+        padding: 10px 14px;
+        border-radius: 8px;
+        border: 1px solid #334155;
+        transition: background 0.15s;
+      }
+
+      .history-item:hover {
+        background: #24334d;
+      }
+
+      .item-info {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        overflow: hidden;
+      }
+
+      .item-index {
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: #64748b;
+        min-width: 24px;
+      }
+
+      .item-code {
+        font-family: monospace;
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: #e2e8f0;
+        word-break: break-all;
+      }
+
+      .item-time {
+        font-size: 0.7rem;
+        color: #64748b;
+        margin-left: 4px;
+        white-space: nowrap;
+      }
+
+      .item-actions {
+        display: flex;
+        gap: 6px;
+        margin-left: 10px;
+      }
+
+      .btn-item-action {
+        padding: 6px 10px;
+        font-size: 0.8rem;
+        border-radius: 6px;
+        background: #0f172a;
+        border: 1px solid #334155;
+        color: #94a3b8;
+      }
+
+      .btn-item-copy:hover {
+        background: #0284c7;
+        color: white;
+        border-color: #0284c7;
+      }
+
+      .btn-item-delete:hover {
+        background: #ef4444;
+        color: white;
+        border-color: #ef4444;
+      }
     </style>
   </head>
   <body>
     <div class="container">
-      <h2>Barcode Scanner</h2>
+      <h2><i class="fas fa-barcode"></i> Barcode Scanner</h2>
 
-      <!-- Camera Preview Viewport -->
-      <div id="reader"></div>
+      <!-- TOP: Scanner Viewport Module -->
+      <div class="scanner-card">
+        <div id="reader"></div>
 
-      <!-- Scanned Result Display -->
-      <div class="result-card">
-        <div class="result-title">Scanned Barcode Result</div>
-        <div id="result-text" class="result-text">Waiting for scan...</div>
-        <button id="copy-btn" class="btn-copy" onclick="copyResult()" disabled>
-          <i class="fas fa-copy"></i> Copy Result
-        </button>
+        <!-- Zoom Controls -->
+        <div id="zoom-container" class="zoom-controls" style="display: none;">
+          <span class="zoom-label"><i class="fas fa-search-plus"></i> Zoom:</span>
+          <button class="btn-zoom" onclick="applyZoom(1)">1x</button>
+          <button class="btn-zoom active" onclick="applyZoom(2)">2x</button>
+          <button class="btn-zoom" onclick="applyZoom(3)">3x</button>
+          <button class="btn-zoom" onclick="applyZoom(4)">4x</button>
+        </div>
+
+        <!-- Camera Start / Stop Actions -->
+        <div class="actions">
+          <button id="start-btn" class="btn-start" onclick="startScanner()">
+            <i class="fas fa-video"></i> Start Camera
+          </button>
+          <button id="stop-btn" class="btn-stop" onclick="stopScanner()" disabled>
+            <i class="fas fa-video-slash"></i> Stop Camera
+          </button>
+        </div>
       </div>
 
-      <!-- Controls -->
-      <div class="actions">
-        <button id="start-btn" class="btn-start" onclick="startScanner()">
-          Start Camera
-        </button>
-        <button id="stop-btn" class="btn-stop" onclick="stopScanner()" disabled>
-          Stop Camera
-        </button>
+      <!-- Scanned Result Card / Modal (Appears after single scan) -->
+      <div id="result-card" class="result-card" style="display: none;">
+        <div class="result-header">
+          <i class="fas fa-check-circle"></i> Barcode Scanned
+        </div>
+        <div id="result-text" class="result-text">Waiting for scan...</div>
+        <div class="result-actions">
+          <button id="copy-btn" class="btn-copy-result" onclick="copyCurrentResult()">
+            <i class="fas fa-copy"></i> Copy
+          </button>
+          <button id="ok-btn" class="btn-ok" onclick="resumeScanning()">
+            <i class="fas fa-check"></i> OK / Scan Next
+          </button>
+        </div>
+      </div>
+
+      <!-- BOTTOM: Scanned History List Module -->
+      <div class="history-card">
+        <div class="history-header">
+          <div class="history-title">
+            <i class="fas fa-list-check"></i> Scanned History
+            <span id="history-count" class="badge">0</span>
+          </div>
+          <div class="history-global-actions">
+            <button class="btn-history-action" onclick="copyAllHistory()" title="Copy All">
+              <i class="fas fa-copy"></i> Copy All
+            </button>
+            <button class="btn-history-action btn-clear-all" onclick="clearAllHistory()" title="Clear History">
+              <i class="fas fa-trash-alt"></i> Clear
+            </button>
+          </div>
+        </div>
+
+        <!-- History Items Container -->
+        <div id="history-list" class="history-list">
+          <div class="empty-state">
+            <i class="fas fa-barcode"></i>
+            <p>No barcodes scanned yet. Click "Start Camera" above to scan.</p>
+          </div>
+        </div>
       </div>
     </div>
 
     <script>
       let html5QrcodeScanner = null;
+      let isScanPaused = false;
+      let scannedHistory = [];
+
+      // Initialize saved history from localStorage on load
+      document.addEventListener("DOMContentLoaded", () => {
+        const saved = localStorage.getItem("webtoolsx_scanned_barcodes");
+        if (saved) {
+          try {
+            scannedHistory = JSON.parse(saved);
+          } catch (e) {
+            scannedHistory = [];
+          }
+        }
+        renderHistory();
+      });
 
       function onScanSuccess(decodedText, decodedResult) {
-        // Display the decoded text on screen
-        document.getElementById("result-text").innerText = decodedText;
-        const copyBtn = document.getElementById("copy-btn");
-        if (copyBtn) copyBtn.disabled = false;
+        if (isScanPaused) return; // Ignore multiple scan triggers while paused
 
-        // Optional: Play a feedback sound on successful scan
+        isScanPaused = true;
         beep();
+
+        // Pause scanner preview video stream on single scan
+        try {
+          if (html5QrcodeScanner) {
+            html5QrcodeScanner.pause(true);
+          }
+        } catch (e) {
+          console.warn("Scanner pause error:", e);
+        }
+
+        // Show result card with OK / Copy buttons
+        document.getElementById("result-text").innerText = decodedText;
+        const resultCard = document.getElementById("result-card");
+        resultCard.style.display = "block";
+
+        // Reset copy button status
+        const copyBtn = document.getElementById("copy-btn");
+        if (copyBtn) {
+          copyBtn.classList.remove("copied");
+          copyBtn.innerHTML = '<i class="fas fa-copy"></i> Copy';
+        }
+
+        // Add to scanned history list
+        addHistoryItem(decodedText);
       }
 
-      function copyResult() {
+      function resumeScanning() {
+        document.getElementById("result-card").style.display = "none";
+        isScanPaused = false;
+
+        try {
+          if (html5QrcodeScanner) {
+            html5QrcodeScanner.resume();
+          }
+        } catch (e) {
+          console.warn("Scanner resume error:", e);
+        }
+      }
+
+      function copyCurrentResult() {
         const text = document.getElementById("result-text").innerText;
         if (!text || text === "Waiting for scan...") return;
 
@@ -198,27 +538,140 @@
           .then(() => {
             const btn = document.getElementById("copy-btn");
             if (!btn) return;
-            const originalHTML = btn.innerHTML;
             btn.classList.add("copied");
             btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
             setTimeout(() => {
               btn.classList.remove("copied");
-              btn.innerHTML = originalHTML;
+              btn.innerHTML = '<i class="fas fa-copy"></i> Copy';
             }, 2000);
           })
           .catch((err) => {
-            console.error("Failed to copy result:", err);
+            console.error("Failed to copy:", err);
           });
       }
 
       function onScanFailure(error) {
-        // Handle or ignore scan frame failures (fires constantly while seeking)
+        // Ignore frame lookup failures
       }
 
+      /* History List Management */
+      function addHistoryItem(codeText) {
+        const timeStr = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+        const newItem = {
+          id: Date.now().toString(),
+          code: codeText,
+          time: timeStr
+        };
+
+        scannedHistory.unshift(newItem);
+        saveHistory();
+        renderHistory();
+      }
+
+      function saveHistory() {
+        localStorage.setItem("webtoolsx_scanned_barcodes", JSON.stringify(scannedHistory));
+      }
+
+      function deleteHistoryItem(id) {
+        scannedHistory = scannedHistory.filter((item) => item.id !== id);
+        saveHistory();
+        renderHistory();
+      }
+
+      function clearAllHistory() {
+        if (scannedHistory.length === 0) return;
+        if (confirm("Are you sure you want to clear all scanned barcode history?")) {
+          scannedHistory = [];
+          saveHistory();
+          renderHistory();
+        }
+      }
+
+      function copySingleHistoryItem(id, btnElem) {
+        const item = scannedHistory.find((i) => i.id === id);
+        if (!item) return;
+
+        navigator.clipboard
+          .writeText(item.code)
+          .then(() => {
+            const originalHTML = btnElem.innerHTML;
+            btnElem.innerHTML = '<i class="fas fa-check" style="color: #22c55e;"></i>';
+            setTimeout(() => {
+              btnElem.innerHTML = originalHTML;
+            }, 1500);
+          })
+          .catch((err) => {
+            console.error("Failed to copy item:", err);
+          });
+      }
+
+      function copyAllHistory() {
+        if (scannedHistory.length === 0) {
+          alert("History is empty.");
+          return;
+        }
+
+        const allCodes = scannedHistory.map((item) => item.code).join("\n");
+        navigator.clipboard
+          .writeText(allCodes)
+          .then(() => {
+            alert(`Copied ${scannedHistory.length} barcodes to clipboard!`);
+          })
+          .catch((err) => {
+            console.error("Failed to copy all history:", err);
+          });
+      }
+
+      function renderHistory() {
+        const listElem = document.getElementById("history-list");
+        const countElem = document.getElementById("history-count");
+        countElem.innerText = scannedHistory.length;
+
+        if (scannedHistory.length === 0) {
+          listElem.innerHTML = `
+            <div class="empty-state">
+              <i class="fas fa-barcode"></i>
+              <p>No barcodes scanned yet. Click "Start Camera" above to scan.</p>
+            </div>
+          `;
+          return;
+        }
+
+        let html = "";
+        scannedHistory.forEach((item, index) => {
+          html += `
+            <div class="history-item">
+              <div class="item-info">
+                <span class="item-index">#${scannedHistory.length - index}</span>
+                <span class="item-code">${escapeHtml(item.code)}</span>
+                <span class="item-time">${item.time}</span>
+              </div>
+              <div class="item-actions">
+                <button class="btn-item-action btn-item-copy" onclick="copySingleHistoryItem('${item.id}', this)" title="Copy">
+                  <i class="fas fa-copy"></i>
+                </button>
+                <button class="btn-item-action btn-item-delete" onclick="deleteHistoryItem('${item.id}')" title="Delete">
+                  <i class="fas fa-trash-alt"></i>
+                </button>
+              </div>
+            </div>
+          `;
+        });
+        listElem.innerHTML = html;
+      }
+
+      function escapeHtml(str) {
+        return String(str)
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;");
+      }
+
+      /* Zoom Controls */
       function applyZoom(zoomVal) {
         if (!html5QrcodeScanner) return;
-        
-        // 1. Hardware Camera Track Zoom (if supported by hardware)
+
         try {
           const track = html5QrcodeScanner.getRunningTrack();
           if (track && typeof track.getCapabilities === "function") {
@@ -235,7 +688,6 @@
           console.warn("Hardware zoom constraint failed:", e);
         }
 
-        // 2. Hybrid Software CSS Scale Zoom (Guaranteed 2x magnification on all webcams & mobile cameras)
         const videoElem = document.querySelector("#reader video");
         if (videoElem) {
           const scaleFactor = zoomVal === 1 ? 1 : 1 + (zoomVal - 1) * 0.4;
@@ -244,7 +696,6 @@
           videoElem.style.transition = "transform 0.25s ease-out";
         }
 
-        // Update active zoom button styling
         document.querySelectorAll(".btn-zoom").forEach((btn) => {
           btn.classList.toggle("active", btn.innerText === zoomVal + "x");
         });
@@ -257,12 +708,12 @@
           zoomContainer.style.display = "flex";
         }
 
-        // Automatically apply 2x digital zoom by default on camera startup
         setTimeout(() => {
           applyZoom(2);
         }, 350);
       }
 
+      /* Camera Start & Stop */
       function startScanner() {
         if (html5QrcodeScanner) {
           try {
@@ -270,9 +721,10 @@
           } catch (e) {}
         }
 
+        isScanPaused = false;
+        document.getElementById("result-card").style.display = "none";
         html5QrcodeScanner = new Html5Qrcode("reader");
 
-        // Support ALL 1D and 2D barcode formats for universal scanning
         const formatsToSupport = [
           Html5QrcodeSupportedFormats.QR_CODE,
           Html5QrcodeSupportedFormats.AZTEC,
@@ -310,7 +762,6 @@
           },
         };
 
-        // Enumerate camera devices first to get exact camera device ID
         Html5Qrcode.getCameras()
           .then((devices) => {
             if (devices && devices.length > 0) {
@@ -353,7 +804,6 @@
                     });
                 });
             } else {
-              // Direct start fallback if device list returns empty
               html5QrcodeScanner
                 .start(
                   { facingMode: "environment" },
@@ -400,6 +850,8 @@
               document.getElementById("start-btn").disabled = false;
               document.getElementById("stop-btn").disabled = true;
               document.getElementById("zoom-container").style.display = "none";
+              document.getElementById("result-card").style.display = "none";
+              isScanPaused = false;
             })
             .catch((err) => {
               console.error("Failed to stop scanner:", err);
@@ -407,7 +859,6 @@
         }
       }
 
-      // Audio feedback helper (Optional)
       function beep() {
         const ctx = new (window.AudioContext || window.webkitAudioContext)();
         const osc = ctx.createOscillator();

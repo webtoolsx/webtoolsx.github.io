@@ -5,42 +5,49 @@
     width: 100%;
   }
 
-  .scroll-wrapper {
-    overflow-x: hidden;
+  .scroll-wrapper, .hr_nav-scroll {
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
     flex: 1;
-    /* scroll-behavior: smooth; */
     display: flex;
     cursor: grab;
+    scroll-behavior: smooth;
   }
 
-  .scroll-wrapper:active {
+  .scroll-wrapper::-webkit-scrollbar, .hr_nav-scroll::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scroll-wrapper:active, .hr_nav-scroll:active {
     cursor: grabbing;
   }
 
-  .scroll-content {
+  .scroll-content, .hr_nav-list {
     display: flex;
     white-space: nowrap;
   }
 
   .hr_nav-item {
     min-width: 150px;
-  height: 40px;
-  margin: 0 10px;
-  color: rgb(27, 0, 45);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 5px;
-  font-weight: 600;
-  text-decoration: none;
-  padding: 15px;
+    height: 40px;
+    margin: 0 10px;
+    color: rgb(27, 0, 45);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 15px;
+    flex-shrink: 0;
   }
 
-  .hr_nav-item.active{
+  .hr_nav-item.active {
     background-color: #441c60;
     color: white;
     border-radius: 30px;
-}
+  }
 
   .scroll-btn {
     background-color: #333;
@@ -54,6 +61,8 @@
     cursor: pointer;
     border-radius: 50%;
     margin: 0 10px;
+    flex-shrink: 0;
+    z-index: 2;
   }
 
   .scroll-btn:disabled {

@@ -1,0 +1,1762 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Convert time zones worldwide with the WebToolsX World Clock Converter. Multi-timezone converter, searchable timezone selector, sun arc visualizer, 24-hour interactive slider bars, time difference calculator, and live global meeting planner.">
+  <meta name="keywords" content="world clock converter, time zone converter, searchable timezones, global time converter, sun arc visualizer, 24 hour slider, meeting planner, UTC, IST, EST, PST, GMT, WebToolsX">
+  <meta name="author" content="WebToolsX">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="World Clock Time Converter | WebToolsX">
+  <meta property="og:description" content="Convert date & time between multiple global time zones with searchable timezone dropdowns, sun arc visualizer, and 24-hour slider bars.">
+  <meta property="og:image" content="https://webtoolsx.github.io/favicon.png">
+  <meta property="og:url" content="https://webtoolsx.github.io/world-clock-converter.html">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="World Clock Time Converter | WebToolsX">
+  <meta name="twitter:description" content="Convert date & time between multiple global time zones easily with searchable timezone selectors on WebToolsX.">
+  <meta name="twitter:image" content="https://webtoolsx.github.io/favicon.png">
+
+  <link rel="icon" href="favicon.png" type="image/png">
+  <link rel="canonical" href="https://webtoolsx.github.io/world-clock-converter.html">
+
+  <title>World Clock Time Converter - Searchable Timezones & Sun Arc | WebToolsX</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- Linking CSS Stylesheets -->
+  <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/custom_radio.css">
+  <link rel="stylesheet" href="css/hr_scroll.css">
+
+  <script src="js/hr_scroll.js"></script>
+
+  <style>
+    :root {
+      --theme-primary: #0284c7;
+      --theme-secondary: #0369a1;
+      --theme-gradient: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+      --glow-color: rgba(2, 132, 199, 0.25);
+    }
+
+    body {
+      background-color: #f8fafc;
+      background-image: 
+        radial-gradient(at 0% 0%, rgba(2, 132, 199, 0.08) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(14, 116, 144, 0.06) 0px, transparent 50%);
+      color: #0f172a;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      min-height: 100vh;
+    }
+
+    /* Hero Banner */
+    .hero-banner {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 20px;
+      padding: 20px 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.08);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-banner::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 3px;
+      background: var(--theme-gradient);
+    }
+
+    .hero-title {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 1.75rem;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #0f172a 0%, #334155 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Control Panel */
+    .control-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 20px;
+      padding: 20px 24px;
+      box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.06);
+      margin-bottom: 24px;
+    }
+
+    .source-box {
+      background: linear-gradient(145deg, #f0f9ff 0%, #e0f2fe 100%);
+      border: 2px solid #0284c7;
+      border-radius: 16px;
+      padding: 16px 20px;
+      box-shadow: 0 4px 20px rgba(2, 132, 199, 0.15);
+      margin-bottom: 20px;
+    }
+
+    .section-label {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      color: #0369a1;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .form-control, .form-select {
+      background-color: #ffffff;
+      border: 1px solid #cbd5e1;
+      color: #0f172a;
+      border-radius: 10px;
+      padding: 8px 12px;
+      font-weight: 500;
+      font-size: 0.88rem;
+      height: 38px;
+    }
+
+    .form-control:focus, .form-select:focus {
+      background-color: #ffffff;
+      color: #0f172a;
+      border-color: var(--theme-primary);
+      box-shadow: 0 0 0 0.25rem var(--glow-color);
+    }
+
+    /* -------------------------------------------------------------
+       CUSTOM SEARCHABLE TIMEZONE DROPDOWN WIDGET (LIGHT THEME)
+    ------------------------------------------------------------- */
+    .tz-dropdown-container {
+      position: relative;
+    }
+
+    .tz-dropdown-btn {
+      width: 100%;
+      height: 38px;
+      background-color: #ffffff;
+      border: 1px solid #cbd5e1;
+      color: #0f172a;
+      border-radius: 10px;
+      padding: 6px 12px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: left;
+    }
+
+    .tz-dropdown-btn:hover {
+      border-color: var(--theme-primary);
+      background-color: #f8fafc;
+    }
+
+    .tz-dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      min-width: 260px;
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 12px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+      z-index: 9999;
+      padding: 10px;
+      margin-top: 4px;
+    }
+
+    .tz-search-input {
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      color: #0f172a;
+      border-radius: 8px;
+      padding: 6px 12px;
+      font-size: 0.85rem;
+      width: 100%;
+      margin-bottom: 8px;
+      height: 34px;
+    }
+
+    .tz-search-input:focus {
+      outline: none;
+      border-color: var(--theme-primary);
+    }
+
+    .tz-options-list {
+      max-height: 220px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .tz-option-item {
+      padding: 7px 10px;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: #334155;
+      cursor: pointer;
+      transition: background 0.15s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .tz-option-item:hover, .tz-option-item.selected {
+      background: var(--theme-primary);
+      color: #ffffff;
+    }
+
+    /* Preset Time Chips */
+    .chip-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      align-items: center;
+    }
+
+    .time-chip {
+      background: #ffffff;
+      color: #334155;
+      border: 1px solid #cbd5e1;
+      padding: 5px 11px;
+      border-radius: 16px;
+      font-size: 0.76rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      height: 30px;
+    }
+
+    .time-chip:hover {
+      background: var(--theme-primary);
+      color: white;
+      border-color: var(--theme-primary);
+    }
+
+    .time-chip-now {
+      background: var(--theme-gradient);
+      color: white;
+      border: none;
+    }
+
+    /* Destination Cards (LIGHT THEME) */
+    .target-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 16px;
+      padding: 16px 20px;
+      margin-bottom: 16px;
+      position: relative;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+      transition: all 0.25s ease;
+    }
+
+    .target-card:hover {
+      border-color: var(--theme-primary);
+      box-shadow: 0 8px 25px -5px rgba(0, 0, 0, 0.08);
+    }
+
+    /* Digital Clock & Interactive Typography Time Spinner */
+    .digital-clock {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 800;
+      font-size: 1.7rem;
+      color: #0f172a;
+      text-shadow: none;
+    }
+
+    .interactive-time-display {
+      user-select: none;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .time-spinner-col {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      margin: 0 1px;
+    }
+
+    .time-spin-val {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 800;
+      font-size: 1.7rem;
+      color: #0f172a;
+      line-height: 1;
+      padding: 1px 3px;
+      border-radius: 6px;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .time-spinner-col:hover .time-spin-val {
+      background: rgba(2, 132, 199, 0.12);
+      color: #0284c7;
+    }
+
+    .time-spin-btn {
+      background: transparent;
+      border: none;
+      color: #94a3b8;
+      font-size: 0.7rem;
+      padding: 0;
+      height: 14px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0.7;
+      transition: opacity 0.2s, color 0.2s, transform 0.15s;
+    }
+
+    .time-spinner-col:hover .time-spin-btn {
+      opacity: 1;
+      color: #0284c7;
+    }
+
+    .time-spin-btn:hover {
+      color: #0369a1 !important;
+      transform: scale(1.35);
+    }
+
+    .time-colon {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 800;
+      font-size: 1.5rem;
+      color: #64748b;
+      margin: 0 1px;
+      line-height: 1;
+    }
+
+    .date-label {
+      font-size: 0.8rem;
+      color: #64748b;
+      font-weight: 500;
+    }
+
+    .pill-offset {
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      color: #0284c7;
+      padding: 3px 9px;
+      border-radius: 16px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .pill-daynight {
+      padding: 3px 9px;
+      border-radius: 16px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .pill-day {
+      background: #fef3c7;
+      color: #d97706;
+      border: 1px solid #fde68a;
+    }
+
+    .pill-night {
+      background: #e0e7ff;
+      color: #4338ca;
+      border: 1px solid #c7d2fe;
+    }
+
+    .pill-user-tz {
+      background: #e0f2fe;
+      color: #0369a1;
+      border: 1px solid #bae6fd;
+    }
+
+    .btn-icon-action {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      color: #334155;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .btn-icon-action:hover {
+      background: var(--theme-primary);
+      color: white;
+      border-color: var(--theme-primary);
+    }
+
+    .btn-icon-delete:hover {
+      background: #ef4444 !important;
+      color: white !important;
+      border-color: #ef4444 !important;
+    }
+
+    /* Sun Arc Visualizer (LIGHT THEME) */
+    .sun-arc-box {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 4px 8px;
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .sun-arc-svg {
+      width: 150px;
+      height: 75px;
+      overflow: visible;
+    }
+
+    .sun-node { transition: all 0.1s linear; filter: drop-shadow(0 0 4px rgba(245, 158, 11, 0.6)); }
+    .moon-node { transition: all 0.1s linear; filter: drop-shadow(0 0 4px rgba(99, 102, 241, 0.6)); }
+
+    /* 24-Hour Timeline Bar (LIGHT THEME) */
+    .timeline-container {
+      margin-top: 10px;
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      border-radius: 12px;
+      padding: 8px 10px;
+      position: relative;
+    }
+
+    .timeline-top-ticks {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: #475569;
+      margin-bottom: 3px;
+      padding: 0 2px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .timeline-bar-wrapper {
+      position: relative;
+      height: 34px;
+      display: flex;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid #cbd5e1;
+      user-select: none;
+    }
+
+    .timeline-cell {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.64rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: opacity 0.15s, transform 0.15s;
+      border-right: 1px solid rgba(0, 0, 0, 0.06);
+      position: relative;
+    }
+
+    .timeline-cell:hover { opacity: 0.9; transform: scaleY(1.05); }
+
+    .cell-night { background: #e0e7ff; color: #3730a3; }
+    .cell-morning { background: #ffedd5; color: #c2410c; }
+    .cell-work { background: #d1fae5; color: #047857; }
+    .cell-evening { background: #ffedd5; color: #c2410c; }
+
+    .cell-active {
+      box-shadow: inset 0 0 0 2px #0f172a, 0 0 10px var(--glow-color);
+      z-index: 5;
+      font-weight: 900 !important;
+      color: #0f172a !important;
+      border-radius: 4px;
+    }
+
+    .timeline-bottom-ticks {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.66rem;
+      font-weight: 600;
+      color: #475569;
+      margin-top: 3px;
+      padding: 0 2px;
+    }
+
+    .timeline-range-slider {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 34px;
+      opacity: 0;
+      cursor: pointer;
+      z-index: 10;
+      margin: 0;
+    }
+
+    .timeline-needle {
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 4px;
+      background: #0f172a;
+      box-shadow: 0 0 8px #0f172a;
+      z-index: 8;
+      pointer-events: none;
+      border-radius: 2px;
+      transform: translateX(-50%);
+      transition: left 0.05s linear;
+    }
+
+    /* Quick Add City Pills */
+    .city-pill {
+      background: #ffffff;
+      color: #334155;
+      border: 1px solid #cbd5e1;
+      padding: 4px 11px;
+      border-radius: 16px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .city-pill:hover {
+      background: #e0f2fe;
+      color: #0369a1;
+      border-color: #0284c7;
+    }
+
+    .btn-add-tz {
+      background: var(--theme-gradient);
+      color: white;
+      border: none;
+      padding: 7px 16px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      box-shadow: 0 4px 12px var(--glow-color);
+      transition: all 0.2s;
+    }
+
+    .btn-add-tz:hover {
+      opacity: 0.92;
+      color: white;
+    }
+
+    /* Custom Modal */
+    .custom-modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(8px);
+      z-index: 99999;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .theme-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .theme-swatch {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 3px solid transparent;
+      transition: transform 0.2s;
+    }
+
+    .theme-swatch:hover {
+      transform: scale(1.15);
+    }
+
+    /* -------------------------------------------------------------
+       MOBILE RESPONSIVE ENHANCEMENTS (< 768px & < 480px)
+    ------------------------------------------------------------- */
+    @media (max-width: 768px) {
+      .container {
+        padding-left: 12px !important;
+        padding-right: 12px !important;
+      }
+
+      .hero-banner {
+        padding: 16px 18px;
+        border-radius: 16px;
+      }
+
+      .hero-title {
+        font-size: 1.4rem;
+      }
+
+      .control-card {
+        padding: 14px 16px;
+        border-radius: 16px;
+      }
+
+      .source-box {
+        padding: 14px;
+        border-radius: 14px;
+      }
+
+      .section-label {
+        font-size: 0.92rem;
+        flex-wrap: wrap;
+      }
+
+      .tz-dropdown-menu {
+        min-width: 100%;
+        width: 100%;
+      }
+
+      .digital-clock {
+        font-size: 1.45rem;
+      }
+
+      .target-card {
+        padding: 14px;
+      }
+
+      .timeline-bar-wrapper {
+        height: 38px;
+      }
+
+      .timeline-cell {
+        font-size: 0.58rem;
+      }
+
+      .timeline-range-slider {
+        height: 38px;
+      }
+
+      .chip-container {
+        justify-content: flex-start;
+      }
+
+      .time-chip {
+        padding: 4px 9px;
+        font-size: 0.72rem;
+        height: 28px;
+      }
+
+      .sun-arc-box {
+        margin: 6px auto;
+        padding: 2px 6px;
+      }
+
+      .sun-arc-svg {
+        width: 130px;
+        height: 65px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-title {
+        font-size: 1.25rem;
+      }
+
+      .btn-action {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .digital-clock {
+        font-size: 1.3rem;
+      }
+
+      .timeline-top-ticks, .timeline-bottom-ticks {
+        font-size: 0.6rem;
+      }
+
+      .target-actions-row {
+        justify-content: flex-end;
+        margin-top: 6px;
+      }
+    }
+  </style>
+
+  <!-- JavaScript Files -->
+  <script src="bootstrap/js/bootstrap.bundle.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
+</head>
+
+<body>
+
+  <!-- HEADER_START -->
+<!-- nav bar -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary header_bar">
+      
+      <div class="container-fluid ">
+        <div class="col">
+          <a class="navbar-brand" href="/"> <img class="main-logo" src="images/calclogo.png" alt="WebToolsX Logo"> </a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="scroll-container">
+      <button class="scroll-btn left">&larr;</button>
+      <div class="scroll-wrapper">
+        <div class="scroll-content">
+          <a class="hr_nav-item" href="/"><i class="fa-solid fa-chart-line me-1"></i> P/L Calculator</a>
+          <a class="hr_nav-item" href="/average-calculator.html"><i class="fa-solid fa-divide me-1"></i> Average Calculator</a>
+          <a class="hr_nav-item" href="/percentage-change-calculator.html"><i class="fa-solid fa-chart-simple me-1"></i> Percentage Change Calculator</a>
+          <a class="hr_nav-item" href="/percentage-calculator.html"><i class="fa-solid fa-percent me-1"></i> Percentage Calculator</a>
+          <a class="hr_nav-item" href="/age-calculator.html"><i class="fa-solid fa-cake-candles me-1"></i> Age Calculator</a>
+          <a class="hr_nav-item" href="/emi-calculator.html"><i class="fa-solid fa-landmark me-1"></i> Loan EMI Calculator</a>
+          <a class="hr_nav-item" href="/tip-calculator.html"><i class="fa-solid fa-coins me-1"></i> Tip Calculator</a>
+          <a class="hr_nav-item" href="/themes.html"><i class="fa-solid fa-palette me-1"></i> Themes</a>
+          <a class="hr_nav-item" href="/time.html"><i class="fa-solid fa-clock me-1"></i> World Clock</a>
+          <a class="hr_nav-item active" href="/world-clock-converter.html"><i class="fa-solid fa-globe me-1"></i> Time Converter</a>
+          <a class="hr_nav-item" href="/bar-code-scanner.html"><i class="fa-solid fa-barcode me-1"></i> Barcode Scanner</a>
+        </div>
+      </div>
+      <button class="scroll-btn right">&rarr;</button>
+    </div>
+<!-- HEADER_END -->
+
+  <div class="container py-3" style="max-width: 960px;">
+    
+    <!-- Hero Banner -->
+    <div id="gradientBanner" class="hero-banner d-flex align-items-center justify-content-between flex-wrap gap-3">
+      <div>
+        <div class="d-flex align-items-center gap-2 mb-1">
+          <span class="badge bg-primary bg-opacity-25 text-primary border border-primary border-opacity-50 px-2 py-1 rounded-pill small fw-bold">Searchable Timezones & Sun Arc</span>
+        </div>
+        <h1 class="hero-title mb-1"><i class="fa-solid fa-globe text-primary me-2"></i> World Clock Time Converter</h1>
+        <p class="mb-0 text-slate-400 small">Multi-timezone converter with searchable selectors and 24-hour solar arc sliders</p>
+      </div>
+
+      <div class="d-flex align-items-center gap-2">
+        <button class="btn btn-sm btn-outline-light rounded-pill px-3" onclick="toggleFormat()" id="formatToggleBtn">
+          <i class="fa-solid fa-clock me-1"></i> <span id="formatText">24-Hour Format</span>
+        </button>
+        <button class="btn btn-sm btn-light text-dark fw-semibold rounded-pill px-3" onclick="openThemeModal()">
+          <i class="fa-solid fa-palette me-1"></i> Theme
+        </button>
+      </div>
+    </div>
+
+    <!-- Main Converter Card -->
+    <div class="control-card">
+
+      <!-- Source Time Section (Designed identical to Converted Destination Cards) -->
+      <div class="source-box">
+        <div class="section-label mb-3">
+          <i class="fa-solid fa-house-user text-primary"></i> Your Time Zone & Solar Arc
+          <span id="sourceHeaderTzBadge" class="badge bg-primary bg-opacity-10 text-primary border border-primary border-opacity-30 px-3 py-1.5 rounded-pill small ms-auto fw-semibold"></span>
+        </div>
+
+        <div class="row align-items-center g-3">
+          <!-- Column 1: Source Timezone Dropdown & Badges -->
+          <div class="col-md-4">
+            <div id="sourceSearchDropdown" class="tz-dropdown-container mb-2">
+              <!-- Searchable Dropdown Button rendered via JS -->
+            </div>
+            <div class="d-flex align-items-center flex-wrap gap-2">
+              <span class="pill-offset pill-user-tz"><i class="fa-solid fa-user me-1"></i> Your Time Zone</span>
+              <span id="sourceDayNightPill"></span>
+            </div>
+          </div>
+
+          <!-- Column 2: Interactive Time Spinner & Date Label -->
+          <div class="col-md-4 text-center text-md-start">
+            <div class="digital-clock mb-1">
+              <div id="sourceTimeSpinner" class="interactive-time-display">
+                <!-- Rendered via JS -->
+              </div>
+            </div>
+            <div class="date-label d-flex align-items-center gap-1 justify-content-center justify-content-md-start">
+              <i class="fa-regular fa-calendar text-slate-500 me-1"></i>
+              <span id="sourceDateText">Mon, Aug 31, 2026</span>
+              <input type="date" id="sourceDateInput" style="opacity: 0; width: 0; height: 0; padding: 0; border: none; position: absolute;" onchange="onSourceDateChanged()">
+              <button class="btn btn-link btn-sm p-0 ms-1 text-primary text-decoration-none" onclick="document.getElementById('sourceDateInput').showPicker()" title="Change Date">
+                <i class="fa-solid fa-pen-to-square"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Column 3: Solar Arc Box -->
+          <div class="col-md-3 text-center">
+            <div id="sourceSunArcBox" class="sun-arc-box"></div>
+          </div>
+
+          <!-- Column 4: Quick Action -->
+          <div class="col-md-1 text-end d-flex align-items-center justify-content-end gap-1">
+            <button class="btn-icon-action" onclick="setSourceTimeNow()" title="Set to Right Now">
+              <i class="fa-solid fa-bolt text-warning"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Quick Presets Inline Bar -->
+        <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 pt-3 mt-3 border-top border-slate-200">
+          <span class="text-slate-500 small fw-semibold"><i class="fa-solid fa-clock-rotate-left me-1 text-primary"></i> Quick Presets:</span>
+          <div class="chip-container">
+            <button class="time-chip time-chip-now" onclick="setSourceTimeNow()">
+              <i class="fa-solid fa-bolt"></i> Now
+            </button>
+            <button class="time-chip" onclick="addSourceHours(-1)">-1 Hr</button>
+            <button class="time-chip" onclick="addSourceHours(1)">+1 Hr</button>
+            <button class="time-chip" onclick="addSourceHours(3)">+3 Hrs</button>
+            <button class="time-chip" onclick="addSourceHours(24)">+1 Day</button>
+          </div>
+        </div>
+
+        <!-- Source 24-Hour Timeline Bar -->
+        <div id="sourceTimelineContainer" class="timeline-container">
+          <!-- Rendered dynamically -->
+        </div>
+
+      </div>
+
+      <!-- Target Destinations Header -->
+      <div class="d-flex align-items-center justify-content-between mb-3">
+        <div class="section-label mb-0">
+          <i class="fa-solid fa-list-check text-primary"></i> Converted Destination Time Zones
+        </div>
+      </div>
+
+      <!-- Dynamic Target Cards List -->
+      <div id="targetList">
+        <!-- Target rows rendered by JS -->
+      </div>
+
+      <!-- Quick Add Popular Destinations & Add Destination Plus Button at the End -->
+      <div class="mt-4 pt-3 border-top border-slate-200">
+        <div class="text-slate-600 small fw-semibold mb-2">
+          <i class="fa-solid fa-bolt me-1 text-warning"></i> Quick Add Popular Destinations:
+        </div>
+        <div class="d-flex flex-wrap align-items-center gap-2">
+          <button class="city-pill" onclick="addTargetRow('America/New_York')">🇺🇸 New York (EST)</button>
+          <button class="city-pill" onclick="addTargetRow('Europe/London')">🇬🇧 London (GMT)</button>
+          <button class="city-pill" onclick="addTargetRow('Asia/Dubai')">🇦🇪 Dubai (GST)</button>
+          <button class="city-pill" onclick="addTargetRow('Asia/Kolkata')">🇮🇳 India (IST)</button>
+          <button class="city-pill" onclick="addTargetRow('Asia/Tokyo')">🇯🇵 Tokyo (JST)</button>
+          <button class="city-pill" onclick="addTargetRow('Australia/Sydney')">🇦🇺 Sydney (AEST)</button>
+
+          <button class="btn btn-sm btn-primary rounded-pill px-3 fw-semibold shadow-sm ms-md-2" onclick="addTargetRow('UTC')" title="Add Destination">
+            <i class="fa-solid fa-plus me-1"></i> Add Destination
+          </button>
+        </div>
+      </div>
+
+      <!-- Action Footer -->
+      <div class="d-flex align-items-center justify-content-between flex-wrap gap-3 mt-4 pt-3 border-top border-slate-700">
+        <button class="btn btn-outline-secondary btn-action text-slate-300 rounded-pill px-4" onclick="copySummary()">
+          <i class="fa-solid fa-share-nodes me-2"></i> Copy Meeting Summary
+        </button>
+        <button class="btn btn-outline-danger btn-action rounded-pill px-4" onclick="resetDefaults()">
+          <i class="fa-solid fa-rotate-left me-2"></i> Reset All
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Theme Selector Modal -->
+  <div id="themeModal" class="custom-modal">
+    <div class="p-4 rounded-4 text-center border border-slate-700" style="max-width: 420px; width: 90%; background: #1e293b;">
+      <h5 class="fw-bold text-white mb-2"><i class="fa-solid fa-palette text-primary me-2"></i> Choose Theme Accent</h5>
+      <p class="text-slate-400 small mb-3">Select a color scheme for WebToolsX</p>
+      
+      <div id="themeGrid" class="theme-grid">
+        <!-- Swatches rendered via JS -->
+      </div>
+
+      <button class="btn btn-secondary w-100 mt-4 fw-semibold rounded-pill" onclick="closeThemeModal()">Close</button>
+    </div>
+  </div>
+
+  <script>
+    const TIMEZONES = [
+      { id: "UTC", label: "🌐 UTC / GMT (Coordinated Universal Time)" },
+      { id: "Asia/Kolkata", label: "🇮🇳 Asia/Kolkata (IST - India)" },
+      { id: "America/New_York", label: "🇺🇸 America/New_York (EST/EDT - US East)" },
+      { id: "America/Los_Angeles", label: "🇺🇸 America/Los_Angeles (PST/PDT - US West)" },
+      { id: "America/Chicago", label: "🇺🇸 America/Chicago (CST/CDT - US Central)" },
+      { id: "America/Denver", label: "🇺🇸 America/Denver (MST/MDT - US Mountain)" },
+      { id: "Europe/London", label: "🇬🇧 Europe/London (GMT/BST - UK)" },
+      { id: "Europe/Paris", label: "🇫🇷 Europe/Paris (CET/CEST - France)" },
+      { id: "Europe/Berlin", label: "🇩🇪 Europe/Berlin (CET/CEST - Germany)" },
+      { id: "Asia/Dubai", label: "🇦🇪 Asia/Dubai (GST - UAE)" },
+      { id: "Asia/Tokyo", label: "🇯🇵 Asia/Tokyo (JST - Japan)" },
+      { id: "Asia/Singapore", label: "🇸🇬 Asia/Singapore (SGT - Singapore)" },
+      { id: "Asia/Hong_Kong", label: "🇭🇰 Asia/Hong_Kong (HKT - Hong Kong)" },
+      { id: "Australia/Sydney", label: "🇦🇺 Australia/Sydney (AEST/AEDT - Sydney)" },
+      { id: "Pacific/Auckland", label: "🇳🇿 Pacific/Auckland (NZST/NZDT - New Zealand)" },
+      { id: "America/Sao_Paulo", label: "🇧🇷 America/Sao_Paulo (BRT - Brazil)" }
+    ];
+
+    const THEMES = [
+      { primary: "#0284c7", secondary: "#0369a1" },
+      { primary: "#0d9488", secondary: "#0f766e" },
+      { primary: "#16a34a", secondary: "#15803d" },
+      { primary: "#9333ea", secondary: "#7e22ce" },
+      { primary: "#e11d48", secondary: "#be123c" },
+      { primary: "#ea580c", secondary: "#c2410c" },
+      { primary: "#4f46e5", secondary: "#4338ca" },
+      { primary: "#0891b2", secondary: "#0e7490" },
+      { primary: "#d97706", secondary: "#b45309" },
+      { primary: "#475569", secondary: "#334155" }
+    ];
+
+    let userTz = "Asia/Kolkata";
+    let sourceTzSelected = "Asia/Kolkata";
+    let targetZones = []; // BLANK INITIALLY
+    let use24Hour = false;
+    let currentTimestamp = Date.now();
+
+    document.addEventListener("DOMContentLoaded", () => {
+      userTz = Intl.DateTimeFormat().resolvedOptions().timeZone || "Asia/Kolkata";
+      
+      // Ensure userTz is in TIMEZONES list
+      if (!TIMEZONES.some(t => t.id === userTz)) {
+        TIMEZONES.unshift({ id: userTz, label: `📍 ${userTz} (Your Timezone)` });
+      }
+
+      sourceTzSelected = userTz;
+
+      // BLANK INITIALLY: User selects destinations as needed
+      targetZones = [];
+
+      setSourceTimeNow();
+      renderThemeGrid();
+      loadSavedTheme();
+      convertAll();
+
+      // Close dropdowns on outside click
+      document.addEventListener("click", (e) => {
+        if (!e.target.closest(".tz-dropdown-container")) {
+          document.querySelectorAll(".tz-dropdown-menu").forEach(m => m.style.display = "none");
+        }
+      });
+    });
+
+    function setSourceTimeNow() {
+      currentTimestamp = Date.now();
+      updateSourceDatetimeInputFromTimestamp();
+      convertAll();
+    }
+
+    function addSourceHours(hrs) {
+      currentTimestamp += (hrs * 3600000);
+      updateSourceDatetimeInputFromTimestamp();
+      convertAll();
+    }
+
+    function updateSourceDatetimeInputFromTimestamp() {
+      const sourceDate = new Date(currentTimestamp);
+      const parts = getTimezoneParts(sourceDate, sourceTzSelected);
+      const dateIso = `${parts.year}-${parts.month}-${parts.day}`;
+      const dateElem = document.getElementById("sourceDateInput");
+      if (dateElem) dateElem.value = dateIso;
+
+      const hour = parseInt(parts.hour);
+      const isDay = hour >= 6 && hour < 18;
+
+      const dateFormatOptions = { timeZone: sourceTzSelected, weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
+      const dateFormatted = new Intl.DateTimeFormat('en-US', dateFormatOptions).format(sourceDate);
+
+      const dateTextElem = document.getElementById("sourceDateText");
+      if (dateTextElem) dateTextElem.innerText = dateFormatted;
+
+      const pillElem = document.getElementById("sourceDayNightPill");
+      if (pillElem) {
+        pillElem.className = `pill-daynight ${isDay ? 'pill-day' : 'pill-night'}`;
+        pillElem.innerHTML = isDay ? '<i class="fa-solid fa-sun text-warning"></i> Daytime' : '<i class="fa-solid fa-moon text-indigo-300"></i> Nighttime';
+      }
+
+      // Update Header Badge in Source Box with useful live timezone data
+      const headerBadge = document.getElementById("sourceHeaderTzBadge");
+      if (headerBadge) {
+        const offsetDiff = getOffsetDiffString(sourceDate, userTz, sourceTzSelected);
+        headerBadge.innerHTML = `<i class="fa-solid fa-earth-americas me-1 text-primary"></i> ${sourceTzSelected} (${offsetDiff})`;
+      }
+
+      renderSourceTimeSpinner(sourceDate);
+    }
+
+    function renderSourceTimeSpinner(sourceDate) {
+      const spinnerElem = document.getElementById("sourceTimeSpinner");
+      if (!spinnerElem) return;
+
+      const tzParts = getTimezoneParts(sourceDate, sourceTzSelected);
+      const hour = parseInt(tzParts.hour);
+      const min = parseInt(tzParts.minute);
+      const sec = parseInt(tzParts.second || 0);
+
+      let hour12Num = hour % 12;
+      if (hour12Num === 0) hour12Num = 12;
+
+      const hourStr = use24Hour ? String(hour).padStart(2, '0') : String(hour12Num).padStart(2, '0');
+      const minStr = String(min).padStart(2, '0');
+      const secStr = String(sec).padStart(2, '0');
+      const ampm = hour >= 12 ? 'PM' : 'AM';
+
+      spinnerElem.innerHTML = `
+        <div class="time-spinner-col">
+          <button class="time-spin-btn" onclick="adjustSourceTime('hour', 1)" title="+1 Hour">
+            <i class="fa-solid fa-chevron-up"></i>
+          </button>
+          <span class="time-spin-val">${hourStr}</span>
+          <button class="time-spin-btn" onclick="adjustSourceTime('hour', -1)" title="-1 Hour">
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+        </div>
+
+        <span class="time-colon">:</span>
+
+        <div class="time-spinner-col">
+          <button class="time-spin-btn" onclick="adjustSourceTime('minute', 1)" title="+1 Minute">
+            <i class="fa-solid fa-chevron-up"></i>
+          </button>
+          <span class="time-spin-val">${minStr}</span>
+          <button class="time-spin-btn" onclick="adjustSourceTime('minute', -1)" title="-1 Minute">
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+        </div>
+
+        <span class="time-colon">:</span>
+
+        <div class="time-spinner-col">
+          <button class="time-spin-btn" onclick="adjustSourceTime('second', 1)" title="+1 Second">
+            <i class="fa-solid fa-chevron-up"></i>
+          </button>
+          <span class="time-spin-val">${secStr}</span>
+          <button class="time-spin-btn" onclick="adjustSourceTime('second', -1)" title="-1 Second">
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+        </div>
+
+        ${use24Hour ? '' : `
+          <div class="time-spinner-col ms-2">
+            <button class="time-spin-btn" onclick="toggleSourceAmPm()" title="Toggle AM/PM">
+              <i class="fa-solid fa-chevron-up"></i>
+            </button>
+            <span class="time-spin-val text-primary" style="font-size: 1.15rem; cursor: pointer;" onclick="toggleSourceAmPm()">${ampm}</span>
+            <button class="time-spin-btn" onclick="toggleSourceAmPm()" title="Toggle AM/PM">
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+          </div>
+        `}
+      `;
+    }
+
+    function adjustSourceTime(unit, delta) {
+      if (unit === 'hour') {
+        currentTimestamp += delta * 3600000;
+      } else if (unit === 'minute') {
+        currentTimestamp += delta * 60000;
+      } else if (unit === 'second') {
+        currentTimestamp += delta * 1000;
+      }
+      updateSourceDatetimeInputFromTimestamp();
+      convertAll();
+    }
+
+    function toggleSourceAmPm() {
+      currentTimestamp += 12 * 3600000;
+      updateSourceDatetimeInputFromTimestamp();
+      convertAll();
+    }
+
+    function onSourceDateChanged() {
+      const dateVal = document.getElementById("sourceDateInput").value;
+      if (!dateVal) return;
+
+      const sourceDate = new Date(currentTimestamp);
+      const parts = getTimezoneParts(sourceDate, sourceTzSelected);
+      const fullIsoStr = `${dateVal}T${parts.hour}:${parts.minute}`;
+
+      currentTimestamp = parseDatetimeInTz(fullIsoStr, sourceTzSelected);
+      convertAll();
+    }
+
+    function parseDatetimeInTz(datetimeStr, tz) {
+      const [datePart, timePart] = datetimeStr.split("T");
+      const [year, month, day] = datePart.split("-").map(Number);
+      const [hour, minute] = timePart.split(":").map(Number);
+
+      const dateUtcAsLocal = new Date(Date.UTC(year, month - 1, day, hour, minute));
+      const offsetMs = getTimezoneOffsetMinutes(dateUtcAsLocal, tz) * 60000;
+      return dateUtcAsLocal.getTime() - offsetMs;
+    }
+
+    function toggleFormat() {
+      use24Hour = !use24Hour;
+      document.getElementById("formatText").innerText = use24Hour ? "12-Hour Format" : "24-Hour Format";
+      convertAll();
+    }
+
+    function addTargetRow(tzId = "UTC") {
+      targetZones.push(tzId);
+      convertAll();
+    }
+
+    function removeTargetRow(index) {
+      if (targetZones.length <= 1) {
+        alert("You must keep at least one destination time zone.");
+        return;
+      }
+      targetZones.splice(index, 1);
+      convertAll();
+    }
+
+    function swapSourceAndTarget(index) {
+      const oldSource = sourceTzSelected;
+      const oldTarget = targetZones[index];
+
+      targetZones[index] = oldSource;
+      sourceTzSelected = oldTarget;
+      convertAll();
+    }
+
+    function onSliderChange(newValMinutes, tz) {
+      const d = new Date(currentTimestamp);
+      const tzParts = getTimezoneParts(d, tz);
+      
+      const targetYear = parseInt(tzParts.year);
+      const targetMonth = parseInt(tzParts.month);
+      const targetDay = parseInt(tzParts.day);
+
+      const newHour = Math.floor(newValMinutes / 60);
+      const newMin = newValMinutes % 60;
+
+      const dateUtcAsLocal = new Date(Date.UTC(targetYear, targetMonth - 1, targetDay, newHour, newMin));
+      const offsetMs = getTimezoneOffsetMinutes(dateUtcAsLocal, tz) * 60000;
+      currentTimestamp = dateUtcAsLocal.getTime() - offsetMs;
+
+      updateSourceDatetimeInputFromTimestamp();
+      convertAll();
+    }
+
+    function convertAll() {
+      const sourceDate = new Date(currentTimestamp);
+
+      // Render Source Searchable Dropdown
+      renderSearchableTzDropdown("sourceSearchDropdown", sourceTzSelected, (newTz) => {
+        sourceTzSelected = newTz;
+        updateSourceDatetimeInputFromTimestamp();
+        convertAll();
+      });
+
+      // Render Source Sun Arc & Timeline Bar
+      renderSunArc("sourceSunArcBox", sourceDate, sourceTzSelected);
+      renderTimelineBar("sourceTimelineContainer", sourceDate, sourceTzSelected, (min) => onSliderChange(min, sourceTzSelected));
+
+      // Render Target Cards
+      const targetListElem = document.getElementById("targetList");
+      
+      if (targetZones.length === 0) {
+        targetListElem.innerHTML = `
+          <div class="text-center py-5 px-4 rounded-4 border border-dashed border-slate-300" style="background: #ffffff;">
+            <i class="fa-solid fa-earth-americas text-slate-400 fa-3x mb-3"></i>
+            <h5 class="fw-bold text-slate-800 mb-2">No Destination Time Zones Added</h5>
+            <p class="text-slate-600 small mb-3" style="max-width: 460px; margin: 0 auto 16px;">
+              Select time zones from <strong>Quick Add Popular Destinations</strong> above, or click <strong>+ Add Destination</strong> to add target time zones as per your requirement.
+            </p>
+            <button class="btn btn-sm btn-primary rounded-pill px-4 fw-semibold" onclick="addTargetRow('${userTz}')">
+              <i class="fa-solid fa-plus me-1"></i> Add Destination
+            </button>
+          </div>
+        `;
+        return;
+      }
+
+      let html = "";
+
+      targetZones.forEach((targetTz, index) => {
+        const converted = convertTimezone(sourceDate, sourceTzSelected, targetTz);
+        const isDay = converted.hour >= 6 && converted.hour < 18;
+        const isUserTimezoneCard = (targetTz === userTz);
+
+        html += `
+          <div class="target-card">
+            <div class="row align-items-center g-3">
+              <!-- Column 1: Timezone Dropdown & Badges -->
+              <div class="col-md-4">
+                <div class="mb-2" id="targetDropdown_${index}">
+                  <!-- Target Searchable Dropdown rendered via JS -->
+                </div>
+                <div class="d-flex align-items-center flex-wrap gap-2">
+                  ${isUserTimezoneCard ? '<span class="pill-offset pill-user-tz"><i class="fa-solid fa-user me-1"></i> Your Time Zone</span>' : ''}
+                  <span class="pill-offset"><i class="fa-solid fa-clock-rotate-left"></i> ${converted.offsetDiffStr}</span>
+                  <span class="pill-daynight ${isDay ? 'pill-day' : 'pill-night'}">
+                    ${isDay ? '<i class="fa-solid fa-sun text-warning"></i> Daytime' : '<i class="fa-solid fa-moon text-indigo-300"></i> Nighttime'}
+                  </span>
+                </div>
+              </div>
+
+              <!-- Column 2: Interactive Time Spinner & Date Label -->
+              <div class="col-md-4 text-center text-md-start">
+                <div class="digital-clock mb-1">
+                  <div class="interactive-time-display">
+                    <!-- Hour Spinner -->
+                    <div class="time-spinner-col">
+                      <button class="time-spin-btn" onclick="adjustCardTime(${index}, 'hour', 1)" title="+1 Hour">
+                        <i class="fa-solid fa-chevron-up"></i>
+                      </button>
+                      <span class="time-spin-val">${converted.hourStr}</span>
+                      <button class="time-spin-btn" onclick="adjustCardTime(${index}, 'hour', -1)" title="-1 Hour">
+                        <i class="fa-solid fa-chevron-down"></i>
+                      </button>
+                    </div>
+
+                    <span class="time-colon">:</span>
+
+                    <!-- Minute Spinner -->
+                    <div class="time-spinner-col">
+                      <button class="time-spin-btn" onclick="adjustCardTime(${index}, 'minute', 1)" title="+1 Minute">
+                        <i class="fa-solid fa-chevron-up"></i>
+                      </button>
+                      <span class="time-spin-val">${converted.minStr}</span>
+                      <button class="time-spin-btn" onclick="adjustCardTime(${index}, 'minute', -1)" title="-1 Minute">
+                        <i class="fa-solid fa-chevron-down"></i>
+                      </button>
+                    </div>
+
+                    <span class="time-colon">:</span>
+
+                    <!-- Second Spinner -->
+                    <div class="time-spinner-col">
+                      <button class="time-spin-btn" onclick="adjustCardTime(${index}, 'second', 1)" title="+1 Second">
+                        <i class="fa-solid fa-chevron-up"></i>
+                      </button>
+                      <span class="time-spin-val">${converted.secStr}</span>
+                      <button class="time-spin-btn" onclick="adjustCardTime(${index}, 'second', -1)" title="-1 Second">
+                        <i class="fa-solid fa-chevron-down"></i>
+                      </button>
+                    </div>
+
+                    ${use24Hour ? '' : `
+                      <div class="time-spinner-col ms-2">
+                        <button class="time-spin-btn" onclick="toggleCardAmPm(${index})" title="Toggle AM/PM">
+                          <i class="fa-solid fa-chevron-up"></i>
+                        </button>
+                        <span class="time-spin-val text-primary" style="font-size: 1.15rem; cursor: pointer;" onclick="toggleCardAmPm(${index})">${converted.ampm}</span>
+                        <button class="time-spin-btn" onclick="toggleCardAmPm(${index})" title="Toggle AM/PM">
+                          <i class="fa-solid fa-chevron-down"></i>
+                        </button>
+                      </div>
+                    `}
+                  </div>
+                </div>
+                <div class="date-label">
+                  <i class="fa-regular fa-calendar me-1"></i> ${converted.dateFormatted}
+                </div>
+              </div>
+
+              <!-- Column 3: Sun Arc Widget -->
+              <div class="col-md-3 text-center">
+                <div id="targetSunArc_${index}" class="sun-arc-box"></div>
+              </div>
+
+              <!-- Column 4: Actions -->
+              <div class="col-md-1 text-end d-flex align-items-center justify-content-end gap-1 target-actions-row">
+                <button class="btn-icon-action" onclick="copyTargetTime('${converted.fullFormatted}')" title="Copy Time">
+                  <i class="fa-solid fa-copy"></i>
+                </button>
+                <button class="btn-icon-action btn-icon-delete" onclick="removeTargetRow(${index})" title="Remove">
+                  <i class="fa-solid fa-trash-can"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- Interactive 24-Hour Bar for Target -->
+            <div id="targetTimeline_${index}" class="timeline-container"></div>
+          </div>
+        `;
+      });
+
+      targetListElem.innerHTML = html;
+
+      // Attach Searchable Dropdowns, Sun Arcs & Timeline bars to target rows
+      targetZones.forEach((targetTz, index) => {
+        renderSearchableTzDropdown(`targetDropdown_${index}`, targetTz, (newTz) => {
+          targetZones[index] = newTz;
+          convertAll();
+        });
+        renderSunArc(`targetSunArc_${index}`, sourceDate, targetTz);
+        renderTimelineBar(`targetTimeline_${index}`, sourceDate, targetTz, (min) => onSliderChange(min, targetTz));
+      });
+    }
+
+    /* -------------------------------------------------------------
+       CUSTOM SEARCHABLE TIMEZONE DROPDOWN ENGINE
+    ------------------------------------------------------------- */
+    function renderSearchableTzDropdown(containerId, selectedTz, onSelectCallback) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+
+      const currentItem = TIMEZONES.find(t => t.id === selectedTz) || { id: selectedTz, label: selectedTz };
+
+      const html = `
+        <div class="tz-dropdown-container">
+          <button type="button" class="tz-dropdown-btn" onclick="toggleTzMenu(this)">
+            <span class="text-truncate">${currentItem.label}</span>
+            <i class="fa-solid fa-chevron-down ms-2 text-slate-400 small"></i>
+          </button>
+
+          <div class="tz-dropdown-menu">
+            <input type="text" class="tz-search-input" placeholder="🔍 Search city or country..." onkeyup="filterTzOptions(this)">
+            <div class="tz-options-list">
+              ${TIMEZONES.map(tz => `
+                <div class="tz-option-item ${tz.id === selectedTz ? 'selected' : ''}" data-tz="${tz.id}" onclick="selectTzOption(this, '${tz.id}')">
+                  ${tz.label}
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        </div>
+      `;
+
+      container.innerHTML = html;
+      container._onSelect = onSelectCallback;
+    }
+
+    function toggleTzMenu(btnElem) {
+      const menu = btnElem.nextElementSibling;
+      const isVisible = menu.style.display === "block";
+
+      document.querySelectorAll(".tz-dropdown-menu").forEach(m => m.style.display = "none");
+
+      if (!isVisible) {
+        menu.style.display = "block";
+        const searchInput = menu.querySelector(".tz-search-input");
+        if (searchInput) {
+          searchInput.value = "";
+          filterTzOptions(searchInput);
+          setTimeout(() => searchInput.focus(), 50);
+        }
+      }
+    }
+
+    function filterTzOptions(inputElem) {
+      const query = inputElem.value.toLowerCase().trim();
+      const list = inputElem.nextElementSibling;
+      const items = list.querySelectorAll(".tz-option-item");
+
+      items.forEach(item => {
+        const text = item.innerText.toLowerCase();
+        if (text.includes(query)) {
+          item.style.display = "flex";
+        } else {
+          item.style.display = "none";
+        }
+      });
+    }
+
+    function selectTzOption(itemElem, tzId) {
+      const container = itemElem.closest("[id]");
+      const menu = itemElem.closest(".tz-dropdown-menu");
+      if (menu) menu.style.display = "none";
+
+      if (container && container._onSelect) {
+        container._onSelect(tzId);
+      }
+    }
+
+    /* -------------------------------------------------------------
+       SEMI-CIRCLE SUN ARC VISUALIZER ENGINE (DYNAMIC COLOR TRANSITIONS)
+    ------------------------------------------------------------- */
+    function renderSunArc(containerId, dateObj, tz) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+
+      const tzParts = getTimezoneParts(dateObj, tz);
+      const hour = parseInt(tzParts.hour);
+      const min = parseInt(tzParts.minute);
+      const totalMinutes = (hour * 60) + min;
+
+      const cx = 75, cy = 62, r = 52;
+
+      let angleRad;
+      let strokeColor;
+      let iconMarkup;
+      let bgStyle;
+      let textColor;
+
+      if (hour >= 6 && hour < 9) {
+        // MORNING (6 AM - 9 AM): Warm Morning Orange
+        bgStyle = "background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%); border: 1px solid #fed7aa;";
+        strokeColor = "#f97316";
+        textColor = "#9a3412";
+        iconMarkup = `<text x="0" y="4" text-anchor="middle" font-size="14" class="sun-node">🌅</text>`;
+        const dayFrac = (totalMinutes - 360) / 720;
+        angleRad = Math.PI * (1 - dayFrac);
+      } else if (hour >= 9 && hour < 17) {
+        // DAYTIME (9 AM - 5 PM): Bright Sky Blue
+        bgStyle = "background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%); border: 1px solid #7dd3fc;";
+        strokeColor = "#0284c7";
+        textColor = "#0369a1";
+        iconMarkup = `<text x="0" y="4" text-anchor="middle" font-size="14" class="sun-node">☀️</text>`;
+        const dayFrac = (totalMinutes - 360) / 720;
+        angleRad = Math.PI * (1 - dayFrac);
+      } else if (hour >= 17 && hour < 19) {
+        // SUNSET (5 PM - 7 PM): Sunset Crimson / Warm Rose
+        bgStyle = "background: linear-gradient(135deg, #fff1f2 0%, #ffe4e6 100%); border: 1px solid #fecdd3;";
+        strokeColor = "#e11d48";
+        textColor = "#be123c";
+        iconMarkup = `<text x="0" y="4" text-anchor="middle" font-size="14" class="sun-node">🌆</text>`;
+        const dayFrac = (totalMinutes - 360) / 720;
+        angleRad = Math.PI * (1 - dayFrac);
+      } else {
+        // NIGHTTIME (7 PM - 6 AM): Deep Starry Night Dark Indigo
+        bgStyle = "background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%); border: 1px solid #312e81;";
+        strokeColor = "#818cf8";
+        textColor = "#c7d2fe";
+        iconMarkup = `<text x="0" y="4" text-anchor="middle" font-size="13" class="moon-node">🌙</text>`;
+        let nightMins = totalMinutes >= 1080 ? (totalMinutes - 1080) : (totalMinutes + 360);
+        const nightFrac = nightMins / 720;
+        angleRad = Math.PI * (1 - nightFrac);
+      }
+
+      const nx = cx + r * Math.cos(angleRad);
+      const ny = cy - r * Math.sin(angleRad);
+
+      container.setAttribute("style", bgStyle + " transition: all 0.4s ease;");
+
+      const svgHtml = `
+        <svg class="sun-arc-svg" viewBox="0 0 150 75">
+          <line x1="12" y1="${cy}" x2="138" y2="${cy}" stroke="${textColor}" stroke-width="1.5" stroke-dasharray="3,3" opacity="0.5" />
+          <path d="M 23 ${cy} A ${r} ${r} 0 0 1 127 ${cy}" fill="none" stroke="${strokeColor}" stroke-width="3" stroke-linecap="round" />
+
+          <text x="15" y="${cy + 10}" fill="${textColor}" font-size="8" font-weight="700">6 AM</text>
+          <text x="75" y="10" fill="${textColor}" font-size="8" font-weight="800" text-anchor="middle">12 PM ☀️</text>
+          <text x="135" y="${cy + 10}" fill="${textColor}" font-size="8" font-weight="700" text-anchor="end">6 PM</text>
+
+          <g transform="translate(${nx}, ${ny})">
+            ${iconMarkup}
+          </g>
+        </svg>
+      `;
+
+      container.innerHTML = svgHtml;
+    }
+
+    /* -------------------------------------------------------------
+       24-HOUR TIMELINE BAR ENGINE
+    ------------------------------------------------------------- */
+    function renderTimelineBar(containerId, dateObj, tz, onSlideCallback) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+
+      const tzParts = getTimezoneParts(dateObj, tz);
+      const currentHour = parseInt(tzParts.hour);
+      const currentMin = parseInt(tzParts.minute);
+      const totalMinutes = (currentHour * 60) + currentMin;
+
+      const topTicks = [0, 3, 6, 9, 12, 15, 18, 21, 24];
+      let topHtml = `<div class="timeline-top-ticks">`;
+      topTicks.forEach(t => {
+        topHtml += `<span>${t}</span>`;
+      });
+      topHtml += `</div>`;
+
+      let cellsHtml = `<div class="timeline-bar-wrapper">`;
+      for (let h = 0; h < 24; h++) {
+        let cellClass = "timeline-cell";
+        if (h >= 0 && h < 6) cellClass += " cell-night";
+        else if (h >= 6 && h < 9) cellClass += " cell-morning";
+        else if (h >= 9 && h < 18) cellClass += " cell-work";
+        else if (h >= 18 && h < 22) cellClass += " cell-evening";
+        else cellClass += " cell-night";
+
+        if (h === currentHour) cellClass += " cell-active";
+
+        const hourLabel = formatHourCell(h);
+        cellsHtml += `<div class="${cellClass}" title="${hourLabel}">${hourLabel}</div>`;
+      }
+
+      const percent = (totalMinutes / 1440) * 100;
+      cellsHtml += `<div class="timeline-needle" style="left: ${percent}%;"></div>`;
+      cellsHtml += `<input type="range" class="timeline-range-slider" min="0" max="1439" value="${totalMinutes}">`;
+      cellsHtml += `</div>`;
+
+      const bottomLabels = ["12am", "3am", "6am", "9am", "12pm", "3pm", "6pm", "9pm", "12am"];
+      let bottomHtml = `<div class="timeline-bottom-ticks">`;
+      bottomLabels.forEach(lbl => {
+        bottomHtml += `<span>${lbl}</span>`;
+      });
+      bottomHtml += `</div>`;
+
+      container.innerHTML = topHtml + cellsHtml + bottomHtml;
+
+      const slider = container.querySelector(".timeline-range-slider");
+      if (slider) {
+        slider.addEventListener("input", (e) => {
+          onSlideCallback(parseInt(e.target.value));
+        });
+      }
+
+      const cells = container.querySelectorAll(".timeline-cell");
+      cells.forEach((cell, idx) => {
+        cell.addEventListener("click", () => {
+          onSlideCallback(idx * 60);
+        });
+      });
+    }
+
+    function formatHourCell(h) {
+      if (use24Hour) {
+        return h < 10 ? `0${h}` : `${h}`;
+      }
+      if (h === 0) return "12a";
+      if (h < 12) return `${h}a`;
+      if (h === 12) return "12p";
+      return `${h - 12}p`;
+    }
+
+    function getTimezoneParts(dateObj, tz) {
+      const format = new Intl.DateTimeFormat('en-US', {
+        timeZone: tz,
+        year: 'numeric', month: '2-digit', day: '2-digit',
+        hour: '2-digit', minute: '2-digit', second: '2-digit',
+        hour12: false
+      });
+      const parts = format.formatToParts(dateObj);
+      const map = {};
+      parts.forEach(p => map[p.type] = p.value);
+      if (map.hour === "24") map.hour = "00";
+      return map;
+    }
+
+    function adjustCardTime(index, unit, delta) {
+      if (unit === 'hour') {
+        currentTimestamp += delta * 3600000;
+      } else if (unit === 'minute') {
+        currentTimestamp += delta * 60000;
+      } else if (unit === 'second') {
+        currentTimestamp += delta * 1000;
+      }
+      updateSourceDatetimeInputFromTimestamp();
+      convertAll();
+    }
+
+    function toggleCardAmPm(index) {
+      currentTimestamp += 12 * 3600000;
+      updateSourceDatetimeInputFromTimestamp();
+      convertAll();
+    }
+
+    function onTargetDateChanged(index, dateVal) {
+      if (!dateVal) return;
+
+      const targetTz = targetZones[index];
+      const sourceDate = new Date(currentTimestamp);
+      const parts = getTimezoneParts(sourceDate, targetTz);
+      const fullIsoStr = `${dateVal}T${parts.hour}:${parts.minute}`;
+
+      currentTimestamp = parseDatetimeInTz(fullIsoStr, targetTz);
+      convertAll();
+    }
+
+    function convertTimezone(sourceDate, sourceTz, targetTz) {
+      try {
+        const timeFormatOptions = {
+          timeZone: targetTz,
+          hour12: !use24Hour,
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit'
+        };
+
+        const dateFormatOptions = {
+          timeZone: targetTz,
+          weekday: 'short',
+          year: 'numeric',
+          month: 'short',
+          day: 'numeric'
+        };
+
+        const tzParts = getTimezoneParts(sourceDate, targetTz);
+        const hour = parseInt(tzParts.hour);
+        const minute = parseInt(tzParts.minute);
+        const second = parseInt(tzParts.second || 0);
+
+        const dateIso = `${tzParts.year}-${tzParts.month}-${tzParts.day}`;
+
+        let hour12Num = hour % 12;
+        if (hour12Num === 0) hour12Num = 12;
+
+        const hourStr = use24Hour ? String(hour).padStart(2, '0') : String(hour12Num).padStart(2, '0');
+        const minStr = String(minute).padStart(2, '0');
+        const secStr = String(second).padStart(2, '0');
+        const ampm = hour >= 12 ? 'PM' : 'AM';
+
+        const timeFormatted = new Intl.DateTimeFormat('en-US', timeFormatOptions).format(sourceDate);
+        const dateFormatted = new Intl.DateTimeFormat('en-US', dateFormatOptions).format(sourceDate);
+
+        const offsetDiffStr = getOffsetDiffString(sourceDate, sourceTz, targetTz);
+
+        return {
+          timeFormatted,
+          dateFormatted,
+          dateIso,
+          fullFormatted: `${timeFormatted} (${dateFormatted}) - ${targetTz}`,
+          hour,
+          hourStr,
+          minStr,
+          secStr,
+          ampm,
+          offsetDiffStr
+        };
+      } catch (e) {
+        return {
+          timeFormatted: "Invalid Zone",
+          dateFormatted: "",
+          dateIso: "",
+          fullFormatted: "",
+          hour: 12,
+          hourStr: "12",
+          minStr: "00",
+          secStr: "00",
+          ampm: "PM",
+          offsetDiffStr: "N/A"
+        };
+      }
+    }
+
+    function getOffsetDiffString(date, sourceTz, targetTz) {
+      try {
+        const sourceOffset = getTimezoneOffsetMinutes(date, sourceTz);
+        const targetOffset = getTimezoneOffsetMinutes(date, targetTz);
+        const diffMinutes = targetOffset - sourceOffset;
+
+        if (diffMinutes === 0) return "Same Time";
+
+        const sign = diffMinutes > 0 ? "+" : "-";
+        const absMin = Math.abs(diffMinutes);
+        const hrs = Math.floor(absMin / 60);
+        const mins = absMin % 60;
+
+        let diffText = `${sign}${hrs}h`;
+        if (mins > 0) diffText += ` ${mins}m`;
+        diffText += diffMinutes > 0 ? " ahead" : " behind";
+        return diffText;
+      } catch (e) {
+        return "Offset N/A";
+      }
+    }
+
+    function getTimezoneOffsetMinutes(date, tz) {
+      const parts = getTimezoneParts(date, tz);
+      const targetAsUtc = Date.UTC(
+        parseInt(parts.year),
+        parseInt(parts.month) - 1,
+        parseInt(parts.day),
+        parseInt(parts.hour),
+        parseInt(parts.minute),
+        parseInt(parts.second)
+      );
+
+      return (targetAsUtc - date.getTime()) / 60000;
+    }
+
+    function copyTargetTime(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        alert("Copied to clipboard: " + text);
+      });
+    }
+
+    function copySummary() {
+      const datetimeInput = document.getElementById("sourceDatetime").value;
+      const dateObj = new Date(currentTimestamp);
+
+      let summary = `📍 World Clock Conversion Summary:\nSource Time: ${datetimeInput} (${sourceTzSelected})\n\n🌍 Converted Times:\n`;
+      targetZones.forEach(tz => {
+        const conv = convertTimezone(dateObj, sourceTzSelected, tz);
+        summary += `• ${tz}: ${conv.timeFormatted} - ${conv.dateFormatted} (${conv.offsetDiffStr})\n`;
+      });
+
+      navigator.clipboard.writeText(summary).then(() => {
+        alert("Copied full conversion summary to clipboard!");
+      });
+    }
+
+    function resetDefaults() {
+      targetZones = []; // BLANK INITIALLY
+      sourceTzSelected = userTz;
+      setSourceTimeNow();
+    }
+
+    /* Theme Management */
+    function openThemeModal() {
+      document.getElementById("themeModal").style.display = "flex";
+    }
+
+    function closeThemeModal() {
+      document.getElementById("themeModal").style.display = "none";
+    }
+
+    function renderThemeGrid() {
+      const grid = document.getElementById("themeGrid");
+      grid.innerHTML = "";
+      THEMES.forEach((t, i) => {
+        const swatch = document.createElement("div");
+        swatch.className = "theme-swatch";
+        swatch.style.background = `linear-gradient(135deg, ${t.primary}, ${t.secondary})`;
+        swatch.onclick = () => applyTheme(t);
+        grid.appendChild(swatch);
+      });
+    }
+
+    function applyTheme(theme) {
+      document.documentElement.style.setProperty("--theme-primary", theme.primary);
+      document.documentElement.style.setProperty("--theme-secondary", theme.secondary);
+      document.documentElement.style.setProperty("--theme-gradient", `linear-gradient(135deg, ${theme.primary} 0%, ${theme.secondary} 100%)`);
+      document.documentElement.style.setProperty("--glow-color", `${theme.primary}55`);
+      localStorage.setItem("webtoolsx_theme", JSON.stringify(theme));
+      closeThemeModal();
+    }
+
+    function loadSavedTheme() {
+      const saved = localStorage.getItem("webtoolsx_theme");
+      if (saved) {
+        try {
+          applyTheme(JSON.parse(saved));
+        } catch(e) {}
+      }
+    }
+  </script>
+</body>
+</html>

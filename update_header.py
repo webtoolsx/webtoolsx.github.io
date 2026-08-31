@@ -15,6 +15,7 @@ PAGE_HREF_MAP = {
     "tip-calculator.html": "/tip-calculator.html",
     "themes.html": "/themes.html",
     "time.html": "/time.html",
+    "world-clock-converter.html": "/world-clock-converter.html",
     "bar-code-scanner.html": "/bar-code-scanner.html"
 }
 

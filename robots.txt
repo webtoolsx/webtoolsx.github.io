@@ -1,6 +1,6 @@
 User-agent: *
 Allow: /
-Sitemap: https://webtoolsx.github.io/sitemap.xml
+Disallow: /mttest/
+Disallow: /downloads/
 
-Disallow: 
-Disallow: /cgi-bin/
+Sitemap: https://webtoolsx.github.io/sitemap.xml

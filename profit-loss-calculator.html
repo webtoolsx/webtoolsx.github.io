@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Basic Meta Tags for SEO -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="index, follow"> 
+  <meta name="description" content="Calculate your stock profits and losses easily with the WebToolsX Stock Profit and Loss Calculator. Fast, accurate, and free online financial tool.">
+  <meta name="keywords" content="stock profit calculator, stock loss calculator, share market calculator, trading profit calculator, finance tools, WebToolsX">
+  <meta name="author" content="WebToolsX">
+
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="Stock Profit and Loss Calculator | WebToolsX">
+  <meta property="og:description" content="Calculate your stock profits and losses easily with our free online tool. Perfect for traders and investors.">
+  <meta property="og:image" content="https://webtoolsx.github.io/favicon.png">
+  <meta property="og:url" content="https://webtoolsx.github.io/profit-loss-calculator.html">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Stock Profit and Loss Calculator | WebToolsX">
+  <meta name="twitter:description" content="Calculate your stock profits and losses easily with our free online tool.">
+  <meta name="twitter:image" content="https://webtoolsx.github.io/favicon.png">
+
+  <link rel="icon" href="favicon.png" type="image/png">
+  <title>Stock Profit and Loss Calculator - Accurate Trading Tool | WebToolsX</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <!-- Linking CSS Stylesheets -->
+  <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css"> 
+  <link rel="stylesheet" href="css/custom_radio.css">
+  
+  <!-- JavaScript Files -->
+  <script src="bootstrap/js/bootstrap.bundle.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
+  <script type="module" src="js/stock_calc.js"></script>
+  <script type="module" src="js/custom_range.js"></script>
+  <script type="module" src="js/hr_scroll.js"></script>
+  <script type="module" src="js/arcLib.js"></script>
+  <script src="js/counto.min.js"></script>
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://webtoolsx.github.io/profit-loss-calculator.html">
+
+  <!-- Structured Data JSON-LD -->
+  <script type="application/ld+json">
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://webtoolsx.github.io/"
+      },{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "P/L Calculator",
+        "item": "https://webtoolsx.github.io/profit-loss-calculator.html"
+      }]
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Stock Profit and Loss Calculator",
+      "url": "https://webtoolsx.github.io/profit-loss-calculator.html",
+      "description": "A tool to help calculate stock profit and loss based on buy and sell prices.",
+      "applicationCategory": "FinanceApplication",
+      "softwareVersion": "1.0",
+      "operatingSystem": "All",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+  ]
+  </script>
+  
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0ZDRS85Q8B"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-0ZDRS85Q8B');
+  </script>
+  
+</head>
+<body>
+  <div class="container-fluid">
+    <!-- HEADER_START -->
+    <!-- nav bar -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary header_bar">
+      <div class="container-fluid">
+        <div class="col">
+          <a class="navbar-brand" href="/"> <img class="main-logo" src="images/calclogo.png" alt="WebToolsX Logo"> </a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="scroll-container">
+      <button class="scroll-btn left">&larr;</button>
+      <div class="scroll-wrapper">
+        <div class="scroll-content">
+          <a class="hr_nav-item active" href="/profit-loss-calculator.html"><i class="fa-solid fa-chart-line me-1"></i> P/L Calculator</a>
+          <a class="hr_nav-item" href="/average-calculator.html"><i class="fa-solid fa-divide me-1"></i> Average Calculator</a>
+          <a class="hr_nav-item" href="/percentage-change-calculator.html"><i class="fa-solid fa-chart-simple me-1"></i> Percentage Change Calculator</a>
+          <a class="hr_nav-item" href="/percentage-calculator.html"><i class="fa-solid fa-percent me-1"></i> Percentage Calculator</a>
+          <a class="hr_nav-item" href="/age-calculator.html"><i class="fa-solid fa-cake-candles me-1"></i> Age Calculator</a>
+          <a class="hr_nav-item" href="/emi-calculator.html"><i class="fa-solid fa-landmark me-1"></i> Loan EMI Calculator</a>
+          <a class="hr_nav-item" href="/tip-calculator.html"><i class="fa-solid fa-coins me-1"></i> Tip Calculator</a>
+          <a class="hr_nav-item" href="/themes.html"><i class="fa-solid fa-palette me-1"></i> Themes</a>
+          <a class="hr_nav-item" href="/time.html"><i class="fa-solid fa-clock me-1"></i> World Clock</a>
+          <a class="hr_nav-item" href="/world-clock-converter.html"><i class="fa-solid fa-globe me-1"></i> Time Converter</a>
+          <a class="hr_nav-item" href="/bar-code-scanner.html"><i class="fa-solid fa-barcode me-1"></i> Barcode Scanner</a>
+        </div>
+      </div>
+      <button class="scroll-btn right">&rarr;</button>
+    </div>
+    <!-- HEADER_END -->
+
+    <div class="container-fluid p-0 p-lg-2">
+  
+        <!-- buy Price and sell Price -->
+        <div class="container-fluid py-4 p-0 p-lg-2">
+          <div class="row background-image-average">
+            <div class="col">
+              <h1 class="calc_heading"><img src="images/chart-average-svgrepo-com.svg" height="25px" alt="Chart Icon">&nbsp;P/L Calculator <br><small>(Calculate stock profit)</small></h1>
+              <div class="mt-3 profit-box">
+                <h2 class="prof_loss_view profit">
+                  <strong>Profit</strong> 
+                  <span class="float-end">
+                      <i id="pl_updown_arrow" class="fa-solid" aria-label="Profit Indicator"></i>
+                      <span class="calc_pl_percentage">0</span><small>%</small>
+                  </span>
+              </h2>
+              <span class="prof_loss_view profit"><b><span class="calc_numbers" id="my-number">0.00</span></b></span> 
+              </div>
+
+              <div class="mt-3">
+                <h4 class="other_property_calc">Total Investment</h4>
+                <span class="profit"><b class="calc_numbers" id="total_investment">0.00</b></span>
+              </div>
+
+              <div class="mt-3">
+                <h4 class="other_property_calc">Total Brokerage</h4>
+                <span class="loss"><b class="calc_numbers" id="total_brockerage">0.00</b></span>
+              </div>
+
+            </div>
+            <div class="col-1 d-none d-lg-block">
+              <!-- div for gap -->
+            </div>
+            <div class="col cal_box">
+
+              <div class="row mb-3">
+                <div class="col-md-6 mb-3">
+                    <div class="input-group">
+                        <span class="input-group-text input-group-text-buy fs-5 fs-sm-6"><img src="images/uparrow.svg" class="buy_sell_image_size" alt="Up Arrow"></span>
+                        <input type="number" name="buy_at_price" class="form-control input_buysell_size" placeholder="buy at" aria-label="Buy Price">
+                    </div>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                  <div class="input-group">
+                      <span class="input-group-text input-group-text-qty"><img src="images/qty.svg" class="buy_sell_image_size" alt="Quantity Icon"></span>
+                      <input type="number" name="buy_qty" class="form-control input_buysell_size" placeholder="quantity" aria-label="Quantity">
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                  <div class="col-md-6 mb-3">
+                      <div class="input-group">
+                          <span class="input-group-text input-group-text-sell"><img src="images/downarrow.svg" class="buy_sell_image_size" alt="Down Arrow"></span>
+                          <input type="number" name="sell_at_price" class="form-control input_buysell_size" placeholder="sell at" aria-label="Sell Price">
+                      </div>
+                  </div>
+                  <div class="col-md-6 mb-3">
+                      <div class="input-group">
+                          <span class="input-group-text input-group-text-qty"><img src="images/qty.svg" class="buy_sell_image_size" alt="Quantity Icon"></span>
+                          <input type="number" name="sell_qty" class="form-control input_buysell_size" placeholder="quantity" aria-label="Quantity">
+                      </div>
+                  </div>
+              </div>
+
+              <div class="custom_radio_wrapper mb-2">
+                <label>
+                  <input type="radio" value="percentage" name="pnl_brocker_type_calc_radio" checked class="pnl_brocker_type d-none">
+                  <span class="text-center d-block py-1" style="width: 40px;">%</span>
+                </label>
+                <label>
+                  <input type="radio" value="flat" name="pnl_brocker_type_calc_radio" class="pnl_brocker_type d-none">
+                  <span class="text-center d-block py-1">Flat</span>
+                </label>
+              </div>
+
+              <div class="slider-container" id="pnl_brocker_type_percentage_block">
+                <label for="customRange3" class="form-label">Brokerage (0%)</label>
+                <input type="range" name="brockerage_percentage" value="0" min="0.00" max="20" step="1" id="customRange3">
+              </div>
+
+              <div class="slider-container" style="display: none;" id="pnl_brocker_type_flat_block">
+                <label for="customRange3" class="form-label">Flat Brokerage</label>
+                <input type="number" name="brockerage_flat" class="form-control input_buysell_size" placeholder="e.g. 10" aria-label="Quantity">
+              </div>
+
+              <div class="row">
+                <div class="col-md-6 mb-3"></div>
+                <div class="col-md-6 mb-3 nav justify-content-end">
+                  <button type="button" aria-label="Reset" class="calculate_button reset_button_pl_calc"><img src="images/reset.svg" height="25px" alt="Reset Icon"></button>
+                  <input type="button" aria-label="Calculate" value="Calculate" class="calculate_button calculate_pl_button">
+                </div>
+            </div>
+
+            </div>
+
+          </div>
+
+        <div class="row">
+          <div class="col feature-list">
+            <a href="/average-calculator.html" class="feature-item" title="Average Calculator" aria-label="Average Calculator">
+              <div style="text-decoration:none;color:inherit;">
+              <i class="fa-solid fa-divide feature-icon" style="font-size:25px;vertical-align:middle;"></i>
+              <span>Average Calculator</span>
+              </div>
+              <div class="feature-desc">Calculate the average (mean) of numbers.</div>
+            </a>
+
+            <a href="/percentage-change-calculator.html" class="feature-item" title="Percentage Change Calculator" aria-label="Percentage Change Calculator">
+              <div style="text-decoration:none;color:inherit;">
+              <i class="fa-solid fa-chart-simple feature-icon" style="font-size:25px;vertical-align:middle;"></i>
+              <span>Percentage Change Calculator</span>
+              </div>
+              <div class="feature-desc">Calculate percentage increase or decrease.</div>
+            </a>
+
+            <a href="/percentage-calculator.html" class="feature-item" title="Percentage Calculator" aria-label="Percentage Calculator">
+              <div style="text-decoration:none;color:inherit;">
+              <i class="fa-solid fa-percent feature-icon" style="font-size:25px;vertical-align:middle;"></i>
+              <span>Percentage Calculator</span>
+              </div>
+              <div class="feature-desc">Find what percent one number is of another.</div>
+            </a>
+
+            <a href="/age-calculator.html" class="feature-item" title="Age Calculator" aria-label="Age Calculator">
+              <div style="text-decoration:none;color:inherit;">
+              <i class="fa-solid fa-cake-candles feature-icon" style="font-size:25px;vertical-align:middle;"></i>
+              <span>Age Calculator</span>
+              </div>
+              <div class="feature-desc">Calculate exact age in years, months, and days.</div>
+            </a>
+
+            <a href="/emi-calculator.html" class="feature-item" title="Loan EMI Calculator" aria-label="Loan EMI Calculator">
+              <div style="text-decoration:none;color:inherit;">
+              <i class="fa-solid fa-indian-rupee-sign feature-icon" style="font-size:25px;vertical-align:middle;"></i>
+              <span>Loan EMI Calculator</span>
+              </div>
+              <div class="feature-desc">Calculate your loan EMI easily.</div>
+            </a>
+
+            <a href="/tip-calculator.html" class="feature-item" title="Tip Calculator" aria-label="Tip Calculator">
+              <div style="text-decoration:none;color:inherit;">
+              <i class="fa-solid fa-coins feature-icon" style="font-size:25px;vertical-align:middle;"></i>
+              <span>Tip Calculator</span>
+              </div>
+              <div class="feature-desc">Quickly calculate tips and split bills.</div>
+            </a>
+
+            <a href="/time.html" class="feature-item" title="World Clock" aria-label="World Clock">
+              <div style="text-decoration:none;color:inherit;">
+              <i class="fa-solid fa-clock feature-icon" style="font-size:25px;vertical-align:middle;"></i>
+              <span>World Clock</span>
+              </div>
+              <div class="feature-desc">Check current time and convert time zones.</div>
+            </a>
+          </div>
+        </div>
+
+          <div class="row mt-3">
+            <div class="col-md-6">
+              <div>
+                <h3>How to use <i class="fa-solid fa-circle-info"></i></h3>
+                <p>
+                    A <strong>Profit and Loss Calculator</strong> helps calculate the outcome of a transaction based on input values like buy price, sell price, quantity, and brokerage fees.
+                </p>
+                <ul class="list-group">
+                    <li class="list-group-item"><strong>Input Fields:</strong> Users fill in the buy price, sell price, quantity, and brokerage percentage or flat fee.</li>
+                    <li class="list-group-item"><strong>Brokerage Type:</strong> Users select between percentage-based or flat fee brokerage.</li>
+                    <li class="list-group-item"><strong>Calculate Button:</strong> Processes inputs to calculate net profit or loss instantly.</li>
+                </ul>
+
+                <div class="card shadow-lg border-0 mt-3">
+                    <div class="card-body">
+                        <h2 class="h4">What is a Profit and Loss Calculator?</h2>
+                        <p>A <strong>Profit and Loss Calculator</strong> is a financial tool used to determine the profitability of a stock transaction or investment by subtracting cost price and brokerage from sell price.</p>
+            
+                        <h2 class="h4">When to Use a Profit and Loss Calculator?</h2>
+                        <ul>
+                            <li>Before making stock or crypto investments.</li>
+                            <li>For evaluating trading strategy profitability.</li>
+                            <li>To calculate net gains after brokerage costs.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            </div>
+
+            <div class="col-md-6">
+              <div>
+                <h3><i class="fa-solid fa-square-root-variable"></i> Formula for Profit and Loss</h3>
+                <p><strong>Profit:</strong> Profit occurs when your sell price exceeds buy price and brokerage expenses.</p>
+                <p><strong>Loss:</strong> Loss occurs when your total costs exceed revenue.</p>
+<pre>
+Profit = (Sell Price * Quantity) - (Buy Price * Quantity) - Brokerage
+Loss = (Buy Price * Quantity) + Brokerage - (Sell Price * Quantity)
+</pre>
+              </div>
+            </div>
+        </div>
+
+    </div>
+  </div>
+
+    <script>
+      if ($('#my-number').length) {
+        $('#my-number').counto(0, 500);
+      }
+    </script>
+  </div>
+
+  <footer class="footer_main">
+    <div>
+      <a href="/" style="color: white; margin: 0 15px; text-decoration: none;" class="footer-logo"><img src="favicon.png" alt="WebToolsX Favicon Logo"></a>
+      <a href="/" style="color: white; margin: 0 15px; text-decoration: none;">Home</a>
+      <a href="/themes.html" style="color: white; margin: 0 15px; text-decoration: none;">Themes</a>
+      <a href="/about.html" style="color: white; margin: 0 15px; text-decoration: none;">About Us</a>
+      <a href="/contact.html" style="color: white; margin: 0 15px; text-decoration: none;">Contact Us</a>
+    </div>
+    <div style="margin-top: 20px;">
+      <p>&copy; 2026 Webtoolsx. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/terms_modal.js"></script>
+</body>
+</html>

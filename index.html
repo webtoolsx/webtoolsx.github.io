@@ -6,41 +6,279 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="index, follow"> 
-  <meta name="description" content="Calculate your stock profits and losses easily with the WebToolsX Stock Profit and Loss Calculator. Fast, accurate, and free online financial tool.">
-  <meta name="keywords" content="stock profit calculator, stock loss calculator, share market calculator, trading profit calculator, finance tools, WebToolsX">
+  <meta name="description" content="WebToolsX provides free, fast, and accurate online calculators and utilities including Stock P/L Calculator, Time Converter, Barcode Scanner, Loan EMI Calculator, and HTML Themes.">
+  <meta name="keywords" content="web tools, online calculators, stock profit calculator, time zone converter, barcode scanner, EMI calculator, percentage calculator, WebToolsX">
   <meta name="author" content="WebToolsX">
 
   <!-- Open Graph Meta Tags -->
-  <meta property="og:title" content="Stock Profit and Loss Calculator | WebToolsX">
-  <meta property="og:description" content="Calculate your stock profits and losses easily with our free online tool. Perfect for traders and investors.">
+  <meta property="og:title" content="WebToolsX - Free Online Utilities & Financial Calculators">
+  <meta property="og:description" content="Explore WebToolsX collection of free online financial calculators, time converters, barcode tools, and web templates.">
   <meta property="og:image" content="https://webtoolsx.github.io/favicon.png">
   <meta property="og:url" content="https://webtoolsx.github.io/">
   <meta property="og:type" content="website">
 
   <!-- Twitter Card Meta Tags -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Stock Profit and Loss Calculator | WebToolsX">
-  <meta name="twitter:description" content="Calculate your stock profits and losses easily with our free online tool.">
+  <meta name="twitter:title" content="WebToolsX - Free Online Utilities & Financial Calculators">
+  <meta name="twitter:description" content="Explore WebToolsX collection of free online financial calculators, time converters, and barcode tools.">
   <meta name="twitter:image" content="https://webtoolsx.github.io/favicon.png">
 
   <link rel="icon" href="favicon.png" type="image/png">
-  <title>Stock Profit and Loss Calculator - Accurate Trading Tool | WebToolsX</title>
+  <title>WebToolsX - Free Online Utilities & Financial Calculators</title>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
 
   <!-- Linking CSS Stylesheets -->
   <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css"> 
-  <link rel="stylesheet" href="css/custom_radio.css">
-  
+  <link rel="stylesheet" href="css/hr_scroll.css">
+
+  <style>
+    :root {
+      --primary-color: #0284c7;
+      --primary-hover: #0369a1;
+      --hero-bg: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      --card-border: #e2e8f0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: #f8fafc;
+      color: #0f172a;
+    }
+
+    /* Hero Section */
+    .landing-hero {
+      background: var(--hero-bg);
+      color: #ffffff;
+      padding: 60px 20px;
+      border-radius: 24px;
+      margin-top: 15px;
+      margin-bottom: 40px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(15, 23, 42, 0.15);
+    }
+
+    .landing-hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(2, 132, 199, 0.25) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .hero-heading {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 2.5rem;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-search-wrapper {
+      max-width: 600px;
+      margin: 28px auto 0;
+      position: relative;
+    }
+
+    .hero-search-input {
+      width: 100%;
+      height: 52px;
+      padding: 12px 20px 12px 50px;
+      border-radius: 30px;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.1);
+      color: #ffffff;
+      backdrop-filter: blur(10px);
+      font-size: 1rem;
+      outline: none;
+      transition: all 0.25s;
+    }
+
+    .hero-search-input::placeholder {
+      color: #94a3b8;
+    }
+
+    .hero-search-input:focus {
+      background: rgba(255, 255, 255, 0.18);
+      border-color: #38bdf8;
+      box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
+    }
+
+    .hero-search-icon {
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #94a3b8;
+      font-size: 1.1rem;
+    }
+
+    /* Tool Filter Chips */
+    .filter-chips-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 30px;
+    }
+
+    .filter-chip {
+      background: #ffffff;
+      color: #475569;
+      border: 1px solid #cbd5e1;
+      padding: 8px 18px;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 0.88rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .filter-chip:hover, .filter-chip.active {
+      background: var(--primary-color);
+      color: #ffffff;
+      border-color: var(--primary-color);
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.25);
+    }
+
+    /* Tool Cards Grid */
+    .tool-card {
+      background: #ffffff;
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 24px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+      position: relative;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    }
+
+    .tool-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--primary-color);
+      box-shadow: 0 12px 30px rgba(2, 132, 199, 0.12);
+    }
+
+    .tool-icon-wrapper {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 16px;
+    }
+
+    .icon-financial { background: #e0f2fe; color: #0284c7; }
+    .icon-clock { background: #fef3c7; color: #d97706; }
+    .icon-utility { background: #f3e8ff; color: #9333ea; }
+    .icon-math { background: #dcfce7; color: #16a34a; }
+    .icon-design { background: #ffe4e6; color: #e11d48; }
+
+    .tool-title {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 1.18rem;
+      margin-bottom: 8px;
+      color: #0f172a;
+    }
+
+    .tool-description {
+      color: #64748b;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      margin-bottom: 20px;
+      flex-grow: 1;
+    }
+
+    .tool-badge {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .badge-popular { background: #dbeafe; color: #1e40af; }
+    .badge-new { background: #dcfce7; color: #15803d; }
+    .badge-essential { background: #f1f5f9; color: #475569; }
+
+    .btn-tool-action {
+      width: 100%;
+      padding: 10px 16px;
+      border-radius: 12px;
+      background: #f1f5f9;
+      color: #0f172a;
+      font-weight: 600;
+      font-size: 0.9rem;
+      border: 1px solid #e2e8f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .tool-card:hover .btn-tool-action {
+      background: var(--primary-color);
+      color: #ffffff;
+      border-color: var(--primary-color);
+    }
+
+    /* Benefits Section */
+    .benefits-section {
+      background: #ffffff;
+      border-radius: 20px;
+      border: 1px solid #e2e8f0;
+      padding: 40px 24px;
+      margin-top: 50px;
+      margin-bottom: 40px;
+    }
+
+    .benefit-item {
+      text-align: center;
+      padding: 15px;
+    }
+
+    .benefit-icon {
+      font-size: 2rem;
+      color: var(--primary-color);
+      margin-bottom: 12px;
+    }
+
+    .benefit-title {
+      font-weight: 700;
+      font-size: 1.05rem;
+      margin-bottom: 6px;
+    }
+
+    .benefit-desc {
+      color: #64748b;
+      font-size: 0.88rem;
+    }
+  </style>
+
   <!-- JavaScript Files -->
   <script src="bootstrap/js/bootstrap.bundle.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
-  <script type="module" src="js/stock_calc.js"></script>
-  <script type="module" src="js/custom_range.js"></script>
   <script type="module" src="js/hr_scroll.js"></script>
-  <script type="module" src="js/arcLib.js"></script>
-  <script src="js/counto.min.js"></script>
 
   <!-- Canonical URL -->
   <link rel="canonical" href="https://webtoolsx.github.io/">
@@ -54,7 +292,7 @@
       "name": "WebToolsX",
       "url": "https://webtoolsx.github.io/",
       "logo": "https://webtoolsx.github.io/favicon.png",
-      "description": "WebToolsX provides a collection of free online tools and calculators for quick and accurate calculations."
+      "description": "WebToolsX provides a collection of free online tools and financial calculators for quick and accurate calculations."
     },
     {
       "@context": "https://schema.org",
@@ -65,21 +303,6 @@
         "@type": "SearchAction",
         "target": "https://webtoolsx.github.io/?s={search_term_string}",
         "query-input": "required name=search_term_string"
-      }
-    },
-    {
-      "@context": "https://schema.org",
-      "@type": "WebApplication",
-      "name": "Stock Profit and Loss Calculator",
-      "url": "https://webtoolsx.github.io/",
-      "description": "A tool to help calculate stock profit and loss based on buy and sell prices.",
-      "applicationCategory": "FinanceApplication",
-      "softwareVersion": "1.0",
-      "operatingSystem": "All",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
       }
     }
   ]
@@ -93,15 +316,13 @@
     gtag('js', new Date());
     gtag('config', 'G-0ZDRS85Q8B');
   </script>
-  
 </head>
 <body>
-  <div class="container-fluid">
+  <div class="container-fluid p-0">
     <!-- HEADER_START -->
-<!-- nav bar -->
+    <!-- nav bar -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary header_bar">
-      
-      <div class="container-fluid ">
+      <div class="container-fluid">
         <div class="col">
           <a class="navbar-brand" href="/"> <img class="main-logo" src="images/calclogo.png" alt="WebToolsX Logo"> </a>
         </div>
@@ -112,7 +333,7 @@
       <button class="scroll-btn left">&larr;</button>
       <div class="scroll-wrapper">
         <div class="scroll-content">
-          <a class="hr_nav-item active" href="/"><i class="fa-solid fa-chart-line me-1"></i> P/L Calculator</a>
+          <a class="hr_nav-item" href="/profit-loss-calculator.html"><i class="fa-solid fa-chart-line me-1"></i> P/L Calculator</a>
           <a class="hr_nav-item" href="/average-calculator.html"><i class="fa-solid fa-divide me-1"></i> Average Calculator</a>
           <a class="hr_nav-item" href="/percentage-change-calculator.html"><i class="fa-solid fa-chart-simple me-1"></i> Percentage Change Calculator</a>
           <a class="hr_nav-item" href="/percentage-calculator.html"><i class="fa-solid fa-percent me-1"></i> Percentage Calculator</a>
@@ -127,305 +348,343 @@
       </div>
       <button class="scroll-btn right">&rarr;</button>
     </div>
-<!-- HEADER_END -->
+    <!-- HEADER_END -->
 
-    <div class="container-fluid p-0 p-lg-2">
-  
-        <!-- buy Price and sell Price -->
-        <div class="container-fluid py-4 p-0 p-lg-2">
-          <div class="row background-image-average">
-            <div class="col ">
-              <h1 class="calc_heading"><img src="images/chart-average-svgrepo-com.svg" height="25px" alt="Chart Icon">&nbsp;P/L Calculator <br><small>(Calculate stock profit)</small></h1>
-              <div class="mt-3 profit-box">
-                <h2 class="prof_loss_view profit">
-                  <strong>Profit</strong> 
-                  <span class="float-end">
-                      <i id="pl_updown_arrow" class="fa-solid" aria-label="Profit Indicator"></i>
-                      <span class="calc_pl_percentage">0</span><small>%</small>
+    <div class="container py-2" style="max-width: 1140px;">
+      
+      <!-- Landing Hero Section -->
+      <div class="landing-hero text-center">
+        <span class="badge bg-primary bg-opacity-25 text-info px-3 py-1.5 rounded-pill mb-3 fw-semibold">100% Free & Fast Online Tools</span>
+        <h1 class="hero-heading">Free Online Tools & Financial Calculators</h1>
+        <p class="text-slate-300 max-w-2xl mx-auto mb-0" style="color: #cbd5e1; font-size: 1.05rem;">
+          Accurate, instant, and privacy-first web utilities designed to simplify daily calculations, time conversion, and developer tasks.
+        </p>
 
-                  </span>
-              </h2>
-              <span class="prof_loss_view profit"><b><span class="calc_numbers" id="my-number">0.00</span></b></span> 
+        <!-- Search Bar -->
+        <div class="hero-search-wrapper">
+          <i class="fas fa-search hero-search-icon"></i>
+          <input type="text" id="tool-search" class="hero-search-input" placeholder="Search any tool (e.g. P/L Calculator, Timezone, Barcode)..." autocomplete="off">
+        </div>
+      </div>
+
+      <!-- Filter Chips -->
+      <div class="filter-chips-container" id="filter-chips">
+        <button class="filter-chip active" data-category="all">All Tools</button>
+        <button class="filter-chip" data-category="financial">Financial</button>
+        <button class="filter-chip" data-category="clock">Time & Clocks</button>
+        <button class="filter-chip" data-category="utility">Utilities</button>
+        <button class="filter-chip" data-category="math">Math</button>
+        <button class="filter-chip" data-category="design">Themes</button>
+      </div>
+
+      <!-- Tools Showcase Grid -->
+      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" id="tools-grid">
+        
+        <!-- Tool 1: Stock Profit & Loss Calculator -->
+        <div class="col tool-item" data-category="financial" data-keywords="profit loss stock trading brokerage finance share market calculator">
+          <div class="tool-card">
+            <span class="tool-badge badge-popular">Popular</span>
+            <div>
+              <div class="tool-icon-wrapper icon-financial">
+                <i class="fa-solid fa-chart-line"></i>
               </div>
-
-              
-
-              <div class="mt-3">
-                <!-- <canvas id="myCanvas" width="100" height="60" style="border:1px solid rgb(255, 255, 255)"></canvas> -->
-
-                <h4 class="other_property_calc">Total Investment</h4>
-                <span class="profit"><b class="calc_numbers" id="total_investment">0.00</b></span>
-              </div>
-
-              <div class="mt-3">
-                <h4 class="other_property_calc">Total Brockerage</h4>
-                <span class="loss"><b class="calc_numbers" id="total_brockerage">0.00</b></span>
-              </div>
-
+              <h3 class="tool-title">Stock Profit & Loss Calculator</h3>
+              <p class="tool-description">Calculate net stock trading profit, loss percentage, total investment, and flat or percentage brokerage fees instantly.</p>
             </div>
-            <div class="col-1 d-none d-lg-block">
-              <!-- div for gap -->
-            </div>
-            <div class="col cal_box">
-
-              <div class="row mb-3">
-                <div class="col-md-6 mb-3">
-                    <div class="input-group">
-                        <span class="input-group-text input-group-text-buy fs-5 fs-sm-6"><img src="images/uparrow.svg" class="buy_sell_image_size" alt="Up Arrow"></span>
-                        <input type="number" name="buy_at_price" class="form-control input_buysell_size" placeholder="buy at" aria-label="Buy Price">
-                    </div>
-                </div>
-
-                <div class="col-md-6 mb-3">
-                  <div class="input-group">
-                      <span class="input-group-text input-group-text-qty"><img src="images/qty.svg" class="buy_sell_image_size" alt="Quantity Icon"></span>
-                      <input type="number" name="buy_qty" class="form-control input_buysell_size" placeholder="quantity" aria-label="Quantity">
-                  </div>
-                </div>
-                
-              </div>
-
-              <div class="row">
-                  <div class="col-md-6 mb-3">
-                      <div class="input-group">
-                          <span class="input-group-text input-group-text-sell"><img src="images/downarrow.svg" class="buy_sell_image_size" alt="Down Arrow"></span>
-                          <input type="number" name="sell_at_price" class="form-control input_buysell_size" placeholder="sell at" aria-label="Sell Price">
-                      </div>
-                  </div>
-                  <div class="col-md-6 mb-3">
-                      <div class="input-group">
-                          <span class="input-group-text input-group-text-qty"><img src="images/qty.svg" class="buy_sell_image_size" alt="Quantity Icon"></span>
-                          <input type="number" name="sell_qty" class="form-control input_buysell_size" placeholder="quantity" aria-label="Quantity">
-                      </div>
-                  </div>
-              </div>
-
-              <!-- <label for="customRange3" class="form-label">Brokerage (0%)</label>
-              <input type="range" name="brockerage_percentage" class="form-range" value="0" min="0" max="10" step="0.5" id="customRange3">
-               -->
-
-              <div class="custom_radio_wrapper mb-2">
-              <!-- <p class="text-dark label_p">Morning</p> -->
-                <label>
-                  <input type="radio" value="percentage" name="pnl_brocker_type_calc_radio" checked class="pnl_brocker_type d-none ">
-                  <span class="text-center d-block py-1" style="width: 40px;">%</span>
-                </label>
-                <label>
-                  <input type="radio" value="flat" name="pnl_brocker_type_calc_radio" class="pnl_brocker_type d-none">
-                  <span class="text-center d-block py-1">Flat</span>
-                </label>
-              </div>
-
-              <div class="slider-container" id="pnl_brocker_type_percentage_block">
-                <label for="customRange3" class="form-label">Brokerage (0%)</label>
-                <input type="range"  name="brockerage_percentage"  value="0" min="0.00" max="20" step="1" id="customRange3">
-              </div>
-
-              <div class="slider-container" style="display: none;" id="pnl_brocker_type_flat_block">
-                <label for="customRange3" class="form-label">Flat Brokerage</label>
-                <input type="number" name="brockerage_flat" class="form-control input_buysell_size" placeholder="e.g. 10" aria-label="Quantity">
-              </div>
-
-              <div class="row">
-                <div class="col-md-6 mb-3">
-                    
-                </div>
-                <div class="col-md-6 mb-3 nav justify-content-end">
-                  <button type="button" aria-label="Quantity" class="calculate_button reset_button_pl_calc"><img src="images/reset.svg" height="25px" alt="Reset Icon"></button>
-                  <input type="button" aria-label="Quantity" value="Calculate" class="calculate_button calculate_pl_button">
-                </div>
-            </div>
-
-            </div>
-
-          </div>
-
-        <div class="row">
-          <div class="col feature-list">
-
-            <a href="/average-calculator.html" class="feature-item" title="Average Calculator" aria-label="Average Calculator">
-              <div style="text-decoration:none;color:inherit;">
-              <i class="fa-solid fa-divide feature-icon" style="font-size:25px;vertical-align:middle;"></i>
-              <span>Average Calculator</span>
-              </div>
-              <div class="feature-desc">
-              Calculate the average (mean) of numbers.
-              </div>
+            <a href="/profit-loss-calculator.html" class="btn-tool-action">
+              <span>Use Calculator</span>
+              <i class="fas fa-arrow-right fs-7"></i>
             </a>
-
-            <a href="/percentage-change-calculator.html" class="feature-item" title="Percentage Change Calculator" aria-label="Percentage Change Calculator">
-              <div style="text-decoration:none;color:inherit;">
-              <i class="fa-solid fa-chart-simple feature-icon" style="font-size:25px;vertical-align:middle;"></i>
-              <span>Percentage Change Calculator</span>
-              </div>
-              <div class="feature-desc">
-              Calculate percentage increase or decrease.
-              </div>
-            </a>
-
-            <a href="/percentage-calculator.html" class="feature-item" title="Percentage Calculator" aria-label="Percentage Calculator">
-              <div style="text-decoration:none;color:inherit;">
-              <i class="fa-solid fa-percent feature-icon" style="font-size:25px;vertical-align:middle;"></i>
-              <span>Percentage Calculator</span>
-              </div>
-              <div class="feature-desc">
-              Find what percent one number is of another.
-              </div>
-            </a>
-
-            <a href="/age-calculator.html" class="feature-item" title="Age Calculator" aria-label="Age Calculator">
-              <div style="text-decoration:none;color:inherit;">
-              <i class="fa-solid fa-cake-candles feature-icon" style="font-size:25px;vertical-align:middle;"></i>
-              <span>Age Calculator</span>
-              </div>
-              <div class="feature-desc">
-              Calculate exact age in years, months, and days.
-              </div>
-            </a>
-
-            <a href="/emi-calculator.html" class="feature-item" title="Loan EMI Calculator" aria-label="Loan EMI Calculator">
-              <div style="text-decoration:none;color:inherit;">
-              <i class="fa-solid fa-indian-rupee-sign feature-icon" style="font-size:25px;vertical-align:middle;"></i>
-              <span>Loan EMI Calculator</span>
-              </div>
-              <div class="feature-desc">
-              Calculate your loan EMI easily.
-              </div>
-            </a>
-
-            <a href="/tip-calculator.html" class="feature-item" title="Tip Calculator" aria-label="Tip Calculator">
-              <div style="text-decoration:none;color:inherit;">
-              <i class="fa-solid fa-coins feature-icon" style="font-size:25px;vertical-align:middle;"></i>
-              <span>Tip Calculator</span>
-              </div>
-              <div class="feature-desc">
-              Quickly calculate tips and split bills.
-              </div>
-            </a>
-
-            <a href="/time.html" class="feature-item" title="World Clock" aria-label="World Clock">
-              <div style="text-decoration:none;color:inherit;">
-              <i class="fa-solid fa-clock feature-icon" style="font-size:25px;vertical-align:middle;"></i>
-              <span>World Clock</span>
-              </div>
-              <div class="feature-desc">
-              Check current time and convert time zones.
-              </div>
-            </a>
-
           </div>
         </div>
 
-          <div class="row mt-3">
-
-            <div class="col-md-6">
-              <div class="">
-                <h3>How to use <i class="fa-solid fa-circle-info"></i> </h3>
-
-                <!-- Container for the content -->
-                  
-                  <p>
-                      A <strong>Profit and Loss Calculator</strong> helps calculate the outcome of a transaction based on input values like buy price, sell price, quantity, and brokerage fees. In this simple HTML and Bootstrap version, the form includes:
-                  </p>
-                  
-                  <ul class="list-group">
-                      <li class="list-group-item"><strong>Input Fields:</strong> Users fill in the buy price, sell price, quantity, and either a brokerage percentage or flat fee.</li>
-                      <li class="list-group-item"><strong>Brokerage Type:</strong> Users select between a percentage-based brokerage or a flat fee using radio buttons.</li>
-                      <li class="list-group-item"><strong>Calculate Button:</strong> When clicked, the form processes the inputs to calculate the profit or loss (JavaScript would typically handle this calculation).</li>
-                  </ul>
-
-
-                  <div class="card shadow-lg border-0">
-                      <div class="card-body">
-                          
-                          <h2 class="h4">What is a Profit and Loss Calculator?</h2>
-                          <p>
-                              A <strong>Profit and Loss Calculator</strong> is a financial tool used to determine the profitability of a transaction, business, or investment. It calculates the net profit or loss by analyzing the purchase and selling price, brokerage, and other costs.
-                          </p>
-              
-                          <h2 class="h4">When to Use a Profit and Loss Calculator?</h2>
-                          <ul>
-                              <li>Before making stock or crypto investments.</li>
-                              <li>For evaluating business profitability.</li>
-                              <li>To track sales performance and revenue margins.</li>
-                              <li>For tax calculations and financial planning.</li>
-                          </ul>
-              
-                          <h2 class="h4">Advantages of Using a Profit and Loss Calculator</h2>
-                          <ul>
-                              <li><strong>Accuracy:</strong> Reduces manual calculation errors.</li>
-                              <li><strong>Time-Saving:</strong> Quick results with minimal input.</li>
-                              <li><strong>Decision-Making:</strong> Helps in financial planning and investments.</li>
-                              <li><strong>Transparency:</strong> Clearly displays profit/loss details.</li>
-                          </ul>
-              
-                          <p class="mt-4 text-center"><strong>Optimize your financial decisions today with a Profit and Loss Calculator!</strong></p>
-                      </div>
-                  </div>
-
-                  
-
-            </div>
-            </div>
-
-            <div class="col-md-6">
-
-              <!-- Content Section -->
-              <div class="">
-                <h3><i class="fa-solid fa-square-root-variable"></i> Formula for Profit and Loss</h3>
-                <p>Profit and Loss (P&L) are key financial metrics that determine the financial health of a business or individual.</p>
-                <p><strong>Profit:</strong> Profit occurs when your revenue (sales income) exceeds your expenses.</p>
-                <p><strong>Loss:</strong> Loss occurs when your expenses exceed your revenue.</p>
-
-                <p>The basic formula to calculate profit or loss is:</p>
-<pre>
-Profit = Revenue - Expenses
-Loss = Expenses - Revenue
-</pre>
-
-                <h3>Example Calculation</h3>
-                <p>Imagine you have a revenue of $1000, and your expenses are $800. The calculation would be:</p>
-<pre>
-Profit = $1000 - $800 = $200 (Profit)
-</pre>
-
-                <p>If your revenue is $600 and expenses are $800, it would be a loss:</p>
-<pre>
-Loss = $800 - $600 = $200 (Loss)
-</pre>
-
+        <!-- Tool 2: World Clock Time Converter -->
+        <div class="col tool-item" data-category="clock" data-keywords="world clock time converter timezone solar arc search slider global meeting planner">
+          <div class="tool-card">
+            <span class="tool-badge badge-popular">Popular</span>
+            <div>
+              <div class="tool-icon-wrapper icon-clock">
+                <i class="fa-solid fa-globe"></i>
               </div>
+              <h3 class="tool-title">World Clock Time Converter</h3>
+              <p class="tool-description">Convert time across multiple worldwide timezones with searchable dropdowns, 24-hr slider bars, and interactive sun arc visualizer.</p>
             </div>
-
-            
+            <a href="/world-clock-converter.html" class="btn-tool-action">
+              <span>Open Converter</span>
+              <i class="fas fa-arrow-right fs-7"></i>
+            </a>
+          </div>
         </div>
+
+        <!-- Tool 3: Barcode & QR Code Scanner -->
+        <div class="col tool-item" data-category="utility" data-keywords="barcode scanner qr code reader camera live scan history copy">
+          <div class="tool-card">
+            <span class="tool-badge badge-new">New</span>
+            <div>
+              <div class="tool-icon-wrapper icon-utility">
+                <i class="fa-solid fa-barcode"></i>
+              </div>
+              <h3 class="tool-title">Barcode & QR Code Scanner</h3>
+              <p class="tool-description">Scan UPC, EAN, QR codes, and 1D/2D barcodes directly from your camera with hardware zoom and persistent scan history.</p>
+            </div>
+            <a href="/bar-code-scanner.html" class="btn-tool-action">
+              <span>Scan Barcodes</span>
+              <i class="fas fa-arrow-right fs-7"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Tool 4: Loan EMI Calculator -->
+        <div class="col tool-item" data-category="financial" data-keywords="loan emi calculator interest home loan car loan finance bank">
+          <div class="tool-card">
+            <span class="tool-badge badge-essential">Essential</span>
+            <div>
+              <div class="tool-icon-wrapper icon-financial">
+                <i class="fa-solid fa-landmark"></i>
+              </div>
+              <h3 class="tool-title">Loan EMI Calculator</h3>
+              <p class="tool-description">Calculate monthly loan EMI payments, total interest payable, and total loan repayment amount accurately.</p>
+            </div>
+            <a href="/emi-calculator.html" class="btn-tool-action">
+              <span>Calculate EMI</span>
+              <i class="fas fa-arrow-right fs-7"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Tool 5: Average Calculator -->
+        <div class="col tool-item" data-category="math" data-keywords="average calculator mean math numbers statistics">
+          <div class="tool-card">
+            <span class="tool-badge badge-essential">Essential</span>
+            <div>
+              <div class="tool-icon-wrapper icon-math">
+                <i class="fa-solid fa-divide"></i>
+              </div>
+              <h3 class="tool-title">Average Calculator</h3>
+              <p class="tool-description">Compute the arithmetic mean, sum, and count of any set of numbers with quick instant input.</p>
+            </div>
+            <a href="/average-calculator.html" class="btn-tool-action">
+              <span>Calculate Average</span>
+              <i class="fas fa-arrow-right fs-7"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Tool 6: Percentage Change Calculator -->
+        <div class="col tool-item" data-category="math" data-keywords="percentage change calculator increase decrease percentage math growth">
+          <div class="tool-card">
+            <span class="tool-badge badge-essential">Essential</span>
+            <div>
+              <div class="tool-icon-wrapper icon-math">
+                <i class="fa-solid fa-chart-simple"></i>
+              </div>
+              <h3 class="tool-title">Percentage Change Calculator</h3>
+              <p class="tool-description">Determine percentage increase or decrease between initial and final values accurately.</p>
+            </div>
+            <a href="/percentage-change-calculator.html" class="btn-tool-action">
+              <span>Calculate Change</span>
+              <i class="fas fa-arrow-right fs-7"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Tool 7: Percentage Calculator -->
+        <div class="col tool-item" data-category="math" data-keywords="percentage calculator percent math ratio portion fraction">
+          <div class="tool-card">
+            <span class="tool-badge badge-essential">Essential</span>
+            <div>
+              <div class="tool-icon-wrapper icon-math">
+                <i class="fa-solid fa-percent"></i>
+              </div>
+              <h3 class="tool-title">Percentage Calculator</h3>
+              <p class="tool-description">Find what percentage X is of Y, calculate fractional values, and convert percentages effortlessly.</p>
+            </div>
+            <a href="/percentage-calculator.html" class="btn-tool-action">
+              <span>Open Calculator</span>
+              <i class="fas fa-arrow-right fs-7"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Tool 8: Age Calculator -->
+        <div class="col tool-item" data-category="utility" data-keywords="age calculator date of birth years months days birthday date">
+          <div class="tool-card">
+            <span class="tool-badge badge-essential">Essential</span>
+            <div>
+              <div class="tool-icon-wrapper icon-utility">
+                <i class="fa-solid fa-cake-candles"></i>
+              </div>
+              <h3 class="tool-title">Age Calculator</h3>
+              <p class="tool-description">Calculate exact age in years, months, weeks, and days based on birth date.</p>
+            </div>
+            <a href="/age-calculator.html" class="btn-tool-action">
+              <span>Calculate Age</span>
+              <i class="fas fa-arrow-right fs-7"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Tool 9: Tip & Split Calculator -->
+        <div class="col tool-item" data-category="utility" data-keywords="tip calculator bill split restaurant tip percentage meal bill">
+          <div class="tool-card">
+            <span class="tool-badge badge-essential">Essential</span>
+            <div>
+              <div class="tool-icon-wrapper icon-utility">
+                <i class="fa-solid fa-coins"></i>
+              </div>
+              <h3 class="tool-title">Tip & Bill Splitter</h3>
+              <p class="tool-description">Calculate restaurant tips and split total bills evenly among multiple people.</p>
+            </div>
+            <a href="/tip-calculator.html" class="btn-tool-action">
+              <span>Split Bill</span>
+              <i class="fas fa-arrow-right fs-7"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Tool 10: World Clock -->
+        <div class="col tool-item" data-category="clock" data-keywords="world clock time global city clock UTC GMT time display">
+          <div class="tool-card">
+            <span class="tool-badge badge-essential">Essential</span>
+            <div>
+              <div class="tool-icon-wrapper icon-clock">
+                <i class="fa-solid fa-clock"></i>
+              </div>
+              <h3 class="tool-title">World Clock</h3>
+              <p class="tool-description">View current live time across global capital cities and major international time zones.</p>
+            </div>
+            <a href="/time.html" class="btn-tool-action">
+              <span>View World Clock</span>
+              <i class="fas fa-arrow-right fs-7"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Tool 11: Free HTML Themes -->
+        <div class="col tool-item" data-category="design" data-keywords="html themes templates portfolio web design email templates free download">
+          <div class="tool-card">
+            <span class="tool-badge badge-new">New</span>
+            <div>
+              <div class="tool-icon-wrapper icon-design">
+                <i class="fa-solid fa-palette"></i>
+              </div>
+              <h3 class="tool-title">Free HTML Themes & Templates</h3>
+              <p class="tool-description">Explore and download free high-quality HTML5 portfolio templates and responsive email designs.</p>
+            </div>
+            <a href="/themes.html" class="btn-tool-action">
+              <span>Explore Themes</span>
+              <i class="fas fa-arrow-right fs-7"></i>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- No Results Container -->
+      <div id="no-results" class="text-center py-5" style="display: none;">
+        <i class="fas fa-search-minus fa-3x text-muted mb-3"></i>
+        <h4 class="fw-bold">No matching tools found</h4>
+        <p class="text-muted">Try searching with a different term like "calculator", "time", or "scan".</p>
+      </div>
+
+      <!-- Key Benefits Section -->
+      <div class="benefits-section">
+        <h2 class="text-center fw-bold mb-4">Why Use WebToolsX?</h2>
+        <div class="row g-4">
+          <div class="col-md-3 benefit-item">
+            <div class="benefit-icon"><i class="fas fa-bolt"></i></div>
+            <h3 class="benefit-title">Lightning Fast</h3>
+            <p class="benefit-desc">Client-side instant calculations with zero page reload delays.</p>
+          </div>
+          <div class="col-md-3 benefit-item">
+            <div class="benefit-icon"><i class="fas fa-shield-alt"></i></div>
+            <h3 class="benefit-title">100% Private</h3>
+            <p class="benefit-desc">Your inputs are computed inside your browser. No server logging.</p>
+          </div>
+          <div class="col-md-3 benefit-item">
+            <div class="benefit-icon"><i class="fas fa-mobile-alt"></i></div>
+            <h3 class="benefit-title">Mobile Ready</h3>
+            <p class="benefit-desc">Fully responsive layouts tailored for mobile, tablet, and desktop.</p>
+          </div>
+          <div class="col-md-3 benefit-item">
+            <div class="benefit-icon"><i class="fas fa-gift"></i></div>
+            <h3 class="benefit-title">Completely Free</h3>
+            <p class="benefit-desc">All tools and web templates are 100% free with no registration required.</p>
+          </div>
+        </div>
+      </div>
 
     </div>
   </div>
 
-
-
-    <script>
-      $('#my-number').counto(0, 500);
-    </script>
-
-    
-  </div>
-
-  <footer class="footer_main">
+  <footer class="footer_main mt-5">
     <div>
       <a href="/" style="color: white; margin: 0 15px; text-decoration: none;" class="footer-logo"><img src="favicon.png" alt="WebToolsX Favicon Logo"></a>
       <a href="/" style="color: white; margin: 0 15px; text-decoration: none;">Home</a>
+      <a href="/profit-loss-calculator.html" style="color: white; margin: 0 15px; text-decoration: none;">P/L Calculator</a>
       <a href="/themes.html" style="color: white; margin: 0 15px; text-decoration: none;">Themes</a>
       <a href="/about.html" style="color: white; margin: 0 15px; text-decoration: none;">About Us</a>
       <a href="/contact.html" style="color: white; margin: 0 15px; text-decoration: none;">Contact Us</a>
-      <!-- <a href="/about.html" style="color: white; margin: 0 15px; text-decoration: none;">About Us</a> -->
-      <!-- <a href="/contact.html" style="color: white; margin: 0 15px; text-decoration: none;">Contact</a> -->
     </div>
     <div style="margin-top: 20px;">
-      <p>&copy; 2024 Webtoolsx. All Rights Reserved.</p>
+      <p>&copy; 2026 Webtoolsx. All Rights Reserved.</p>
     </div>
   </footer>
 
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const searchInput = document.getElementById("tool-search");
+      const filterChips = document.querySelectorAll(".filter-chip");
+      const toolItems = document.querySelectorAll(".tool-item");
+      const noResults = document.getElementById("no-results");
+
+      let currentCategory = "all";
+      let currentQuery = "";
+
+      function filterTools() {
+        let visibleCount = 0;
+
+        toolItems.forEach((item) => {
+          const category = item.getAttribute("data-category");
+          const keywords = item.getAttribute("data-keywords").toLowerCase();
+          const title = item.querySelector(".tool-title").innerText.toLowerCase();
+          const desc = item.querySelector(".tool-description").innerText.toLowerCase();
+
+          const matchesCategory = (currentCategory === "all" || category === currentCategory);
+          const matchesQuery = !currentQuery || title.includes(currentQuery) || desc.includes(currentQuery) || keywords.includes(currentQuery);
+
+          if (matchesCategory && matchesQuery) {
+            item.style.display = "block";
+            visibleCount++;
+          } else {
+            item.style.display = "none";
+          }
+        });
+
+        if (visibleCount === 0) {
+          noResults.style.display = "block";
+        } else {
+          noResults.style.display = "none";
+        }
+      }
+
+      if (searchInput) {
+        searchInput.addEventListener("input", (e) => {
+          currentQuery = e.target.value.trim().toLowerCase();
+          filterTools();
+        });
+      }
+
+      filterChips.forEach((chip) => {
+        chip.addEventListener("click", () => {
+          filterChips.forEach((c) => c.classList.remove("active"));
+          chip.classList.add("active");
+          currentCategory = chip.getAttribute("data-category");
+          filterTools();
+        });
+      });
+    });
+  </script>
+  <script src="js/terms_modal.js"></script>
 </body>
 </html>

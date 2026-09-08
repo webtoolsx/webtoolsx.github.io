@@ -7,20 +7,30 @@
   <meta name="description" content="Check current time across the globe with the WebToolsX World Clock. Accurate live world clock time display for UTC, IST, GMT, and more.">
   <meta name="keywords" content="world clock, world clock time display, live time display, current time, UTC, IST, GMT, time difference, WebToolsX">
   <meta name="author" content="WebToolsX">
-  <meta name="robots" content="index, follow">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 
-  <!-- Open Graph Meta Tags -->
-  <meta property="og:title" content="World Clock Time Display | WebToolsX">
-  <meta property="og:description" content="Easily view current time across multiple time zones with our online world clock time display tool. Perfect for global teams and travelers.">
+  <!-- Facebook & WhatsApp Open Graph Meta Tags -->
+  <meta property="og:site_name" content="WebToolsX World Clock">
+  <meta property="og:title" content="World Clock Time Display | Live Global Time | WebToolsX">
+  <meta property="og:description" content="Check current time across global cities and famous time zones (CDT, UST, UTC, EST, PST, GMT, IST, JST, CET, AEST). Accurate live world clock display and time converter.">
   <meta property="og:image" content="https://webtoolsx.github.io/favicon.png">
+  <meta property="og:image:secure_url" content="https://webtoolsx.github.io/favicon.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="512">
+  <meta property="og:image:height" content="512">
+  <meta property="og:image:alt" content="WebToolsX Live World Clock and Time Zone Reference">
   <meta property="og:url" content="https://webtoolsx.github.io/time.html">
   <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_US">
 
-  <!-- Twitter Card Meta Tags -->
+  <!-- Twitter & Instagram Card Meta Tags -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="World Clock Time Display | WebToolsX">
+  <meta name="twitter:site" content="@webtoolsx">
+  <meta name="twitter:creator" content="@webtoolsx">
+  <meta name="twitter:title" content="World Clock Time Display | Live Global Time | WebToolsX">
   <meta name="twitter:description" content="Easily view current time across multiple time zones with our free online world clock time display tool.">
   <meta name="twitter:image" content="https://webtoolsx.github.io/favicon.png">
+  <meta name="twitter:image:alt" content="WebToolsX Live World Clock and Time Zone Reference">
 
   <link rel="icon" href="favicon.png" type="image/png">
   <link rel="canonical" href="https://webtoolsx.github.io/time.html">
@@ -74,6 +84,45 @@
         "price": "0",
         "priceCurrency": "USD"
       }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "name": "Famous Global Time Zones",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Central Daylight Time (CDT)", "url": "https://webtoolsx.github.io/timezone/cdt-time-now.html"},
+        {"@type": "ListItem", "position": 2, "name": "Universal Standard Time (UST)", "url": "https://webtoolsx.github.io/timezone/ust-time-now.html"},
+        {"@type": "ListItem", "position": 3, "name": "Coordinated Universal Time (UTC)", "url": "https://webtoolsx.github.io/timezone/utc-time-now.html"},
+        {"@type": "ListItem", "position": 4, "name": "Eastern Standard Time (EST)", "url": "https://webtoolsx.github.io/timezone/est-time-now.html"},
+        {"@type": "ListItem", "position": 5, "name": "Pacific Standard Time (PST)", "url": "https://webtoolsx.github.io/timezone/pst-time-now.html"},
+        {"@type": "ListItem", "position": 6, "name": "Greenwich Mean Time (GMT)", "url": "https://webtoolsx.github.io/timezone/gmt-time-now.html"},
+        {"@type": "ListItem", "position": 7, "name": "Indian Standard Time (IST)", "url": "https://webtoolsx.github.io/timezone/ist-time-now.html"},
+        {"@type": "ListItem", "position": 8, "name": "Japan Standard Time (JST)", "url": "https://webtoolsx.github.io/timezone/jst-time-now.html"},
+        {"@type": "ListItem", "position": 9, "name": "Central European Time (CET)", "url": "https://webtoolsx.github.io/timezone/cet-time-now.html"},
+        {"@type": "ListItem", "position": 10, "name": "Australian Eastern Standard Time (AEST)", "url": "https://webtoolsx.github.io/timezone/aest-time-now.html"}
+      ]
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How does the WebToolsX World Clock work?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "WebToolsX World Clock displays accurate real-time ticking clocks for global capital cities and major time zones using standard IANA timezone identifiers."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What are the most searched time zones?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The most searched global time zones include CDT, UST, UTC, EST, PST, GMT, IST, JST, CET, and AEST."
+          }
+        }
+      ]
     }
   ]
   </script>
@@ -233,6 +282,7 @@
     // List of all IANA time zones (sample, not exhaustive)
     const timezones = [
       { label: "UTC", tz: "UTC" },
+      { label: "UST", tz: "UTC" },
       { label: "GMT", tz: "Europe/London" },
       { label: "EST", tz: "America/New_York" },
       { label: "EDT", tz: "America/New_York" },
@@ -380,26 +430,166 @@
       if (timeDiv) timeDiv.textContent = dateStr;
       if (weekdayDiv) weekdayDiv.textContent = weekdayStr;
     });
+
+    document.querySelectorAll('.seo-live-clock').forEach(el => {
+      const tz = el.getAttribute('data-tz');
+      if (tz) {
+        try {
+          el.textContent = now.toLocaleTimeString([], { timeZone: tz, hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: hourFormat === "12" });
+        } catch(e) {}
+      }
+    });
     }
 
     updateTimezones();
     setInterval(updateTimezones, 1000);
   </script>
-      
-      <!-- <div class="calendar" id="UTC">
-        <div class="month">UTC <div class="offset">±0</div></div>
-        <div class="day">
-          <span class="hour" style="font-size:3rem;">24</span>
-          <span class="minute" style="font-size:3rem;">:10</span>
-          <span class="second" style="font-size:1rem;">00</span>
-        </div>
-        <div class="time">11:00 AM</div> -->
-        <!-- <div class="weekday ">Feb Sunday</div>
-      </div> -->
-      
-
 
     </div>
+    <!-- Famous Time Zone Searches Grid (SEO Section) -->
+    <div class="row px-3 mt-5">
+      <div class="col-12">
+        <div class="d-flex align-items-center justify-content-between mb-3 flex-wrap gap-2">
+          <h2 class="h4 fw-bold mb-0" style="color: #2d0554; font-family: 'Exo 2', sans-serif;"><i class="fa-solid fa-globe me-2" style="color: #7750b6;"></i>Famous Time Zone Searches & Live Clocks</h2>
+          <span class="badge px-3 py-2 rounded-pill small" style="background-color: #4b2394; color: white;">Popular Global Timezones</span>
+        </div>
+        <p class="text-muted small mb-4">Explore current time, offset details, daylight saving changes, and time zone conversion tools for the world's most searched time zones.</p>
+        
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 g-3 mb-4">
+          
+          <div class="col">
+            <a href="/timezone/cdt-time-now.html" class="text-decoration-none">
+              <div class="p-3 rounded-3 bg-white border shadow-sm text-center position-relative h-100 site-tz-card" style="transition: transform 0.2s, box-shadow 0.2s;">
+                <span class="badge position-absolute top-0 end-0 m-2 px-2 py-1" style="background-color: #7750b6; color: #fff; font-size: 0.65rem;">UTC-5</span>
+                <i class="fa-solid fa-clock fa-2x mb-2 mt-1" style="color: #4b2394;"></i>
+                <h3 class="h6 fw-bold text-dark mb-1" style="font-family: 'Exo 2', sans-serif;">CDT Time Now</h3>
+                <p class="small text-muted mb-2" style="font-size:0.75rem;">Central Daylight Time</p>
+                <div class="p-2 rounded fw-bold seo-live-clock" data-tz="America/Chicago" style="font-size: 0.95rem; font-family: 'Roboto Mono', monospace; background-color: #f1ecfa; color: #4b2394;">--:--:--</div>
+                <span class="btn btn-sm w-100 mt-2 rounded-pill" style="font-size: 0.75rem; background-color: #4b2394; color: white;">View CDT Clock &rarr;</span>
+              </div>
+            </a>
+          </div>
+
+          <div class="col">
+            <a href="/timezone/ust-time-now.html" class="text-decoration-none">
+              <div class="p-3 rounded-3 bg-white border shadow-sm text-center position-relative h-100 site-tz-card" style="transition: transform 0.2s, box-shadow 0.2s;">
+                <span class="badge position-absolute top-0 end-0 m-2 px-2 py-1" style="background-color: #7750b6; color: #fff; font-size: 0.65rem;">UTC+0</span>
+                <i class="fa-solid fa-globe fa-2x mb-2 mt-1" style="color: #4b2394;"></i>
+                <h3 class="h6 fw-bold text-dark mb-1" style="font-family: 'Exo 2', sans-serif;">UST Time Now</h3>
+                <p class="small text-muted mb-2" style="font-size:0.75rem;">Universal Standard Time</p>
+                <div class="p-2 rounded fw-bold seo-live-clock" data-tz="UTC" style="font-size: 0.95rem; font-family: 'Roboto Mono', monospace; background-color: #f1ecfa; color: #4b2394;">--:--:--</div>
+                <span class="btn btn-sm w-100 mt-2 rounded-pill" style="font-size: 0.75rem; background-color: #4b2394; color: white;">View UST Clock &rarr;</span>
+              </div>
+            </a>
+          </div>
+
+          <div class="col">
+            <a href="/timezone/utc-time-now.html" class="text-decoration-none">
+              <div class="p-3 rounded-3 bg-white border shadow-sm text-center position-relative h-100 site-tz-card" style="transition: transform 0.2s, box-shadow 0.2s;">
+                <span class="badge position-absolute top-0 end-0 m-2 px-2 py-1" style="background-color: #7750b6; color: #fff; font-size: 0.65rem;">UTC+0</span>
+                <i class="fa-solid fa-earth-americas fa-2x mb-2 mt-1" style="color: #4b2394;"></i>
+                <h3 class="h6 fw-bold text-dark mb-1" style="font-family: 'Exo 2', sans-serif;">UTC Time Now</h3>
+                <p class="small text-muted mb-2" style="font-size:0.75rem;">Coordinated Universal</p>
+                <div class="p-2 rounded fw-bold seo-live-clock" data-tz="UTC" style="font-size: 0.95rem; font-family: 'Roboto Mono', monospace; background-color: #f1ecfa; color: #4b2394;">--:--:--</div>
+                <span class="btn btn-sm w-100 mt-2 rounded-pill" style="font-size: 0.75rem; background-color: #4b2394; color: white;">View UTC Clock &rarr;</span>
+              </div>
+            </a>
+          </div>
+
+          <div class="col">
+            <a href="/timezone/est-time-now.html" class="text-decoration-none">
+              <div class="p-3 rounded-3 bg-white border shadow-sm text-center position-relative h-100 site-tz-card" style="transition: transform 0.2s, box-shadow 0.2s;">
+                <span class="badge position-absolute top-0 end-0 m-2 px-2 py-1" style="background-color: #7750b6; color: #fff; font-size: 0.65rem;">UTC-5</span>
+                <i class="fa-solid fa-building fa-2x mb-2 mt-1" style="color: #4b2394;"></i>
+                <h3 class="h6 fw-bold text-dark mb-1" style="font-family: 'Exo 2', sans-serif;">EST Time Now</h3>
+                <p class="small text-muted mb-2" style="font-size:0.75rem;">Eastern Standard Time</p>
+                <div class="p-2 rounded fw-bold seo-live-clock" data-tz="America/New_York" style="font-size: 0.95rem; font-family: 'Roboto Mono', monospace; background-color: #f1ecfa; color: #4b2394;">--:--:--</div>
+                <span class="btn btn-sm w-100 mt-2 rounded-pill" style="font-size: 0.75rem; background-color: #4b2394; color: white;">View EST Clock &rarr;</span>
+              </div>
+            </a>
+          </div>
+
+          <div class="col">
+            <a href="/timezone/pst-time-now.html" class="text-decoration-none">
+              <div class="p-3 rounded-3 bg-white border shadow-sm text-center position-relative h-100 site-tz-card" style="transition: transform 0.2s, box-shadow 0.2s;">
+                <span class="badge position-absolute top-0 end-0 m-2 px-2 py-1" style="background-color: #7750b6; color: #fff; font-size: 0.65rem;">UTC-8</span>
+                <i class="fa-solid fa-sun fa-2x mb-2 mt-1" style="color: #4b2394;"></i>
+                <h3 class="h6 fw-bold text-dark mb-1" style="font-family: 'Exo 2', sans-serif;">PST Time Now</h3>
+                <p class="small text-muted mb-2" style="font-size:0.75rem;">Pacific Standard Time</p>
+                <div class="p-2 rounded fw-bold seo-live-clock" data-tz="America/Los_Angeles" style="font-size: 0.95rem; font-family: 'Roboto Mono', monospace; background-color: #f1ecfa; color: #4b2394;">--:--:--</div>
+                <span class="btn btn-sm w-100 mt-2 rounded-pill" style="font-size: 0.75rem; background-color: #4b2394; color: white;">View PST Clock &rarr;</span>
+              </div>
+            </a>
+          </div>
+
+          <div class="col">
+            <a href="/timezone/gmt-time-now.html" class="text-decoration-none">
+              <div class="p-3 rounded-3 bg-white border shadow-sm text-center position-relative h-100 site-tz-card" style="transition: transform 0.2s, box-shadow 0.2s;">
+                <span class="badge position-absolute top-0 end-0 m-2 px-2 py-1" style="background-color: #7750b6; color: #fff; font-size: 0.65rem;">UTC+0</span>
+                <i class="fa-solid fa-compass fa-2x mb-2 mt-1" style="color: #4b2394;"></i>
+                <h3 class="h6 fw-bold text-dark mb-1" style="font-family: 'Exo 2', sans-serif;">GMT Time Now</h3>
+                <p class="small text-muted mb-2" style="font-size:0.75rem;">Greenwich Mean Time</p>
+                <div class="p-2 rounded fw-bold seo-live-clock" data-tz="Europe/London" style="font-size: 0.95rem; font-family: 'Roboto Mono', monospace; background-color: #f1ecfa; color: #4b2394;">--:--:--</div>
+                <span class="btn btn-sm w-100 mt-2 rounded-pill" style="font-size: 0.75rem; background-color: #4b2394; color: white;">View GMT Clock &rarr;</span>
+              </div>
+            </a>
+          </div>
+
+          <div class="col">
+            <a href="/timezone/ist-time-now.html" class="text-decoration-none">
+              <div class="p-3 rounded-3 bg-white border shadow-sm text-center position-relative h-100 site-tz-card" style="transition: transform 0.2s, box-shadow 0.2s;">
+                <span class="badge position-absolute top-0 end-0 m-2 px-2 py-1" style="background-color: #7750b6; color: #fff; font-size: 0.65rem;">UTC+5:30</span>
+                <i class="fa-solid fa-location-dot fa-2x mb-2 mt-1" style="color: #4b2394;"></i>
+                <h3 class="h6 fw-bold text-dark mb-1" style="font-family: 'Exo 2', sans-serif;">IST Time Now</h3>
+                <p class="small text-muted mb-2" style="font-size:0.75rem;">Indian Standard Time</p>
+                <div class="p-2 rounded fw-bold seo-live-clock" data-tz="Asia/Kolkata" style="font-size: 0.95rem; font-family: 'Roboto Mono', monospace; background-color: #f1ecfa; color: #4b2394;">--:--:--</div>
+                <span class="btn btn-sm w-100 mt-2 rounded-pill" style="font-size: 0.75rem; background-color: #4b2394; color: white;">View IST Clock &rarr;</span>
+              </div>
+            </a>
+          </div>
+
+          <div class="col">
+            <a href="/timezone/jst-time-now.html" class="text-decoration-none">
+              <div class="p-3 rounded-3 bg-white border shadow-sm text-center position-relative h-100 site-tz-card" style="transition: transform 0.2s, box-shadow 0.2s;">
+                <span class="badge position-absolute top-0 end-0 m-2 px-2 py-1" style="background-color: #7750b6; color: #fff; font-size: 0.65rem;">UTC+9</span>
+                <i class="fa-solid fa-torii-gate fa-2x mb-2 mt-1" style="color: #4b2394;"></i>
+                <h3 class="h6 fw-bold text-dark mb-1" style="font-family: 'Exo 2', sans-serif;">JST Time Now</h3>
+                <p class="small text-muted mb-2" style="font-size:0.75rem;">Japan Standard Time</p>
+                <div class="p-2 rounded fw-bold seo-live-clock" data-tz="Asia/Tokyo" style="font-size: 0.95rem; font-family: 'Roboto Mono', monospace; background-color: #f1ecfa; color: #4b2394;">--:--:--</div>
+                <span class="btn btn-sm w-100 mt-2 rounded-pill" style="font-size: 0.75rem; background-color: #4b2394; color: white;">View JST Clock &rarr;</span>
+              </div>
+            </a>
+          </div>
+
+          <div class="col">
+            <a href="/timezone/cet-time-now.html" class="text-decoration-none">
+              <div class="p-3 rounded-3 bg-white border shadow-sm text-center position-relative h-100 site-tz-card" style="transition: transform 0.2s, box-shadow 0.2s;">
+                <span class="badge position-absolute top-0 end-0 m-2 px-2 py-1" style="background-color: #7750b6; color: #fff; font-size: 0.65rem;">UTC+1</span>
+                <i class="fa-solid fa-monument fa-2x mb-2 mt-1" style="color: #4b2394;"></i>
+                <h3 class="h6 fw-bold text-dark mb-1" style="font-family: 'Exo 2', sans-serif;">CET Time Now</h3>
+                <p class="small text-muted mb-2" style="font-size:0.75rem;">Central European Time</p>
+                <div class="p-2 rounded fw-bold seo-live-clock" data-tz="Europe/Paris" style="font-size: 0.95rem; font-family: 'Roboto Mono', monospace; background-color: #f1ecfa; color: #4b2394;">--:--:--</div>
+                <span class="btn btn-sm w-100 mt-2 rounded-pill" style="font-size: 0.75rem; background-color: #4b2394; color: white;">View CET Clock &rarr;</span>
+              </div>
+            </a>
+          </div>
+
+          <div class="col">
+            <a href="/timezone/aest-time-now.html" class="text-decoration-none">
+              <div class="p-3 rounded-3 bg-white border shadow-sm text-center position-relative h-100 site-tz-card" style="transition: transform 0.2s, box-shadow 0.2s;">
+                <span class="badge position-absolute top-0 end-0 m-2 px-2 py-1" style="background-color: #7750b6; color: #fff; font-size: 0.65rem;">UTC+10</span>
+                <i class="fa-solid fa-water fa-2x mb-2 mt-1" style="color: #4b2394;"></i>
+                <h3 class="h6 fw-bold text-dark mb-1" style="font-family: 'Exo 2', sans-serif;">AEST Time Now</h3>
+                <p class="small text-muted mb-2" style="font-size:0.75rem;">Australian Eastern Time</p>
+                <div class="p-2 rounded fw-bold seo-live-clock" data-tz="Australia/Sydney" style="font-size: 0.95rem; font-family: 'Roboto Mono', monospace; background-color: #f1ecfa; color: #4b2394;">--:--:--</div>
+                <span class="btn btn-sm w-100 mt-2 rounded-pill" style="font-size: 0.75rem; background-color: #4b2394; color: white;">View AEST Clock &rarr;</span>
+              </div>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </div>>
 
     <div class="row px-3 mt-4">
       <div class="col feature-list">

@@ -334,6 +334,255 @@ Loss = (Buy Price * Quantity) + Brokerage - (Sell Price * Quantity)
     </script>
   </div>
 
+  
+  <style id="seo-section-styles">
+    .seo-info-section { margin-top: 2rem; }
+    .seo-intro-card {
+      background: linear-gradient(135deg, #f0eaff 0%, #fce8f8 100%);
+      border-left: 4px solid #7750b6;
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin-bottom: 1.5rem;
+      font-size: 0.97rem;
+      color: #2d0554;
+      line-height: 1.7;
+    }
+    .seo-tabs-nav { display:flex; flex-wrap:wrap; gap:8px; border-bottom:2px solid #e8e0f7; margin-bottom:1.5rem; }
+    .seo-tab-btn { background:none; border:none; padding:10px 18px; font-size:.9rem; font-family:inherit; font-weight:600; color:#7750b6; border-radius:8px 8px 0 0; cursor:pointer; transition:background .2s,color .2s; margin-bottom:-2px; border-bottom:3px solid transparent; }
+    .seo-tab-btn:hover { background:#f3eeff; }
+    .seo-tab-btn.active { color:#4b2394; border-bottom:3px solid #7750b6; background:#f3eeff; }
+    .seo-tab-panel { display:none; animation:fadeInTab .3s ease; }
+    .seo-tab-panel.active { display:block; }
+    @keyframes fadeInTab { from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);} }
+    .seo-steps-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:1rem; }
+    .seo-step-card { display:flex; gap:14px; align-items:flex-start; background:#fff; border:1px solid #ece5ff; border-radius:12px; padding:16px 18px; box-shadow:0 2px 10px rgba(119,80,182,.07); transition:transform .2s,box-shadow .2s; }
+    .seo-step-card:hover { transform:translateY(-2px); box-shadow:0 6px 20px rgba(119,80,182,.13); }
+    .seo-step-number { min-width:34px; height:34px; border-radius:50%; background:linear-gradient(135deg,#7750b6,#4b2394); color:#fff; font-size:1rem; font-weight:700; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .seo-step-body h4 { font-size:.95rem; font-weight:700; margin-bottom:4px; color:#2d0554; }
+    .seo-step-body p  { font-size:.85rem; color:#555; margin:0; line-height:1.6; }
+    .seo-formula-wrapper { display:flex; flex-direction:column; gap:1.2rem; }
+    .seo-formula-hero { background:linear-gradient(135deg,#4b2394 0%,#7750b6 100%); color:#fff; border-radius:14px; padding:24px 28px; text-align:center; }
+    .formula-label { font-size:.8rem; text-transform:uppercase; letter-spacing:2px; opacity:.75; display:block; margin-bottom:12px; }
+    .formula-display { font-size:1.4rem; font-weight:700; display:flex; align-items:center; justify-content:center; gap:10px; flex-wrap:wrap; }
+    .seo-formula-steps { display:flex; flex-direction:column; gap:1rem; }
+    .seo-formula-step { display:flex; gap:16px; align-items:flex-start; background:#fafafa; border:1px solid #eee; border-radius:10px; padding:14px 16px; }
+    .seo-formula-icon { color:#7750b6; font-size:1.1rem; margin-top:2px; min-width:20px; }
+    .seo-formula-step strong { font-size:.95rem; color:#2d0554; display:block; margin-bottom:4px; }
+    .seo-formula-step p { font-size:.85rem; color:#555; margin:0; line-height:1.5; }
+    .seo-code-block { display:inline-block; background:#f0eaff; color:#4b2394; border-radius:6px; padding:3px 10px; font-family:'Roboto Mono',monospace; font-size:.82rem; margin-top:6px; }
+    .seo-formula-example { background:rgba(40,167,69,.08); border:1px solid #28a745; border-radius:10px; padding:14px 18px; font-size:.9rem; color:#1a3d22; line-height:1.6; }
+    .seo-usecase-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:1rem; }
+    .seo-usecase-card { background:#fff; border:1px solid #ece5ff; border-radius:12px; padding:18px; text-align:center; box-shadow:0 2px 10px rgba(0,0,0,.05); transition:transform .2s,box-shadow .2s; }
+    .seo-usecase-card:hover { transform:translateY(-3px); box-shadow:0 8px 22px rgba(119,80,182,.12); }
+    .seo-usecase-icon { font-size:2rem; margin-bottom:10px; display:block; }
+    .seo-usecase-card h4 { font-size:.95rem; font-weight:700; color:#2d0554; margin-bottom:6px; }
+    .seo-usecase-card p  { font-size:.83rem; color:#555; margin:0; line-height:1.55; }
+    .seo-faq-list { display:flex; flex-direction:column; gap:10px; }
+    .seo-faq-item { background:#fff; border:1px solid #ece5ff; border-radius:12px; overflow:hidden; box-shadow:0 2px 8px rgba(119,80,182,.06); }
+    .seo-faq-question { width:100%; background:none; border:none; padding:16px 18px; display:flex; justify-content:space-between; align-items:center; font-family:inherit; font-size:.95rem; font-weight:600; color:#2d0554; cursor:pointer; text-align:left; transition:background .2s; }
+    .seo-faq-question:hover { background:#f8f4ff; }
+    .seo-faq-chevron { transition:transform .3s; color:#7750b6; font-size:.85rem; flex-shrink:0; margin-left:12px; }
+    .seo-faq-question[aria-expanded="true"] .seo-faq-chevron { transform:rotate(180deg); }
+    .seo-faq-answer { max-height:0; overflow:hidden; transition:max-height .35s ease,padding .25s ease; padding:0 18px; }
+    .seo-faq-answer.open { max-height:300px; padding:0 18px 16px; }
+    .seo-faq-answer p { font-size:.88rem; color:#444; line-height:1.7; margin:0; }
+    .seo-related-strip { display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin-top:2rem; padding:14px 16px; background:#f8f4ff; border-radius:12px; border:1px solid #ece5ff; }
+    .seo-related-label { font-size:.85rem; font-weight:700; color:#4b2394; white-space:nowrap; }
+    .seo-related-chip { display:inline-block; background:#fff; border:1px solid #c9b8f0; border-radius:20px; padding:4px 14px; font-size:.82rem; font-weight:600; color:#4b2394; text-decoration:none; transition:background .2s,color .2s,transform .2s; }
+    .seo-related-chip:hover { background:#7750b6; color:#fff; transform:translateY(-1px); }
+    @media(max-width:600px){ .seo-steps-grid{grid-template-columns:1fr;} .seo-usecase-grid{grid-template-columns:1fr 1fr;} .formula-display{font-size:1.1rem;} .seo-tab-btn{padding:8px 12px;font-size:.82rem;} }
+    @media(max-width:400px){ .seo-usecase-grid{grid-template-columns:1fr;} }
+  </style>
+  <!-- SEO Rich Info Section -->
+  <div class="seo-info-section mt-4">
+    <div class="seo-intro-card"><p>Our free <strong>Profit and Loss Calculator</strong> helps traders and investors instantly compute <strong>net profit or loss</strong> on any stock, crypto, or commodity trade. Enter your <strong>buy price</strong>, <strong>sell price</strong>, <strong>quantity</strong>, and optional <strong>brokerage fee</strong> — and get a precise P&amp;L result with a full breakdown in seconds.</p></div>
+    <div class="seo-tabs-nav" role="tablist">
+      <button class="seo-tab-btn active" data-tab="how-to-use_pl" role="tab" aria-selected="true" aria-controls="tab-how-to-use_pl" id="btn-how-to-use_pl"><i class="fa-solid fa-circle-info me-1"></i> How to Use</button>
+      <button class="seo-tab-btn" data-tab="formula_pl" role="tab" aria-selected="false" aria-controls="tab-formula_pl" id="btn-formula_pl"><i class="fa-solid fa-square-root-variable me-1"></i> Formula</button>
+      <button class="seo-tab-btn" data-tab="use-cases_pl" role="tab" aria-selected="false" aria-controls="tab-use-cases_pl" id="btn-use-cases_pl"><i class="fa-solid fa-lightbulb me-1"></i> Use Cases</button>
+      <button class="seo-tab-btn" data-tab="faq_pl" role="tab" aria-selected="false" aria-controls="tab-faq_pl" id="btn-faq_pl"><i class="fa-solid fa-circle-question me-1"></i> FAQ</button>
+    </div>
+    <div class="seo-tab-panel active" id="tab-how-to-use_pl" role="tabpanel"><div class="seo-steps-grid">
+    <div class="seo-step-card">
+      <div class="seo-step-number">1</div>
+      <div class="seo-step-body"><h4>Enter the Buy Price</h4><p>Type the price per share/unit at which you <strong>purchased</strong> the asset (e.g., ₹150 or $50.00).</p></div>
+    </div>
+    <div class="seo-step-card">
+      <div class="seo-step-number">2</div>
+      <div class="seo-step-body"><h4>Enter the Sell Price</h4><p>Type the price per unit at which you <strong>sold or plan to sell</strong> the asset.</p></div>
+    </div>
+    <div class="seo-step-card">
+      <div class="seo-step-number">3</div>
+      <div class="seo-step-body"><h4>Enter the Quantity</h4><p>Type the <strong>number of shares or units</strong> involved in the trade.</p></div>
+    </div>
+    <div class="seo-step-card">
+      <div class="seo-step-number">4</div>
+      <div class="seo-step-body"><h4>Add Brokerage (Optional)</h4><p>Enter any <strong>brokerage or commission fees</strong>. This is deducted from gross P&L for accurate net result.</p></div>
+    </div>
+    <div class="seo-step-card">
+      <div class="seo-step-number">5</div>
+      <div class="seo-step-body"><h4>Click Calculate</h4><p>Hit <strong>Calculate</strong> to see <em>gross profit/loss</em>, <em>brokerage cost</em>, <em>net profit/loss</em>, and <em>return %</em>.</p></div>
+    </div>
+    <div class="seo-step-card">
+      <div class="seo-step-number">6</div>
+      <div class="seo-step-body"><h4>Reset & Recalculate</h4><p>Use <strong>Reset</strong> to clear the form and calculate P&L for a new trade scenario.</p></div>
+    </div>
+  </div></div>
+    <div class="seo-tab-panel" id="tab-formula_pl" role="tabpanel">
+  <div class="seo-formula-wrapper">
+    <div class="seo-formula-hero">
+      <span class="formula-label">Profit & Loss Formula</span>
+      <div class="formula-display">P/L = (Sell − Buy) × Qty − Brokerage</div>
+    </div>
+    <div class="seo-formula-steps">
+    <div class="seo-formula-step">
+      <i class="fa-solid fa-1 seo-formula-icon"></i>
+      <div><strong>Gross Profit / Loss</strong><p><code class="seo-code-block">Gross P/L = (Sell - Buy) × Quantity</code></p></div>
+    </div>
+    <div class="seo-formula-step">
+      <i class="fa-solid fa-2 seo-formula-icon"></i>
+      <div><strong>Subtract Brokerage Cost</strong><p><code class="seo-code-block">Net P/L = Gross P/L − Brokerage Amount</code></p></div>
+    </div>
+    <div class="seo-formula-step">
+      <i class="fa-solid fa-3 seo-formula-icon"></i>
+      <div><strong>Return on Investment (%)</strong><p><code class="seo-code-block">ROI % = (Net P/L / Investment) × 100</code></p></div>
+    </div>
+    <div class="seo-formula-step">
+      <i class="fa-solid fa-4 seo-formula-icon"></i>
+      <div><strong>Example</strong><p>Buy 100 @ ₹200, Sell @ ₹240, Brokerage ₹50 → Net = <strong>₹3,950</strong></p></div>
+    </div>
+    <div class="seo-formula-example"><i class="fa-solid fa-flask me-2"></i><strong>Example:</strong> Buy 100 shares @ ₹200, Sell @ ₹240, Brokerage ₹50 → Net Profit = <strong>₹3,950</strong> | ROI = <strong>19.75%</strong></div></div>
+  </div></div>
+    <div class="seo-tab-panel" id="tab-use-cases_pl" role="tabpanel"><div class="seo-usecase-grid">
+    <div class="seo-usecase-card">
+      <i class="fa-solid fa-chart-line seo-usecase-icon" style="color:#4b2394;"></i>
+      <h4>Equity Stock Trading</h4><p>Calculate net P&L on intraday, swing, or delivery trades in BSE/NSE, NYSE, or NASDAQ.</p>
+    </div>
+    <div class="seo-usecase-card">
+      <i class="fa-solid fa-bitcoin-sign seo-usecase-icon" style="color:#f39c12;"></i>
+      <h4>Crypto Trading</h4><p>Compute profit or loss on Bitcoin, Ethereum, or altcoin trades including exchange fees.</p>
+    </div>
+    <div class="seo-usecase-card">
+      <i class="fa-solid fa-oil-can seo-usecase-icon" style="color:#e67e22;"></i>
+      <h4>Commodity Trading</h4><p>Calculate P&L for crude oil, gold, silver, or agricultural futures contracts.</p>
+    </div>
+    <div class="seo-usecase-card">
+      <i class="fa-solid fa-store seo-usecase-icon" style="color:#27ae60;"></i>
+      <h4>Business Sales Margin</h4><p>Find profit margin on a product: selling price minus cost of goods and overhead.</p>
+    </div>
+    <div class="seo-usecase-card">
+      <i class="fa-solid fa-building seo-usecase-icon" style="color:#2980b9;"></i>
+      <h4>Real Estate Flip</h4><p>Evaluate profit on a property buy-and-sell after purchase cost, renovation, and agent fees.</p>
+    </div>
+    <div class="seo-usecase-card">
+      <i class="fa-solid fa-sack-dollar seo-usecase-icon" style="color:#e74c3c;"></i>
+      <h4>Options & Derivatives</h4><p>Assess P&L on options contracts by entering the premium paid vs premium received.</p>
+    </div>
+  </div></div>
+    <div class="seo-tab-panel" id="tab-faq_pl" role="tabpanel"><div class="seo-faq-list">
+    <div class="seo-faq-item">
+      <button class="seo-faq-question" aria-expanded="false" aria-controls="faq-pl-1">
+        <span>How do I calculate profit on a stock trade?</span><i class="fa-solid fa-chevron-down seo-faq-chevron"></i>
+      </button>
+      <div class="seo-faq-answer" id="faq-pl-1"><p>Profit = (Sell Price - Buy Price) × Quantity - Brokerage. Positive = profit; negative = loss.</p></div>
+    </div>
+    <div class="seo-faq-item">
+      <button class="seo-faq-question" aria-expanded="false" aria-controls="faq-pl-2">
+        <span>What is brokerage in trading?</span><i class="fa-solid fa-chevron-down seo-faq-chevron"></i>
+      </button>
+      <div class="seo-faq-answer" id="faq-pl-2"><p>Brokerage is the fee charged by your stockbroker for executing buy and sell orders — either flat per order or a percentage of trade value.</p></div>
+    </div>
+    <div class="seo-faq-item">
+      <button class="seo-faq-question" aria-expanded="false" aria-controls="faq-pl-3">
+        <span>What is the difference between gross profit and net profit?</span><i class="fa-solid fa-chevron-down seo-faq-chevron"></i>
+      </button>
+      <div class="seo-faq-answer" id="faq-pl-3"><p>Gross profit = revenue minus cost. Net profit = gross profit minus all expenses including brokerage and taxes.</p></div>
+    </div>
+    <div class="seo-faq-item">
+      <button class="seo-faq-question" aria-expanded="false" aria-controls="faq-pl-4">
+        <span>How do I calculate return on investment (ROI)?</span><i class="fa-solid fa-chevron-down seo-faq-chevron"></i>
+      </button>
+      <div class="seo-faq-answer" id="faq-pl-4"><p>ROI = (Net Profit / Total Investment) × 100. For a trade: (Net Profit / (Buy Price × Quantity)) × 100.</p></div>
+    </div>
+    <div class="seo-faq-item">
+      <button class="seo-faq-question" aria-expanded="false" aria-controls="faq-pl-5">
+        <span>What happens if I enter a sell price lower than the buy price?</span><i class="fa-solid fa-chevron-down seo-faq-chevron"></i>
+      </button>
+      <div class="seo-faq-answer" id="faq-pl-5"><p>The result shows a negative value — a loss equal to (Buy - Sell) × Quantity + Brokerage.</p></div>
+    </div>
+    <div class="seo-faq-item">
+      <button class="seo-faq-question" aria-expanded="false" aria-controls="faq-pl-6">
+        <span>Can I use this for intraday and delivery trades?</span><i class="fa-solid fa-chevron-down seo-faq-chevron"></i>
+      </button>
+      <div class="seo-faq-answer" id="faq-pl-6"><p>Yes. Enter your exact brokerage rate for accurate results. Intraday brokerage is typically lower than delivery trades.</p></div>
+    </div>
+  </div></div>
+    <div class="seo-related-strip">
+    <span class="seo-related-label"><i class="fa-solid fa-arrow-right-arrow-left me-1"></i>Related Tools:</span>
+    <a href="/average-calculator.html" class="seo-related-chip" title="Average Calculator">Average Calc</a>
+              <a href="/percentage-change-calculator.html" class="seo-related-chip" title="Percentage Change Calculator">% Change</a>
+              <a href="/percentage-calculator.html" class="seo-related-chip" title="Percentage Calculator">% Calculator</a>
+              <a href="/emi-calculator.html" class="seo-related-chip" title="EMI Calculator">EMI Calculator</a>
+              <a href="/tip-calculator.html" class="seo-related-chip" title="Tip Calculator">Tip Calculator</a>
+  </div>
+  </div>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{
+      "@type":"Question",
+      "name":"How do I calculate profit on a stock trade?",
+      "acceptedAnswer":{"@type":"Answer","text":"Profit = (Sell Price - Buy Price) × Quantity - Brokerage. Positive = profit; negative = loss."}
+    },
+    {
+      "@type":"Question",
+      "name":"What is brokerage in trading?",
+      "acceptedAnswer":{"@type":"Answer","text":"Brokerage is the fee charged by your stockbroker for executing buy and sell orders — either flat per order or a percentage of trade value."}
+    },
+    {
+      "@type":"Question",
+      "name":"What is the difference between gross profit and net profit?",
+      "acceptedAnswer":{"@type":"Answer","text":"Gross profit = revenue minus cost. Net profit = gross profit minus all expenses including brokerage and taxes."}
+    },
+    {
+      "@type":"Question",
+      "name":"How do I calculate return on investment (ROI)?",
+      "acceptedAnswer":{"@type":"Answer","text":"ROI = (Net Profit / Total Investment) × 100. For a trade: (Net Profit / (Buy Price × Quantity)) × 100."}
+    },
+    {
+      "@type":"Question",
+      "name":"What happens if I enter a sell price lower than the buy price?",
+      "acceptedAnswer":{"@type":"Answer","text":"The result shows a negative value — a loss equal to (Buy - Sell) × Quantity + Brokerage."}
+    },
+    {
+      "@type":"Question",
+      "name":"Can I use this for intraday and delivery trades?",
+      "acceptedAnswer":{"@type":"Answer","text":"Yes. Enter your exact brokerage rate for accurate results. Intraday brokerage is typically lower than delivery trades."}
+    }]}
+  </script>
+  <script id="seo-tab-js">
+    (function(){
+      document.querySelectorAll('.seo-tab-btn').forEach(function(btn){
+        btn.addEventListener('click',function(){
+          var tab=this.dataset.tab;
+          var section=this.closest('.seo-info-section');
+          section.querySelectorAll('.seo-tab-btn').forEach(function(b){b.classList.remove('active');b.setAttribute('aria-selected','false');});
+          section.querySelectorAll('.seo-tab-panel').forEach(function(p){p.classList.remove('active');});
+          this.classList.add('active');this.setAttribute('aria-selected','true');
+          document.getElementById('tab-'+tab).classList.add('active');
+        });
+      });
+      document.querySelectorAll('.seo-faq-question').forEach(function(btn){
+        btn.addEventListener('click',function(){
+          var answerId=this.getAttribute('aria-controls');
+          var answer=document.getElementById(answerId);
+          var isOpen=this.getAttribute('aria-expanded')==='true';
+          var list=this.closest('.seo-faq-list');
+          list.querySelectorAll('.seo-faq-question').forEach(function(b){b.setAttribute('aria-expanded','false');});
+          list.querySelectorAll('.seo-faq-answer').forEach(function(a){a.classList.remove('open');});
+          if(!isOpen){this.setAttribute('aria-expanded','true');answer.classList.add('open');}
+        });
+      });
+    })();
+  </script>
   <footer class="footer_main">
     <div>
       <a href="/" style="color: white; margin: 0 15px; text-decoration: none;" class="footer-logo"><img src="favicon.png" alt="WebToolsX Favicon Logo"></a>

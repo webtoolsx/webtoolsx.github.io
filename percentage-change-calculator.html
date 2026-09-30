@@ -308,89 +308,584 @@
           </div>
         </div>
 
-          <div class="row mt-4">
+          <!-- SEO Rich Info Section -->
+          <div class="seo-info-section mt-4">
 
-            <div class="col">
-  
-                <h3 class=" mb-4">How to Use <i class="fa-solid fa-circle-info"></i></h3>
-                <div class="card-body">
-                  <ol class="list-group list-group-numbered">
-                    <li class="list-group-item">
-                      <strong>Step 1: Select the Calculation Type</strong><br>
-                     
-                      - **% Of**: Calculates the percentage of the final value with respect to the initial value.<br>
-                      Choose the desired calculation type by selecting the corresponding radio button.
-                    </li>
-                    <li class="list-group-item">
-                      <strong>Step 2: Enter the Initial Value</strong><br>
-                      In the **"Initial Value"** field, enter the starting value for your calculation. Example: Enter the price of a stock at the start of the period.
-                    </li>
-                    <li class="list-group-item">
-                      <strong>Step 3: Enter the Final Value</strong><br>
-                      In the **"Final Value"** field, enter the value after the change has occurred. Example: Enter the price of the stock at the end of the period.
-                    </li>
-                    <li class="list-group-item">
-                      <strong>Step 4: Click on "Calculate"</strong><br>
-                      Once both values are entered, click on the **"Calculate"** button to compute the result. The percentage change or percentage of the final value will be displayed.
-                    </li>
-                    <li class="list-group-item">
-                      <strong>Step 5: View the Results</strong><br>
-                      After clicking **"Calculate"**, the result will be shown. You will see:
-                      - **Percentage Change**: How much the value has increased or decreased in percentage terms.
-                      - **Difference**: The actual difference between the initial and final values.
-                    </li>
-                    <li class="list-group-item">
-                      <strong>Step 6: Reset the Fields (Optional)</strong><br>
-                      If you want to clear the entered values and start a new calculation, click the **"Reset"** button.
-                    </li>
-                  </ol>
-                </div>
-                
-                <div class="alert alert-info mt-4">
-                  <strong>Note:</strong> This tool is helpful for calculating percentage changes in values like stock prices, sales figures, and more.
-                </div>
-             
+            <!-- Intro paragraph for SEO keyword density -->
+            <div class="seo-intro-card">
+              <p>
+                Our free <strong>Percentage Change Calculator</strong> helps you instantly compute the <strong>percent increase or decrease</strong> between any two values. Whether you're tracking <strong>stock price changes</strong>, comparing <strong>sales growth</strong>, analyzing <strong>revenue trends</strong>, or measuring <strong>weight loss progress</strong> — this tool delivers fast, accurate results using the standard <strong>percentage change formula</strong>.
+              </p>
             </div>
-            <div class="col"> 
-              <h3><i class="fa-solid fa-square-root-variable"></i> Formula Explanation:</h3>
-              <ol class="list-group list-group-numbered">
-                <li class="list-group-item">
-                  <strong>Step 1: Understand the Formula</strong><br>
-                  The formula for calculating the percentage change between two values is:
-                  <pre><code>% Change = ((Final Value - Initial Value) / Initial Value) * 100</code></pre>
-                  This formula helps you determine how much a value has increased or decreased in percentage terms.
-                </li>
-                <li class="list-group-item">
-                  <strong>Step 2: Identify the Values</strong><br>
-                  - **Initial Value (X1)**: The starting value (e.g., price of a stock at the beginning of the period).<br>
-                  - **Final Value (X2)**: The value at the end of the period (e.g., price of the stock at the end of the period).
-                </li>
-                <li class="list-group-item">
-                  <strong>Step 3: Subtract Initial Value from Final Value</strong><br>
-                  To calculate the change in value, subtract the initial value (X1) from the final value (X2):<br>
-                  <pre><code>Change = Final Value - Initial Value</code></pre>
-                </li>
-                <li class="list-group-item">
-                  <strong>Step 4: Divide the Change by the Initial Value</strong><br>
-                  Next, divide the change by the initial value (X1) to get the relative change:<br>
-                  <pre><code>Relative Change = Change / Initial Value</code></pre>
-                </li>
-                <li class="list-group-item">
-                  <strong>Step 5: Multiply by 100</strong><br>
-                  Finally, multiply the relative change by 100 to convert it into a percentage:<br>
-                  <pre><code>% Change = (Relative Change) * 100</code></pre>
-                  This gives you the percentage change between the initial and final values.
-                </li>
-                <li class="list-group-item">
-                  <strong>Step 6: Example Calculation</strong><br>
-                  Suppose the initial value of a stock is $100 and the final value is $120. The calculation would be:<br>
-                  <pre><code>% Change = ((120 - 100) / 100) * 100 = (20 / 100) * 100 = 20%</code></pre>
-                  Therefore, the percentage change is +20%, indicating a 20% increase.
-                </li>
-              </ol>
+
+            <!-- Tab Navigation -->
+            <div class="seo-tabs-nav" role="tablist" aria-label="Calculator Information Tabs">
+              <button class="seo-tab-btn active" data-tab="how-to-use" role="tab" aria-selected="true" aria-controls="tab-how-to-use" id="btn-how-to-use">
+                <i class="fa-solid fa-circle-info me-1"></i> How to Use
+              </button>
+              <button class="seo-tab-btn" data-tab="formula" role="tab" aria-selected="false" aria-controls="tab-formula" id="btn-formula">
+                <i class="fa-solid fa-square-root-variable me-1"></i> Formula
+              </button>
+              <button class="seo-tab-btn" data-tab="use-cases" role="tab" aria-selected="false" aria-controls="tab-use-cases" id="btn-use-cases">
+                <i class="fa-solid fa-lightbulb me-1"></i> Use Cases
+              </button>
+              <button class="seo-tab-btn" data-tab="faq" role="tab" aria-selected="false" aria-controls="tab-faq" id="btn-faq">
+                <i class="fa-solid fa-circle-question me-1"></i> FAQ
+              </button>
+            </div>
+
+            <!-- Tab: How to Use -->
+            <div class="seo-tab-panel active" id="tab-how-to-use" role="tabpanel" aria-labelledby="btn-how-to-use">
+              <div class="seo-steps-grid">
+                <div class="seo-step-card">
+                  <div class="seo-step-number">1</div>
+                  <div class="seo-step-body">
+                    <h4>Select Calculation Type</h4>
+                    <p>Choose <strong>% Change</strong> to find how much a value increased or decreased in percentage terms. Choose <strong>% Of</strong> to find what percentage the final value is of the initial value.</p>
+                  </div>
+                </div>
+                <div class="seo-step-card">
+                  <div class="seo-step-number">2</div>
+                  <div class="seo-step-body">
+                    <h4>Enter the Initial Value</h4>
+                    <p>Type your <strong>starting value</strong> in the "Initial Value" field. For example, the original price of a product, a stock's opening price, or last month's revenue figure.</p>
+                  </div>
+                </div>
+                <div class="seo-step-card">
+                  <div class="seo-step-number">3</div>
+                  <div class="seo-step-body">
+                    <h4>Enter the Final Value</h4>
+                    <p>Type the <strong>new or ending value</strong> in the "Final Value" field — the current price, today's figure, or the value after a change has occurred.</p>
+                  </div>
+                </div>
+                <div class="seo-step-card">
+                  <div class="seo-step-number">4</div>
+                  <div class="seo-step-body">
+                    <h4>Click Calculate</h4>
+                    <p>Hit the <strong>Calculate</strong> button to instantly see the <em>percentage change</em> and the <em>absolute difference</em> between the two values displayed on the result panel.</p>
+                  </div>
+                </div>
+                <div class="seo-step-card">
+                  <div class="seo-step-number">5</div>
+                  <div class="seo-step-body">
+                    <h4>Read Your Results</h4>
+                    <p>A <span style="color:#28a745;font-weight:700;">positive %</span> means an <strong>increase</strong>; a <span style="color:#dc3545;font-weight:700;">negative %</span> means a <strong>decrease</strong>. The chart gives you a quick visual comparison of both values.</p>
+                  </div>
+                </div>
+                <div class="seo-step-card">
+                  <div class="seo-step-number">6</div>
+                  <div class="seo-step-body">
+                    <h4>Reset &amp; Recalculate</h4>
+                    <p>Use the <strong>Reset</strong> button to clear all fields and start a fresh calculation. Use the <strong>Share</strong> button to copy the link and share your result with others.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tab: Formula -->
+            <div class="seo-tab-panel" id="tab-formula" role="tabpanel" aria-labelledby="btn-formula">
+              <div class="seo-formula-wrapper">
+                <div class="seo-formula-hero">
+                  <span class="formula-label">Percentage Change Formula</span>
+                  <div class="formula-display">
+                    % Change = <span class="formula-fraction"><span class="formula-num">(Final − Initial)</span><span class="formula-den">Initial</span></span> × 100
+                  </div>
+                </div>
+                <div class="seo-formula-steps">
+                  <div class="seo-formula-step">
+                    <i class="fa-solid fa-1 seo-formula-icon"></i>
+                    <div>
+                      <strong>Identify your two values</strong>
+                      <p><em>Initial Value (X1)</em> — the starting number (e.g., stock price on Day 1). <em>Final Value (X2)</em> — the ending number (e.g., stock price today).</p>
+                    </div>
+                  </div>
+                  <div class="seo-formula-step">
+                    <i class="fa-solid fa-2 seo-formula-icon"></i>
+                    <div>
+                      <strong>Subtract: Final − Initial</strong>
+                      <p>Find the raw change. A positive result = increase. A negative result = decrease.</p>
+                      <code class="seo-code-block">Change = X2 − X1</code>
+                    </div>
+                  </div>
+                  <div class="seo-formula-step">
+                    <i class="fa-solid fa-3 seo-formula-icon"></i>
+                    <div>
+                      <strong>Divide by Initial Value</strong>
+                      <p>Get the relative (proportional) change so you can compare values of any size.</p>
+                      <code class="seo-code-block">Relative Change = (X2 − X1) / X1</code>
+                    </div>
+                  </div>
+                  <div class="seo-formula-step">
+                    <i class="fa-solid fa-4 seo-formula-icon"></i>
+                    <div>
+                      <strong>Multiply by 100 to get %</strong>
+                      <p>Convert the decimal to a human-readable percentage.</p>
+                      <code class="seo-code-block">% Change = Relative Change × 100</code>
+                    </div>
+                  </div>
+                  <div class="seo-formula-example">
+                    <i class="fa-solid fa-flask me-2"></i><strong>Example:</strong> A stock goes from <strong>$100 → $135</strong>.<br>
+                    % Change = ((135 − 100) / 100) × 100 = <strong style="color:#28a745;">+35%</strong> (increase)
+                  </div>
+                  <div class="seo-formula-example" style="background:rgba(220,53,69,0.08);border-color:#dc3545;">
+                    <i class="fa-solid fa-flask me-2"></i><strong>Example:</strong> Revenue drops from <strong>$5,000 → $4,000</strong>.<br>
+                    % Change = ((4000 − 5000) / 5000) × 100 = <strong style="color:#dc3545;">−20%</strong> (decrease)
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tab: Use Cases -->
+            <div class="seo-tab-panel" id="tab-use-cases" role="tabpanel" aria-labelledby="btn-use-cases">
+              <div class="seo-usecase-grid">
+                <div class="seo-usecase-card">
+                  <i class="fa-solid fa-chart-line seo-usecase-icon" style="color:#4b2394;"></i>
+                  <h4>Stock &amp; Crypto Investing</h4>
+                  <p>Calculate the <strong>percent gain or loss</strong> on stocks, ETFs, or cryptocurrency holdings between any two price points.</p>
+                </div>
+                <div class="seo-usecase-card">
+                  <i class="fa-solid fa-store seo-usecase-icon" style="color:#e67e22;"></i>
+                  <h4>Sales &amp; Revenue Growth</h4>
+                  <p>Measure <strong>month-over-month</strong> or <strong>year-over-year</strong> revenue growth to benchmark business performance.</p>
+                </div>
+                <div class="seo-usecase-card">
+                  <i class="fa-solid fa-tag seo-usecase-icon" style="color:#e74c3c;"></i>
+                  <h4>Discounts &amp; Price Changes</h4>
+                  <p>Find out exactly how much a product's price has <strong>increased or decreased</strong> after a sale, tax, or markup.</p>
+                </div>
+                <div class="seo-usecase-card">
+                  <i class="fa-solid fa-weight-scale seo-usecase-icon" style="color:#27ae60;"></i>
+                  <h4>Health &amp; Fitness Tracking</h4>
+                  <p>Track <strong>weight loss or gain</strong>, BMI changes, or workout progress as a percentage of your starting measurement.</p>
+                </div>
+                <div class="seo-usecase-card">
+                  <i class="fa-solid fa-graduation-cap seo-usecase-icon" style="color:#2980b9;"></i>
+                  <h4>Grades &amp; Academic Scores</h4>
+                  <p>Evaluate how much a student's test score <strong>improved or declined</strong> between exams or semesters.</p>
+                </div>
+                <div class="seo-usecase-card">
+                  <i class="fa-solid fa-bolt seo-usecase-icon" style="color:#f39c12;"></i>
+                  <h4>Utility &amp; Energy Bills</h4>
+                  <p>Compare electricity, water, or gas bills across months to detect <strong>usage spikes or savings</strong>.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tab: FAQ -->
+            <div class="seo-tab-panel" id="tab-faq" role="tabpanel" aria-labelledby="btn-faq">
+              <div class="seo-faq-list" id="seoFaqAccordion">
+
+                <div class="seo-faq-item">
+                  <button class="seo-faq-question" aria-expanded="false" aria-controls="faq-1">
+                    <span>What is percentage change?</span>
+                    <i class="fa-solid fa-chevron-down seo-faq-chevron"></i>
+                  </button>
+                  <div class="seo-faq-answer" id="faq-1">
+                    <p>Percentage change measures how much a quantity has <strong>increased or decreased</strong> relative to its original value, expressed as a percentage. A positive result means growth; a negative result means a decline. The formula is: <em>% Change = ((New − Old) / Old) × 100</em>.</p>
+                  </div>
+                </div>
+
+                <div class="seo-faq-item">
+                  <button class="seo-faq-question" aria-expanded="false" aria-controls="faq-2">
+                    <span>What is the difference between % Change and % Of?</span>
+                    <i class="fa-solid fa-chevron-down seo-faq-chevron"></i>
+                  </button>
+                  <div class="seo-faq-answer" id="faq-2">
+                    <p><strong>% Change</strong> tells you how much a value grew or shrank relative to the starting point (e.g., "sales increased 20%"). <strong>% Of</strong> tells you what fraction of one value another is (e.g., "the final value is 120% of the initial value"). Use % Change for trend analysis and % Of for ratio analysis.</p>
+                  </div>
+                </div>
+
+                <div class="seo-faq-item">
+                  <button class="seo-faq-question" aria-expanded="false" aria-controls="faq-3">
+                    <span>Can the percentage change be more than 100%?</span>
+                    <i class="fa-solid fa-chevron-down seo-faq-chevron"></i>
+                  </button>
+                  <div class="seo-faq-answer" id="faq-3">
+                    <p>Yes! If a value <strong>more than doubles</strong>, the percentage increase exceeds 100%. For example, if a stock goes from $50 to $150, the percentage change is +200%. There is no upper limit on percentage increase.</p>
+                  </div>
+                </div>
+
+                <div class="seo-faq-item">
+                  <button class="seo-faq-question" aria-expanded="false" aria-controls="faq-4">
+                    <span>What happens if the initial value is zero?</span>
+                    <i class="fa-solid fa-chevron-down seo-faq-chevron"></i>
+                  </button>
+                  <div class="seo-faq-answer" id="faq-4">
+                    <p>Percentage change is <strong>mathematically undefined</strong> when the initial value is zero (division by zero). In such cases, consider using the absolute difference or a different metric like growth rate from a base period.</p>
+                  </div>
+                </div>
+
+                <div class="seo-faq-item">
+                  <button class="seo-faq-question" aria-expanded="false" aria-controls="faq-5">
+                    <span>Is percentage change the same as percentage difference?</span>
+                    <i class="fa-solid fa-chevron-down seo-faq-chevron"></i>
+                  </button>
+                  <div class="seo-faq-answer" id="faq-5">
+                    <p>No. <strong>Percentage change</strong> uses the original/initial value as the reference point (directional — from old to new). <strong>Percentage difference</strong> uses the average of both values as the reference and has no direction. Use percentage change for before/after comparisons and percentage difference when comparing two equal-weight values.</p>
+                  </div>
+                </div>
+
+                <div class="seo-faq-item">
+                  <button class="seo-faq-question" aria-expanded="false" aria-controls="faq-6">
+                    <span>How is this tool useful for SEO and digital marketing?</span>
+                    <i class="fa-solid fa-chevron-down seo-faq-chevron"></i>
+                  </button>
+                  <div class="seo-faq-answer" id="faq-6">
+                    <p>Digital marketers use percentage change to track <strong>organic traffic growth</strong>, compare <strong>conversion rate changes</strong>, measure <strong>CTR improvements</strong>, and report <strong>ROI on ad spend</strong>. Enter last month's sessions as the initial value and this month's as the final value to get the exact growth percentage instantly.</p>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Related Tools Strip -->
+            <div class="seo-related-strip">
+              <span class="seo-related-label"><i class="fa-solid fa-arrow-right-arrow-left me-1"></i>Related Tools:</span>
+              <a href="/percentage-calculator.html" class="seo-related-chip" title="Percentage Calculator">% Calculator</a>
+              <a href="/average-calculator.html" class="seo-related-chip" title="Average Calculator">Average Calculator</a>
+              <a href="/profit-loss-calculator.html" class="seo-related-chip" title="Profit Loss Calculator">P/L Calculator</a>
+              <a href="/emi-calculator.html" class="seo-related-chip" title="EMI Loan Calculator">EMI Calculator</a>
+              <a href="/tip-calculator.html" class="seo-related-chip" title="Tip Calculator">Tip Calculator</a>
             </div>
 
           </div>
+
+          <!-- FAQPage Schema Markup -->
+          <script type="application/ld+json">
+          {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "What is percentage change?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Percentage change measures how much a quantity has increased or decreased relative to its original value, expressed as a percentage. The formula is: % Change = ((New - Old) / Old) × 100."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What is the difference between % Change and % Of?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "% Change tells you how much a value grew or shrank relative to the starting point. % Of tells you what fraction of one value another is. Use % Change for trend analysis and % Of for ratio analysis."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can the percentage change be more than 100%?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes. If a value more than doubles, the percentage increase exceeds 100%. For example, if a stock goes from $50 to $150, the percentage change is +200%."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What happens if the initial value is zero?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Percentage change is mathematically undefined when the initial value is zero (division by zero). Consider using the absolute difference or a different metric in such cases."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Is percentage change the same as percentage difference?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "No. Percentage change uses the original value as the reference point. Percentage difference uses the average of both values. Use percentage change for before/after comparisons."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How is this tool useful for SEO and digital marketing?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Digital marketers use percentage change to track organic traffic growth, conversion rate changes, CTR improvements, and ROI on ad spend between reporting periods."
+                }
+              }
+            ]
+          }
+          </script>
+
+          <style>
+            /* ── SEO Info Section ─────────────────────────── */
+            .seo-info-section { margin-top: 2rem; }
+
+            .seo-intro-card {
+              background: linear-gradient(135deg, #f0eaff 0%, #fce8f8 100%);
+              border-left: 4px solid #7750b6;
+              border-radius: 10px;
+              padding: 16px 20px;
+              margin-bottom: 1.5rem;
+              font-size: 0.97rem;
+              color: #2d0554;
+              line-height: 1.7;
+            }
+
+            /* Tabs Nav */
+            .seo-tabs-nav {
+              display: flex;
+              flex-wrap: wrap;
+              gap: 8px;
+              border-bottom: 2px solid #e8e0f7;
+              margin-bottom: 1.5rem;
+            }
+            .seo-tab-btn {
+              background: none;
+              border: none;
+              padding: 10px 18px;
+              font-size: 0.9rem;
+              font-family: inherit;
+              font-weight: 600;
+              color: #7750b6;
+              border-radius: 8px 8px 0 0;
+              cursor: pointer;
+              transition: background 0.2s, color 0.2s;
+              margin-bottom: -2px;
+              border-bottom: 3px solid transparent;
+            }
+            .seo-tab-btn:hover { background: #f3eeff; }
+            .seo-tab-btn.active {
+              color: #4b2394;
+              border-bottom: 3px solid #7750b6;
+              background: #f3eeff;
+            }
+
+            /* Tab Panels */
+            .seo-tab-panel { display: none; animation: fadeInTab 0.3s ease; }
+            .seo-tab-panel.active { display: block; }
+            @keyframes fadeInTab { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+            /* ── How-to Steps ── */
+            .seo-steps-grid {
+              display: grid;
+              grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+              gap: 1rem;
+            }
+            .seo-step-card {
+              display: flex;
+              gap: 14px;
+              align-items: flex-start;
+              background: #fff;
+              border: 1px solid #ece5ff;
+              border-radius: 12px;
+              padding: 16px 18px;
+              box-shadow: 0 2px 10px rgba(119,80,182,0.07);
+              transition: transform 0.2s, box-shadow 0.2s;
+            }
+            .seo-step-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(119,80,182,0.13); }
+            .seo-step-number {
+              min-width: 34px;
+              height: 34px;
+              border-radius: 50%;
+              background: linear-gradient(135deg, #7750b6, #4b2394);
+              color: #fff;
+              font-size: 1rem;
+              font-weight: 700;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              flex-shrink: 0;
+            }
+            .seo-step-body h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 4px; color: #2d0554; }
+            .seo-step-body p { font-size: 0.85rem; color: #555; margin: 0; line-height: 1.6; }
+
+            /* ── Formula ── */
+            .seo-formula-wrapper { display: flex; flex-direction: column; gap: 1.2rem; }
+            .seo-formula-hero {
+              background: linear-gradient(135deg, #4b2394 0%, #7750b6 100%);
+              color: #fff;
+              border-radius: 14px;
+              padding: 24px 28px;
+              text-align: center;
+            }
+            .formula-label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; opacity: 0.75; display: block; margin-bottom: 12px; }
+            .formula-display {
+              font-size: 1.4rem;
+              font-weight: 700;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              gap: 10px;
+              flex-wrap: wrap;
+            }
+            .formula-fraction { display: inline-flex; flex-direction: column; align-items: center; border: none; }
+            .formula-num { border-bottom: 2px solid rgba(255,255,255,0.7); padding-bottom: 2px; font-size: 1rem; }
+            .formula-den { padding-top: 2px; font-size: 1rem; }
+
+            .seo-formula-steps { display: flex; flex-direction: column; gap: 1rem; }
+            .seo-formula-step {
+              display: flex;
+              gap: 16px;
+              align-items: flex-start;
+              background: #fafafa;
+              border: 1px solid #eee;
+              border-radius: 10px;
+              padding: 14px 16px;
+            }
+            .seo-formula-icon { color: #7750b6; font-size: 1.1rem; margin-top: 2px; min-width: 20px; }
+            .seo-formula-step strong { font-size: 0.95rem; color: #2d0554; display: block; margin-bottom: 4px; }
+            .seo-formula-step p { font-size: 0.85rem; color: #555; margin: 0; line-height: 1.5; }
+            .seo-code-block {
+              display: inline-block;
+              background: #f0eaff;
+              color: #4b2394;
+              border-radius: 6px;
+              padding: 3px 10px;
+              font-family: 'Roboto Mono', monospace;
+              font-size: 0.82rem;
+              margin-top: 6px;
+            }
+            .seo-formula-example {
+              background: rgba(40,167,69,0.08);
+              border: 1px solid #28a745;
+              border-radius: 10px;
+              padding: 14px 18px;
+              font-size: 0.9rem;
+              color: #1a3d22;
+              line-height: 1.6;
+            }
+
+            /* ── Use Cases ── */
+            .seo-usecase-grid {
+              display: grid;
+              grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+              gap: 1rem;
+            }
+            .seo-usecase-card {
+              background: #fff;
+              border: 1px solid #ece5ff;
+              border-radius: 12px;
+              padding: 18px;
+              text-align: center;
+              box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+              transition: transform 0.2s, box-shadow 0.2s;
+            }
+            .seo-usecase-card:hover { transform: translateY(-3px); box-shadow: 0 8px 22px rgba(119,80,182,0.12); }
+            .seo-usecase-icon { font-size: 2rem; margin-bottom: 10px; display: block; }
+            .seo-usecase-card h4 { font-size: 0.95rem; font-weight: 700; color: #2d0554; margin-bottom: 6px; }
+            .seo-usecase-card p { font-size: 0.83rem; color: #555; margin: 0; line-height: 1.55; }
+
+            /* ── FAQ Accordion ── */
+            .seo-faq-list { display: flex; flex-direction: column; gap: 10px; }
+            .seo-faq-item {
+              background: #fff;
+              border: 1px solid #ece5ff;
+              border-radius: 12px;
+              overflow: hidden;
+              box-shadow: 0 2px 8px rgba(119,80,182,0.06);
+            }
+            .seo-faq-question {
+              width: 100%;
+              background: none;
+              border: none;
+              padding: 16px 18px;
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              font-family: inherit;
+              font-size: 0.95rem;
+              font-weight: 600;
+              color: #2d0554;
+              cursor: pointer;
+              text-align: left;
+              transition: background 0.2s;
+            }
+            .seo-faq-question:hover { background: #f8f4ff; }
+            .seo-faq-chevron { transition: transform 0.3s; color: #7750b6; font-size: 0.85rem; flex-shrink: 0; margin-left: 12px; }
+            .seo-faq-question[aria-expanded="true"] .seo-faq-chevron { transform: rotate(180deg); }
+            .seo-faq-answer {
+              max-height: 0;
+              overflow: hidden;
+              transition: max-height 0.35s ease, padding 0.25s ease;
+              padding: 0 18px;
+            }
+            .seo-faq-answer.open {
+              max-height: 300px;
+              padding: 0 18px 16px;
+            }
+            .seo-faq-answer p { font-size: 0.88rem; color: #444; line-height: 1.7; margin: 0; }
+
+            /* ── Related Tools Strip ── */
+            .seo-related-strip {
+              display: flex;
+              flex-wrap: wrap;
+              align-items: center;
+              gap: 8px;
+              margin-top: 2rem;
+              padding: 14px 16px;
+              background: #f8f4ff;
+              border-radius: 12px;
+              border: 1px solid #ece5ff;
+            }
+            .seo-related-label { font-size: 0.85rem; font-weight: 700; color: #4b2394; white-space: nowrap; }
+            .seo-related-chip {
+              display: inline-block;
+              background: #fff;
+              border: 1px solid #c9b8f0;
+              border-radius: 20px;
+              padding: 4px 14px;
+              font-size: 0.82rem;
+              font-weight: 600;
+              color: #4b2394;
+              text-decoration: none;
+              transition: background 0.2s, color 0.2s, transform 0.2s;
+            }
+            .seo-related-chip:hover { background: #7750b6; color: #fff; transform: translateY(-1px); }
+
+            @media (max-width: 600px) {
+              .seo-steps-grid { grid-template-columns: 1fr; }
+              .seo-usecase-grid { grid-template-columns: 1fr 1fr; }
+              .formula-display { font-size: 1.1rem; }
+              .seo-tab-btn { padding: 8px 12px; font-size: 0.82rem; }
+            }
+            @media (max-width: 400px) {
+              .seo-usecase-grid { grid-template-columns: 1fr; }
+            }
+          </style>
+
+          <script>
+            // Tab switching
+            document.querySelectorAll('.seo-tab-btn').forEach(function(btn) {
+              btn.addEventListener('click', function() {
+                var tab = this.dataset.tab;
+                document.querySelectorAll('.seo-tab-btn').forEach(function(b) {
+                  b.classList.remove('active');
+                  b.setAttribute('aria-selected', 'false');
+                });
+                document.querySelectorAll('.seo-tab-panel').forEach(function(p) {
+                  p.classList.remove('active');
+                });
+                this.classList.add('active');
+                this.setAttribute('aria-selected', 'true');
+                document.getElementById('tab-' + tab).classList.add('active');
+              });
+            });
+
+            // FAQ accordion
+            document.querySelectorAll('.seo-faq-question').forEach(function(btn) {
+              btn.addEventListener('click', function() {
+                var answerId = this.getAttribute('aria-controls');
+                var answer = document.getElementById(answerId);
+                var isOpen = this.getAttribute('aria-expanded') === 'true';
+
+                // close all
+                document.querySelectorAll('.seo-faq-question').forEach(function(b) {
+                  b.setAttribute('aria-expanded', 'false');
+                });
+                document.querySelectorAll('.seo-faq-answer').forEach(function(a) {
+                  a.classList.remove('open');
+                });
+
+                // open this one if it was closed
+                if (!isOpen) {
+                  this.setAttribute('aria-expanded', 'true');
+                  answer.classList.add('open');
+                }
+              });
+            });
+          </script>
 
         </div>
     </div>

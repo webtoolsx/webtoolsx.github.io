@@ -440,6 +440,255 @@
     
   </div>
 
+  
+  <style id="seo-section-styles">
+    .seo-info-section { margin-top: 2rem; }
+    .seo-intro-card {
+      background: linear-gradient(135deg, #f0eaff 0%, #fce8f8 100%);
+      border-left: 4px solid #7750b6;
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin-bottom: 1.5rem;
+      font-size: 0.97rem;
+      color: #2d0554;
+      line-height: 1.7;
+    }
+    .seo-tabs-nav { display:flex; flex-wrap:wrap; gap:8px; border-bottom:2px solid #e8e0f7; margin-bottom:1.5rem; }
+    .seo-tab-btn { background:none; border:none; padding:10px 18px; font-size:.9rem; font-family:inherit; font-weight:600; color:#7750b6; border-radius:8px 8px 0 0; cursor:pointer; transition:background .2s,color .2s; margin-bottom:-2px; border-bottom:3px solid transparent; }
+    .seo-tab-btn:hover { background:#f3eeff; }
+    .seo-tab-btn.active { color:#4b2394; border-bottom:3px solid #7750b6; background:#f3eeff; }
+    .seo-tab-panel { display:none; animation:fadeInTab .3s ease; }
+    .seo-tab-panel.active { display:block; }
+    @keyframes fadeInTab { from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);} }
+    .seo-steps-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:1rem; }
+    .seo-step-card { display:flex; gap:14px; align-items:flex-start; background:#fff; border:1px solid #ece5ff; border-radius:12px; padding:16px 18px; box-shadow:0 2px 10px rgba(119,80,182,.07); transition:transform .2s,box-shadow .2s; }
+    .seo-step-card:hover { transform:translateY(-2px); box-shadow:0 6px 20px rgba(119,80,182,.13); }
+    .seo-step-number { min-width:34px; height:34px; border-radius:50%; background:linear-gradient(135deg,#7750b6,#4b2394); color:#fff; font-size:1rem; font-weight:700; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .seo-step-body h4 { font-size:.95rem; font-weight:700; margin-bottom:4px; color:#2d0554; }
+    .seo-step-body p  { font-size:.85rem; color:#555; margin:0; line-height:1.6; }
+    .seo-formula-wrapper { display:flex; flex-direction:column; gap:1.2rem; }
+    .seo-formula-hero { background:linear-gradient(135deg,#4b2394 0%,#7750b6 100%); color:#fff; border-radius:14px; padding:24px 28px; text-align:center; }
+    .formula-label { font-size:.8rem; text-transform:uppercase; letter-spacing:2px; opacity:.75; display:block; margin-bottom:12px; }
+    .formula-display { font-size:1.4rem; font-weight:700; display:flex; align-items:center; justify-content:center; gap:10px; flex-wrap:wrap; }
+    .seo-formula-steps { display:flex; flex-direction:column; gap:1rem; }
+    .seo-formula-step { display:flex; gap:16px; align-items:flex-start; background:#fafafa; border:1px solid #eee; border-radius:10px; padding:14px 16px; }
+    .seo-formula-icon { color:#7750b6; font-size:1.1rem; margin-top:2px; min-width:20px; }
+    .seo-formula-step strong { font-size:.95rem; color:#2d0554; display:block; margin-bottom:4px; }
+    .seo-formula-step p { font-size:.85rem; color:#555; margin:0; line-height:1.5; }
+    .seo-code-block { display:inline-block; background:#f0eaff; color:#4b2394; border-radius:6px; padding:3px 10px; font-family:'Roboto Mono',monospace; font-size:.82rem; margin-top:6px; }
+    .seo-formula-example { background:rgba(40,167,69,.08); border:1px solid #28a745; border-radius:10px; padding:14px 18px; font-size:.9rem; color:#1a3d22; line-height:1.6; }
+    .seo-usecase-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:1rem; }
+    .seo-usecase-card { background:#fff; border:1px solid #ece5ff; border-radius:12px; padding:18px; text-align:center; box-shadow:0 2px 10px rgba(0,0,0,.05); transition:transform .2s,box-shadow .2s; }
+    .seo-usecase-card:hover { transform:translateY(-3px); box-shadow:0 8px 22px rgba(119,80,182,.12); }
+    .seo-usecase-icon { font-size:2rem; margin-bottom:10px; display:block; }
+    .seo-usecase-card h4 { font-size:.95rem; font-weight:700; color:#2d0554; margin-bottom:6px; }
+    .seo-usecase-card p  { font-size:.83rem; color:#555; margin:0; line-height:1.55; }
+    .seo-faq-list { display:flex; flex-direction:column; gap:10px; }
+    .seo-faq-item { background:#fff; border:1px solid #ece5ff; border-radius:12px; overflow:hidden; box-shadow:0 2px 8px rgba(119,80,182,.06); }
+    .seo-faq-question { width:100%; background:none; border:none; padding:16px 18px; display:flex; justify-content:space-between; align-items:center; font-family:inherit; font-size:.95rem; font-weight:600; color:#2d0554; cursor:pointer; text-align:left; transition:background .2s; }
+    .seo-faq-question:hover { background:#f8f4ff; }
+    .seo-faq-chevron { transition:transform .3s; color:#7750b6; font-size:.85rem; flex-shrink:0; margin-left:12px; }
+    .seo-faq-question[aria-expanded="true"] .seo-faq-chevron { transform:rotate(180deg); }
+    .seo-faq-answer { max-height:0; overflow:hidden; transition:max-height .35s ease,padding .25s ease; padding:0 18px; }
+    .seo-faq-answer.open { max-height:300px; padding:0 18px 16px; }
+    .seo-faq-answer p { font-size:.88rem; color:#444; line-height:1.7; margin:0; }
+    .seo-related-strip { display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin-top:2rem; padding:14px 16px; background:#f8f4ff; border-radius:12px; border:1px solid #ece5ff; }
+    .seo-related-label { font-size:.85rem; font-weight:700; color:#4b2394; white-space:nowrap; }
+    .seo-related-chip { display:inline-block; background:#fff; border:1px solid #c9b8f0; border-radius:20px; padding:4px 14px; font-size:.82rem; font-weight:600; color:#4b2394; text-decoration:none; transition:background .2s,color .2s,transform .2s; }
+    .seo-related-chip:hover { background:#7750b6; color:#fff; transform:translateY(-1px); }
+    @media(max-width:600px){ .seo-steps-grid{grid-template-columns:1fr;} .seo-usecase-grid{grid-template-columns:1fr 1fr;} .formula-display{font-size:1.1rem;} .seo-tab-btn{padding:8px 12px;font-size:.82rem;} }
+    @media(max-width:400px){ .seo-usecase-grid{grid-template-columns:1fr;} }
+  </style>
+  <!-- SEO Rich Info Section -->
+  <div class="seo-info-section mt-4">
+    <div class="seo-intro-card"><p>Our free <strong>Tip Calculator</strong> helps you instantly compute the <strong>tip amount</strong>, <strong>total bill with tip</strong>, and the <strong>per-person split</strong> for any dining or service scenario. Whether you're at a restaurant, hotel, taxi, or hair salon — just enter your bill and choose a <strong>tip percentage</strong> to get the breakdown in seconds.</p></div>
+    <div class="seo-tabs-nav" role="tablist">
+      <button class="seo-tab-btn active" data-tab="how-to-use_tip" role="tab" aria-selected="true" aria-controls="tab-how-to-use_tip" id="btn-how-to-use_tip"><i class="fa-solid fa-circle-info me-1"></i> How to Use</button>
+      <button class="seo-tab-btn" data-tab="formula_tip" role="tab" aria-selected="false" aria-controls="tab-formula_tip" id="btn-formula_tip"><i class="fa-solid fa-square-root-variable me-1"></i> Formula</button>
+      <button class="seo-tab-btn" data-tab="use-cases_tip" role="tab" aria-selected="false" aria-controls="tab-use-cases_tip" id="btn-use-cases_tip"><i class="fa-solid fa-lightbulb me-1"></i> Use Cases</button>
+      <button class="seo-tab-btn" data-tab="faq_tip" role="tab" aria-selected="false" aria-controls="tab-faq_tip" id="btn-faq_tip"><i class="fa-solid fa-circle-question me-1"></i> FAQ</button>
+    </div>
+    <div class="seo-tab-panel active" id="tab-how-to-use_tip" role="tabpanel"><div class="seo-steps-grid">
+    <div class="seo-step-card">
+      <div class="seo-step-number">1</div>
+      <div class="seo-step-body"><h4>Enter the Bill Amount</h4><p>Type the total <strong>pre-tip bill amount</strong> in the Bill Amount field (e.g., $85.00 or ₹1,200).</p></div>
+    </div>
+    <div class="seo-step-card">
+      <div class="seo-step-number">2</div>
+      <div class="seo-step-body"><h4>Select a Tip Percentage</h4><p>Choose from common tip presets (10%, 15%, 20%) or drag the <strong>custom slider</strong> to set any percentage from 0–30%.</p></div>
+    </div>
+    <div class="seo-step-card">
+      <div class="seo-step-number">3</div>
+      <div class="seo-step-body"><h4>Enter Number of People</h4><p>Enter the <strong>number of people</strong> splitting the bill to see the per-person share including tip.</p></div>
+    </div>
+    <div class="seo-step-card">
+      <div class="seo-step-number">4</div>
+      <div class="seo-step-body"><h4>Click Calculate</h4><p>Hit <strong>Calculate</strong> to instantly see the <em>tip amount</em>, <em>total bill with tip</em>, and <em>per-person amount</em>.</p></div>
+    </div>
+    <div class="seo-step-card">
+      <div class="seo-step-number">5</div>
+      <div class="seo-step-body"><h4>Round or Adjust</h4><p>Use rounding options if you prefer a <strong>round number total</strong> for easier cash payments.</p></div>
+    </div>
+    <div class="seo-step-card">
+      <div class="seo-step-number">6</div>
+      <div class="seo-step-body"><h4>Reset & Recalculate</h4><p>Click <strong>Reset</strong> to clear the form and calculate a new tip for a different bill.</p></div>
+    </div>
+  </div></div>
+    <div class="seo-tab-panel" id="tab-formula_tip" role="tabpanel">
+  <div class="seo-formula-wrapper">
+    <div class="seo-formula-hero">
+      <span class="formula-label">Tip Calculation Formula</span>
+      <div class="formula-display">Tip = Bill × (Tip% ÷ 100)</div>
+    </div>
+    <div class="seo-formula-steps">
+    <div class="seo-formula-step">
+      <i class="fa-solid fa-1 seo-formula-icon"></i>
+      <div><strong>Calculate the Tip Amount</strong><p><code class="seo-code-block">Tip = $85 × 0.18 = $15.30</code></p></div>
+    </div>
+    <div class="seo-formula-step">
+      <i class="fa-solid fa-2 seo-formula-icon"></i>
+      <div><strong>Calculate the Total Bill</strong><p><code class="seo-code-block">Total = Bill + Tip = $85 + $15.30 = $100.30</code></p></div>
+    </div>
+    <div class="seo-formula-step">
+      <i class="fa-solid fa-3 seo-formula-icon"></i>
+      <div><strong>Split Per Person</strong><p><code class="seo-code-block">Per Person = Total / Number of People</code></p></div>
+    </div>
+    <div class="seo-formula-step">
+      <i class="fa-solid fa-4 seo-formula-icon"></i>
+      <div><strong>Example (4 people, 18% tip on $85)</strong><p>Tip $15.30 → Total $100.30 → <strong>Per person = $25.08</strong></p></div>
+    </div>
+    <div class="seo-formula-example"><i class="fa-solid fa-flask me-2"></i><strong>Example:</strong> $85 bill, 18% tip, 4 people → Tip $15.30 → Total $100.30 → <strong>Per person: $25.08</strong></div></div>
+  </div></div>
+    <div class="seo-tab-panel" id="tab-use-cases_tip" role="tabpanel"><div class="seo-usecase-grid">
+    <div class="seo-usecase-card">
+      <i class="fa-solid fa-utensils seo-usecase-icon" style="color:#4b2394;"></i>
+      <h4>Restaurant Dining</h4><p>Quickly split a restaurant bill and calculate the right tip for good service.</p>
+    </div>
+    <div class="seo-usecase-card">
+      <i class="fa-solid fa-taxi seo-usecase-icon" style="color:#e67e22;"></i>
+      <h4>Taxi & Rideshare</h4><p>Calculate appropriate tips for Uber, Lyft, or taxi rides based on fare and service.</p>
+    </div>
+    <div class="seo-usecase-card">
+      <i class="fa-solid fa-scissors seo-usecase-icon" style="color:#e74c3c;"></i>
+      <h4>Hair Salon & Barbershop</h4><p>Find the right gratuity for haircuts, styling, or spa treatments without mental math.</p>
+    </div>
+    <div class="seo-usecase-card">
+      <i class="fa-solid fa-hotel seo-usecase-icon" style="color:#27ae60;"></i>
+      <h4>Hotel & Concierge</h4><p>Determine fair tips for hotel staff — bellhops, housekeeping, and room service.</p>
+    </div>
+    <div class="seo-usecase-card">
+      <i class="fa-solid fa-pizza-slice seo-usecase-icon" style="color:#f39c12;"></i>
+      <h4>Food Delivery</h4><p>Calculate delivery driver tips for food orders with percentage-based tipping apps.</p>
+    </div>
+    <div class="seo-usecase-card">
+      <i class="fa-solid fa-people-group seo-usecase-icon" style="color:#2980b9;"></i>
+      <h4>Group Dining Bill Split</h4><p>Split a large group dinner bill evenly with tip included to settle payments quickly.</p>
+    </div>
+  </div></div>
+    <div class="seo-tab-panel" id="tab-faq_tip" role="tabpanel"><div class="seo-faq-list">
+    <div class="seo-faq-item">
+      <button class="seo-faq-question" aria-expanded="false" aria-controls="faq-tip-1">
+        <span>What is a standard tip percentage?</span><i class="fa-solid fa-chevron-down seo-faq-chevron"></i>
+      </button>
+      <div class="seo-faq-answer" id="faq-tip-1"><p>In the USA and Canada, 15–20% is standard for restaurant service. 10–12% is common for other services. In Japan, tipping is not customary.</p></div>
+    </div>
+    <div class="seo-faq-item">
+      <button class="seo-faq-question" aria-expanded="false" aria-controls="faq-tip-2">
+        <span>Should I tip on the pre-tax or post-tax amount?</span><i class="fa-solid fa-chevron-down seo-faq-chevron"></i>
+      </button>
+      <div class="seo-faq-answer" id="faq-tip-2"><p>Conventionally you tip on the pre-tax subtotal. Tipping on the post-tax total is also acceptable and simpler.</p></div>
+    </div>
+    <div class="seo-faq-item">
+      <button class="seo-faq-question" aria-expanded="false" aria-controls="faq-tip-3">
+        <span>How do I split a bill unequally?</span><i class="fa-solid fa-chevron-down seo-faq-chevron"></i>
+      </button>
+      <div class="seo-faq-answer" id="faq-tip-3"><p>Calculate each person's share of the subtotal separately, then apply the shared tip percentage to each individual's portion.</p></div>
+    </div>
+    <div class="seo-faq-item">
+      <button class="seo-faq-question" aria-expanded="false" aria-controls="faq-tip-4">
+        <span>Is it rude not to tip?</span><i class="fa-solid fa-chevron-down seo-faq-chevron"></i>
+      </button>
+      <div class="seo-faq-answer" id="faq-tip-4"><p>In the USA, tips are a significant part of service workers' income — not tipping is considered rude. In Japan or South Korea, tipping may be culturally discouraged.</p></div>
+    </div>
+    <div class="seo-faq-item">
+      <button class="seo-faq-question" aria-expanded="false" aria-controls="faq-tip-5">
+        <span>What does "gratuity included" mean?</span><i class="fa-solid fa-chevron-down seo-faq-chevron"></i>
+      </button>
+      <div class="seo-faq-answer" id="faq-tip-5"><p>Some restaurants add a mandatory service charge (usually 18–20%) for large groups. Always check your bill before adding an extra tip.</p></div>
+    </div>
+    <div class="seo-faq-item">
+      <button class="seo-faq-question" aria-expanded="false" aria-controls="faq-tip-6">
+        <span>How much should I tip for food delivery?</span><i class="fa-solid fa-chevron-down seo-faq-chevron"></i>
+      </button>
+      <div class="seo-faq-answer" id="faq-tip-6"><p>Most apps suggest 10–20% on the food subtotal. Consider tipping higher for long-distance deliveries, bad weather, or exceptional service.</p></div>
+    </div>
+  </div></div>
+    <div class="seo-related-strip">
+    <span class="seo-related-label"><i class="fa-solid fa-arrow-right-arrow-left me-1"></i>Related Tools:</span>
+    <a href="/profit-loss-calculator.html" class="seo-related-chip" title="Profit Loss Calculator">P/L Calculator</a>
+              <a href="/percentage-calculator.html" class="seo-related-chip" title="Percentage Calculator">% Calculator</a>
+              <a href="/average-calculator.html" class="seo-related-chip" title="Average Calculator">Average Calc</a>
+              <a href="/emi-calculator.html" class="seo-related-chip" title="EMI Calculator">EMI Calculator</a>
+              <a href="/percentage-change-calculator.html" class="seo-related-chip" title="% Change Calculator">% Change</a>
+  </div>
+  </div>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{
+      "@type":"Question",
+      "name":"What is a standard tip percentage?",
+      "acceptedAnswer":{"@type":"Answer","text":"In the USA and Canada, 15–20% is standard for restaurant service. 10–12% is common for other services. In Japan, tipping is not customary."}
+    },
+    {
+      "@type":"Question",
+      "name":"Should I tip on the pre-tax or post-tax amount?",
+      "acceptedAnswer":{"@type":"Answer","text":"Conventionally you tip on the pre-tax subtotal. Tipping on the post-tax total is also acceptable and simpler."}
+    },
+    {
+      "@type":"Question",
+      "name":"How do I split a bill unequally?",
+      "acceptedAnswer":{"@type":"Answer","text":"Calculate each person's share of the subtotal separately, then apply the shared tip percentage to each individual's portion."}
+    },
+    {
+      "@type":"Question",
+      "name":"Is it rude not to tip?",
+      "acceptedAnswer":{"@type":"Answer","text":"In the USA, tips are a significant part of service workers' income — not tipping is considered rude. In Japan or South Korea, tipping may be culturally discouraged."}
+    },
+    {
+      "@type":"Question",
+      "name":"What does \"gratuity included\" mean?",
+      "acceptedAnswer":{"@type":"Answer","text":"Some restaurants add a mandatory service charge (usually 18–20%) for large groups. Always check your bill before adding an extra tip."}
+    },
+    {
+      "@type":"Question",
+      "name":"How much should I tip for food delivery?",
+      "acceptedAnswer":{"@type":"Answer","text":"Most apps suggest 10–20% on the food subtotal. Consider tipping higher for long-distance deliveries, bad weather, or exceptional service."}
+    }]}
+  </script>
+  <script id="seo-tab-js">
+    (function(){
+      document.querySelectorAll('.seo-tab-btn').forEach(function(btn){
+        btn.addEventListener('click',function(){
+          var tab=this.dataset.tab;
+          var section=this.closest('.seo-info-section');
+          section.querySelectorAll('.seo-tab-btn').forEach(function(b){b.classList.remove('active');b.setAttribute('aria-selected','false');});
+          section.querySelectorAll('.seo-tab-panel').forEach(function(p){p.classList.remove('active');});
+          this.classList.add('active');this.setAttribute('aria-selected','true');
+          document.getElementById('tab-'+tab).classList.add('active');
+        });
+      });
+      document.querySelectorAll('.seo-faq-question').forEach(function(btn){
+        btn.addEventListener('click',function(){
+          var answerId=this.getAttribute('aria-controls');
+          var answer=document.getElementById(answerId);
+          var isOpen=this.getAttribute('aria-expanded')==='true';
+          var list=this.closest('.seo-faq-list');
+          list.querySelectorAll('.seo-faq-question').forEach(function(b){b.setAttribute('aria-expanded','false');});
+          list.querySelectorAll('.seo-faq-answer').forEach(function(a){a.classList.remove('open');});
+          if(!isOpen){this.setAttribute('aria-expanded','true');answer.classList.add('open');}
+        });
+      });
+    })();
+  </script>
   <footer class="footer_main">
     <div>
       <a href="/" style="color: white; margin: 0 15px; text-decoration: none;" class="footer-logo"><img src="favicon.png" alt="WebToolsX Favicon Logo"></a>

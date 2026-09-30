@@ -374,6 +374,255 @@
     </script>
  
 
+  
+  <style id="seo-section-styles">
+    .seo-info-section { margin-top: 2rem; }
+    .seo-intro-card {
+      background: linear-gradient(135deg, #f0eaff 0%, #fce8f8 100%);
+      border-left: 4px solid #7750b6;
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin-bottom: 1.5rem;
+      font-size: 0.97rem;
+      color: #2d0554;
+      line-height: 1.7;
+    }
+    .seo-tabs-nav { display:flex; flex-wrap:wrap; gap:8px; border-bottom:2px solid #e8e0f7; margin-bottom:1.5rem; }
+    .seo-tab-btn { background:none; border:none; padding:10px 18px; font-size:.9rem; font-family:inherit; font-weight:600; color:#7750b6; border-radius:8px 8px 0 0; cursor:pointer; transition:background .2s,color .2s; margin-bottom:-2px; border-bottom:3px solid transparent; }
+    .seo-tab-btn:hover { background:#f3eeff; }
+    .seo-tab-btn.active { color:#4b2394; border-bottom:3px solid #7750b6; background:#f3eeff; }
+    .seo-tab-panel { display:none; animation:fadeInTab .3s ease; }
+    .seo-tab-panel.active { display:block; }
+    @keyframes fadeInTab { from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);} }
+    .seo-steps-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:1rem; }
+    .seo-step-card { display:flex; gap:14px; align-items:flex-start; background:#fff; border:1px solid #ece5ff; border-radius:12px; padding:16px 18px; box-shadow:0 2px 10px rgba(119,80,182,.07); transition:transform .2s,box-shadow .2s; }
+    .seo-step-card:hover { transform:translateY(-2px); box-shadow:0 6px 20px rgba(119,80,182,.13); }
+    .seo-step-number { min-width:34px; height:34px; border-radius:50%; background:linear-gradient(135deg,#7750b6,#4b2394); color:#fff; font-size:1rem; font-weight:700; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .seo-step-body h4 { font-size:.95rem; font-weight:700; margin-bottom:4px; color:#2d0554; }
+    .seo-step-body p  { font-size:.85rem; color:#555; margin:0; line-height:1.6; }
+    .seo-formula-wrapper { display:flex; flex-direction:column; gap:1.2rem; }
+    .seo-formula-hero { background:linear-gradient(135deg,#4b2394 0%,#7750b6 100%); color:#fff; border-radius:14px; padding:24px 28px; text-align:center; }
+    .formula-label { font-size:.8rem; text-transform:uppercase; letter-spacing:2px; opacity:.75; display:block; margin-bottom:12px; }
+    .formula-display { font-size:1.4rem; font-weight:700; display:flex; align-items:center; justify-content:center; gap:10px; flex-wrap:wrap; }
+    .seo-formula-steps { display:flex; flex-direction:column; gap:1rem; }
+    .seo-formula-step { display:flex; gap:16px; align-items:flex-start; background:#fafafa; border:1px solid #eee; border-radius:10px; padding:14px 16px; }
+    .seo-formula-icon { color:#7750b6; font-size:1.1rem; margin-top:2px; min-width:20px; }
+    .seo-formula-step strong { font-size:.95rem; color:#2d0554; display:block; margin-bottom:4px; }
+    .seo-formula-step p { font-size:.85rem; color:#555; margin:0; line-height:1.5; }
+    .seo-code-block { display:inline-block; background:#f0eaff; color:#4b2394; border-radius:6px; padding:3px 10px; font-family:'Roboto Mono',monospace; font-size:.82rem; margin-top:6px; }
+    .seo-formula-example { background:rgba(40,167,69,.08); border:1px solid #28a745; border-radius:10px; padding:14px 18px; font-size:.9rem; color:#1a3d22; line-height:1.6; }
+    .seo-usecase-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:1rem; }
+    .seo-usecase-card { background:#fff; border:1px solid #ece5ff; border-radius:12px; padding:18px; text-align:center; box-shadow:0 2px 10px rgba(0,0,0,.05); transition:transform .2s,box-shadow .2s; }
+    .seo-usecase-card:hover { transform:translateY(-3px); box-shadow:0 8px 22px rgba(119,80,182,.12); }
+    .seo-usecase-icon { font-size:2rem; margin-bottom:10px; display:block; }
+    .seo-usecase-card h4 { font-size:.95rem; font-weight:700; color:#2d0554; margin-bottom:6px; }
+    .seo-usecase-card p  { font-size:.83rem; color:#555; margin:0; line-height:1.55; }
+    .seo-faq-list { display:flex; flex-direction:column; gap:10px; }
+    .seo-faq-item { background:#fff; border:1px solid #ece5ff; border-radius:12px; overflow:hidden; box-shadow:0 2px 8px rgba(119,80,182,.06); }
+    .seo-faq-question { width:100%; background:none; border:none; padding:16px 18px; display:flex; justify-content:space-between; align-items:center; font-family:inherit; font-size:.95rem; font-weight:600; color:#2d0554; cursor:pointer; text-align:left; transition:background .2s; }
+    .seo-faq-question:hover { background:#f8f4ff; }
+    .seo-faq-chevron { transition:transform .3s; color:#7750b6; font-size:.85rem; flex-shrink:0; margin-left:12px; }
+    .seo-faq-question[aria-expanded="true"] .seo-faq-chevron { transform:rotate(180deg); }
+    .seo-faq-answer { max-height:0; overflow:hidden; transition:max-height .35s ease,padding .25s ease; padding:0 18px; }
+    .seo-faq-answer.open { max-height:300px; padding:0 18px 16px; }
+    .seo-faq-answer p { font-size:.88rem; color:#444; line-height:1.7; margin:0; }
+    .seo-related-strip { display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin-top:2rem; padding:14px 16px; background:#f8f4ff; border-radius:12px; border:1px solid #ece5ff; }
+    .seo-related-label { font-size:.85rem; font-weight:700; color:#4b2394; white-space:nowrap; }
+    .seo-related-chip { display:inline-block; background:#fff; border:1px solid #c9b8f0; border-radius:20px; padding:4px 14px; font-size:.82rem; font-weight:600; color:#4b2394; text-decoration:none; transition:background .2s,color .2s,transform .2s; }
+    .seo-related-chip:hover { background:#7750b6; color:#fff; transform:translateY(-1px); }
+    @media(max-width:600px){ .seo-steps-grid{grid-template-columns:1fr;} .seo-usecase-grid{grid-template-columns:1fr 1fr;} .formula-display{font-size:1.1rem;} .seo-tab-btn{padding:8px 12px;font-size:.82rem;} }
+    @media(max-width:400px){ .seo-usecase-grid{grid-template-columns:1fr;} }
+  </style>
+  <!-- SEO Rich Info Section -->
+  <div class="seo-info-section mt-4">
+    <div class="seo-intro-card"><p>Our free <strong>Stock Average Calculator</strong> helps you quickly compute the <strong>weighted average buy price</strong> of a stock or asset purchased in multiple lots. Whether you're <strong>averaging down</strong>, <strong>averaging up</strong>, or tracking a <strong>systematic investment plan (SIP)</strong> — get the true average cost per share instantly.</p></div>
+    <div class="seo-tabs-nav" role="tablist">
+      <button class="seo-tab-btn active" data-tab="how-to-use_avg" role="tab" aria-selected="true" aria-controls="tab-how-to-use_avg" id="btn-how-to-use_avg"><i class="fa-solid fa-circle-info me-1"></i> How to Use</button>
+      <button class="seo-tab-btn" data-tab="formula_avg" role="tab" aria-selected="false" aria-controls="tab-formula_avg" id="btn-formula_avg"><i class="fa-solid fa-square-root-variable me-1"></i> Formula</button>
+      <button class="seo-tab-btn" data-tab="use-cases_avg" role="tab" aria-selected="false" aria-controls="tab-use-cases_avg" id="btn-use-cases_avg"><i class="fa-solid fa-lightbulb me-1"></i> Use Cases</button>
+      <button class="seo-tab-btn" data-tab="faq_avg" role="tab" aria-selected="false" aria-controls="tab-faq_avg" id="btn-faq_avg"><i class="fa-solid fa-circle-question me-1"></i> FAQ</button>
+    </div>
+    <div class="seo-tab-panel active" id="tab-how-to-use_avg" role="tabpanel"><div class="seo-steps-grid">
+    <div class="seo-step-card">
+      <div class="seo-step-number">1</div>
+      <div class="seo-step-body"><h4>Enter the 1st Buy Price</h4><p>Type the price per share at which you made your <strong>first purchase</strong> (e.g., ₹150.00 or $50.00).</p></div>
+    </div>
+    <div class="seo-step-card">
+      <div class="seo-step-number">2</div>
+      <div class="seo-step-body"><h4>Enter the 1st Quantity</h4><p>Type the <strong>number of shares or units</strong> bought at the first price.</p></div>
+    </div>
+    <div class="seo-step-card">
+      <div class="seo-step-number">3</div>
+      <div class="seo-step-body"><h4>Enter the 2nd Buy Price</h4><p>Type the price per share for your <strong>second purchase</strong>.</p></div>
+    </div>
+    <div class="seo-step-card">
+      <div class="seo-step-number">4</div>
+      <div class="seo-step-body"><h4>Enter the 2nd Quantity</h4><p>Type the number of units bought at the second price. The tool computes the <strong>weighted average</strong> across both lots.</p></div>
+    </div>
+    <div class="seo-step-card">
+      <div class="seo-step-number">5</div>
+      <div class="seo-step-body"><h4>Click Calculate</h4><p>Hit <strong>Calculate</strong> to instantly see your <em>average buy price</em>, <em>total invested amount</em>, and <em>total quantity</em>.</p></div>
+    </div>
+    <div class="seo-step-card">
+      <div class="seo-step-number">6</div>
+      <div class="seo-step-body"><h4>Reset & Recalculate</h4><p>Use <strong>Reset</strong> to clear all fields and compute a fresh average for a different stock.</p></div>
+    </div>
+  </div></div>
+    <div class="seo-tab-panel" id="tab-formula_avg" role="tabpanel">
+  <div class="seo-formula-wrapper">
+    <div class="seo-formula-hero">
+      <span class="formula-label">Weighted Average Price Formula</span>
+      <div class="formula-display">Avg Price = (P1×Q1 + P2×Q2) ÷ (Q1 + Q2)</div>
+    </div>
+    <div class="seo-formula-steps">
+    <div class="seo-formula-step">
+      <i class="fa-solid fa-1 seo-formula-icon"></i>
+      <div><strong>Multiply each price by its quantity</strong><p>For each lot: <em>P1 × Q1</em> and <em>P2 × Q2</em>.</p></div>
+    </div>
+    <div class="seo-formula-step">
+      <i class="fa-solid fa-2 seo-formula-icon"></i>
+      <div><strong>Sum the total cost</strong><p><code class="seo-code-block">Total Cost = (P1 × Q1) + (P2 × Q2)</code></p></div>
+    </div>
+    <div class="seo-formula-step">
+      <i class="fa-solid fa-3 seo-formula-icon"></i>
+      <div><strong>Sum the total quantity</strong><p><code class="seo-code-block">Total Qty = Q1 + Q2</code></p></div>
+    </div>
+    <div class="seo-formula-step">
+      <i class="fa-solid fa-4 seo-formula-icon"></i>
+      <div><strong>Divide total cost by total quantity</strong><p><code class="seo-code-block">Avg Price = Total Cost / Total Qty</code></p></div>
+    </div>
+    <div class="seo-formula-example"><i class="fa-solid fa-flask me-2"></i><strong>Example:</strong> Buy 100 shares @ ₹200 + 150 shares @ ₹160 → Avg = (100×200 + 150×160) / 250 = <strong>₹176.00</strong></div></div>
+  </div></div>
+    <div class="seo-tab-panel" id="tab-use-cases_avg" role="tabpanel"><div class="seo-usecase-grid">
+    <div class="seo-usecase-card">
+      <i class="fa-solid fa-chart-line seo-usecase-icon" style="color:#4b2394;"></i>
+      <h4>Averaging Down (Stock Market)</h4><p>When a stock falls, buy more at a lower price to reduce your overall cost basis and break-even point.</p>
+    </div>
+    <div class="seo-usecase-card">
+      <i class="fa-solid fa-coins seo-usecase-icon" style="color:#e67e22;"></i>
+      <h4>Systematic Investment Plans</h4><p>Calculate the running average NAV of recurring SIP investments in mutual funds or ETFs.</p>
+    </div>
+    <div class="seo-usecase-card">
+      <i class="fa-solid fa-bitcoin-sign seo-usecase-icon" style="color:#f39c12;"></i>
+      <h4>Crypto DCA Strategy</h4><p>Dollar-Cost Averaging into Bitcoin or altcoins — track your blended purchase price.</p>
+    </div>
+    <div class="seo-usecase-card">
+      <i class="fa-solid fa-store seo-usecase-icon" style="color:#27ae60;"></i>
+      <h4>Inventory Management</h4><p>Calculate weighted average cost of goods for AVCO accounting in retail businesses.</p>
+    </div>
+    <div class="seo-usecase-card">
+      <i class="fa-solid fa-hand-holding-dollar seo-usecase-icon" style="color:#e74c3c;"></i>
+      <h4>Portfolio Rebalancing</h4><p>Know your true cost basis when adding to an existing position to assess unrealised P&L.</p>
+    </div>
+    <div class="seo-usecase-card">
+      <i class="fa-solid fa-graduation-cap seo-usecase-icon" style="color:#2980b9;"></i>
+      <h4>Learning Finance</h4><p>Students can verify textbook weighted average cost exercises instantly.</p>
+    </div>
+  </div></div>
+    <div class="seo-tab-panel" id="tab-faq_avg" role="tabpanel"><div class="seo-faq-list">
+    <div class="seo-faq-item">
+      <button class="seo-faq-question" aria-expanded="false" aria-controls="faq-avg-1">
+        <span>What is a stock average calculator?</span><i class="fa-solid fa-chevron-down seo-faq-chevron"></i>
+      </button>
+      <div class="seo-faq-answer" id="faq-avg-1"><p>A stock average calculator computes the weighted average price of shares bought at different prices and quantities, giving a single blended cost per share to compare against the current market price.</p></div>
+    </div>
+    <div class="seo-faq-item">
+      <button class="seo-faq-question" aria-expanded="false" aria-controls="faq-avg-2">
+        <span>Why do investors average down?</span><i class="fa-solid fa-chevron-down seo-faq-chevron"></i>
+      </button>
+      <div class="seo-faq-answer" id="faq-avg-2"><p>Averaging down means buying more shares as the price falls, reducing the average cost per share so you reach break-even sooner when the stock recovers.</p></div>
+    </div>
+    <div class="seo-faq-item">
+      <button class="seo-faq-question" aria-expanded="false" aria-controls="faq-avg-3">
+        <span>Is averaging down always a good strategy?</span><i class="fa-solid fa-chevron-down seo-faq-chevron"></i>
+      </button>
+      <div class="seo-faq-answer" id="faq-avg-3"><p>Not always. It works for temporary dips in strong companies but can amplify losses in fundamentally weak ones. Always research before averaging down.</p></div>
+    </div>
+    <div class="seo-faq-item">
+      <button class="seo-faq-question" aria-expanded="false" aria-controls="faq-avg-4">
+        <span>Does this tool support more than 2 buy lots?</span><i class="fa-solid fa-chevron-down seo-faq-chevron"></i>
+      </button>
+      <div class="seo-faq-answer" id="faq-avg-4"><p>Currently it supports 2 purchase lots. For more, use the result of the first two as the price/quantity for lot 1, then add lot 3.</p></div>
+    </div>
+    <div class="seo-faq-item">
+      <button class="seo-faq-question" aria-expanded="false" aria-controls="faq-avg-5">
+        <span>What is the difference between simple average and weighted average?</span><i class="fa-solid fa-chevron-down seo-faq-chevron"></i>
+      </button>
+      <div class="seo-faq-answer" id="faq-avg-5"><p>Simple average ignores quantity. Weighted average accounts for the number of shares at each price, giving a more accurate true cost basis.</p></div>
+    </div>
+    <div class="seo-faq-item">
+      <button class="seo-faq-question" aria-expanded="false" aria-controls="faq-avg-6">
+        <span>Can I use this for mutual fund NAV averaging?</span><i class="fa-solid fa-chevron-down seo-faq-chevron"></i>
+      </button>
+      <div class="seo-faq-answer" id="faq-avg-6"><p>Yes. Enter the NAV as the price and number of units purchased as the quantity for each SIP instalment.</p></div>
+    </div>
+  </div></div>
+    <div class="seo-related-strip">
+    <span class="seo-related-label"><i class="fa-solid fa-arrow-right-arrow-left me-1"></i>Related Tools:</span>
+    <a href="/profit-loss-calculator.html" class="seo-related-chip" title="Profit Loss Calculator">P/L Calculator</a>
+              <a href="/percentage-change-calculator.html" class="seo-related-chip" title="Percentage Change Calculator">% Change</a>
+              <a href="/percentage-calculator.html" class="seo-related-chip" title="Percentage Calculator">% Calculator</a>
+              <a href="/emi-calculator.html" class="seo-related-chip" title="EMI Calculator">EMI Calculator</a>
+              <a href="/tip-calculator.html" class="seo-related-chip" title="Tip Calculator">Tip Calculator</a>
+  </div>
+  </div>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{
+      "@type":"Question",
+      "name":"What is a stock average calculator?",
+      "acceptedAnswer":{"@type":"Answer","text":"A stock average calculator computes the weighted average price of shares bought at different prices and quantities, giving a single blended cost per share to compare against the current market price."}
+    },
+    {
+      "@type":"Question",
+      "name":"Why do investors average down?",
+      "acceptedAnswer":{"@type":"Answer","text":"Averaging down means buying more shares as the price falls, reducing the average cost per share so you reach break-even sooner when the stock recovers."}
+    },
+    {
+      "@type":"Question",
+      "name":"Is averaging down always a good strategy?",
+      "acceptedAnswer":{"@type":"Answer","text":"Not always. It works for temporary dips in strong companies but can amplify losses in fundamentally weak ones. Always research before averaging down."}
+    },
+    {
+      "@type":"Question",
+      "name":"Does this tool support more than 2 buy lots?",
+      "acceptedAnswer":{"@type":"Answer","text":"Currently it supports 2 purchase lots. For more, use the result of the first two as the price/quantity for lot 1, then add lot 3."}
+    },
+    {
+      "@type":"Question",
+      "name":"What is the difference between simple average and weighted average?",
+      "acceptedAnswer":{"@type":"Answer","text":"Simple average ignores quantity. Weighted average accounts for the number of shares at each price, giving a more accurate true cost basis."}
+    },
+    {
+      "@type":"Question",
+      "name":"Can I use this for mutual fund NAV averaging?",
+      "acceptedAnswer":{"@type":"Answer","text":"Yes. Enter the NAV as the price and number of units purchased as the quantity for each SIP instalment."}
+    }]}
+  </script>
+  <script id="seo-tab-js">
+    (function(){
+      document.querySelectorAll('.seo-tab-btn').forEach(function(btn){
+        btn.addEventListener('click',function(){
+          var tab=this.dataset.tab;
+          var section=this.closest('.seo-info-section');
+          section.querySelectorAll('.seo-tab-btn').forEach(function(b){b.classList.remove('active');b.setAttribute('aria-selected','false');});
+          section.querySelectorAll('.seo-tab-panel').forEach(function(p){p.classList.remove('active');});
+          this.classList.add('active');this.setAttribute('aria-selected','true');
+          document.getElementById('tab-'+tab).classList.add('active');
+        });
+      });
+      document.querySelectorAll('.seo-faq-question').forEach(function(btn){
+        btn.addEventListener('click',function(){
+          var answerId=this.getAttribute('aria-controls');
+          var answer=document.getElementById(answerId);
+          var isOpen=this.getAttribute('aria-expanded')==='true';
+          var list=this.closest('.seo-faq-list');
+          list.querySelectorAll('.seo-faq-question').forEach(function(b){b.setAttribute('aria-expanded','false');});
+          list.querySelectorAll('.seo-faq-answer').forEach(function(a){a.classList.remove('open');});
+          if(!isOpen){this.setAttribute('aria-expanded','true');answer.classList.add('open');}
+        });
+      });
+    })();
+  </script>
   <footer class="footer_main">
 
     <div>

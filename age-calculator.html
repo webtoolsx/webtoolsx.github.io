@@ -352,6 +352,250 @@ Days: 26 (10-15, adjusted for previous month)
       document.getElementById('age_days').textContent = '0';
     };
   </script>
+  
+  <style id="seo-section-styles">
+    .seo-info-section { margin-top: 2rem; }
+    .seo-intro-card {
+      background: linear-gradient(135deg, #f0eaff 0%, #fce8f8 100%);
+      border-left: 4px solid #7750b6;
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin-bottom: 1.5rem;
+      font-size: 0.97rem;
+      color: #2d0554;
+      line-height: 1.7;
+    }
+    .seo-tabs-nav { display:flex; flex-wrap:wrap; gap:8px; border-bottom:2px solid #e8e0f7; margin-bottom:1.5rem; }
+    .seo-tab-btn { background:none; border:none; padding:10px 18px; font-size:.9rem; font-family:inherit; font-weight:600; color:#7750b6; border-radius:8px 8px 0 0; cursor:pointer; transition:background .2s,color .2s; margin-bottom:-2px; border-bottom:3px solid transparent; }
+    .seo-tab-btn:hover { background:#f3eeff; }
+    .seo-tab-btn.active { color:#4b2394; border-bottom:3px solid #7750b6; background:#f3eeff; }
+    .seo-tab-panel { display:none; animation:fadeInTab .3s ease; }
+    .seo-tab-panel.active { display:block; }
+    @keyframes fadeInTab { from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);} }
+    .seo-steps-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:1rem; }
+    .seo-step-card { display:flex; gap:14px; align-items:flex-start; background:#fff; border:1px solid #ece5ff; border-radius:12px; padding:16px 18px; box-shadow:0 2px 10px rgba(119,80,182,.07); transition:transform .2s,box-shadow .2s; }
+    .seo-step-card:hover { transform:translateY(-2px); box-shadow:0 6px 20px rgba(119,80,182,.13); }
+    .seo-step-number { min-width:34px; height:34px; border-radius:50%; background:linear-gradient(135deg,#7750b6,#4b2394); color:#fff; font-size:1rem; font-weight:700; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .seo-step-body h4 { font-size:.95rem; font-weight:700; margin-bottom:4px; color:#2d0554; }
+    .seo-step-body p  { font-size:.85rem; color:#555; margin:0; line-height:1.6; }
+    .seo-formula-wrapper { display:flex; flex-direction:column; gap:1.2rem; }
+    .seo-formula-hero { background:linear-gradient(135deg,#4b2394 0%,#7750b6 100%); color:#fff; border-radius:14px; padding:24px 28px; text-align:center; }
+    .formula-label { font-size:.8rem; text-transform:uppercase; letter-spacing:2px; opacity:.75; display:block; margin-bottom:12px; }
+    .formula-display { font-size:1.4rem; font-weight:700; display:flex; align-items:center; justify-content:center; gap:10px; flex-wrap:wrap; }
+    .seo-formula-steps { display:flex; flex-direction:column; gap:1rem; }
+    .seo-formula-step { display:flex; gap:16px; align-items:flex-start; background:#fafafa; border:1px solid #eee; border-radius:10px; padding:14px 16px; }
+    .seo-formula-icon { color:#7750b6; font-size:1.1rem; margin-top:2px; min-width:20px; }
+    .seo-formula-step strong { font-size:.95rem; color:#2d0554; display:block; margin-bottom:4px; }
+    .seo-formula-step p { font-size:.85rem; color:#555; margin:0; line-height:1.5; }
+    .seo-code-block { display:inline-block; background:#f0eaff; color:#4b2394; border-radius:6px; padding:3px 10px; font-family:'Roboto Mono',monospace; font-size:.82rem; margin-top:6px; }
+    .seo-formula-example { background:rgba(40,167,69,.08); border:1px solid #28a745; border-radius:10px; padding:14px 18px; font-size:.9rem; color:#1a3d22; line-height:1.6; }
+    .seo-usecase-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:1rem; }
+    .seo-usecase-card { background:#fff; border:1px solid #ece5ff; border-radius:12px; padding:18px; text-align:center; box-shadow:0 2px 10px rgba(0,0,0,.05); transition:transform .2s,box-shadow .2s; }
+    .seo-usecase-card:hover { transform:translateY(-3px); box-shadow:0 8px 22px rgba(119,80,182,.12); }
+    .seo-usecase-icon { font-size:2rem; margin-bottom:10px; display:block; }
+    .seo-usecase-card h4 { font-size:.95rem; font-weight:700; color:#2d0554; margin-bottom:6px; }
+    .seo-usecase-card p  { font-size:.83rem; color:#555; margin:0; line-height:1.55; }
+    .seo-faq-list { display:flex; flex-direction:column; gap:10px; }
+    .seo-faq-item { background:#fff; border:1px solid #ece5ff; border-radius:12px; overflow:hidden; box-shadow:0 2px 8px rgba(119,80,182,.06); }
+    .seo-faq-question { width:100%; background:none; border:none; padding:16px 18px; display:flex; justify-content:space-between; align-items:center; font-family:inherit; font-size:.95rem; font-weight:600; color:#2d0554; cursor:pointer; text-align:left; transition:background .2s; }
+    .seo-faq-question:hover { background:#f8f4ff; }
+    .seo-faq-chevron { transition:transform .3s; color:#7750b6; font-size:.85rem; flex-shrink:0; margin-left:12px; }
+    .seo-faq-question[aria-expanded="true"] .seo-faq-chevron { transform:rotate(180deg); }
+    .seo-faq-answer { max-height:0; overflow:hidden; transition:max-height .35s ease,padding .25s ease; padding:0 18px; }
+    .seo-faq-answer.open { max-height:300px; padding:0 18px 16px; }
+    .seo-faq-answer p { font-size:.88rem; color:#444; line-height:1.7; margin:0; }
+    .seo-related-strip { display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin-top:2rem; padding:14px 16px; background:#f8f4ff; border-radius:12px; border:1px solid #ece5ff; }
+    .seo-related-label { font-size:.85rem; font-weight:700; color:#4b2394; white-space:nowrap; }
+    .seo-related-chip { display:inline-block; background:#fff; border:1px solid #c9b8f0; border-radius:20px; padding:4px 14px; font-size:.82rem; font-weight:600; color:#4b2394; text-decoration:none; transition:background .2s,color .2s,transform .2s; }
+    .seo-related-chip:hover { background:#7750b6; color:#fff; transform:translateY(-1px); }
+    @media(max-width:600px){ .seo-steps-grid{grid-template-columns:1fr;} .seo-usecase-grid{grid-template-columns:1fr 1fr;} .formula-display{font-size:1.1rem;} .seo-tab-btn{padding:8px 12px;font-size:.82rem;} }
+    @media(max-width:400px){ .seo-usecase-grid{grid-template-columns:1fr;} }
+  </style>
+  <!-- SEO Rich Info Section -->
+  <div class="seo-info-section mt-4">
+    <div class="seo-intro-card"><p>Our free <strong>Age Calculator</strong> lets you instantly compute your <strong>exact age in years, months, and days</strong>. Whether you need to know <strong>how old you are today</strong>, calculate someone's age from a <strong>date of birth</strong>, or find the <strong>date difference between two dates</strong> — this tool gives you precise results in one click.</p></div>
+    <div class="seo-tabs-nav" role="tablist">
+      <button class="seo-tab-btn active" data-tab="how-to-use_age" role="tab" aria-selected="true" aria-controls="tab-how-to-use_age" id="btn-how-to-use_age"><i class="fa-solid fa-circle-info me-1"></i> How to Use</button>
+      <button class="seo-tab-btn" data-tab="formula_age" role="tab" aria-selected="false" aria-controls="tab-formula_age" id="btn-formula_age"><i class="fa-solid fa-square-root-variable me-1"></i> Formula</button>
+      <button class="seo-tab-btn" data-tab="use-cases_age" role="tab" aria-selected="false" aria-controls="tab-use-cases_age" id="btn-use-cases_age"><i class="fa-solid fa-lightbulb me-1"></i> Use Cases</button>
+      <button class="seo-tab-btn" data-tab="faq_age" role="tab" aria-selected="false" aria-controls="tab-faq_age" id="btn-faq_age"><i class="fa-solid fa-circle-question me-1"></i> FAQ</button>
+    </div>
+    <div class="seo-tab-panel active" id="tab-how-to-use_age" role="tabpanel"><div class="seo-steps-grid">
+    <div class="seo-step-card">
+      <div class="seo-step-number">1</div>
+      <div class="seo-step-body"><h4>Enter Your Date of Birth</h4><p>Type or pick your <strong>birth date</strong> from the date picker. Any valid past date is accepted.</p></div>
+    </div>
+    <div class="seo-step-card">
+      <div class="seo-step-number">2</div>
+      <div class="seo-step-body"><h4>Set the Reference Date</h4><p>The <strong>"As of Date"</strong> defaults to today. Change it to any date to calculate age at that point in time.</p></div>
+    </div>
+    <div class="seo-step-card">
+      <div class="seo-step-number">3</div>
+      <div class="seo-step-body"><h4>Click Calculate</h4><p>Hit <strong>Calculate</strong>. Your age appears instantly in <em>years</em>, <em>months</em>, and <em>days</em>.</p></div>
+    </div>
+    <div class="seo-step-card">
+      <div class="seo-step-number">4</div>
+      <div class="seo-step-body"><h4>Read Your Results</h4><p>See <strong>total years</strong> (main age) plus remaining <strong>months</strong> and <strong>days</strong>. Useful for legal, medical, or personal tracking.</p></div>
+    </div>
+    <div class="seo-step-card">
+      <div class="seo-step-number">5</div>
+      <div class="seo-step-body"><h4>Reset & Recalculate</h4><p>Use <strong>Reset</strong> to clear inputs and start fresh for a new date.</p></div>
+    </div>
+  </div></div>
+    <div class="seo-tab-panel" id="tab-formula_age" role="tabpanel">
+  <div class="seo-formula-wrapper">
+    <div class="seo-formula-hero">
+      <span class="formula-label">Age Calculation Method</span>
+      <div class="formula-display">Age = Reference Date − Date of Birth</div>
+    </div>
+    <div class="seo-formula-steps">
+    <div class="seo-formula-step">
+      <i class="fa-solid fa-1 seo-formula-icon"></i>
+      <div><strong>Subtract birth year from current year</strong><p><em>Years = Current Year − Birth Year</em> (raw count).</p></div>
+    </div>
+    <div class="seo-formula-step">
+      <i class="fa-solid fa-2 seo-formula-icon"></i>
+      <div><strong>Adjust for month & day</strong><p>If today's month/day hasn't passed the birth month/day yet this year, subtract 1 from years.</p></div>
+    </div>
+    <div class="seo-formula-step">
+      <i class="fa-solid fa-3 seo-formula-icon"></i>
+      <div><strong>Handle month carry-over</strong><p>If current day &lt; birth day, borrow days from the previous month for accurate day count.</p></div>
+    </div>
+    <div class="seo-formula-step">
+      <i class="fa-solid fa-4 seo-formula-icon"></i>
+      <div><strong>Example</strong><p>Born May 15, 2000 → Today June 10, 2026 = <strong>26 years, 0 months, 26 days</strong>.</p></div>
+    </div></div>
+  </div></div>
+    <div class="seo-tab-panel" id="tab-use-cases_age" role="tabpanel"><div class="seo-usecase-grid">
+    <div class="seo-usecase-card">
+      <i class="fa-solid fa-baby seo-usecase-icon" style="color:#4b2394;"></i>
+      <h4>Child Development</h4><p>Track a child's age precisely for school enrollment, vaccination schedules, and milestones.</p>
+    </div>
+    <div class="seo-usecase-card">
+      <i class="fa-solid fa-gavel seo-usecase-icon" style="color:#e67e22;"></i>
+      <h4>Legal & Official Age</h4><p>Verify age thresholds for voting, retirement, driving licences, or insurance eligibility.</p>
+    </div>
+    <div class="seo-usecase-card">
+      <i class="fa-solid fa-cake-candles seo-usecase-icon" style="color:#e74c3c;"></i>
+      <h4>Birthday Countdown</h4><p>Find exactly how many days until or since a birthday.</p>
+    </div>
+    <div class="seo-usecase-card">
+      <i class="fa-solid fa-user-doctor seo-usecase-icon" style="color:#27ae60;"></i>
+      <h4>Medical Records</h4><p>Doctors use exact age for dosage calculations and patient history.</p>
+    </div>
+    <div class="seo-usecase-card">
+      <i class="fa-solid fa-graduation-cap seo-usecase-icon" style="color:#2980b9;"></i>
+      <h4>School Admissions</h4><p>Determine cut-off age eligibility for school or college applications.</p>
+    </div>
+    <div class="seo-usecase-card">
+      <i class="fa-solid fa-passport seo-usecase-icon" style="color:#f39c12;"></i>
+      <h4>Visa & Immigration</h4><p>Verify age requirements for visas, passports, and international travel.</p>
+    </div>
+  </div></div>
+    <div class="seo-tab-panel" id="tab-faq_age" role="tabpanel"><div class="seo-faq-list">
+    <div class="seo-faq-item">
+      <button class="seo-faq-question" aria-expanded="false" aria-controls="faq-age-1">
+        <span>How does the age calculator work?</span><i class="fa-solid fa-chevron-down seo-faq-chevron"></i>
+      </button>
+      <div class="seo-faq-answer" id="faq-age-1"><p>The calculator subtracts your date of birth from the reference date (today by default), accounting for leap years and varying month lengths, returning exact years, months, and days.</p></div>
+    </div>
+    <div class="seo-faq-item">
+      <button class="seo-faq-question" aria-expanded="false" aria-controls="faq-age-2">
+        <span>Can I calculate age for a future date?</span><i class="fa-solid fa-chevron-down seo-faq-chevron"></i>
+      </button>
+      <div class="seo-faq-answer" id="faq-age-2"><p>Yes. Change the "As of Date" field to any future date to find out how old someone will be at that point.</p></div>
+    </div>
+    <div class="seo-faq-item">
+      <button class="seo-faq-question" aria-expanded="false" aria-controls="faq-age-3">
+        <span>Does it account for leap years?</span><i class="fa-solid fa-chevron-down seo-faq-chevron"></i>
+      </button>
+      <div class="seo-faq-answer" id="faq-age-3"><p>Yes. The tool correctly handles February 29 leap days when computing month and day differences.</p></div>
+    </div>
+    <div class="seo-faq-item">
+      <button class="seo-faq-question" aria-expanded="false" aria-controls="faq-age-4">
+        <span>What if I enter a future birth date?</span><i class="fa-solid fa-chevron-down seo-faq-chevron"></i>
+      </button>
+      <div class="seo-faq-answer" id="faq-age-4"><p>If the birth date is after the reference date, the result returns 0 years, 0 months, 0 days since age would be negative.</p></div>
+    </div>
+    <div class="seo-faq-item">
+      <button class="seo-faq-question" aria-expanded="false" aria-controls="faq-age-5">
+        <span>How accurate is the day count?</span><i class="fa-solid fa-chevron-down seo-faq-chevron"></i>
+      </button>
+      <div class="seo-faq-answer" id="faq-age-5"><p>Very accurate. The tool uses standard calendar month lengths and borrows days from the previous month when the birth day hasn't occurred yet.</p></div>
+    </div>
+    <div class="seo-faq-item">
+      <button class="seo-faq-question" aria-expanded="false" aria-controls="faq-age-6">
+        <span>Can I use this to calculate the age of a company or project?</span><i class="fa-solid fa-chevron-down seo-faq-chevron"></i>
+      </button>
+      <div class="seo-faq-answer" id="faq-age-6"><p>Absolutely. Enter the founding date as "Date of Birth" and any target date as the reference to compute elapsed duration.</p></div>
+    </div>
+  </div></div>
+    <div class="seo-related-strip">
+    <span class="seo-related-label"><i class="fa-solid fa-arrow-right-arrow-left me-1"></i>Related Tools:</span>
+    <a href="/percentage-calculator.html" class="seo-related-chip" title="Percentage Calculator">% Calculator</a>
+              <a href="/emi-calculator.html" class="seo-related-chip" title="Loan EMI Calculator">EMI Calculator</a>
+              <a href="/tip-calculator.html" class="seo-related-chip" title="Tip Calculator">Tip Calculator</a>
+              <a href="/average-calculator.html" class="seo-related-chip" title="Average Calculator">Average Calc</a>
+              <a href="/profit-loss-calculator.html" class="seo-related-chip" title="Profit Loss Calculator">P/L Calculator</a>
+  </div>
+  </div>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{
+      "@type":"Question",
+      "name":"How does the age calculator work?",
+      "acceptedAnswer":{"@type":"Answer","text":"The calculator subtracts your date of birth from the reference date (today by default), accounting for leap years and varying month lengths, returning exact years, months, and days."}
+    },
+    {
+      "@type":"Question",
+      "name":"Can I calculate age for a future date?",
+      "acceptedAnswer":{"@type":"Answer","text":"Yes. Change the \"As of Date\" field to any future date to find out how old someone will be at that point."}
+    },
+    {
+      "@type":"Question",
+      "name":"Does it account for leap years?",
+      "acceptedAnswer":{"@type":"Answer","text":"Yes. The tool correctly handles February 29 leap days when computing month and day differences."}
+    },
+    {
+      "@type":"Question",
+      "name":"What if I enter a future birth date?",
+      "acceptedAnswer":{"@type":"Answer","text":"If the birth date is after the reference date, the result returns 0 years, 0 months, 0 days since age would be negative."}
+    },
+    {
+      "@type":"Question",
+      "name":"How accurate is the day count?",
+      "acceptedAnswer":{"@type":"Answer","text":"Very accurate. The tool uses standard calendar month lengths and borrows days from the previous month when the birth day hasn't occurred yet."}
+    },
+    {
+      "@type":"Question",
+      "name":"Can I use this to calculate the age of a company or project?",
+      "acceptedAnswer":{"@type":"Answer","text":"Absolutely. Enter the founding date as \"Date of Birth\" and any target date as the reference to compute elapsed duration."}
+    }]}
+  </script>
+  <script id="seo-tab-js">
+    (function(){
+      document.querySelectorAll('.seo-tab-btn').forEach(function(btn){
+        btn.addEventListener('click',function(){
+          var tab=this.dataset.tab;
+          var section=this.closest('.seo-info-section');
+          section.querySelectorAll('.seo-tab-btn').forEach(function(b){b.classList.remove('active');b.setAttribute('aria-selected','false');});
+          section.querySelectorAll('.seo-tab-panel').forEach(function(p){p.classList.remove('active');});
+          this.classList.add('active');this.setAttribute('aria-selected','true');
+          document.getElementById('tab-'+tab).classList.add('active');
+        });
+      });
+      document.querySelectorAll('.seo-faq-question').forEach(function(btn){
+        btn.addEventListener('click',function(){
+          var answerId=this.getAttribute('aria-controls');
+          var answer=document.getElementById(answerId);
+          var isOpen=this.getAttribute('aria-expanded')==='true';
+          var list=this.closest('.seo-faq-list');
+          list.querySelectorAll('.seo-faq-question').forEach(function(b){b.setAttribute('aria-expanded','false');});
+          list.querySelectorAll('.seo-faq-answer').forEach(function(a){a.classList.remove('open');});
+          if(!isOpen){this.setAttribute('aria-expanded','true');answer.classList.add('open');}
+        });
+      });
+    })();
+  </script>
   <footer class="footer_main">
     <div>
       <a href="/" style="color: white; margin: 0 15px; text-decoration: none;" class="footer-logo"><img src="favicon.png" alt="WebToolsX Favicon Logo"></a>

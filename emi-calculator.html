@@ -448,6 +448,255 @@
 
  
 
+  
+  <style id="seo-section-styles">
+    .seo-info-section { margin-top: 2rem; }
+    .seo-intro-card {
+      background: linear-gradient(135deg, #f0eaff 0%, #fce8f8 100%);
+      border-left: 4px solid #7750b6;
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin-bottom: 1.5rem;
+      font-size: 0.97rem;
+      color: #2d0554;
+      line-height: 1.7;
+    }
+    .seo-tabs-nav { display:flex; flex-wrap:wrap; gap:8px; border-bottom:2px solid #e8e0f7; margin-bottom:1.5rem; }
+    .seo-tab-btn { background:none; border:none; padding:10px 18px; font-size:.9rem; font-family:inherit; font-weight:600; color:#7750b6; border-radius:8px 8px 0 0; cursor:pointer; transition:background .2s,color .2s; margin-bottom:-2px; border-bottom:3px solid transparent; }
+    .seo-tab-btn:hover { background:#f3eeff; }
+    .seo-tab-btn.active { color:#4b2394; border-bottom:3px solid #7750b6; background:#f3eeff; }
+    .seo-tab-panel { display:none; animation:fadeInTab .3s ease; }
+    .seo-tab-panel.active { display:block; }
+    @keyframes fadeInTab { from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);} }
+    .seo-steps-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:1rem; }
+    .seo-step-card { display:flex; gap:14px; align-items:flex-start; background:#fff; border:1px solid #ece5ff; border-radius:12px; padding:16px 18px; box-shadow:0 2px 10px rgba(119,80,182,.07); transition:transform .2s,box-shadow .2s; }
+    .seo-step-card:hover { transform:translateY(-2px); box-shadow:0 6px 20px rgba(119,80,182,.13); }
+    .seo-step-number { min-width:34px; height:34px; border-radius:50%; background:linear-gradient(135deg,#7750b6,#4b2394); color:#fff; font-size:1rem; font-weight:700; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .seo-step-body h4 { font-size:.95rem; font-weight:700; margin-bottom:4px; color:#2d0554; }
+    .seo-step-body p  { font-size:.85rem; color:#555; margin:0; line-height:1.6; }
+    .seo-formula-wrapper { display:flex; flex-direction:column; gap:1.2rem; }
+    .seo-formula-hero { background:linear-gradient(135deg,#4b2394 0%,#7750b6 100%); color:#fff; border-radius:14px; padding:24px 28px; text-align:center; }
+    .formula-label { font-size:.8rem; text-transform:uppercase; letter-spacing:2px; opacity:.75; display:block; margin-bottom:12px; }
+    .formula-display { font-size:1.4rem; font-weight:700; display:flex; align-items:center; justify-content:center; gap:10px; flex-wrap:wrap; }
+    .seo-formula-steps { display:flex; flex-direction:column; gap:1rem; }
+    .seo-formula-step { display:flex; gap:16px; align-items:flex-start; background:#fafafa; border:1px solid #eee; border-radius:10px; padding:14px 16px; }
+    .seo-formula-icon { color:#7750b6; font-size:1.1rem; margin-top:2px; min-width:20px; }
+    .seo-formula-step strong { font-size:.95rem; color:#2d0554; display:block; margin-bottom:4px; }
+    .seo-formula-step p { font-size:.85rem; color:#555; margin:0; line-height:1.5; }
+    .seo-code-block { display:inline-block; background:#f0eaff; color:#4b2394; border-radius:6px; padding:3px 10px; font-family:'Roboto Mono',monospace; font-size:.82rem; margin-top:6px; }
+    .seo-formula-example { background:rgba(40,167,69,.08); border:1px solid #28a745; border-radius:10px; padding:14px 18px; font-size:.9rem; color:#1a3d22; line-height:1.6; }
+    .seo-usecase-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:1rem; }
+    .seo-usecase-card { background:#fff; border:1px solid #ece5ff; border-radius:12px; padding:18px; text-align:center; box-shadow:0 2px 10px rgba(0,0,0,.05); transition:transform .2s,box-shadow .2s; }
+    .seo-usecase-card:hover { transform:translateY(-3px); box-shadow:0 8px 22px rgba(119,80,182,.12); }
+    .seo-usecase-icon { font-size:2rem; margin-bottom:10px; display:block; }
+    .seo-usecase-card h4 { font-size:.95rem; font-weight:700; color:#2d0554; margin-bottom:6px; }
+    .seo-usecase-card p  { font-size:.83rem; color:#555; margin:0; line-height:1.55; }
+    .seo-faq-list { display:flex; flex-direction:column; gap:10px; }
+    .seo-faq-item { background:#fff; border:1px solid #ece5ff; border-radius:12px; overflow:hidden; box-shadow:0 2px 8px rgba(119,80,182,.06); }
+    .seo-faq-question { width:100%; background:none; border:none; padding:16px 18px; display:flex; justify-content:space-between; align-items:center; font-family:inherit; font-size:.95rem; font-weight:600; color:#2d0554; cursor:pointer; text-align:left; transition:background .2s; }
+    .seo-faq-question:hover { background:#f8f4ff; }
+    .seo-faq-chevron { transition:transform .3s; color:#7750b6; font-size:.85rem; flex-shrink:0; margin-left:12px; }
+    .seo-faq-question[aria-expanded="true"] .seo-faq-chevron { transform:rotate(180deg); }
+    .seo-faq-answer { max-height:0; overflow:hidden; transition:max-height .35s ease,padding .25s ease; padding:0 18px; }
+    .seo-faq-answer.open { max-height:300px; padding:0 18px 16px; }
+    .seo-faq-answer p { font-size:.88rem; color:#444; line-height:1.7; margin:0; }
+    .seo-related-strip { display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin-top:2rem; padding:14px 16px; background:#f8f4ff; border-radius:12px; border:1px solid #ece5ff; }
+    .seo-related-label { font-size:.85rem; font-weight:700; color:#4b2394; white-space:nowrap; }
+    .seo-related-chip { display:inline-block; background:#fff; border:1px solid #c9b8f0; border-radius:20px; padding:4px 14px; font-size:.82rem; font-weight:600; color:#4b2394; text-decoration:none; transition:background .2s,color .2s,transform .2s; }
+    .seo-related-chip:hover { background:#7750b6; color:#fff; transform:translateY(-1px); }
+    @media(max-width:600px){ .seo-steps-grid{grid-template-columns:1fr;} .seo-usecase-grid{grid-template-columns:1fr 1fr;} .formula-display{font-size:1.1rem;} .seo-tab-btn{padding:8px 12px;font-size:.82rem;} }
+    @media(max-width:400px){ .seo-usecase-grid{grid-template-columns:1fr;} }
+  </style>
+  <!-- SEO Rich Info Section -->
+  <div class="seo-info-section mt-4">
+    <div class="seo-intro-card"><p>Our free <strong>Loan EMI Calculator</strong> helps you instantly compute your <strong>monthly EMI (Equated Monthly Installment)</strong>, <strong>total interest payable</strong>, and <strong>total repayment amount</strong>. Use it for <strong>home loans</strong>, <strong>car loans</strong>, <strong>personal loans</strong>, or any fixed-rate loan — no spreadsheet needed.</p></div>
+    <div class="seo-tabs-nav" role="tablist">
+      <button class="seo-tab-btn active" data-tab="how-to-use_emi" role="tab" aria-selected="true" aria-controls="tab-how-to-use_emi" id="btn-how-to-use_emi"><i class="fa-solid fa-circle-info me-1"></i> How to Use</button>
+      <button class="seo-tab-btn" data-tab="formula_emi" role="tab" aria-selected="false" aria-controls="tab-formula_emi" id="btn-formula_emi"><i class="fa-solid fa-square-root-variable me-1"></i> Formula</button>
+      <button class="seo-tab-btn" data-tab="use-cases_emi" role="tab" aria-selected="false" aria-controls="tab-use-cases_emi" id="btn-use-cases_emi"><i class="fa-solid fa-lightbulb me-1"></i> Use Cases</button>
+      <button class="seo-tab-btn" data-tab="faq_emi" role="tab" aria-selected="false" aria-controls="tab-faq_emi" id="btn-faq_emi"><i class="fa-solid fa-circle-question me-1"></i> FAQ</button>
+    </div>
+    <div class="seo-tab-panel active" id="tab-how-to-use_emi" role="tabpanel"><div class="seo-steps-grid">
+    <div class="seo-step-card">
+      <div class="seo-step-number">1</div>
+      <div class="seo-step-body"><h4>Enter the Loan Amount</h4><p>Type the <strong>principal amount</strong> you wish to borrow (e.g., ₹5,00,000 or $10,000).</p></div>
+    </div>
+    <div class="seo-step-card">
+      <div class="seo-step-number">2</div>
+      <div class="seo-step-body"><h4>Enter the Annual Interest Rate</h4><p>Type your loan's <strong>annual interest rate</strong> as a percentage (e.g., 8.5). Monthly rate is computed automatically.</p></div>
+    </div>
+    <div class="seo-step-card">
+      <div class="seo-step-number">3</div>
+      <div class="seo-step-body"><h4>Enter the Loan Tenure</h4><p>Set the <strong>repayment period</strong> in months (e.g., 60 for 5 years or 240 for 20 years).</p></div>
+    </div>
+    <div class="seo-step-card">
+      <div class="seo-step-number">4</div>
+      <div class="seo-step-body"><h4>Click Calculate</h4><p>Hit <strong>Calculate</strong> to instantly see your <em>monthly EMI</em>, <em>total interest paid</em>, and <em>total payment</em>.</p></div>
+    </div>
+    <div class="seo-step-card">
+      <div class="seo-step-number">5</div>
+      <div class="seo-step-body"><h4>Review the Breakdown</h4><p>Use the result panel and chart to compare the <strong>principal vs interest</strong> split and plan affordability.</p></div>
+    </div>
+    <div class="seo-step-card">
+      <div class="seo-step-number">6</div>
+      <div class="seo-step-body"><h4>Reset & Try Scenarios</h4><p>Hit <strong>Reset</strong> and try different amounts, tenures, or rates to compare EMI scenarios before finalising.</p></div>
+    </div>
+  </div></div>
+    <div class="seo-tab-panel" id="tab-formula_emi" role="tabpanel">
+  <div class="seo-formula-wrapper">
+    <div class="seo-formula-hero">
+      <span class="formula-label">EMI Formula</span>
+      <div class="formula-display">EMI = [P × R × (1+R)ⁿ] ÷ [(1+R)ⁿ − 1]</div>
+    </div>
+    <div class="seo-formula-steps">
+    <div class="seo-formula-step">
+      <i class="fa-solid fa-1 seo-formula-icon"></i>
+      <div><strong>P = Principal Loan Amount</strong><p>The total amount borrowed (e.g., ₹5,00,000).</p></div>
+    </div>
+    <div class="seo-formula-step">
+      <i class="fa-solid fa-2 seo-formula-icon"></i>
+      <div><strong>R = Monthly Interest Rate</strong><p>Annual rate ÷ 12 ÷ 100. For 8.4% annual: <code class="seo-code-block">R = 8.4 / 12 / 100 = 0.007</code></p></div>
+    </div>
+    <div class="seo-formula-step">
+      <i class="fa-solid fa-3 seo-formula-icon"></i>
+      <div><strong>N = Loan Tenure in Months</strong><p>For a 5-year loan: <code class="seo-code-block">N = 5 × 12 = 60 months</code></p></div>
+    </div>
+    <div class="seo-formula-step">
+      <i class="fa-solid fa-4 seo-formula-icon"></i>
+      <div><strong>Example</strong><p>P=₹5L, R=8.4%p.a., N=60 months → <strong>EMI ≈ ₹10,224/month</strong></p></div>
+    </div>
+    <div class="seo-formula-example"><i class="fa-solid fa-flask me-2"></i><strong>Example:</strong> ₹5,00,000 loan at 8.4% p.a. for 5 years → EMI ≈ <strong>₹10,224/month</strong> | Total Interest ≈ <strong>₹1,13,440</strong></div></div>
+  </div></div>
+    <div class="seo-tab-panel" id="tab-use-cases_emi" role="tabpanel"><div class="seo-usecase-grid">
+    <div class="seo-usecase-card">
+      <i class="fa-solid fa-house seo-usecase-icon" style="color:#4b2394;"></i>
+      <h4>Home Loan Planning</h4><p>Calculate your monthly mortgage before applying for a housing loan to check affordability.</p>
+    </div>
+    <div class="seo-usecase-card">
+      <i class="fa-solid fa-car seo-usecase-icon" style="color:#e67e22;"></i>
+      <h4>Car Loan Calculator</h4><p>Find your monthly car EMI for any loan amount and tenure before visiting the dealership.</p>
+    </div>
+    <div class="seo-usecase-card">
+      <i class="fa-solid fa-briefcase seo-usecase-icon" style="color:#27ae60;"></i>
+      <h4>Personal Loan Check</h4><p>Evaluate personal loan offers from multiple lenders by comparing EMIs side-by-side.</p>
+    </div>
+    <div class="seo-usecase-card">
+      <i class="fa-solid fa-graduation-cap seo-usecase-icon" style="color:#2980b9;"></i>
+      <h4>Education Loan Planning</h4><p>Plan education loan repayment for college studies with a clear monthly outflow.</p>
+    </div>
+    <div class="seo-usecase-card">
+      <i class="fa-solid fa-store seo-usecase-icon" style="color:#e74c3c;"></i>
+      <h4>Business Loan Analysis</h4><p>Calculate repayment schedules for MSME or startup loans to ensure positive cash flow.</p>
+    </div>
+    <div class="seo-usecase-card">
+      <i class="fa-solid fa-credit-card seo-usecase-icon" style="color:#f39c12;"></i>
+      <h4>Debt Consolidation</h4><p>Compare EMIs of multiple smaller debts vs one consolidated loan to optimise repayment.</p>
+    </div>
+  </div></div>
+    <div class="seo-tab-panel" id="tab-faq_emi" role="tabpanel"><div class="seo-faq-list">
+    <div class="seo-faq-item">
+      <button class="seo-faq-question" aria-expanded="false" aria-controls="faq-emi-1">
+        <span>What is EMI?</span><i class="fa-solid fa-chevron-down seo-faq-chevron"></i>
+      </button>
+      <div class="seo-faq-answer" id="faq-emi-1"><p>EMI (Equated Monthly Installment) is a fixed monthly payment to repay a loan over a set period. Each payment covers both principal repayment and interest charges.</p></div>
+    </div>
+    <div class="seo-faq-item">
+      <button class="seo-faq-question" aria-expanded="false" aria-controls="faq-emi-2">
+        <span>Does a higher tenure reduce EMI?</span><i class="fa-solid fa-chevron-down seo-faq-chevron"></i>
+      </button>
+      <div class="seo-faq-answer" id="faq-emi-2"><p>Yes. A longer tenure spreads the loan over more months, reducing the monthly EMI. However, you pay significantly more total interest over the life of the loan.</p></div>
+    </div>
+    <div class="seo-faq-item">
+      <button class="seo-faq-question" aria-expanded="false" aria-controls="faq-emi-3">
+        <span>How does interest rate affect EMI?</span><i class="fa-solid fa-chevron-down seo-faq-chevron"></i>
+      </button>
+      <div class="seo-faq-answer" id="faq-emi-3"><p>Even a 0.5% difference in interest rate can significantly change your EMI and total interest over a long-term loan. Always compare rates across lenders.</p></div>
+    </div>
+    <div class="seo-faq-item">
+      <button class="seo-faq-question" aria-expanded="false" aria-controls="faq-emi-4">
+        <span>What is a pre-payment and how does it affect EMI?</span><i class="fa-solid fa-chevron-down seo-faq-chevron"></i>
+      </button>
+      <div class="seo-faq-answer" id="faq-emi-4"><p>A pre-payment is an extra lump-sum towards the principal, which either lowers future EMIs or shortens the tenure depending on your bank's policy.</p></div>
+    </div>
+    <div class="seo-faq-item">
+      <button class="seo-faq-question" aria-expanded="false" aria-controls="faq-emi-5">
+        <span>Is the EMI formula the same for all types of loans?</span><i class="fa-solid fa-chevron-down seo-faq-chevron"></i>
+      </button>
+      <div class="seo-faq-answer" id="faq-emi-5"><p>Yes, the standard EMI formula applies to any fixed-rate loan — home, car, personal, or business. Floating rate loans have variable EMIs as the rate changes.</p></div>
+    </div>
+    <div class="seo-faq-item">
+      <button class="seo-faq-question" aria-expanded="false" aria-controls="faq-emi-6">
+        <span>How can I lower my EMI?</span><i class="fa-solid fa-chevron-down seo-faq-chevron"></i>
+      </button>
+      <div class="seo-faq-answer" id="faq-emi-6"><p>Lower your EMI by: (1) Negotiating a lower rate, (2) Increasing tenure, (3) Making a larger down payment, or (4) Pre-paying when possible.</p></div>
+    </div>
+  </div></div>
+    <div class="seo-related-strip">
+    <span class="seo-related-label"><i class="fa-solid fa-arrow-right-arrow-left me-1"></i>Related Tools:</span>
+    <a href="/profit-loss-calculator.html" class="seo-related-chip" title="Profit Loss Calculator">P/L Calculator</a>
+              <a href="/percentage-calculator.html" class="seo-related-chip" title="Percentage Calculator">% Calculator</a>
+              <a href="/average-calculator.html" class="seo-related-chip" title="Average Calculator">Average Calc</a>
+              <a href="/tip-calculator.html" class="seo-related-chip" title="Tip Calculator">Tip Calculator</a>
+              <a href="/percentage-change-calculator.html" class="seo-related-chip" title="% Change Calculator">% Change</a>
+  </div>
+  </div>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{
+      "@type":"Question",
+      "name":"What is EMI?",
+      "acceptedAnswer":{"@type":"Answer","text":"EMI (Equated Monthly Installment) is a fixed monthly payment to repay a loan over a set period. Each payment covers both principal repayment and interest charges."}
+    },
+    {
+      "@type":"Question",
+      "name":"Does a higher tenure reduce EMI?",
+      "acceptedAnswer":{"@type":"Answer","text":"Yes. A longer tenure spreads the loan over more months, reducing the monthly EMI. However, you pay significantly more total interest over the life of the loan."}
+    },
+    {
+      "@type":"Question",
+      "name":"How does interest rate affect EMI?",
+      "acceptedAnswer":{"@type":"Answer","text":"Even a 0.5% difference in interest rate can significantly change your EMI and total interest over a long-term loan. Always compare rates across lenders."}
+    },
+    {
+      "@type":"Question",
+      "name":"What is a pre-payment and how does it affect EMI?",
+      "acceptedAnswer":{"@type":"Answer","text":"A pre-payment is an extra lump-sum towards the principal, which either lowers future EMIs or shortens the tenure depending on your bank's policy."}
+    },
+    {
+      "@type":"Question",
+      "name":"Is the EMI formula the same for all types of loans?",
+      "acceptedAnswer":{"@type":"Answer","text":"Yes, the standard EMI formula applies to any fixed-rate loan — home, car, personal, or business. Floating rate loans have variable EMIs as the rate changes."}
+    },
+    {
+      "@type":"Question",
+      "name":"How can I lower my EMI?",
+      "acceptedAnswer":{"@type":"Answer","text":"Lower your EMI by: (1) Negotiating a lower rate, (2) Increasing tenure, (3) Making a larger down payment, or (4) Pre-paying when possible."}
+    }]}
+  </script>
+  <script id="seo-tab-js">
+    (function(){
+      document.querySelectorAll('.seo-tab-btn').forEach(function(btn){
+        btn.addEventListener('click',function(){
+          var tab=this.dataset.tab;
+          var section=this.closest('.seo-info-section');
+          section.querySelectorAll('.seo-tab-btn').forEach(function(b){b.classList.remove('active');b.setAttribute('aria-selected','false');});
+          section.querySelectorAll('.seo-tab-panel').forEach(function(p){p.classList.remove('active');});
+          this.classList.add('active');this.setAttribute('aria-selected','true');
+          document.getElementById('tab-'+tab).classList.add('active');
+        });
+      });
+      document.querySelectorAll('.seo-faq-question').forEach(function(btn){
+        btn.addEventListener('click',function(){
+          var answerId=this.getAttribute('aria-controls');
+          var answer=document.getElementById(answerId);
+          var isOpen=this.getAttribute('aria-expanded')==='true';
+          var list=this.closest('.seo-faq-list');
+          list.querySelectorAll('.seo-faq-question').forEach(function(b){b.setAttribute('aria-expanded','false');});
+          list.querySelectorAll('.seo-faq-answer').forEach(function(a){a.classList.remove('open');});
+          if(!isOpen){this.setAttribute('aria-expanded','true');answer.classList.add('open');}
+        });
+      });
+    })();
+  </script>
   <footer class="footer_main">
 
     <div>

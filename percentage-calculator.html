@@ -348,7 +348,252 @@
   $('#my-number').counto(0, 500);
 </script>
 
-<footer class="footer_main">
+
+  <style id="seo-section-styles">
+    .seo-info-section { margin-top: 2rem; }
+    .seo-intro-card {
+      background: linear-gradient(135deg, #f0eaff 0%, #fce8f8 100%);
+      border-left: 4px solid #7750b6;
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin-bottom: 1.5rem;
+      font-size: 0.97rem;
+      color: #2d0554;
+      line-height: 1.7;
+    }
+    .seo-tabs-nav { display:flex; flex-wrap:wrap; gap:8px; border-bottom:2px solid #e8e0f7; margin-bottom:1.5rem; }
+    .seo-tab-btn { background:none; border:none; padding:10px 18px; font-size:.9rem; font-family:inherit; font-weight:600; color:#7750b6; border-radius:8px 8px 0 0; cursor:pointer; transition:background .2s,color .2s; margin-bottom:-2px; border-bottom:3px solid transparent; }
+    .seo-tab-btn:hover { background:#f3eeff; }
+    .seo-tab-btn.active { color:#4b2394; border-bottom:3px solid #7750b6; background:#f3eeff; }
+    .seo-tab-panel { display:none; animation:fadeInTab .3s ease; }
+    .seo-tab-panel.active { display:block; }
+    @keyframes fadeInTab { from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);} }
+    .seo-steps-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:1rem; }
+    .seo-step-card { display:flex; gap:14px; align-items:flex-start; background:#fff; border:1px solid #ece5ff; border-radius:12px; padding:16px 18px; box-shadow:0 2px 10px rgba(119,80,182,.07); transition:transform .2s,box-shadow .2s; }
+    .seo-step-card:hover { transform:translateY(-2px); box-shadow:0 6px 20px rgba(119,80,182,.13); }
+    .seo-step-number { min-width:34px; height:34px; border-radius:50%; background:linear-gradient(135deg,#7750b6,#4b2394); color:#fff; font-size:1rem; font-weight:700; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .seo-step-body h4 { font-size:.95rem; font-weight:700; margin-bottom:4px; color:#2d0554; }
+    .seo-step-body p  { font-size:.85rem; color:#555; margin:0; line-height:1.6; }
+    .seo-formula-wrapper { display:flex; flex-direction:column; gap:1.2rem; }
+    .seo-formula-hero { background:linear-gradient(135deg,#4b2394 0%,#7750b6 100%); color:#fff; border-radius:14px; padding:24px 28px; text-align:center; }
+    .formula-label { font-size:.8rem; text-transform:uppercase; letter-spacing:2px; opacity:.75; display:block; margin-bottom:12px; }
+    .formula-display { font-size:1.4rem; font-weight:700; display:flex; align-items:center; justify-content:center; gap:10px; flex-wrap:wrap; }
+    .seo-formula-steps { display:flex; flex-direction:column; gap:1rem; }
+    .seo-formula-step { display:flex; gap:16px; align-items:flex-start; background:#fafafa; border:1px solid #eee; border-radius:10px; padding:14px 16px; }
+    .seo-formula-icon { color:#7750b6; font-size:1.1rem; margin-top:2px; min-width:20px; }
+    .seo-formula-step strong { font-size:.95rem; color:#2d0554; display:block; margin-bottom:4px; }
+    .seo-formula-step p { font-size:.85rem; color:#555; margin:0; line-height:1.5; }
+    .seo-code-block { display:inline-block; background:#f0eaff; color:#4b2394; border-radius:6px; padding:3px 10px; font-family:'Roboto Mono',monospace; font-size:.82rem; margin-top:6px; }
+    .seo-formula-example { background:rgba(40,167,69,.08); border:1px solid #28a745; border-radius:10px; padding:14px 18px; font-size:.9rem; color:#1a3d22; line-height:1.6; }
+    .seo-usecase-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:1rem; }
+    .seo-usecase-card { background:#fff; border:1px solid #ece5ff; border-radius:12px; padding:18px; text-align:center; box-shadow:0 2px 10px rgba(0,0,0,.05); transition:transform .2s,box-shadow .2s; }
+    .seo-usecase-card:hover { transform:translateY(-3px); box-shadow:0 8px 22px rgba(119,80,182,.12); }
+    .seo-usecase-icon { font-size:2rem; margin-bottom:10px; display:block; }
+    .seo-usecase-card h4 { font-size:.95rem; font-weight:700; color:#2d0554; margin-bottom:6px; }
+    .seo-usecase-card p  { font-size:.83rem; color:#555; margin:0; line-height:1.55; }
+    .seo-faq-list { display:flex; flex-direction:column; gap:10px; }
+    .seo-faq-item { background:#fff; border:1px solid #ece5ff; border-radius:12px; overflow:hidden; box-shadow:0 2px 8px rgba(119,80,182,.06); }
+    .seo-faq-question { width:100%; background:none; border:none; padding:16px 18px; display:flex; justify-content:space-between; align-items:center; font-family:inherit; font-size:.95rem; font-weight:600; color:#2d0554; cursor:pointer; text-align:left; transition:background .2s; }
+    .seo-faq-question:hover { background:#f8f4ff; }
+    .seo-faq-chevron { transition:transform .3s; color:#7750b6; font-size:.85rem; flex-shrink:0; margin-left:12px; }
+    .seo-faq-question[aria-expanded="true"] .seo-faq-chevron { transform:rotate(180deg); }
+    .seo-faq-answer { max-height:0; overflow:hidden; transition:max-height .35s ease,padding .25s ease; padding:0 18px; }
+    .seo-faq-answer.open { max-height:300px; padding:0 18px 16px; }
+    .seo-faq-answer p { font-size:.88rem; color:#444; line-height:1.7; margin:0; }
+    .seo-related-strip { display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin-top:2rem; padding:14px 16px; background:#f8f4ff; border-radius:12px; border:1px solid #ece5ff; }
+    .seo-related-label { font-size:.85rem; font-weight:700; color:#4b2394; white-space:nowrap; }
+    .seo-related-chip { display:inline-block; background:#fff; border:1px solid #c9b8f0; border-radius:20px; padding:4px 14px; font-size:.82rem; font-weight:600; color:#4b2394; text-decoration:none; transition:background .2s,color .2s,transform .2s; }
+    .seo-related-chip:hover { background:#7750b6; color:#fff; transform:translateY(-1px); }
+    @media(max-width:600px){ .seo-steps-grid{grid-template-columns:1fr;} .seo-usecase-grid{grid-template-columns:1fr 1fr;} .formula-display{font-size:1.1rem;} .seo-tab-btn{padding:8px 12px;font-size:.82rem;} }
+    @media(max-width:400px){ .seo-usecase-grid{grid-template-columns:1fr;} }
+  </style>
+  <!-- SEO Rich Info Section -->
+  <div class="seo-info-section mt-4">
+    <div class="seo-intro-card"><p>Our free <strong>Percentage Calculator</strong> lets you solve any percentage problem instantly — from <strong>what is X% of Y</strong>, to <strong>X is what percent of Y</strong>, to <strong>percentage increase/decrease</strong>. Whether you're calculating <strong>discounts</strong>, <strong>tax amounts</strong>, <strong>exam scores</strong>, or <strong>profit margins</strong>, this tool handles all common percentage calculations.</p></div>
+    <div class="seo-tabs-nav" role="tablist">
+      <button class="seo-tab-btn active" data-tab="how-to-use_pct" role="tab" aria-selected="true" aria-controls="tab-how-to-use_pct" id="btn-how-to-use_pct"><i class="fa-solid fa-circle-info me-1"></i> How to Use</button>
+      <button class="seo-tab-btn" data-tab="formula_pct" role="tab" aria-selected="false" aria-controls="tab-formula_pct" id="btn-formula_pct"><i class="fa-solid fa-square-root-variable me-1"></i> Formula</button>
+      <button class="seo-tab-btn" data-tab="use-cases_pct" role="tab" aria-selected="false" aria-controls="tab-use-cases_pct" id="btn-use-cases_pct"><i class="fa-solid fa-lightbulb me-1"></i> Use Cases</button>
+      <button class="seo-tab-btn" data-tab="faq_pct" role="tab" aria-selected="false" aria-controls="tab-faq_pct" id="btn-faq_pct"><i class="fa-solid fa-circle-question me-1"></i> FAQ</button>
+    </div>
+    <div class="seo-tab-panel active" id="tab-how-to-use_pct" role="tabpanel"><div class="seo-steps-grid">
+    <div class="seo-step-card">
+      <div class="seo-step-number">1</div>
+      <div class="seo-step-body"><h4>Choose Your Calculation Type</h4><p>Select from modes: <strong>'% Of'</strong> (what is X% of Y), <strong>'X is What % of Y'</strong>, or <strong>'% Change'</strong>.</p></div>
+    </div>
+    <div class="seo-step-card">
+      <div class="seo-step-number">2</div>
+      <div class="seo-step-body"><h4>Enter Your Values</h4><p>Fill in the required <strong>input fields</strong> based on your selected mode. All inputs accept decimals.</p></div>
+    </div>
+    <div class="seo-step-card">
+      <div class="seo-step-number">3</div>
+      <div class="seo-step-body"><h4>Click Calculate</h4><p>Hit <strong>Calculate</strong> to instantly compute the result displayed in the result panel.</p></div>
+    </div>
+    <div class="seo-step-card">
+      <div class="seo-step-number">4</div>
+      <div class="seo-step-body"><h4>Review the Result</h4><p>See the percentage or value clearly. The tool shows intermediate steps where helpful.</p></div>
+    </div>
+    <div class="seo-step-card">
+      <div class="seo-step-number">5</div>
+      <div class="seo-step-body"><h4>Reset & Recalculate</h4><p>Use the <strong>Reset</strong> button to clear inputs and try a different calculation type.</p></div>
+    </div>
+  </div></div>
+    <div class="seo-tab-panel" id="tab-formula_pct" role="tabpanel">
+  <div class="seo-formula-wrapper">
+    <div class="seo-formula-hero">
+      <span class="formula-label">Percentage Formulas</span>
+      <div class="formula-display">X% of Y = (X ÷ 100) × Y</div>
+    </div>
+    <div class="seo-formula-steps">
+    <div class="seo-formula-step">
+      <i class="fa-solid fa-1 seo-formula-icon"></i>
+      <div><strong>What is X% of Y?</strong><p><code class="seo-code-block">Result = (X / 100) × Y</code> — e.g., 15% of $200 = $30</p></div>
+    </div>
+    <div class="seo-formula-step">
+      <i class="fa-solid fa-2 seo-formula-icon"></i>
+      <div><strong>X is what percent of Y?</strong><p><code class="seo-code-block">% = (X / Y) × 100</code> — e.g., 30 is 15% of 200</p></div>
+    </div>
+    <div class="seo-formula-step">
+      <i class="fa-solid fa-3 seo-formula-icon"></i>
+      <div><strong>Percentage Increase / Decrease</strong><p><code class="seo-code-block">% Change = ((New - Old) / Old) × 100</code></p></div>
+    </div>
+    <div class="seo-formula-step">
+      <i class="fa-solid fa-4 seo-formula-icon"></i>
+      <div><strong>Percentage of Total</strong><p><code class="seo-code-block">Share = (Part / Total) × 100</code> — e.g., 25 of 80 = 31.25%</p></div>
+    </div>
+    <div class="seo-formula-example"><i class="fa-solid fa-flask me-2"></i><strong>Example:</strong> 15% of $200 = <strong>$30</strong> | 30 is <strong>15%</strong> of 200 | 80 to 100 = <strong>+25% change</strong></div></div>
+  </div></div>
+    <div class="seo-tab-panel" id="tab-use-cases_pct" role="tabpanel"><div class="seo-usecase-grid">
+    <div class="seo-usecase-card">
+      <i class="fa-solid fa-tag seo-usecase-icon" style="color:#4b2394;"></i>
+      <h4>Shopping Discounts</h4><p>Calculate sale price after a % discount — e.g., 30% off $120 = $84.</p>
+    </div>
+    <div class="seo-usecase-card">
+      <i class="fa-solid fa-receipt seo-usecase-icon" style="color:#e67e22;"></i>
+      <h4>Tax Calculation</h4><p>Add GST, VAT, or sales tax to any bill amount to find the tax-inclusive price.</p>
+    </div>
+    <div class="seo-usecase-card">
+      <i class="fa-solid fa-graduation-cap seo-usecase-icon" style="color:#27ae60;"></i>
+      <h4>Exam Score Grading</h4><p>Convert raw marks to percentage: 72 out of 80 = 90%.</p>
+    </div>
+    <div class="seo-usecase-card">
+      <i class="fa-solid fa-chart-pie seo-usecase-icon" style="color:#2980b9;"></i>
+      <h4>Business Profit Margins</h4><p>Find gross margin: profit ÷ revenue × 100 to benchmark profitability.</p>
+    </div>
+    <div class="seo-usecase-card">
+      <i class="fa-solid fa-coins seo-usecase-icon" style="color:#e74c3c;"></i>
+      <h4>Investment Returns</h4><p>Calculate your ROI as a percentage of the original investment cost.</p>
+    </div>
+    <div class="seo-usecase-card">
+      <i class="fa-solid fa-house seo-usecase-icon" style="color:#f39c12;"></i>
+      <h4>Down Payment %</h4><p>Compute what % of a home's price you're putting down: 60,000 / 300,000 = 20%.</p>
+    </div>
+  </div></div>
+    <div class="seo-tab-panel" id="tab-faq_pct" role="tabpanel"><div class="seo-faq-list">
+    <div class="seo-faq-item">
+      <button class="seo-faq-question" aria-expanded="false" aria-controls="faq-pct-1">
+        <span>What is a percentage?</span><i class="fa-solid fa-chevron-down seo-faq-chevron"></i>
+      </button>
+      <div class="seo-faq-answer" id="faq-pct-1"><p>A percentage expresses a number as a fraction of 100. The symbol % means "per hundred" — so 45% = 45/100 = 0.45.</p></div>
+    </div>
+    <div class="seo-faq-item">
+      <button class="seo-faq-question" aria-expanded="false" aria-controls="faq-pct-2">
+        <span>How do I calculate X% of a number?</span><i class="fa-solid fa-chevron-down seo-faq-chevron"></i>
+      </button>
+      <div class="seo-faq-answer" id="faq-pct-2"><p>Multiply the number by the percentage divided by 100. Example: 20% of 500 = (20/100) × 500 = 100.</p></div>
+    </div>
+    <div class="seo-faq-item">
+      <button class="seo-faq-question" aria-expanded="false" aria-controls="faq-pct-3">
+        <span>How do I find what percent one number is of another?</span><i class="fa-solid fa-chevron-down seo-faq-chevron"></i>
+      </button>
+      <div class="seo-faq-answer" id="faq-pct-3"><p>Divide the part by the whole and multiply by 100. Example: 75 out of 300 = (75/300) × 100 = 25%.</p></div>
+    </div>
+    <div class="seo-faq-item">
+      <button class="seo-faq-question" aria-expanded="false" aria-controls="faq-pct-4">
+        <span>How is percentage different from percentage points?</span><i class="fa-solid fa-chevron-down seo-faq-chevron"></i>
+      </button>
+      <div class="seo-faq-answer" id="faq-pct-4"><p>Percentage points are the arithmetic difference between two percentages. Going from 10% to 15% is a 5 percentage point increase but a 50% relative increase.</p></div>
+    </div>
+    <div class="seo-faq-item">
+      <button class="seo-faq-question" aria-expanded="false" aria-controls="faq-pct-5">
+        <span>Can a percentage exceed 100%?</span><i class="fa-solid fa-chevron-down seo-faq-chevron"></i>
+      </button>
+      <div class="seo-faq-answer" id="faq-pct-5"><p>Yes! If you score 55 out of 50 in a bonus exam, that's 110%. Percentages above 100% mean the value exceeds the base reference.</p></div>
+    </div>
+    <div class="seo-faq-item">
+      <button class="seo-faq-question" aria-expanded="false" aria-controls="faq-pct-6">
+        <span>What is the formula for discounts?</span><i class="fa-solid fa-chevron-down seo-faq-chevron"></i>
+      </button>
+      <div class="seo-faq-answer" id="faq-pct-6"><p>Sale Price = Original Price × (1 - Discount%/100). Example: $200 with 25% off = $200 × 0.75 = $150.</p></div>
+    </div>
+  </div></div>
+    <div class="seo-related-strip">
+    <span class="seo-related-label"><i class="fa-solid fa-arrow-right-arrow-left me-1"></i>Related Tools:</span>
+    <a href="/percentage-change-calculator.html" class="seo-related-chip" title="Percentage Change Calculator">% Change</a>
+              <a href="/profit-loss-calculator.html" class="seo-related-chip" title="Profit Loss Calculator">P/L Calculator</a>
+              <a href="/average-calculator.html" class="seo-related-chip" title="Average Calculator">Average Calc</a>
+              <a href="/emi-calculator.html" class="seo-related-chip" title="EMI Calculator">EMI Calculator</a>
+              <a href="/tip-calculator.html" class="seo-related-chip" title="Tip Calculator">Tip Calculator</a>
+  </div>
+  </div>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{
+      "@type":"Question",
+      "name":"What is a percentage?",
+      "acceptedAnswer":{"@type":"Answer","text":"A percentage expresses a number as a fraction of 100. The symbol % means \"per hundred\" — so 45% = 45/100 = 0.45."}
+    },
+    {
+      "@type":"Question",
+      "name":"How do I calculate X% of a number?",
+      "acceptedAnswer":{"@type":"Answer","text":"Multiply the number by the percentage divided by 100. Example: 20% of 500 = (20/100) × 500 = 100."}
+    },
+    {
+      "@type":"Question",
+      "name":"How do I find what percent one number is of another?",
+      "acceptedAnswer":{"@type":"Answer","text":"Divide the part by the whole and multiply by 100. Example: 75 out of 300 = (75/300) × 100 = 25%."}
+    },
+    {
+      "@type":"Question",
+      "name":"How is percentage different from percentage points?",
+      "acceptedAnswer":{"@type":"Answer","text":"Percentage points are the arithmetic difference between two percentages. Going from 10% to 15% is a 5 percentage point increase but a 50% relative increase."}
+    },
+    {
+      "@type":"Question",
+      "name":"Can a percentage exceed 100%?",
+      "acceptedAnswer":{"@type":"Answer","text":"Yes! If you score 55 out of 50 in a bonus exam, that's 110%. Percentages above 100% mean the value exceeds the base reference."}
+    },
+    {
+      "@type":"Question",
+      "name":"What is the formula for discounts?",
+      "acceptedAnswer":{"@type":"Answer","text":"Sale Price = Original Price × (1 - Discount%/100). Example: $200 with 25% off = $200 × 0.75 = $150."}
+    }]}
+  </script>
+  <script id="seo-tab-js">
+    (function(){
+      document.querySelectorAll('.seo-tab-btn').forEach(function(btn){
+        btn.addEventListener('click',function(){
+          var tab=this.dataset.tab;
+          var section=this.closest('.seo-info-section');
+          section.querySelectorAll('.seo-tab-btn').forEach(function(b){b.classList.remove('active');b.setAttribute('aria-selected','false');});
+          section.querySelectorAll('.seo-tab-panel').forEach(function(p){p.classList.remove('active');});
+          this.classList.add('active');this.setAttribute('aria-selected','true');
+          document.getElementById('tab-'+tab).classList.add('active');
+        });
+      });
+      document.querySelectorAll('.seo-faq-question').forEach(function(btn){
+        btn.addEventListener('click',function(){
+          var answerId=this.getAttribute('aria-controls');
+          var answer=document.getElementById(answerId);
+          var isOpen=this.getAttribute('aria-expanded')==='true';
+          var list=this.closest('.seo-faq-list');
+          list.querySelectorAll('.seo-faq-question').forEach(function(b){b.setAttribute('aria-expanded','false');});
+          list.querySelectorAll('.seo-faq-answer').forEach(function(a){a.classList.remove('open');});
+          if(!isOpen){this.setAttribute('aria-expanded','true');answer.classList.add('open');}
+        });
+      });
+    })();
+  </script>
+  <footer class="footer_main">
   <div>
     <a href="/" style="color: white; margin: 0 15px; text-decoration: none;" class="footer-logo"><img src="favicon.png" alt="WebToolsX Favicon Logo"></a>
     <a href="/" style="color: white; margin: 0 15px; text-decoration: none;">Home</a>

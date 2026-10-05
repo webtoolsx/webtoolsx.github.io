@@ -89,6 +89,7 @@
   </script>
 
 
+  <link rel="stylesheet" href="css/seo.css">
 </head>
 <div class="container-fluid">
     <!-- HEADER_START -->
@@ -282,84 +283,7 @@
           </div>
         </div>
 
-          <div class="row mt-3">
-            <div class="col-md-6">
-              <div class="mt-4">
-                <h2>How to use <i class="fa-solid fa-circle-info"></i> </h2>
-              
-                <ol class="list-group list-group-numbered">
-                  <li class="list-group-item">
-                    <strong>Enter the Price for the First Purchase:</strong>
-                    <p>In the "1st Buy at" field, enter the price at which you made the first purchase.</p>
-                  </li>
-              
-                  <li class="list-group-item">
-                    <strong>Enter the Quantity for the First Purchase:</strong>
-                    <p>In the "Quantity" field next to the "1st Buy at" price, enter the quantity you purchased at the first price.</p>
-                  </li>
-              
-                  <li class="list-group-item">
-                    <strong>Enter the Price for the Second Purchase:</strong>
-                    <p>In the "2nd Buy at" field, enter the price at which you made the second purchase.</p>
-                  </li>
-              
-                  <li class="list-group-item">
-                    <strong>Enter the Quantity for the Second Purchase:</strong>
-                    <p>In the "Quantity" field next to the "2nd Buy at" price, enter the quantity you purchased at the second price.</p>
-                  </li>
-              
-                  <li class="list-group-item">
-                    <strong>Reset the Form (Optional):</strong>
-                    <p>If you want to clear all the entered values, click the reset button (with the reset icon). This will remove the data you’ve entered in both price and quantity fields.</p>
-                  </li>
-              
-                  <li class="list-group-item">
-                    <strong>Calculate the Average Price:</strong>
-                    <p>Once you’ve entered both the prices and quantities, click the "Calculate" button to determine the average price based on the data you provided.</p>
-                  </li>
-                </ol>
-              
-                <p>This will help you calculate the average price for your purchases.</p>
-              </div>
-            </div>
-            <div class="col-md-6">
-             
-
-              <div class=" mt-4">
-                <h2><i class="fa-solid fa-square-root-variable"></i> Formula Explanation:</h2>
-                <p>The formula used to calculate the average price is based on the weighted average cost method. The formula is:</p>
-                
-                <div class="alert alert-info" role="alert">
-                  <pre><code>Average Price = (Price1 * Quantity1 + Price2 * Quantity2) / (Quantity1 + Quantity2)</code></pre>
-                </div>
-                
-                <p>This formula calculates the total cost of the two purchases by multiplying each price by its respective quantity, then dividing the sum of those values by the total quantity. This gives you the average price of the combined purchases.</p>
-              
-                <p><strong>Example:</strong></p>
-                <p>Suppose you bought the following:</p>
-                <ul>
-                  <li>1st Purchase: Price = $100, Quantity = 5</li>
-                  <li>2nd Purchase: Price = $120, Quantity = 3</li>
-                </ul>
-              
-                <p>Using the formula:</p>
-                
-                <div class="alert alert-success" role="alert">
-                  <pre><code>Average Price = (100 * 5 + 120 * 3) / (5 + 3)</code></pre>
-                </div>
-                
-                <p>Now, calculate:</p>
-                <ul>
-                  <li>Total cost = (100 * 5) + (120 * 3) = 500 + 360 = 860</li>
-                  <li>Total quantity = 5 + 3 = 8</li>
-                </ul>
-              
-                <p>Therefore, the Average Price = 860 / 8 = <strong>$107.50</strong>.</p>
-              </div>
-              
-              
-            </div>
-          </div>
+          
 
 
 
@@ -375,64 +299,7 @@
  
 
   
-  <style id="seo-section-styles">
-    .seo-info-section { margin-top: 2rem; }
-    .seo-intro-card {
-      background: linear-gradient(135deg, #f0eaff 0%, #fce8f8 100%);
-      border-left: 4px solid #7750b6;
-      border-radius: 10px;
-      padding: 16px 20px;
-      margin-bottom: 1.5rem;
-      font-size: 0.97rem;
-      color: #2d0554;
-      line-height: 1.7;
-    }
-    .seo-tabs-nav { display:flex; flex-wrap:wrap; gap:8px; border-bottom:2px solid #e8e0f7; margin-bottom:1.5rem; }
-    .seo-tab-btn { background:none; border:none; padding:10px 18px; font-size:.9rem; font-family:inherit; font-weight:600; color:#7750b6; border-radius:8px 8px 0 0; cursor:pointer; transition:background .2s,color .2s; margin-bottom:-2px; border-bottom:3px solid transparent; }
-    .seo-tab-btn:hover { background:#f3eeff; }
-    .seo-tab-btn.active { color:#4b2394; border-bottom:3px solid #7750b6; background:#f3eeff; }
-    .seo-tab-panel { display:none; animation:fadeInTab .3s ease; }
-    .seo-tab-panel.active { display:block; }
-    @keyframes fadeInTab { from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);} }
-    .seo-steps-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:1rem; }
-    .seo-step-card { display:flex; gap:14px; align-items:flex-start; background:#fff; border:1px solid #ece5ff; border-radius:12px; padding:16px 18px; box-shadow:0 2px 10px rgba(119,80,182,.07); transition:transform .2s,box-shadow .2s; }
-    .seo-step-card:hover { transform:translateY(-2px); box-shadow:0 6px 20px rgba(119,80,182,.13); }
-    .seo-step-number { min-width:34px; height:34px; border-radius:50%; background:linear-gradient(135deg,#7750b6,#4b2394); color:#fff; font-size:1rem; font-weight:700; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
-    .seo-step-body h4 { font-size:.95rem; font-weight:700; margin-bottom:4px; color:#2d0554; }
-    .seo-step-body p  { font-size:.85rem; color:#555; margin:0; line-height:1.6; }
-    .seo-formula-wrapper { display:flex; flex-direction:column; gap:1.2rem; }
-    .seo-formula-hero { background:linear-gradient(135deg,#4b2394 0%,#7750b6 100%); color:#fff; border-radius:14px; padding:24px 28px; text-align:center; }
-    .formula-label { font-size:.8rem; text-transform:uppercase; letter-spacing:2px; opacity:.75; display:block; margin-bottom:12px; }
-    .formula-display { font-size:1.4rem; font-weight:700; display:flex; align-items:center; justify-content:center; gap:10px; flex-wrap:wrap; }
-    .seo-formula-steps { display:flex; flex-direction:column; gap:1rem; }
-    .seo-formula-step { display:flex; gap:16px; align-items:flex-start; background:#fafafa; border:1px solid #eee; border-radius:10px; padding:14px 16px; }
-    .seo-formula-icon { color:#7750b6; font-size:1.1rem; margin-top:2px; min-width:20px; }
-    .seo-formula-step strong { font-size:.95rem; color:#2d0554; display:block; margin-bottom:4px; }
-    .seo-formula-step p { font-size:.85rem; color:#555; margin:0; line-height:1.5; }
-    .seo-code-block { display:inline-block; background:#f0eaff; color:#4b2394; border-radius:6px; padding:3px 10px; font-family:'Roboto Mono',monospace; font-size:.82rem; margin-top:6px; }
-    .seo-formula-example { background:rgba(40,167,69,.08); border:1px solid #28a745; border-radius:10px; padding:14px 18px; font-size:.9rem; color:#1a3d22; line-height:1.6; }
-    .seo-usecase-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:1rem; }
-    .seo-usecase-card { background:#fff; border:1px solid #ece5ff; border-radius:12px; padding:18px; text-align:center; box-shadow:0 2px 10px rgba(0,0,0,.05); transition:transform .2s,box-shadow .2s; }
-    .seo-usecase-card:hover { transform:translateY(-3px); box-shadow:0 8px 22px rgba(119,80,182,.12); }
-    .seo-usecase-icon { font-size:2rem; margin-bottom:10px; display:block; }
-    .seo-usecase-card h4 { font-size:.95rem; font-weight:700; color:#2d0554; margin-bottom:6px; }
-    .seo-usecase-card p  { font-size:.83rem; color:#555; margin:0; line-height:1.55; }
-    .seo-faq-list { display:flex; flex-direction:column; gap:10px; }
-    .seo-faq-item { background:#fff; border:1px solid #ece5ff; border-radius:12px; overflow:hidden; box-shadow:0 2px 8px rgba(119,80,182,.06); }
-    .seo-faq-question { width:100%; background:none; border:none; padding:16px 18px; display:flex; justify-content:space-between; align-items:center; font-family:inherit; font-size:.95rem; font-weight:600; color:#2d0554; cursor:pointer; text-align:left; transition:background .2s; }
-    .seo-faq-question:hover { background:#f8f4ff; }
-    .seo-faq-chevron { transition:transform .3s; color:#7750b6; font-size:.85rem; flex-shrink:0; margin-left:12px; }
-    .seo-faq-question[aria-expanded="true"] .seo-faq-chevron { transform:rotate(180deg); }
-    .seo-faq-answer { max-height:0; overflow:hidden; transition:max-height .35s ease,padding .25s ease; padding:0 18px; }
-    .seo-faq-answer.open { max-height:300px; padding:0 18px 16px; }
-    .seo-faq-answer p { font-size:.88rem; color:#444; line-height:1.7; margin:0; }
-    .seo-related-strip { display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin-top:2rem; padding:14px 16px; background:#f8f4ff; border-radius:12px; border:1px solid #ece5ff; }
-    .seo-related-label { font-size:.85rem; font-weight:700; color:#4b2394; white-space:nowrap; }
-    .seo-related-chip { display:inline-block; background:#fff; border:1px solid #c9b8f0; border-radius:20px; padding:4px 14px; font-size:.82rem; font-weight:600; color:#4b2394; text-decoration:none; transition:background .2s,color .2s,transform .2s; }
-    .seo-related-chip:hover { background:#7750b6; color:#fff; transform:translateY(-1px); }
-    @media(max-width:600px){ .seo-steps-grid{grid-template-columns:1fr;} .seo-usecase-grid{grid-template-columns:1fr 1fr;} .formula-display{font-size:1.1rem;} .seo-tab-btn{padding:8px 12px;font-size:.82rem;} }
-    @media(max-width:400px){ .seo-usecase-grid{grid-template-columns:1fr;} }
-  </style>
+  
   <!-- SEO Rich Info Section -->
   <div class="seo-info-section mt-4">
     <div class="seo-intro-card"><p>Our free <strong>Stock Average Calculator</strong> helps you quickly compute the <strong>weighted average buy price</strong> of a stock or asset purchased in multiple lots. Whether you're <strong>averaging down</strong>, <strong>averaging up</strong>, or tracking a <strong>systematic investment plan (SIP)</strong> — get the true average cost per share instantly.</p></div>
@@ -598,31 +465,7 @@
       "acceptedAnswer":{"@type":"Answer","text":"Yes. Enter the NAV as the price and number of units purchased as the quantity for each SIP instalment."}
     }]}
   </script>
-  <script id="seo-tab-js">
-    (function(){
-      document.querySelectorAll('.seo-tab-btn').forEach(function(btn){
-        btn.addEventListener('click',function(){
-          var tab=this.dataset.tab;
-          var section=this.closest('.seo-info-section');
-          section.querySelectorAll('.seo-tab-btn').forEach(function(b){b.classList.remove('active');b.setAttribute('aria-selected','false');});
-          section.querySelectorAll('.seo-tab-panel').forEach(function(p){p.classList.remove('active');});
-          this.classList.add('active');this.setAttribute('aria-selected','true');
-          document.getElementById('tab-'+tab).classList.add('active');
-        });
-      });
-      document.querySelectorAll('.seo-faq-question').forEach(function(btn){
-        btn.addEventListener('click',function(){
-          var answerId=this.getAttribute('aria-controls');
-          var answer=document.getElementById(answerId);
-          var isOpen=this.getAttribute('aria-expanded')==='true';
-          var list=this.closest('.seo-faq-list');
-          list.querySelectorAll('.seo-faq-question').forEach(function(b){b.setAttribute('aria-expanded','false');});
-          list.querySelectorAll('.seo-faq-answer').forEach(function(a){a.classList.remove('open');});
-          if(!isOpen){this.setAttribute('aria-expanded','true');answer.classList.add('open');}
-        });
-      });
-    })();
-  </script>
+  
   <footer class="footer_main">
 
     <div>
@@ -640,5 +483,6 @@
  
   </footer>
   <script src="js/terms_modal.js"></script>
+  <script src="js/seo.js"></script>
 </body>
 </html>

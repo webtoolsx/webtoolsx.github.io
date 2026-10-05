@@ -1,4 +1,4 @@
-import StockCalculator from './calclib.js';
+﻿import StockCalculator from './calclib.js';
 
 function calculate_pl() {
     // Retrieve the input values
@@ -543,4 +543,27 @@ document.addEventListener("click", function (event) {
             calculate_average();
         }
     }
+});
+// â”€â”€ Swap buttons â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+document.addEventListener("DOMContentLoaded", function () {
+  function animateSpin(btn) {
+    btn.classList.remove("spinning");
+    void btn.offsetWidth; // reflow to restart animation
+    btn.classList.add("spinning");
+    btn.addEventListener("animationend", () => btn.classList.remove("spinning"), { once: true });
+  }
+
+  const swapBtnChange = document.getElementById("swapBtnChange");
+  if (swapBtnChange) {
+    swapBtnChange.addEventListener("click", function () {
+      const first = document.getElementById("first_value");
+      const second = document.getElementById("second_value");
+      [first.value, second.value] = [second.value, first.value];
+      animateSpin(this);
+      
+      if (typeof calculatePercentageChange === 'function') {
+         calculatePercentageChange();
+      }
+    });
+  }
 });

@@ -52,3 +52,37 @@ document.addEventListener("DOMContentLoaded", function() {
       percentageResultInput.value = "";
     });
   });
+
+// ── Swap buttons ──────────────────────────────────────────────
+document.addEventListener("DOMContentLoaded", function () {
+  function animateSpin(btn) {
+    btn.classList.remove("spinning");
+    void btn.offsetWidth; // reflow to restart animation
+    btn.classList.add("spinning");
+    btn.addEventListener("animationend", () => btn.classList.remove("spinning"), { once: true });
+  }
+
+  // Row 1: swap percentage ↔ base value, then recalculate
+  const swapBtn1 = document.getElementById("swapBtn1");
+  if (swapBtn1) {
+    swapBtn1.addEventListener("click", function () {
+      const pct = document.getElementById("percentage");
+      const base = document.getElementById("baseValue");
+      [pct.value, base.value] = [base.value, pct.value];
+      pct.dispatchEvent(new Event("input"));
+      animateSpin(this);
+    });
+  }
+
+  // Row 2: swap part ↔ whole value, then recalculate
+  const swapBtn2 = document.getElementById("swapBtn2");
+  if (swapBtn2) {
+    swapBtn2.addEventListener("click", function () {
+      const part = document.getElementById("partValue");
+      const whole = document.getElementById("wholeValue");
+      [part.value, whole.value] = [whole.value, part.value];
+      part.dispatchEvent(new Event("input"));
+      animateSpin(this);
+    });
+  }
+});
